@@ -1,0 +1,240 @@
+.register {
+  // border: 1px solid red;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  // padding-bottom: 2rem;
+  display: flex;
+  height: 35rem;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    height: auto;
+  }
+
+  &-form {
+    //border: 1px solid red;
+    flex-basis: 50%;
+    padding: 4rem 5rem;
+    text-align: center;
+    display: none;
+
+    @media screen and (max-width: 768px) {
+      padding: 3rem 8rem;
+    }
+
+    @media screen and (max-width: 420px) {
+      padding-inline: 3rem;
+    }
+
+    h3 {
+      // border: 1px solid red;
+      color: #0a5e8d;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 3.5rem;
+      transition: var(--transition);
+
+      @media screen and (max-width: 768px) {
+        margin-bottom: 2.5rem;
+      }
+
+      @media screen and (max-width: 420px) {
+        font-size: 2rem;
+      }
+
+      &.dark {
+        color: var(--whiteBgColor);
+      }
+    }
+
+    p {
+      // border: 1px solid red;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+      color: var(--textColor);
+      transition: var(--transition);
+
+      &.dark {
+        color: var(--whiteBgColor);
+      }
+    }
+
+    &-email,
+    &-password {
+      width: 100%;
+      display: block;
+      padding: 1rem 0.8rem;
+      height: 2.5rem;
+      border: 1px solid #0a5e8d;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    &-email::placeholder,
+    &-password::placeholder {
+      color: var(--textColor);
+      font-size: 14px;
+    }
+
+    &-email:focus,
+    &-password:focus {
+      outline: none;
+    }
+
+    &-phones {
+      // border: 1px solid red;
+      display: flex;
+      justify-content: space-between;
+
+      input {
+        display: block;
+        padding: 1rem 0.8rem;
+        width: 13rem;
+        height: 2.5rem;
+        border: 1px solid #0a5e8d;
+        border-radius: 3px;
+        margin-bottom: 3.5rem;
+
+        @media screen and (max-width: 768px) {
+          &:first-child {
+            width: 100%;
+          }
+
+          &:last-child {
+            display: none;
+          }
+        }
+
+        &::placeholder {
+          color: #333;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    button {
+      height: 3rem;
+      width: 14rem;
+      background-color: #0a5e8d;
+      border: none;
+      border-radius: 4px;
+      color: var(--whiteBgColor);
+      letter-spacing: 1px;
+      transition: var(--transition);
+
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+
+      &.dark {
+        background-color: var(--subBgColor);
+      }
+    }
+  }
+
+  &-store {
+    // border: 1px solid red;
+    flex-basis: 50%;
+    margin: 0 auto;
+
+    @media screen and (max-width: 768px) {
+      // border: 1px solid red;
+      height: 20rem;
+    }
+
+    .mobile {
+      // border: 1px solid red;
+      position: relative;
+      height: 26rem;
+      width: 100%;
+
+      @media screen and (max-width: 420px) {
+        // border: 1px solid red;
+        height: 20rem;
+      }
+    }
+
+    .information {
+    //   border: 1px solid red;
+      height: 9rem;
+      width: 27rem;
+      margin: 0 auto;
+
+      @media screen and (max-width: 420px) {
+        // border: 1px solid red;
+        padding-inline: 1.5rem;
+      }
+
+      p {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-align: justify;
+        text-align-last: center;
+        margin-bottom: 0.75rem;
+        color: var(--textColor);
+
+        @media screen and (max-width: 768px) {
+          // border: 1px solid red;
+          font-size: 1rem;
+        }
+
+        @media screen and (max-width: 420px) {
+          // border: 1px solid red;
+          font-size: 0.8rem;
+        }
+
+        &.dark {
+          color: var(--whiteBgColor);
+        }
+      }
+
+      .apps {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        // height: 100%;
+        // border: 1px solid red;
+
+        @media screen and (max-width: 768px) {
+          margin-top: 1rem;
+        }
+
+        @media screen and (max-width: 420px) {
+        //   border: 1px solid red;
+          height: 50%;
+          justify-content: flex-start;
+        }
+
+        .appStore {
+          position: absolute;
+          top: -4.7rem;
+          left: -0.1rem;
+          width: 208px;
+
+          @media screen and (max-width: 420px) {
+            // border: 1px solid red;
+            width: 45%;
+          }
+        }
+
+        .googlePlay {
+          position: absolute;
+          top: -0.1rem;
+          left: 14rem;
+          width: 206px;
+
+          @media screen and (max-width: 420px) {
+            // border: 1px solid red
+            left: 11rem;
+          }
+        }
+      }
+    }
+  }
+}

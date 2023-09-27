@@ -1,0 +1,35 @@
+.tagsContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--blueBgColor);
+  transition: var(--transition);
+
+  &.dark {
+    color: var(--whiteBgColor);
+  }
+
+  .tags {
+    display: flex;
+    align-items: center;
+
+    h6 {
+      font-size: 19px;
+    }
+
+    .line {
+      height: 1.25rem;
+      width: 2rem;
+      border-right: 1px solid;
+    }
+
+    .tag1 {
+      margin-left: 1.5rem;
+      font-size: 14px;
+    }
+  }
+}

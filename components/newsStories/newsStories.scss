@@ -1,0 +1,96 @@
+.main-fluid {
+  //  border: 1px solid blue;
+  width: 100%;
+  height: calc(100vh - 9.5rem);
+  overflow: hidden;
+
+  .cont {
+    display: flex;
+    // gap: 0.5rem;
+
+    .cats {
+      //background-color: green;
+      // border: 1px solid red;
+      width: 18.5%;
+      display: flex;
+      flex-direction: column;
+      height: 83vh;
+      overflow-y: auto;
+      padding: 0.5rem 0;
+      gap: 0.5rem;
+
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    .stors {
+      // border: 1px solid red;
+      position: relative;
+      height: 84vh;
+      width: 81.5%; // GEREKLİ
+
+      @media screen and (max-width: 768px) {
+        width: 100%;
+        // height: calc(100vh - 104px);
+      }
+
+      .close {
+        position: absolute;
+        top: 1.5rem;
+        right: 3rem;
+        z-index: 7777;
+        width: 3rem;
+        height: 3rem;
+        background-color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .icon {
+        position: absolute;
+        top: 20rem;
+        z-index: 3;
+        width: 3rem;
+        height: 3rem;
+        background-color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
+
+        &.prev {
+          left: 5rem;
+        }
+
+        &.next {
+          right: 5rem;
+        }
+      }
+
+      & > div > div:nth-child(2) {
+        // border: 5px solid red;
+        display: flex;
+        justify-content: center;
+        // background-color: red;
+
+        img,video {
+          // border: 2px solid green;
+          height: 40rem !important;
+          object-fit: contain;
+          // width: 100% !important;
+          // margin-top: 3rem !important;
+          // width: 100% !important;
+          // height: 100% !important;
+        }
+      }
+    }
+  }
+}

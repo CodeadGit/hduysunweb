@@ -1,0 +1,16 @@
+.details {
+    min-height: 84.2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-container {
+        // border: 2px solid red;
+        width: 80%;
+        // height: fit-content;
+        margin: 5rem auto;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+    }
+}

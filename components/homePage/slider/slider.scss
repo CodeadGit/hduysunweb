@@ -1,0 +1,36 @@
+.sliderContainer {
+  // border: 1px solid red;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.25rem 1.25rem;
+
+  @media screen and (max-width: 420px) {
+    padding-inline: 0;
+  }
+
+  .slick-slider.slick-initialized {
+    // border: 1px solid green;
+    width: 100%;
+    padding-left: 0.4rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    // height: 9.5rem;
+
+    .slick-prev,
+    .slick-next {
+     top: 40%;
+    }
+
+    @media screen and (max-width: 768px) {
+      padding-left: 0.7rem;
+    }
+
+    @media screen and (max-width: 420px) {
+      padding-left: .4rem;
+      width: 70%;
+      margin: 0 auto;
+    }
+  }
+}

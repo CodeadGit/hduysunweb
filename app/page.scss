@@ -1,0 +1,14 @@
+.wrapper {
+    // border: 1px solid red;
+    width: 100%;
+    transition: var(--transition);
+
+    &.light {
+     background-color: var(--whiteBgColor);
+    }
+
+    &.dark {
+        background-color: var(--darkBgColor);
+    }
+}
+

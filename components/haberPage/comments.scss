@@ -1,0 +1,38 @@
+.comments {
+    // border: 1px solid red;
+    padding-top: 2.25rem;
+
+    h4 {
+      margin-bottom: 2rem;
+      color: var(--textColor);
+      transition: var(--transition);
+
+      &.dark {
+        color: #fff;
+      }
+    }
+
+    // .member-replys {
+    //   padding-left: 7.2rem;
+    //   color: var(--textColor);
+    //   font-weight: 600;
+    //   font-size: .75rem;
+    //   transition: var(--transition);
+
+    //   &.dark {
+    //     color: #fff;
+    //   }
+    // }
+
+    // .member-comments {
+    //   padding-left: 4.8rem;
+    //   color: var(--textColor);
+    //   font-weight: 600;
+    //   font-size: .75rem;
+    //   transition: var(--transition);
+
+    //   &.dark {
+    //     color: #fff;
+    //   }
+    // }
+  }

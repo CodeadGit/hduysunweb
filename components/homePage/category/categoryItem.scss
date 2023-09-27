@@ -1,0 +1,42 @@
+.single {
+    // border: 1px solid red;
+    height: 19rem;
+
+    @media screen and (max-width: 420px) {
+        height: auto;
+    }
+    
+    .img {
+        width: 100%;
+        // height: 15rem;
+        object-fit: cover;
+        aspect-ratio: 3/2;
+
+        @media screen and (max-width: 420px) {
+            height: 12rem;
+        }
+    }
+
+    .caption {
+        margin-top: 0.5rem;
+        font-size: 1.125rem;
+        font-weight: 700;
+        text-transform: capitalize;
+        transition: var(--transition);
+
+        @media screen and (max-width: 768px) {
+            font-size: 1rem;
+            padding-left: 0;
+        }
+
+        @media screen and (max-width: 420px) {
+            margin-top: 0.25rem;
+            font-weight: 600;
+            font-size: .75rem;
+        }
+
+        &.dark {
+            color: var(--whiteBgColor);
+        }
+    }
+}

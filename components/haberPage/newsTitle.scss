@@ -1,0 +1,37 @@
+.newss-container-content-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+
+    @media screen and (max-width: 768px) {
+      //padding: 2rem 0;
+      justify-content: flex-start;
+    }
+
+    .blue-line {
+      width: 0.4rem;
+      height: 1.8rem;
+      background-color: var(--blueBgColor);
+      transition: var(--transition);
+      // align-self: center;
+
+      &.dark {
+        background-color: var(--redBgColor);
+      }
+    }
+
+    h1 {
+      color: var(--textColor);
+      text-transform: capitalize;
+      transition: var(--transition);
+
+      @media screen and (max-width: 768px) {
+        font-size: 1.2rem;
+      }
+
+      &.dark {
+        color: white;
+      }
+    }
+  }

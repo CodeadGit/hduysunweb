@@ -1,0 +1,36 @@
+.authors {
+  //border: 1px solid red;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+
+  h3 {
+    font-weight: 700;
+    font-size: 1.375rem;
+    color: #24242e;
+    margin-bottom: 1rem;
+    transition: var(--transition);
+
+    &.dark {
+      color: var(--whiteBgColor);
+    }
+  }
+
+  .slick-slider.slick-initialized {
+    // border: 1px solid red;
+    padding: 2.75rem;
+    width: 60.625rem;
+    margin: 0 auto;
+    // color:red;
+
+    // svg.slick-arrow.slick-prev {
+    //   fill: currentColor !important;
+    //   stroke: currentColor !important;
+    // }
+
+    // .slick-list {
+    //     border: 2px solid blue;
+    // }
+  }
+}

@@ -1,0 +1,43 @@
+.singleStory {
+  width: 4rem;
+  height: 5.5rem;
+  cursor: pointer;
+
+  .img {
+    border: 3px solid transparent;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img, video {
+      width: 100%;
+      // height: 100%;
+      object-fit: cover;
+    }
+
+    &.dark {
+      border: 3px solid #fff;
+    }
+  }
+
+  .title {
+    //border: 1px solid red;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.4px;
+    margin-top: 0.6rem;
+    color: #005587;
+    text-transform: capitalize;
+    transition: var(--transition);
+
+    &.dark {
+      color: var(--whiteBgColor);
+    }
+  }
+}

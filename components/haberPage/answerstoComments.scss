@@ -1,0 +1,136 @@
+.answers-to-comments {
+
+&-box {
+    // border: 1px solid blue;
+    margin-top: 1rem;
+    padding-left: 2.6rem;
+  
+    &-frame {
+      display: flex;
+      gap: .5rem;
+      padding-left: 5%;
+  
+      .member-img {
+        position: relative;
+        width: 2rem;
+        height: 2rem;
+      }
+  
+      &-info {
+        //  border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        color: var(--textColor);
+        transition: var(--transition);
+  
+        &.dark {
+          // color: var(--redBgColor);
+          color: #fff;
+        }
+  
+        h6 {
+          font-weight: 600;
+          font-size: .8rem;
+          transition: var(--transition);
+  
+          &.dark {
+            // color: var(--blueBgColor);
+            color: #fff;
+          }
+        }
+  
+        .time-info {
+          // border: 1px solid red;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          color: var(--textColor);
+          gap: .3rem;
+          margin-top: .1rem; 
+          font-weight: 500;
+          height: 1rem;
+          font-size: .75rem;
+          transition: var(--transition);
+  
+          &.dark {
+            // color: var(--redBgColor);
+            color: #fff;
+          }
+        }
+      }
+  }
+  
+  .personal-comment {
+    padding: 0;
+    padding-left: 10.5%;
+    margin-top: .3rem;
+    font-size: .7rem;
+    font-weight: 500;
+    color: var(--textColor);
+    transition: var(--transition);
+  
+    &.dark {
+      color: #fff;
+    }
+  }
+  
+  .likes-dislikes {
+    //border: 1px solid red;
+    margin-top: .5rem;
+    padding-left: 10.5%;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--textColor);
+  
+    .like, .dislike, .reply {
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      cursor: pointer;
+      transition: var(--transition);
+  
+      &.dark {
+        color: #fff;
+      }
+  
+      svg {
+        font-size: .8rem;
+        display: inline-block;
+      }
+  
+      span {
+        font-size: .65rem;
+        margin-top: .1rem;
+        font-weight: 600;
+      }
+    }
+  
+    .like svg {
+      color: #75de4e;
+    }
+  
+    .dislike svg {
+      color: var(--blueBgColor);
+    }
+  
+    .reply svg {
+      font-size: 1rem;
+    
+      &.respond {
+        color: var(--blueBgColor);
+      }
+  
+      &.cancel {
+        color: var(--redBgColor);
+      }
+    }
+  }
+  }
+}
+
+
+  
+  
