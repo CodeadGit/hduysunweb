@@ -12,6 +12,7 @@ import google from "../../components/homePage/assets/google.png";
 import apple from "../../components/homePage/assets/apple.png";
 import KunyeItem from "./KunyeItem";
 import { useThemeContext } from "@/context/ThemeContext";
+import { useAdsContext } from "@/context/AdsContext";
 
 const kunyeArray = [
   {
@@ -45,15 +46,14 @@ const kunyeArray = [
 ];
 
 const Footer = () => {
-  
-  const { storyModal, mode } = useThemeContext();
+  const { mode } = useThemeContext();
+
   const modeStatus = mode === "dark";
+  const { storyModall } = useAdsContext();
 
   return (
     <div
-      className={`footer ${
-        storyModal ? "storiesOn" : modeStatus ? "dark" : ""
-      }`}
+      className={`footer ${storyModall ? "none" : ""} ${modeStatus ? "dark" : ""}`}
     >
       <div className="footer-fluid">
         <div className="footer-fluid-logo">

@@ -1,0 +1,40 @@
+.mansetPage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+
+  .mansetNews {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 1rem;
+
+    &-title {
+      font-size: 22px;
+      font-weight: 600;
+      padding-bottom: 1rem;
+
+      @media screen and (max-width: 768px) {
+        align-self: center;
+      }
+
+      &.dark {
+        color: white;
+      }
+    }
+
+    &-news {
+      display: grid;
+      gap: 1rem;
+      padding: 0 .75rem;
+      place-items: center;
+      place-content: center;
+      grid-template-columns: repeat(2, 1fr);
+
+      @media screen and (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

@@ -138,7 +138,7 @@ const CategoryPage= ({category}) => {
   return (
     <div className={`categoryPageContainer ${modeStatus ? "dark" : ""}`}>
       <Breadcrumb links={links} />
-      <Stories />
+      {/* <Stories /> */}
       {/* <HomePage /> */}
       {/* <Haber category arr={categoryArray} /> */}
       {/* <Caption title={categoryConvertor[category]} link="spor" /> */}

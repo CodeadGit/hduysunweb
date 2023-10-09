@@ -6,8 +6,7 @@ import { AiFillHome } from "react-icons/ai";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useThemeContext } from "@/context/ThemeContext";
 
-const Breadcrumb = ({links}) => {
-
+const Breadcrumb = ({ links }) => {
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
 
@@ -16,7 +15,7 @@ const Breadcrumb = ({links}) => {
       <ul className={`breadcrumb ${modeStatus ? "dark" : ""}`}>
         <li className={modeStatus ? "dark" : ""}>
           <Link href="/" className={modeStatus ? "dark" : ""}>
-            <AiFillHome className="home"/>
+            <AiFillHome className="home" />
             <span> Anasayfa </span>
             <FaChevronRight />
           </Link>
@@ -41,4 +40,4 @@ function BreadcrumbItem({ title, link, modeStatus }) {
       </Link>
     </li>
   );
-};
+}

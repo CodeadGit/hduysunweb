@@ -1,9 +1,18 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { storiesArray } from "./utils";
-import { collection, limit, onSnapshot, orderBy, query,  doc, increment, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  limit,
+  onSnapshot,
+  orderBy,
+  query,
+  doc,
+  increment,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
-import axios, { isCancel } from "axios";
+import axios from "axios";
 
 export const categoryList = [
   { id: "01", label: "Son Dakika", collection: "sonDakika" },
@@ -31,7 +40,6 @@ export const categoryList = [
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  
   const [mode, setMode] = useState("light");
   const [storyModal, setStoryModal] = useState(false);
 
@@ -44,8 +52,8 @@ export const ThemeProvider = ({ children }) => {
   const [fetching, setFetching] = useState(true);
   const [showAds, setShowAds] = useState(true);
 
-const hideAds = () => setShowAds(false);
-  
+  const hideAds = () => setShowAds(false);
+
   const [total, setTotal] = useState({
     league: [],
     league1: [],
@@ -64,7 +72,7 @@ const hideAds = () => setShowAds(false);
       setCategoryHeadlines((prev) => [...prev, newsItem]);
     });
   }, [news]);
-  
+
   const handleReadIncrement = async (category, id) => {
     var referance = doc(db, category, id);
     try {
@@ -108,11 +116,15 @@ const hideAds = () => setShowAds(false);
         const q = query(
           collection(db, categoryList[i].collection),
           orderBy("datePublished", "desc"),
-          limit(5),
+          limit(5)
         );
         const newsGetting = onSnapshot(q, (snap) => {
           snap.forEach((doc) => {
-            if (doc.data().active && doc.data().isConfirmed && doc.data().isNow) {
+            if (
+              doc.data().active &&
+              doc.data().isConfirmed &&
+              doc.data().isNow
+            ) {
               newsList.push({ ...doc.data(), doc: doc.id });
             }
           });
@@ -130,16 +142,27 @@ const hideAds = () => setShowAds(false);
   }, []);
 
   useEffect(() => {
-    const mansetNews = news?.filter((item) => item.isManset).sort((a, b) => b.datePublished.seconds - a.datePublished.seconds);
+    const mansetNews = news
+      ?.filter((item) => item.isManset)
+      .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds);
     setMansetNewsList(mansetNews);
   }, [news]);
 
   useEffect(() => {
-    const mostReadNews = news?.sort((a, b) => b.read - a.read).slice(0,6);
+    const mostReadNews = news?.sort((a, b) => b.read - a.read).slice(0, 6);
     setMostReadNewsList(mostReadNews);
     const videoNews = news.filter((i) => i.category === "gundem");
     setVideoNewsList(videoNews);
   }, [news]);
+
+  const tagsTitles = news?.reduce((result, item) => {
+    result[item.tags] = [];
+    return result;
+  }, {});
+  Object.keys(tagsTitles).forEach((tags) => {
+    let findTags = news.filter((title) => title.tags == tags);
+    tagsTitles[tags] = findTags;
+  });
 
   const toggle = () => {
     setMode((prev) => (prev === "dark" ? "light" : "dark"));
@@ -150,7 +173,8 @@ const hideAds = () => setShowAds(false);
 
   const handleStories = (cat) => {
     const newList = storiesArray.filter((item) => item.category === cat);
-    const newCategory = storiesArray.find((item) => item.category === cat
+    const newCategory = storiesArray.find(
+      (item) => item.category === cat
     ).category;
     setCategory(newCategory);
     setStories(newList);
@@ -160,7 +184,7 @@ const hideAds = () => setShowAds(false);
     changeStoryModal();
     handleStories(cat);
   };
-  
+
   const values = {
     toggle,
     mode,
@@ -182,6 +206,7 @@ const hideAds = () => setShowAds(false);
     hideAds,
     showAds,
     videoNewsList,
+    tagsTitles
   };
 
   return (

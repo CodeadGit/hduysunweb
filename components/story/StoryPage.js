@@ -1,41 +1,145 @@
-import React from 'react';
-import Stories from 'react-insta-stories';
+import React from "react";
+import Stories from "react-insta-stories";
+import "./story.scss";
+import Link from "next/link";
 
-const StoryPage = ({stories}) => {
+const StoryPage = ({ stories }) => {
+  const formatted = stories?.map((i) => {
+    return {
+      url:
+        i?.media ||
+        "https://yt3.googleusercontent.com/Sz83qeBNrt8arxkeFgDeqOxMZQ0YiNR_eLWe-Uv_xa7MV2IkyQvlWheFUScqn4a_7MCU4sGQ-Q=s900-c-k-c0x00ffffff-no-rj",
+      type: i.image ? "image" : "video",
+      content: ({ action, isPaused }) => {
+        return (
+          <div
+            style={{
+              display: "flex",
+              // alignItems: "center",
+              justifyContent: "center",
+              alignItems: "flex-start",
+              flexDirection: "column",
+              width: "50%",
+              position: "relative",
+              aspectRatio: 9 / 16,
+              backgroundColor: "rgba(0,0,0,.5)",
+            }}
+          >
+            <img
+              src={i?.media}
+              style={{
+                width: "100%",
+                height: "100% !important",
+                margin: "0 auto",
+                padding: "0",
+                alignSelf: "center",
+                zIndex: 1,
+                position: "relative",
+                aspectRatio: 9 / 16,
+                objectFit: "contain",
+              }}
+            />
+            <div
+              style={{
+                zIndex: 1000,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                position: "absolute",
+                width: "100%",
+                top: "60%",
+                gap: "1rem",
+                height: "10%",
+              }}
+            >
+              <h4
+                style={{
+                  zIndex: 1000,
+                  position: "absolute",
+                  width: "100%",
+                  color: "white",
+                  marginTop: "1rem",
+                }}
+              >
+                {i?.title}
+              </h4>
+              <p
+                style={{
+                  zIndex: 1000,
+                  width: "100%",
+                  whiteSpace: "wrap",
+                  color: "white",
+                  marginTop: "2.5rem",
+                  //top:"20%"
+                }}
+              >
+                {i?.description}
+              </p>
 
-const onAllStoriesEndHandler = () =>{
-    console.log('stories ended')
-};
+              {i?.isNews && (
+                <Link
+                  href={i.url}
+                  style={{
+                    zIndex: 1000,
+                    color: "white",
+                    position: "absolute",
+                    marginTop: "4rem",
+                    //top:"30%"
+                    //  bottom: "3.5rem",
+                  }}
+                >
+                  Link BURADA
+                </Link>
+              )}
+            </div>
+          </div>
+        );
+      },
+    };
+  });
 
-const storyContent = {
-    width: '100%',
-    maxWidth: '1200px',
-    height: '100%',
-    margin: 'auto',  
-    // border: "1px solid blue", 
-};
+  console.log(stories);
 
-console.log(stories)
+  const storyContent = {
+    //maxWidth: "1200px",
+    width: "100%",
+    height: "100% !important",
+    margin: "auto",
+    padding: "0px",
+    backgroundImage:
+      "linear-gradient(to right,rgba(9,89,133,100) ,rgba(120,170,198,100))",
+  };
 
-const formatted = stories.map(i=>{
-  return {url:i.media, type: i.image ? "image" : "video"}
-});
+  const story = {
+    width: "50%",
+    height: "100% !important",
+    margin: "0 auto",
+    padding: "0",
+    alignSelf: "center",
+  };
 
   return (
-    <React.Fragment>
-        <Stories 
+    <>
+      {formatted.length > 0 && (
+        <Stories
           stories={formatted}
-          defaultInterval={1500}
-          width='100%'
+          defaultInterval={2500}
+          width="100%"
           height="100%"
-          storyStyles={storyContent}         
           loop={true}
+          isPaused={true}
           keyboardNavigation={true}
-          currentIndex={()=>{}}
-          onAllStoriesEnd={onAllStoriesEndHandler}
-          /> 
-    </React.Fragment>
-  )
-}
+          storyContainerStyles={storyContent}
+          storyStyles={story}
+          storyContent={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        />
+      )}
+    </>
+  );
+};
 
 export default StoryPage;

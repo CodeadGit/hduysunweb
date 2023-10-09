@@ -6,6 +6,8 @@ import { useThemeContext } from "@/context/ThemeContext";
 import { handleShort } from "@/context/utils";
 import BannerNext from "../ads/adsComponents/BannerNext";
 import HomePageSkeleton from "./HomePageSkeleton";
+import MainSlider from "./mainSlider/MainSlider";
+import SurMansetSlider from "./surMansetSlider/SurMansetSlider";
 
 const HomePage = () => {
   const { mode, handleReadIncrement, mansetNewsList, loading } =
@@ -27,22 +29,24 @@ const HomePage = () => {
 
   return (
     <div className={`homeContainer ${modeStatus ? "dark" : ""}`}>
-      <MainNewsComponent
+      <MainSlider/>
+      {/* <MainNewsComponent
         handleReadIncrement={handleReadIncrement}
         mainNews={mainNews}
         modeStatus={modeStatus}
-      />
+      /> */}
       <div className="right">
-        <div className="right-top">
-          <SecondNews
+        <SurMansetSlider/>
+         {/* <div className="right-top">
+          {/* <SecondNews
             handleReadIncrement={handleReadIncrement}
             secondNews={secondNews}
             modeStatus={modeStatus}
-          />
+          /> */}
           {/* <AdsComponent /> */}
-          <BannerNext />
-        </div>
-        <div className="right-bottom">
+          {/* <BannerNext /> */}
+       {/*</div>*/} 
+      {/* <div className="right-bottom">
           {mansetNewsList.slice(2, 5).map((news) => {
             return (
               <SingleNewsComponent
@@ -53,7 +57,7 @@ const HomePage = () => {
               />
             );
           })}
-        </div>
+        </div>  */}
       </div>
     </div>
   );
@@ -118,10 +122,3 @@ const SingleNewsComponent = ({ news, handleReadIncrement, modeStatus }) => {
   );
 };
 
-// const AdsComponent = () => {
-//   return (
-//     <div className="right-top-right-pic">
-//       <Image src={pic3} alt="news" />
-//     </div>
-//   );
-// };

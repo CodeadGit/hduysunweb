@@ -13,16 +13,18 @@
 
 html {
   box-sizing: border-box;
+  font-family: "Poppins";
 }
 
 body {
   line-height: 1.2;
+  background-color: #f7f7f7;
 }
 
 :root {
   --blueBgColor: #095985;
   --redBgColor: #e40e20;
-  --whiteBgColor: #fff;
+  --whiteBgColor: #f7f7f7;
   --textColor: #333;
   --darkBgColor: #3e474f;
   --subBgColor: #1f252b;
@@ -111,6 +113,12 @@ a {
 
   @media screen and (max-width: 768px) {
     display: none !important;
+  }
+}
+
+@media screen and (min-width:769px) and (max-width:1200px) {
+  body {
+    overflow-x: hidden !important;
   }
 }
 

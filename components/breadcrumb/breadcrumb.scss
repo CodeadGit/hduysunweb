@@ -3,7 +3,8 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.5rem 2rem 0;
+ // padding: 0.5rem 2rem 0;
+  padding: 0.5rem 0;
   font-size: 1rem;
 
   @media screen and (max-width: 420px) {
@@ -78,7 +79,7 @@
         text-decoration: none;
         height: 2.5rem;
         line-height: 2.5rem;
-        padding: 0 10px 0 0;
+        //padding: 0 10px 0 0;
         text-transform: capitalize;
         color: gray;
         display: flex;

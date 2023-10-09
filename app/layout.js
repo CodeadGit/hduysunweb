@@ -21,20 +21,19 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-
   return (
     <html lang="en">
       <body className={poppins.className} suppressHydrationWarning={true}>
         <ThemeProvider>
-          <Navbar />
-          {/* <MiniNavbar /> */}
           <AdsContextProvider>
-          {/* <LogoNext /> */}
-          <BaseWrapper>{children}</BaseWrapper>
-          </AdsContextProvider>
+            <Navbar />
+            {/* <MiniNavbar /> */}
+            {/* <LogoNext /> */}
+            <BaseWrapper>{children}</BaseWrapper>
           <Footer />
+          </AdsContextProvider>
         </ThemeProvider>
       </body>
     </html>
-  )
-};
+  );
+}

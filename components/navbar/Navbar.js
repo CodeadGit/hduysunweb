@@ -9,14 +9,16 @@ import Buttons from "../buttons/Buttons";
 import BreakingNews from "../breakingNews/BreakingNews";
 import { useThemeContext } from "@/context/ThemeContext";
 import DrawerMenu from "./DrawerMenu";
+import { useAdsContext } from "@/context/AdsContext";
 
 const Navbar = () => {
 
   const { mode, toggle } = useThemeContext();
   const modeStatus = mode === "dark";
+  const { storyModall } = useAdsContext();
 
   return (
-    <div className={`navbar ${modeStatus ? "dark" : ""}`}>
+    <div className={`navbar ${storyModall ? "none" : ""}  ${modeStatus ? "dark" : ""}`}>
       <div className="navbar-top-header">
         <NavbarLogo wrapper="logo-wrapper" />
         <div className="top-right-wrapper">

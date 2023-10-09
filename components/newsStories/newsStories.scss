@@ -1,11 +1,12 @@
 .main-fluid {
-  //  border: 1px solid blue;
+  //border: 3px solid blue;
   width: 100%;
-  height: calc(100vh - 9.5rem);
-  overflow: hidden;
+  // height: calc(100vh - 9.5rem);
+  //overflow: hidden;
 
   .cont {
     display: flex;
+    height: 100vh;
     // gap: 0.5rem;
 
     .cats {
@@ -13,11 +14,30 @@
       // border: 1px solid red;
       width: 18.5%;
       display: flex;
+      align-items: center;
+      //justify-content: center;
       flex-direction: column;
-      height: 83vh;
-      overflow-y: auto;
-      padding: 0.5rem 0;
-      gap: 0.5rem;
+      height: 100vh;
+      //overflow-y: auto;
+      //padding: 0.5rem 0;
+      //gap: 0.5rem;
+      // background-color: rgba(72, 50, 133, 0);
+      background-color: rgb(9, 89, 133);
+
+      &-background {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow-y: auto;
+        padding: 0.5rem 0;
+        gap: 0.5rem;
+        background-color: rgba(0,0,0,.4);
+
+        &::-webkit-scrollbar {
+          width: 0 !important;
+        }
+      }
 
       @media screen and (max-width: 768px) {
         display: none;
@@ -26,8 +46,12 @@
 
     .stors {
       // border: 1px solid red;
+      background-color: transparent;
       position: relative;
-      height: 84vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      //height:100vh;
       width: 81.5%; // GEREKLİ
 
       @media screen and (max-width: 768px) {
@@ -42,25 +66,35 @@
         z-index: 7777;
         width: 3rem;
         height: 3rem;
-        background-color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .icon {
-        position: absolute;
-        top: 20rem;
-        z-index: 3;
-        width: 3rem;
-        height: 3rem;
-        background-color: white;
+        //background-color: white;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
+
+        .icon-close {
+          color: white;
+        }
+      }
+
+      .icon {
+        position: absolute;
+        top: 20rem;
+        z-index: 3000;
+        width: 65px;
+        height: 65px;
+        // background-color: white;
+        border-radius: 50%;
+        border-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        .icon-direction {
+          color: white;
+        }
 
         @media screen and (max-width: 768px) {
           display: none;
@@ -76,19 +110,16 @@
       }
 
       & > div > div:nth-child(2) {
-        // border: 5px solid red;
         display: flex;
         justify-content: center;
-        // background-color: red;
+        align-items: center;
 
-        img,video {
-          // border: 2px solid green;
-          height: 40rem !important;
+        img {
+          height: 100% !important;
           object-fit: contain;
-          // width: 100% !important;
-          // margin-top: 3rem !important;
-          // width: 100% !important;
-          // height: 100% !important;
+        }
+        video {
+          //height: 1000px;
         }
       }
     }

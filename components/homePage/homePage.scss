@@ -1,14 +1,16 @@
 .homeContainer {
-  // border: 1px solid red;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  height: 29.75rem;
-  gap: 1rem;
+  height: 28.125rem;
   transition: var(--transition);
   display: grid;
-  grid-template-columns: 50% 48.66%;
-  padding-bottom: 1rem;
+  //grid-template-columns: 50% 48.66%;
+  //grid-template-columns: 69.25% 29.25%;
+  //gap: 1.5rem;
+   grid-template-columns: 66.25% 32.50%;
+   gap: 1.25rem;
+   padding-bottom: 1rem;
 
   @media screen and (max-width: 768px) {
     // height: 60rem;
@@ -24,12 +26,9 @@
   }
 
   .left {
-
-    // border: 1px solid red;
     display: block;
  
     .left-image {
-      // border: 1px solid red;
       width: 37.5rem;
       height: 25rem;
 
@@ -70,12 +69,6 @@
   }
 
   .right {
-    // border: 1px solid red;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: space-between;
-    // gap: 1.25rem;
-
     @media screen and (max-width: 420px) {
       width: 100%;
     }
