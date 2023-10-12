@@ -39,10 +39,21 @@ body {
 .wholePageWrapper {
   // border: 1px solid red;
   display: flex;
-  justify-content: center;
-  gap: 0.5rem;
+ //justify-content: space-evenly;
+  //gap: 0.5rem;
   min-height: 84.6vh;
   transition: var(--transition);
+
+  @media screen and (min-width:1201px) {
+    justify-content: space-evenly;
+    gap: .5rem;
+
+  }
+
+  @media screen and (max-width:1200px) {
+     gap: 0.5rem;
+     justify-content: center;
+  } 
 
   &.dark {
     background-color: var(--darkBgColor);

@@ -1,0 +1,28 @@
+.videoGallerySlider {
+
+    &-wrapper {
+        width: 60%;
+        height: 30rem;
+        padding-top: 2rem;
+        margin: 0 auto;
+
+        &-slides {
+            box-sizing: border-box;
+            min-height: 0;
+            min-width: 0;
+            margin: 0 auto;
+            width: 100%;
+
+            .slick-next {
+                &:before {
+                  color: #095985;
+                }
+              }
+              .slick-prev {
+                &:before {
+                  color: #095985;
+                }
+              }
+        }
+    }
+}

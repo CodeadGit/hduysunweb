@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
-import { storiesArray } from "./utils";
+// import { storiesArray } from "./utils";
 import {
   collection,
   limit,
@@ -51,6 +51,8 @@ export const ThemeProvider = ({ children }) => {
   const [category, setCategory] = useState("dünya");
   const [fetching, setFetching] = useState(true);
   const [showAds, setShowAds] = useState(true);
+  const [photoGallery, setPhotoGallery] = useState([]);
+  const [videoGallery, setVideoGallery] = useState([]);
 
   const hideAds = () => setShowAds(false);
 
@@ -109,6 +111,44 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     let controller = new AbortController();
+    var photoGalleryList = [];
+    (async () => {
+      const q = query(
+        collection(db, "PhotoGallery"),
+        orderBy("datePublished", "desc")
+      );
+      const photoGalleryGetting = onSnapshot(q, (snap) => {
+        snap.forEach((doc) => {
+          photoGalleryList.push({ ...doc.data(), doc: doc.id });
+        });
+        setPhotoGallery(photoGalleryList);
+      });
+      return () => photoGalleryGetting();
+    })();
+    return () => controller?.abort();
+  }, []);
+
+  useEffect(() => {
+    let controller = new AbortController();
+    var videoGalleryList = [];
+    (async () => {
+      const q = query(
+        collection(db,"VideoGallery"),
+        orderBy("datePublished","desc")
+      );
+      const videoGalleryGetting = onSnapshot(q, (snap) => {
+        snap.forEach((doc) => {
+          videoGalleryList.push({...doc.data(),doc: doc.id});
+        });
+        setVideoGallery(videoGalleryList);
+      });
+      return () => videoGalleryGetting();
+    })();
+    return () => controller?.abort();
+  }, [])
+
+  useEffect(() => {
+    let controller = new AbortController();
     var newsList = [];
 
     for (let i = 0; i < categoryList.length; i++) {
@@ -164,6 +204,12 @@ export const ThemeProvider = ({ children }) => {
     tagsTitles[tags] = findTags;
   });
 
+  // const handleChangeTitle = (title) => {
+  //   for(let s=1;s<=title.length;s++){
+  //        .replace()
+  //   }
+  // }
+
   const toggle = () => {
     setMode((prev) => (prev === "dark" ? "light" : "dark"));
   };
@@ -171,18 +217,18 @@ export const ThemeProvider = ({ children }) => {
   const changeStoryModal = () => setStoryModal((prevState) => !prevState);
   const closeStoryModal = () => setStoryModal(false);
 
-  const handleStories = (cat) => {
-    const newList = storiesArray.filter((item) => item.category === cat);
-    const newCategory = storiesArray.find(
-      (item) => item.category === cat
-    ).category;
-    setCategory(newCategory);
-    setStories(newList);
-  };
+   //const handleStories = (cat) => {
+    // const newList = storiesArray.filter((item) => item.category === cat);
+  //   const newCategory = storiesArray.find(
+  //     (item) => item.category === cat
+  //   ).category;
+  //   setCategory(newCategory);
+  //   setStories(newList);
+  // };
 
   const navigateStory = (cat) => {
     changeStoryModal();
-    handleStories(cat);
+   // handleStories(cat);
   };
 
   const values = {
@@ -193,7 +239,7 @@ export const ThemeProvider = ({ children }) => {
     navigateStory,
     stories,
     category,
-    handleStories,
+   //handleStories,
     closeStoryModal,
     news,
     loading,
@@ -206,7 +252,9 @@ export const ThemeProvider = ({ children }) => {
     hideAds,
     showAds,
     videoNewsList,
-    tagsTitles
+    tagsTitles,
+    photoGallery,
+    videoGallery
   };
 
   return (

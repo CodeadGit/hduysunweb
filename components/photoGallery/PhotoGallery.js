@@ -1,31 +1,18 @@
+"use client"
 import Breadcrumb from "../breadcrumb/Breadcrumb";
 import "./photoGallery.scss";
 import "./PhotoGalleryCard";
 import PhotoGalleryCard from "./PhotoGalleryCard";
+import { useThemeContext } from "@/context/ThemeContext";
 
 const PhotoGallery = () => {
   const links = [{ id: 1, title: "Foto Galeri", link: "/foto-galeri" }];
 
-  const photoGalleryData = [
-    {
-      id: 1,
-      title: "foto galeri1",
-    },
-    {
-      id: 2,
-      title: "foto galeri2",
-    },
-    {
-      id: 3,
-      title: "foto galeri3",
-    },
-    {
-      id: 4,
-      title: "foto galeri4",
-    },
-  ];
+  const { photoGallery } = useThemeContext();
 
-  const photoGalleryList = photoGalleryData.map((item) => {
+  console.log(photoGallery)
+
+  const photoGalleryList = photoGallery.map((item) => {
     return <PhotoGalleryCard key={item.id} item={item} />;
   });
 

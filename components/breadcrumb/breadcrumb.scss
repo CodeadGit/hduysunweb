@@ -66,13 +66,9 @@
       }
 
       &:hover {
-        background-color: var(--blueBgColor);
-        color: #fff;
 
-        svg {
-          color: #fff;
-        }
-      }
+        color: var(--blueBgColor);
+       }
 
       a {
         // border: 1px solid red;

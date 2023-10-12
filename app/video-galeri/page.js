@@ -1,8 +1,8 @@
-import MainVideoGallery from "@/components/mainVideoGallery/MainVideoGallery";
+import VideoGallery from "@/components/videoGallery/VideoGallery";
 const VideoGaleriPage = () => {
   return (
     <div>
-      <MainVideoGallery/>
+      <VideoGallery/>
     </div>
   )
 }

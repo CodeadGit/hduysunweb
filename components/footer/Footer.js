@@ -53,7 +53,9 @@ const Footer = () => {
 
   return (
     <div
-      className={`footer ${storyModall ? "none" : ""} ${modeStatus ? "dark" : ""}`}
+      className={`footer ${storyModall ? "none" : ""} ${
+        modeStatus ? "dark" : ""
+      }`}
     >
       <div className="footer-fluid">
         <div className="footer-fluid-logo">
@@ -63,24 +65,40 @@ const Footer = () => {
           <div className="info-left">
             <div className={`info-left-caption ${modeStatus ? "dark" : ""}`}>
               <h4>Haberler</h4>
-              <h4>Foto Galeri</h4>
-              <h4>Video Galeri</h4>
+              <Link href="/foto-galeri">Foto Galeri</Link>
+              <Link href="/video-galeri">Video Galeri</Link>
             </div>
             <div className="info-left-categories">
               <div className="left-cat">
                 <ul className="left-cat-list">
                   <li>
-                    <Link href="/video">Gündem</Link>
+                    <Link href="/gundem">Gündem</Link>
                   </li>
-                  <li>Spor</li>
-                  <li>Siyaset</li>
-                  <li>Eğitim</li>
-                  <li>Ekonomi</li>
-                  <li>Kültür-Sanat</li>
-                  <li>Magazin</li>
-                  <li>Asayiş</li>
-                  <li>Röportajlar</li>
-                  <li>Yaşam</li>
+                  <li>
+                    <Link href="/spor">Spor</Link>
+                  </li>
+                  <li>
+                    <Link href="/siyaset">Siyaset</Link>
+                  </li>
+                  <li>
+                    <Link href="/egitim">Eğitim</Link>
+                  </li>
+                  <li>
+                    <Link href="/ekonomi"> Ekonomi</Link>
+                  </li>
+                  <li>
+                    <Link href="/kultursanat"> Kültür-Sanat</Link>
+                  </li>
+                  <li>
+                    <Link href="/magazin"> Magazin</Link>
+                  </li>
+                  <li>
+                    <Link href="asayis"> Asayiş</Link>
+                  </li>
+                  {/* <li>Röportajlar</li> */}
+                  <li>
+                    <Link href="yasam">Yaşam</Link>
+                  </li>
                 </ul>
               </div>
               <div className="mid-cat">

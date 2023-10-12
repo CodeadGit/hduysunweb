@@ -1,8 +1,19 @@
 .photoGalleryCard {
     width: 17.5rem;
     height: 20rem;
-    border: 1px solid lightgray;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 1rem;
+    box-shadow: 0, 0, 0, 0.3;
+
     &-title {
       font-size: 1rem;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    &-img {
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
     }
 }
