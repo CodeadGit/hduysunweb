@@ -38,7 +38,7 @@ export const handleShort = (text, number) => {
 };
 
 export const handleShortt = (text) => {
-  return text.substring(0,30).concat(" ...");
+  return text.substring(0,33).concat(" ...");
 };
 
 export const navigateCategory = (category) => {

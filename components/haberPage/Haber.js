@@ -32,6 +32,7 @@ import AdsImage from "./AdsImage";
 import CategoryNewsTitle from "./CategoryNewsTitle";
 import MostReadNews from "./MostReadNews";
 import VideoGallery from "./VideoGallery";
+import StickyNavbar from "../stickyNavbar/StickyNavbar";
 
 const Haber = ({ thisPageArticle, thisPage }) => {
 
@@ -156,6 +157,7 @@ const Haber = ({ thisPageArticle, thisPage }) => {
       <Breadcrumb mode={mode} links={categoryBreadcrumb} />
       <div className="newss-container">
         <div className="newss-container-content">
+          <StickyNavbar/>
           <CategoryGoogleContainer
             category={category}
             existingCategory={existingCategory}

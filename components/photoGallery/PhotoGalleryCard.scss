@@ -1,19 +1,71 @@
 .photoGalleryCard {
-    width: 17.5rem;
-    height: 20rem;
-    background-color: white;
-    border: 1px solid white;
-    border-radius: 1rem;
-    box-shadow: 0, 0, 0, 0.3;
+  width: 17.5rem;
+  height: 20rem;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 1rem;
+  box-shadow: 0, 0, 0, 0.3;
+
+  &.dark {
+    background-color: var(--subBgColor);
+    border-color: var(--subBgColor);
+  }
+
+  &-img {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    height: 12rem;
+  }
+
+  &-bottom {
+    height: 7rem;
+    width: 100%;
+    padding: 1rem;
 
     &-title {
+      color: black;
       font-size: 1rem;
-      margin: 0 auto;
-      text-align: center;
-    }
+      font-weight: 600;
+      height: 4.5rem;
 
-    &-img {
-      border-top-left-radius: 1rem;
-      border-top-right-radius: 1rem;
+      &.dark {
+        color: white;
+      }
+
+      &:visited &:active {
+        color: black;
+      }
     }
+    &-line {
+      border-top: 1px solid rgba(0, 0, 0, 0.155);
+      width: 96%;
+      text-align: center;
+      padding: 0.25rem 0;
+      margin: 0 auto;
+
+      &.dark {
+        border-color: rgba(0, 0, 0, 0.3);
+      }
+    }
+    &-date {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .date-title {
+        color: rgba(38, 38, 38, 0.56);
+
+        &.dark {
+          color: white;
+        }
+      }
+      .photogallery-publisheddate {
+        color: rgba(38, 38, 38, 0.56);
+
+        &.dark {
+          color: white;
+        }
+      }
+    }
+  }
 }

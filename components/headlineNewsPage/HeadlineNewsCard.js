@@ -62,7 +62,7 @@ const HeadlineNewsCard = ({ item }) => {
                   modeStatus ? "dark" : ""
                 }`}
               >
-                Paylaşım T.
+                Yayınlanma T.
               </span>
               <div
                 className={`headline-published-time ${

@@ -1,22 +1,85 @@
 .videoGalleryCard {
-  display: block;
-  width: 100%;
-  position: relative;
-  //  width: 17.5rem;
-  // height: 20rem;
-  // border: 1px solid lightgray;
+  width: 17.5rem;
+  height: 20rem;
+  border: 1px solid white;
+  border-radius: 1rem;
+  box-shadow: 0, 0, 0, 0.3;
+  background-color: white;
 
-  &-img {
-    object-fit: cover;
-    width: 100%;
-    aspect-ratio: 3.26/2;
-    border-radius: 0;
+  &.dark {
+    background-color: #1f252b;
+    border-color: #1f252b;
   }
-  .icon {
-    position: absolute;
-    top: 45%;
-    left: 47%;
-    color: white;
-    font-size: 50px;
+
+  &-top {
+    position: relative;
+    &-img {
+      object-fit: cover;
+      width: 100%;
+      height: 12rem;
+      aspect-ratio: 3.26/2;
+      border-top-right-radius: 16px;
+      border-top-left-radius: 16px;
+    }
+    .card-icon {
+      position: absolute;
+      top: 35%;
+      left: 38%;
+      color: white;
+      width: 56px;
+      height: 56px;
+    }
+  }
+  &-bottom {
+    height: 7rem;
+    width: 100%;
+    padding: 1rem;
+
+    &-title {
+      display: block;
+      color: black;
+      font-size: 1rem;
+      font-weight: 600;
+      height: 4rem;
+
+      &.dark {
+        color: white;
+      }
+
+      &:visited &:active {
+        color: black;
+      }
+    }
+    &-line {
+      border-top: 1px solid rgba(0, 0, 0, 0.155);
+      width: 96%;
+      text-align: center;
+      padding: 0.25rem 0;
+      margin: 0 auto;
+
+      &.dark {
+        border-color: rgba(0, 0, 0, 0.3);
+      }
+    }
+    &-date {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .video-date-title {
+        color: rgba(38, 38, 38, 0.56);
+
+        &.dark {
+          color: white;
+        }
+      }
+      .video-date {
+        color: rgba(38, 38, 38, 0.56);
+
+        &.dark {
+          color: white;
+        }
+      }
+    }
   }
 }

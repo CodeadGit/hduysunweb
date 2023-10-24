@@ -10,7 +10,6 @@ import {
   doc,
 } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
-import moment from "moment";
 
 const AdsContext = createContext();
 
@@ -22,6 +21,9 @@ export const AdsContextProvider = ({ children }) => {
   const [category, setCategory] = useState("");
   const [storyList, setstoryList] = useState([]);
   const [storyModall, setStoryModall] = useState(false);
+  const [advertPage, setAdvertPage] = useState(true);
+
+  console.log(advertPage)
 
   const handleReadIncrementAds = async (id) => {
     var referance = doc(db, "Ads", id);
@@ -110,6 +112,8 @@ storiesList.sort((a,b) => b.datePublished.seconds - a.datePublished.seconds);
   const changeStoryModall = () => setStoryModall((prevState) => !prevState);
   const closeStoryModall = () => setStoryModall(false);
 
+  const closeAdv = () => setAdvertPage(false);
+
   const handleStories = (cat) => {
     changeStoryModall();
     combineStories(cat);
@@ -128,7 +132,9 @@ storiesList.sort((a,b) => b.datePublished.seconds - a.datePublished.seconds);
     closeStoryModall,
     storyList,
     handleStories,
-    singleStories
+    singleStories,
+    closeAdv,
+    advertPage
   };
 
   return <AdsContext.Provider value={values}>{children}</AdsContext.Provider>;

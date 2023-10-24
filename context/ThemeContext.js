@@ -53,6 +53,7 @@ export const ThemeProvider = ({ children }) => {
   const [showAds, setShowAds] = useState(true);
   const [photoGallery, setPhotoGallery] = useState([]);
   const [videoGallery, setVideoGallery] = useState([]);
+  const [formalAdv, setFormalAdv] = useState([]);
 
   const hideAds = () => setShowAds(false);
 
@@ -133,19 +134,41 @@ export const ThemeProvider = ({ children }) => {
     var videoGalleryList = [];
     (async () => {
       const q = query(
-        collection(db,"VideoGallery"),
-        orderBy("datePublished","desc")
+        collection(db, "VideoGallery"),
+        orderBy("datePublished", "desc")
       );
       const videoGalleryGetting = onSnapshot(q, (snap) => {
         snap.forEach((doc) => {
-          videoGalleryList.push({...doc.data(),doc: doc.id});
+          videoGalleryList.push({ ...doc.data(), doc: doc.id });
         });
         setVideoGallery(videoGalleryList);
       });
       return () => videoGalleryGetting();
     })();
     return () => controller?.abort();
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    let controller = new AbortController();
+    var formalAdvArr = [];
+    (async () => {
+      const q = query(
+        collection(db, "FormalAdvert"),
+        orderBy("datePublished", "desc")
+      );
+      const formalAdvGetting = onSnapshot(q, (snap) => {
+        snap.forEach((doc) => {
+          if (doc.data().active) {
+            formalAdvArr.push({ ...doc.data(), doc: doc.id });
+          }
+        });
+        setFormalAdv(formalAdvArr);
+      });
+      return () => formalAdvGetting();
+    })();
+    return () => controller?.abort();
+  }, []);
+  console.log(formalAdv);
 
   useEffect(() => {
     let controller = new AbortController();
@@ -191,8 +214,8 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     const mostReadNews = news?.sort((a, b) => b.read - a.read).slice(0, 6);
     setMostReadNewsList(mostReadNews);
-    const videoNews = news.filter((i) => i.category === "gundem");
-    setVideoNewsList(videoNews);
+    // const videoNews = videoGallery.filter((i) => i.category === "gundem");
+    // setVideoNewsList(videoNews);
   }, [news]);
 
   const tagsTitles = news?.reduce((result, item) => {
@@ -217,8 +240,8 @@ export const ThemeProvider = ({ children }) => {
   const changeStoryModal = () => setStoryModal((prevState) => !prevState);
   const closeStoryModal = () => setStoryModal(false);
 
-   //const handleStories = (cat) => {
-    // const newList = storiesArray.filter((item) => item.category === cat);
+  //const handleStories = (cat) => {
+  // const newList = storiesArray.filter((item) => item.category === cat);
   //   const newCategory = storiesArray.find(
   //     (item) => item.category === cat
   //   ).category;
@@ -228,7 +251,7 @@ export const ThemeProvider = ({ children }) => {
 
   const navigateStory = (cat) => {
     changeStoryModal();
-   // handleStories(cat);
+    // handleStories(cat);
   };
 
   const values = {
@@ -239,7 +262,7 @@ export const ThemeProvider = ({ children }) => {
     navigateStory,
     stories,
     category,
-   //handleStories,
+    //handleStories,
     closeStoryModal,
     news,
     loading,
@@ -251,10 +274,11 @@ export const ThemeProvider = ({ children }) => {
     categoryHeadlines,
     hideAds,
     showAds,
-    videoNewsList,
+    // videoNewsList,
     tagsTitles,
     photoGallery,
-    videoGallery
+    videoGallery,
+    formalAdv,
   };
 
   return (

@@ -5,13 +5,11 @@ import PageSkinLeft from "./ads/adsComponents/PageSkinLeft";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useAdsContext } from "@/context/AdsContext";
 
-const BaseWrapper = ({ children }) => {
+const BaseWrapper = ({ children, params }) => {
 
   const { mode, showAds } = useThemeContext();
-  const { storyModall } = useAdsContext();
+  const { storyModall, advertPage } = useAdsContext();
   const modeStatus = mode === "dark";
-
-  // console.log(storyModall)
 
   const plainStyle = {
     maxWidth: "1200px",
@@ -21,7 +19,7 @@ const BaseWrapper = ({ children }) => {
     maxWidth: "100%",
   };
 
-  const notShowAds = storyModall || !showAds;
+  const notShowAds = !advertPage || storyModall || !showAds;
 
   return (
     <div className={`wholePageWrapper ${modeStatus ? "dark" : ""}`}>

@@ -1,0 +1,12 @@
+.formalAdv {
+  width: 100%;
+
+  &-list {
+    display: grid;
+    place-items: center;
+    place-content: center;
+    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    padding-top: 1rem;
+  }
+}

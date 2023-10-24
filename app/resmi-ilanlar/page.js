@@ -1,12 +1,17 @@
+"use client"
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
-import OfficialAnnouncement from "@/components/officialAnnouncement/OfficialAnnouncement";
-const ResmiIlanlarPage = () => {
+import FormalAdverts from "@/components/formalAdvert/FormalAdverts";
+import { useParams } from "next/navigation";
+
+const ResmiIlanlarPage = ({params}) => {
   const links = [{ id: 1, title: "Resmi İlanlar", link: "/resmi-ilanlar" }];
+
+  console.log(params.eng)
 
   return (
     <div>
       <Breadcrumb links={links} />
-      <OfficialAnnouncement />
+      <FormalAdverts />
     </div>
   );
 };

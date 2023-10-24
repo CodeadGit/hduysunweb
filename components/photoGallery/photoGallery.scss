@@ -6,6 +6,7 @@
     width: 100%;
 
     &-photos {
+        padding-top: 1rem;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 1rem;

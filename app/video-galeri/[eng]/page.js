@@ -1,22 +1,22 @@
 "use client";
-import VideoGalleryNews from "@/components/videoGalleryNews/VideoGalleryNews";
+import VideoGalleryDetail from "@/components/videoGalleryDetail/VideoGalleryDetail";
 import { useThemeContext } from "@/context/ThemeContext";
-const VideoGalleryDetail = ({ params }) => {
+const VideoGalleryDetailPage = ({ params }) => {
   const { videoGallery } = useThemeContext();
 
   var idArray = String(params.eng).split("-");
   var idForThisVideoGallery = idArray.at(-1);
   var titleArray = idArray.slice(0,-1).join(" ").toString();
 
-  const filterVideoUrl = videoGallery.filter((i) => String(i.id) === idForThisVideoGallery);
+  const filteredVideo = videoGallery.filter((i) => String(i.id) === idForThisVideoGallery);
   console.log(idForThisVideoGallery )
   console.log(videoGallery)
 
   return (
     <div>
-      <VideoGalleryNews titleArray={titleArray} filterVideoUrl={filterVideoUrl}/>
+      <VideoGalleryDetail titleArray={titleArray} filteredVideo={filteredVideo}/>
     </div>
   );
 };
 
-export default VideoGalleryDetail;
+export default VideoGalleryDetailPage;
