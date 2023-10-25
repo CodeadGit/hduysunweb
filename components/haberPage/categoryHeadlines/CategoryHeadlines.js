@@ -9,73 +9,6 @@ import Slider from "react-slick";
 
 import { useThemeContext } from "@/context/ThemeContext";
 
-// const categoryNewsArray = [
-//     {
-//       id: 1,
-//       image: anitkabir,
-//       content: "Ukrayna Başbakanı Shmyhal,Anıtkabir'de",
-//       title: "Siyaset",
-//     },
-//     {
-//       id: 2,
-//       image: car1,
-//       content:
-//         "Uber is disputing a study that suggested its drivers were making less",
-//       title: "Gündem",
-//     },
-//     {
-//       id: 3,
-//       image: scooter,
-//       content: "How the War on Tipping Is Bad for CustomersJones",
-//       title: "Teknoloji",
-//     },
-//     {
-//       id: 4,
-//       image: ayasofya,
-//       content: "These 9 electric bikes are stylish and loaded with high voltage",
-//       title: "Politik",
-//     },
-//     {
-//       id: 5,
-//       image: nasa,
-//       content:
-//         "Here's how Amazon's and Apple's new smart speakers stack up with consumers",
-//       title: "Bilim",
-//     },
-//     {
-//       id: 6,
-//       image: anitkabir,
-//       content: "Ukrayna Başbakanı Shmyhal,Anıtkabir'de",
-//       title: "Siyaset",
-//     },
-//     {
-//       id: 7,
-//       image: nasa,
-//       content:
-//         "Uber is disputing a study that suggested its drivers were making less",
-//       title: "Gündem",
-//     },
-//     {
-//       id: 8,
-//       image: scooter,
-//       content: "How the War on Tipping Is Bad for CustomersJones",
-//       title: "Teknoloji",
-//     },
-//     {
-//       id: 9,
-//       image: ayasofya,
-//       content: "These 9 electric bikes are stylish and loaded with high voltage",
-//       title: "Politik",
-//     },
-//     {
-//       id: 10,
-//       image: car1,
-//       content:
-//         "Here's how Amazon's and Apple's new smart speakers stack up with consumers",
-//       title: "Bilim",
-//     },
-//   ];
-
 const CategoryHeadlines = () => {
 
     const [sliderRef, setSliderRef] = useState(null);
@@ -87,21 +20,97 @@ const CategoryHeadlines = () => {
         arrows: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 5,
+        slidesToShow: 3,
         slidesToScroll: 1,
         responsive: [
           {
+            breakpoint: 1200,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+              arrows:true,
+              nextArrow: (
+                <button type="button" class="slick-next">
+                    Next
+                  </button>
+                ),
+                prevArrow: (
+                  <button type="button" class="slick-prev">
+                    Previous
+                  </button>
+                ),
+            }
+          },
+          {
+            breakpoint: 1150,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+              arrows:true,
+              nextArrow: (
+                <button type="button" class="slick-next">
+                    Next
+                  </button>
+                ),
+                prevArrow: (
+                  <button type="button" class="slick-prev">
+                    Previous
+                  </button>
+                ),
+            }
+          },
+          {
+            breakpoint: 900,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+              arrows:true,
+              nextArrow: (
+                <button type="button" class="slick-next">
+                    Next
+                  </button>
+                ),
+                prevArrow: (
+                  <button type="button" class="slick-prev">
+                    Previous
+                  </button>
+                ),
+            }
+          },
+          {
             breakpoint: 768,
             settings: {
-              slidesToShow: 4,
-              slidesToScroll: 1
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              arrows:true,
+              nextArrow: (
+                <button type="button" class="slick-next">
+                    Next
+                  </button>
+                ),
+                prevArrow: (
+                  <button type="button" class="slick-prev">
+                    Previous
+                  </button>
+                ),
             }
           },
           {
             breakpoint: 420,
             settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              arrows:true,
+              nextArrow: (
+                <button type="button" class="slick-next">
+                    Next
+                  </button>
+                ),
+                prevArrow: (
+                  <button type="button" class="slick-prev">
+                    Previous
+                  </button>
+                ),
             }
           },
         ]
@@ -121,7 +130,7 @@ const CategoryHeadlines = () => {
         </div>
       </div>
       <div className="category-headlines-slider">
-        <Slider ref={setSliderRef} {...settings}>
+        <Slider ref={setSliderRef} {...settings} className="category-headlines-slider-slides">
           {categoryHeadlines.map((item) => {
             return <SingleSliderItem key={item.id} {...item} mode={modeStatus} />;
           })}

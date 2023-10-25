@@ -32,13 +32,18 @@ export const editLink = (link) => {
 export const shortNewsTitle = (word) => `${word.substring(0, 50)}...`;
 
 export const handleShort = (text, number) => {
-  const res = text.split(" ");
+  const res = text?.split(" ");
   if (res.length <= number) return res.join(" ");
   return res.slice(0,number).join(" ").concat(" ...");
 };
+export const handleShortBreadcrump = (text, number) => {
+  const res = text?.split(" ");
+  if (res.length <= number) return res.join(" ");
+  return res.slice(1,number).join(" ").concat(" ...");
+};
 
 export const handleShortt = (text) => {
-  return text.substring(0,33).concat(" ...");
+  return text?.substring(0,33).concat(" ...");
 };
 
 export const navigateCategory = (category) => {

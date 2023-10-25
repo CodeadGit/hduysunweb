@@ -7,7 +7,8 @@ import Link from "next/link";
 const SingleRelatedNews = ({ item = {}, mode }) => {
   const { image, title, read, datePublished, category, eng, id } = item;
   const publishedTime = moment(datePublished?.seconds * 1000).format(
-    "DD.MM.YYYY - HH:mm"
+    "DD.MM.YYYY"
+    // "DD.MM.YYYY - HH:mm"
   );
 
   return (

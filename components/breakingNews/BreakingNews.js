@@ -6,9 +6,10 @@ import { GoClock } from "react-icons/go";
 import { useThemeContext } from "@/context/ThemeContext";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
-import { handleShortt } from "@/context/utils";
+import { handleShort } from "@/context/utils";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import { handleShortt } from "@/context/utils";
 
 const BreakingNews = () => {
 
@@ -32,6 +33,12 @@ const BreakingNews = () => {
           slidesToShow: 1,
         }
       },
+      {
+        breakpoint: 420,
+        settings: {
+          slidesToShow: 1
+        }
+      }
     ]
   };
 
@@ -114,6 +121,7 @@ const SingleBreakingNews = ({ title, datePublished, eng, id }) => {
         <div className="news">
           <span className="news-time">{time}</span>
           <span className="news-info">{`${handleShortt(title)}`}</span>
+          <span className="news-res">{`${handleShort(title,2)}`}</span>
         </div>
         {/* <div className="disc"></div>  */}
       </Link>

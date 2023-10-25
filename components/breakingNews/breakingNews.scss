@@ -63,7 +63,7 @@
       font-size: 1.25rem;
 
       @media screen and (max-width: 768px) {
-        font-size: 1rem;
+        font-size: .8rem;
       }
     }
 
@@ -120,6 +120,14 @@
 
               &-info {
                 font-size: 0.875rem;
+                @media screen and (max-width:768px) {
+                  display: none;
+                }
+              }
+              &-res {
+                @media screen and (min-width:769px) {
+                  display: none;
+                }
               }
             }
 

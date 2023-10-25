@@ -35,7 +35,6 @@ import VideoGallery from "./VideoGallery";
 import StickyNavbar from "../stickyNavbar/StickyNavbar";
 
 const Haber = ({ thisPageArticle, thisPage }) => {
-
   const { mode, mostReadNewsList, videoNewsList } = useThemeContext();
   const modeStatus = mode === "dark";
   const [loading, setLoading] = useState(true);
@@ -68,7 +67,9 @@ const Haber = ({ thisPageArticle, thisPage }) => {
   // console.log(source);
   // console.log(thisPageArticle);
 
-  const mostReadNews = mostReadNewsList.filter((item) => item.id !== id).slice(0, 5);
+  const mostReadNews = mostReadNewsList
+    .filter((item) => item.id !== id)
+    .slice(0, 5);
 
   const existingCategory = categoryConvertor[category] || category;
 
@@ -156,8 +157,8 @@ const Haber = ({ thisPageArticle, thisPage }) => {
     <div className={`newss ${modeStatus ? "dark" : ""}`}>
       <Breadcrumb mode={mode} links={categoryBreadcrumb} />
       <div className="newss-container">
+        <StickyNavbar />
         <div className="newss-container-content">
-          <StickyNavbar/>
           <CategoryGoogleContainer
             category={category}
             existingCategory={existingCategory}
@@ -204,7 +205,11 @@ const Haber = ({ thisPageArticle, thisPage }) => {
           <CategoryNewsTitle title="En Çok Okunan" modeStatus={modeStatus} />
           <MostReadNews modeStatus={modeStatus} mostReadNews={mostReadNews} />
           <CategoryNewsTitle title="İlgili" modeStatus={modeStatus} />
-          <RelatedNews subCategories={subCategories} category={category} id={id} />
+          <RelatedNews
+            subCategories={subCategories}
+            category={category}
+            id={id}
+          />
           <VideoGallery modeStatus={modeStatus} videoNewsList={videoNewsList} />
         </div>
       </div>

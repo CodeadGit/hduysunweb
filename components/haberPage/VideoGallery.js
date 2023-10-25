@@ -5,6 +5,7 @@ import video2 from "../homePage/assets/video2.png";
 import { AiFillEye } from "react-icons/ai";
 import SingleVideo from "./SingleVideo";
 import { useThemeContext } from "@/context/ThemeContext";
+import Link from "next/link";
 
 const VideoGallery = ({ modeStatus, videoNewsList }) => {
   const { videoGallery } = useThemeContext();
@@ -20,7 +21,7 @@ const VideoGallery = ({ modeStatus, videoNewsList }) => {
       </h3>
       {videoGallery?.slice(0, 1).map((item) => {
         return (
-          <div>
+          <Link target="_blank" href={`/video-galeri/${item.eng}-${item.id}`}>
             <div className="video-live">
               <Image src={item.headImg} alt="google-news" fill />
             </div>
@@ -43,7 +44,7 @@ const VideoGallery = ({ modeStatus, videoNewsList }) => {
               <AiFillEye />
               <span>{item.read}</span>
             </div>
-          </div>
+          </Link>
         );
       })}
       <div className="video-gallery-news-container">

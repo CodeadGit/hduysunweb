@@ -8,17 +8,22 @@
   }
 
   &-container {
-    // border: 1px solid red;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     gap: 2%;
     display: grid;
-    grid-template-columns: 69% 29%;
+    grid-template-columns: 2% 68% 28%;
+
+    @media screen and (max-width:1200px) {
+      padding: 0 1rem;
+    }
 
     @media screen and (max-width:768px) {
       display: flex;
       flex-direction: column;
+      padding: 1rem;
+      width: 100%;
     }
 
     &-content {
@@ -185,7 +190,7 @@
       // border: 1px solid red;
       background-color: inherit;
       width: 100%;
-      padding: 2rem;
+      padding: 1rem;
       padding-left: 1rem;
 
       @media screen and (max-width: 768px) {
