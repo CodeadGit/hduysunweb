@@ -18,30 +18,37 @@ const kunyeArray = [
   {
     id: 1,
     caption: "Künye",
+    url:"/kunye"
   },
   {
     id: 2,
     caption: "Çerez Politikası",
+    url:"/cerez-politikasi"
   },
   {
     id: 3,
     caption: "Gizlilik Politikası",
+    url:"/gizlilik-politikasi"
   },
   {
     id: 4,
     caption: "Veri Politikası",
+    url:"/veri-politikasi"
   },
   {
     id: 5,
     caption: "Kullanım Şartnamesi",
+    url:"/kullanim-sartnamesi"
   },
   {
     id: 6,
     caption: "Bize Ulaşın",
+    url:"/bize-ulasin"
   },
   {
     id: 7,
     caption: "KVKK",
+    url:"kvkk"
   },
 ];
 
@@ -156,7 +163,7 @@ const Footer = () => {
         </div>
         <ul className="footer-fluid-kunye">
           {kunyeArray.map((item) => (
-            <KunyeItem key={item.id} {...item} />
+            <KunyeItem key={item.id} {...item} item={item}/>
           ))}
         </ul>
       </div>

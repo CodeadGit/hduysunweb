@@ -1,0 +1,8 @@
+.footer-link {
+    color: white;
+  &.visited,
+  &.active,
+  &.hover {
+    color: white;
+  }
+}

@@ -1,8 +1,12 @@
-import React from 'react'
+import Link from "next/link"
+import "./kunyeItem.scss";
+const KunyeItem = ({item}) => {
+ 
+  const {url, caption} = item;
 
-const KunyeItem = ({caption}) => {
+
   return (
-    <li>{caption} <span></span></li>
+    <Link target="_blank" className="footer-link" href={url}>{caption}</Link>
   )
 }
 
