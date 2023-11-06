@@ -1,0 +1,22 @@
+.most-read-news-title {
+    //border: 1px solid red;
+    font-size: 1.25rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 3px solid #e1e1e1;
+    color: #000;
+    transition: var(--transition);
+
+    &.dark {
+      color: var(--whiteBgColor);
+      border-bottom: 3px solid var(--whiteBgColor);
+    }
+
+    span {
+      color: var(--blueBgColor);
+      transition: var(--transition);
+
+      &.dark {
+        color: var(--redBgColor);
+      }
+    }
+  }

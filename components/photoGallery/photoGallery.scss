@@ -1,0 +1,32 @@
+.photoGallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    &-photos {
+        padding-top: 1rem;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 1rem;
+
+
+        @media screen and (max-width: 1170px) and (min-width: 876px)  {
+  
+            grid-template-columns: repeat(3, 1fr);
+
+            }
+            @media screen and (max-width: 876px) and (min-width: 580px) {
+  
+                grid-template-columns: repeat(2, 1fr);
+    
+                }
+                @media screen and (max-width: 580px) {
+  
+                    grid-template-columns: repeat(1, 1fr);
+        
+                    }
+              
+    }
+}

@@ -1,0 +1,36 @@
+.tags {
+ //border: 1px solid red;
+  margin-top: 1.5rem;
+
+  &-title {
+    // border: 1px solid blue;
+    color: var(--textColor);
+    transition: var(--transition);
+
+    &.dark {
+      color: #fff;
+    }
+  }
+
+  &-buttons-wrapper {
+    // border: 1px solid blue;
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+
+    button {
+      padding: 0.3rem 0.5rem;
+      font-size: 0.75rem;
+      border-radius: 3px;
+      background-color: transparent;
+      color: var(--blueBgColor);
+      border: 1px solid var(--blueBgColor);
+      transition: var(--transition);
+
+      &.dark {
+        color: white;
+        border: 1px solid white;
+      }
+    }
+  }
+}

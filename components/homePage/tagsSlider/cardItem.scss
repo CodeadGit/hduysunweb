@@ -1,0 +1,122 @@
+.card {
+  // border: 1px solid red;
+  width: 13.5rem;
+  margin-bottom: 0;
+  transition: var(--transition);
+
+  @media screen and (max-width: 768px) {
+    width: 10.5rem;
+    height: auto;
+  }
+
+  @media screen and (max-width: 420px) {
+    width: 8.5rem;
+  }
+
+  &.dark {
+    color: var(--whiteBgColor);
+  }
+
+  .card-wrapper {
+    // border: 1px solid red;
+    width: 14rem;
+    margin-bottom: 0;
+
+    .image {
+      // border: 1px solid red;
+      display: inline-block;
+      width: 100%;
+      aspect-ratio: 3/2;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+
+  .content {
+    margin-top: 0;
+    height: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    color: black;
+
+    &-top {
+      width: 100%;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      
+      padding-top: .5rem;
+
+      &-left {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: .25rem;
+        flex-direction: row;
+
+        .disc {
+          border: 4px solid var(--blueBgColor);
+          //  margin-top: 0.1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 0.5rem;
+          height: 0.5rem;
+          transition: var(--transition);
+          background-color: var(--blueBgColor);
+
+          &.dark {
+            border: 4px solid var(--redBgColor);
+          }
+        }
+        &-category {
+          color: #095985;
+          font-size: 11px;
+          text-transform: capitalize;
+
+          &.dark {
+            color: white;
+          }
+        }
+      }
+      &-right {
+        width: 50%;
+        color: #095985;
+        font-size: 11px;
+        text-align: end;
+        margin: o auto;
+
+        &-time {
+          width: 100%;
+          padding-right: .5rem;
+
+          &.dark {
+            color: white;
+          }
+        }
+      }
+    }
+    &-bottom {
+      width: 100%;
+      .title {
+        font-size: 15px;
+        font-weight: 500;
+        transition: var(--transition);
+
+        &.dark {
+          color: var(--whiteBgColor);
+        }
+
+        @media screen and (max-width: 420px) {
+          font-size: 0.6rem;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

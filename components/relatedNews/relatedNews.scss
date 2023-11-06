@@ -1,0 +1,33 @@
+.related-news {
+    // border: 1px solid red;
+    margin: 1.5rem 0 2rem 0;
+
+    h3 {
+      font-size: 1.25rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 3px solid #e1e1e1;
+      color: #000;
+      transition: var(--transition);
+
+      &.dark {
+        color: var(--whiteBgColor);
+        border-bottom: 3px solid var(--whiteBgColor) !important;
+      }
+
+      span {
+        color: var(--blueBgColor);
+        transition: var(--transition);
+
+        &.dark {
+          color: var(--redBgColor);
+        }
+      }
+    }
+
+    &-container {
+      // border: 1px solid blue;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }

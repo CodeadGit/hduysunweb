@@ -1,0 +1,35 @@
+.timeInfo {
+    padding: .5rem 0;
+    text-align: justify;
+    font-size: 0.8rem;
+    transition: var(--transition);
+
+    @media screen and (max-width:768px) {
+      display: flex;
+      flex-direction: column;
+    }
+
+    span { 
+
+      strong {
+        // border: 1px solid red;
+        margin-right: .25rem;
+
+        @media screen and (max-width:768px) {
+         color: #9a9a9a;
+         font-size: .75rem;
+        }   
+      }
+    }
+    @media screen and (max-width:768px) {
+      font-size: .9rem;
+    }
+
+    &.dark {
+      color: #fff;
+    }
+
+    &:last-child {
+      font-size: 10px;
+    }
+  }

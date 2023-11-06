@@ -1,0 +1,43 @@
+.iconWrapper {
+    border: 1px solid;
+    color: black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid red;
+    border-width: .12rem;
+
+    a {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    &.twitter {
+       border-color: #5088F0;
+    }
+    &.whatsapp {
+        border-color: #26C463;
+    }
+    &.facebook {
+        border-color: #3974E3;
+    }
+    &.mail {
+        border-color: #707071;
+    }
+    &.linkedin {
+        border-color: #3C66AE;
+    }
+    &.printer {
+        border-color: #00BFA5;
+    }
+    &.fontPlus , &.fontInc{
+        border-color: #5088F0;
+    }
+
+    &-icon {
+        font-size: 2rem;
+    }
+}

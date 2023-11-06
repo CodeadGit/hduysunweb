@@ -1,0 +1,88 @@
+.formalAdvert-Card {
+  border: 1px solid white;
+  border-radius: 1rem;
+  box-shadow: 0, 0, 0, 0.3;
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  width: 17.5rem;
+  height: 12rem;
+
+  &.dark {
+    background-color: #1f252b;
+    border-color: #1f252b;
+  }
+  // display: grid;
+  // justify-content: center;
+  // grid-template-columns: 70%;
+
+  &-top {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 1rem;
+
+    .adv-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #095985;
+
+      &.dark {
+        color: white;
+      }
+    }
+  }
+
+  &-bottom {
+    // width: 50%;
+    width: 100%;
+    height: 8rem;
+
+    &-date {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0 1rem;
+      align-items: center;
+      height: 2rem;
+
+      .published-title {
+        color: rgba(38, 38, 38, 0.56);
+
+        &.dark {
+          color: white;
+        }
+      }
+      .published-date {
+        color: black;
+
+        &.dark {
+          color: white;
+        }
+      }
+    }
+
+    &-title {
+      display: inline-block;
+      padding: 0 1rem;
+      font-size: 1rem;
+      color: black;
+      width: 100%;
+      height: 4rem;
+      line-height: 1.25;
+
+      &:visited,
+      &:active {
+        color: black;
+      }
+
+      &.dark {
+        color: white;
+      }
+    }
+  }
+}

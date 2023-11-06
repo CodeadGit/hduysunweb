@@ -1,0 +1,112 @@
+.singleCurrency {
+    //border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 11rem;
+    height: 4rem;
+    // padding-inline: 0.5rem;
+
+    .topCurrency {
+    //   border: 1px solid red;
+      height: 1.5rem;
+      padding-inline: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.3rem;
+
+      .arrow-up {
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 11px solid #26c463;
+      }
+        
+      .arrow-down {
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 11px solid red;
+      }
+
+      .arrow-fixed {
+        width: 0;
+        height: 0;
+        border-bottom: 6px solid transparent;
+        border-top: 6px solid transparent;
+        border-left: 11px solid #bcbcbc;
+      }
+
+      
+      .type {
+        font-size: 12px;
+        font-weight: 600;
+        color: #333;
+        transition: var(--transition);
+
+        &.dark {
+            color: var(--whiteBgColor);
+        }
+    }
+       
+        .greenValue {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #26c463;
+        }
+
+        .redValue {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #e40e20;
+        }
+
+        .grayValue {
+            font-weight: 600;
+            font-size: 1rem;
+            color: black;
+        }
+     
+    }
+
+    .bottomCurrency {
+        margin-left: 2rem;
+        display: flex;
+        font-size: 0.75rem;
+
+        .percentage {
+            display: block;
+            padding: 0.2rem 0.4rem;      
+            border-radius: 4px;
+            font-weight: 600;
+            
+            &.increase {
+                color:#26c463;
+                background-color: #26c46321;  
+            }
+
+            &.decrease {
+                color: #e40e20;
+                background-color: #e40e204b;
+            }
+
+            &.stable {
+                color: #000;
+                background-color: rgba(128, 128, 128, 0.308);
+            }
+        }
+
+        .change {
+            margin-left: 0.5rem;
+            align-self: center;
+            transition: var(--transition);
+
+            &.dark {
+                color: var(--whiteBgColor);
+            }
+        }
+    }
+  }

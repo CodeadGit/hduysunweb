@@ -1,0 +1,9 @@
+.categoryPageContainer {
+    // border: 1px solid red;
+    background-color: var(--whiteBgColor);
+    transition: var(--transition);
+
+    &.dark {
+        background-color: var(--darkBgColor);
+    }
+}

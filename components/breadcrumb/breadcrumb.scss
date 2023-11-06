@@ -1,0 +1,122 @@
+.breadcrumb-container {
+  // border: 1px solid red;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  // padding: 0.5rem 2rem 0;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+
+  @media screen and (max-width: 420px) {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.75rem;
+  }
+
+  .breadcrumb {
+    // border: 1px solid red;
+    list-style: none;
+    display: flex;
+    width: 100%;
+    color: gray;
+    font-weight: 500;
+
+    .home-title {
+      @media screen and (max-width: 900px) {
+        display: none;
+      }
+    }
+
+    .item {
+      @media screen and (width <= 766px) {
+        display: none;
+      }
+    }
+    .res-item {
+      @media screen and (width >= 767px) {
+        display: none;
+      }
+      @media screen and (width <= 650px) {
+        display: none;
+      }
+    }
+    .res-small-item {
+      @media screen and (650px <= width <= 767px) {
+        display: none;
+      }
+      @media screen and (width >= 767px) {
+        display: none;
+      }
+    }
+
+    &.dark {
+      color: #fff;
+    }
+
+    svg {
+      font-size: 1rem;
+      color: var(--blueBgColor);
+    }
+
+    li {
+      transition: var(--transition);
+
+      // border: 1px solid red;
+
+      // &:first-of-type {
+
+      //   svg:first-child{
+      //     color: gray;
+      //   }
+      // }
+
+      // &.dark {
+      //   transition: var(--transition);
+
+      //   &:hover {
+      //     background-color: var(--subBgColor);
+      //   }
+      // }
+
+      &:not(:first-of-type) {
+        padding-left: 10px;
+
+        @media screen and (max-width: 420px) {
+          padding-left: 0;
+        }
+      }
+
+      &:last-of-type {
+        flex: 1;
+
+        svg {
+          display: none;
+        }
+      }
+
+      // &:hover {
+
+      //   color: var(--blueBgColor);
+      //  }
+
+      a {
+        text-decoration: none;
+        height: 2.5rem;
+        line-height: 2.5rem;
+        text-transform: capitalize;
+        color: gray;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: var(--transition);
+
+        &.dark {
+          color: #fff;
+
+          svg {
+            color: inherit;
+          }
+        }
+      }
+    }
+  }
+}

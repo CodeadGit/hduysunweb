@@ -1,0 +1,130 @@
+.pointss {
+  // border: 1px solid red;
+  padding: 2rem 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+
+  @media screen and (max-width: 1200px) and (min-width: 768px){
+    padding-inline: 1rem;
+  
+  }
+
+  @media screen and (max-width: 768px) {
+    padding-inline: 1rem;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &-left-section {
+    width: 350px;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+
+    .eczane {
+      background: linear-gradient(45deg, #dd1818, #333333);
+      width: 100%;
+      height: 11rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        //gap:1rem;
+        padding: 2rem;
+        box-sizing: border-box;
+
+        .big {
+          text-align: center;
+          font-weight: 800;
+          font-size: 4rem;
+          width: 80px;
+          height: 80px;
+          background-color: transparent;
+          border: 1px solid #fff;
+          color: #fff;
+
+          @media screen and (max-width: 768px) {
+            margin-right: 2rem;
+          }
+        }
+
+        .down {
+          text-align: center;
+          font-weight: 600;
+          font-size: 2rem;
+          //height: 80px;
+          //width: 100px;
+          flex: 1;
+          background-color: transparent;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  &-right-section {
+    // border: 1px solid red;
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 1rem;
+
+    @media screen and (max-width: 768px) {
+      display: grid;
+      grid-template-columns: 49% 49%;
+    }
+
+    @media screen and (max-width: 420px) {
+      display: grid;
+      grid-template-columns: 48% 48%;
+    }
+
+    .itemm {
+      // border: 1px solid red;
+      width: 260px;
+      height: 220px;
+
+      @media screen and (max-width: 768px) {
+        width: 100%;
+        height: auto;
+      }
+
+      .img {
+        // border: 1px solid red;
+        width: 100%;
+        object-fit: cover;
+        aspect-ratio: 3/2;
+      }
+
+      .caption {
+        font-size: 0.75rem;
+        margin-top: 0.5rem;
+        font-weight: 600;
+        color: #000;
+        transition: var(--transition);
+
+      &.dark {
+        color: var(--whiteBgColor);
+      }
+
+        @media screen and (max-width: 768px) {
+          font-size: 1rem;
+          padding-left: 0;
+        }
+
+        @media screen and (max-width: 420px) {
+          margin-top: 0.25rem;
+          font-size: 0.75rem;
+        }
+      }
+    }
+  }
+}

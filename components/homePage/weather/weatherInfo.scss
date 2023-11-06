@@ -1,0 +1,106 @@
+.weatherContainer {
+  // border: 1px solid red;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 3rem;
+  display: flex;
+
+  @media screen and (max-width: 1200px) and (min-width: 786px) {
+  }
+  @media screen and (max-width: 420px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .info-section {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    // border: 1px solid blue;
+
+    @media screen and (max-width: 1200px) and (min-width: 786px) {
+    }
+
+    .wrapper {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      // border: 1px solid green;
+
+      @media screen and (max-width: 920px) {
+        &:last-child {
+          display: none;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        &:nth-last-child(-n + 2) {
+          display: none;
+        }
+      }
+      @media screen and (max-width: 586px) {
+        &:nth-last-child(-n + 3) {
+          display: none;
+        }
+      }
+      @media screen and (max-width: 420px) {
+        &:nth-last-child(-n + 4) {
+          display: none;
+        }
+      }
+    }
+
+    &:last-child {
+      .rightLine {
+        display: none;
+      }
+    }
+  }
+
+  .rightLine {
+    width: 1px;
+    height: 2.5rem;
+    border-right: 0.5px solid #707070;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .link-section {
+    width: 6rem;
+    height: 3rem;
+    margin-right: 0.5rem;
+    align-self: center;
+    text-align: center;
+    // border: 1px solid palegreen;
+
+    a:link,
+    a:visited {
+      display: block;
+      color: #333;
+      background-color: #e8e8e8;
+      font-size: 0.75rem;
+      font-weight: 600;
+      height: 100%;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0.5rem;
+      border-radius: 5px;
+      // border: 1px solid red;
+      // margin-left: .2rem;
+    }
+  }
+
+  .singleWeather {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 4rem;
+    padding-inline: 0.5rem;
+
+    @media screen and (max-width: 920px) {
+    }
+  }
+}

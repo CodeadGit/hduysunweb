@@ -1,0 +1,202 @@
+.newss {
+  background-color: var(--whiteBgColor);
+  min-height: 82.6vh;
+  transition: var(--transition);
+
+  &.dark {
+    background-color: var(--darkBgColor);
+  }
+
+  &-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2%;
+    display: grid;
+    grid-template-columns: 2% 68% 28%;
+
+    @media screen and (max-width:1200px) {
+      padding: 0 1rem;
+    }
+
+    @media screen and (max-width:768px) {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      width: 100%;
+    }
+
+    &-content {
+      // border: 1px solid blue;
+      position: relative;
+      background-color: inherit;
+      width: 100%;
+     // padding: 2rem;
+     padding: 1rem 0;
+      height: 100%;
+
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+
+      &.categoryPage {
+        // border: 1px solid green;
+        padding: 2rem 0 0;
+
+        .ort {
+          display: flex;
+          flex-direction: column;
+          gap: 3rem;
+        }
+
+        .category-section {
+          display: flex;
+          gap: 1rem;
+          height: 200px;
+
+          .img-container {
+            position: relative;
+            width: 296px;
+            height: 200px;
+          }
+          .other-sec {
+            flex: 1;
+
+            .category-title {
+              font-weight: 600;
+              font-size: 1.125rem;
+              margin-bottom: 0.625rem;
+            }
+
+            .category-content {
+              font-size: 0.75rem;
+            }
+
+            .read-more {
+              color: #000;
+              font-size: 0.75rem;
+              font-weight: 500;
+              margin-bottom: 1rem;
+              cursor: pointer;
+            }
+
+            .user-information {
+              //border: 1px solid red;
+              margin-top: 2rem;
+              height: 2.75rem;
+              display: flex;
+              justify-content: space-between;
+
+              &-left {
+                // border: 1px solid red;
+                width: 30%;
+                height: 100%;
+                display: flex;
+                gap: 0.4rem;
+
+                .img-wrapper {
+                  position: relative;
+                  width: 42px;
+                  height: 42px;
+                }
+
+                .name-wrapper {
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+
+                  h6 {
+                    font-size: 10px;
+                  }
+
+                  p {
+                    padding: 0;
+                    font-size: 10px;
+                    margin-top: 0.3rem;
+
+                    @media screen and (max-width: 768px) {
+                      white-space: normal;
+                      word-wrap: wrap;
+                      width: 100%;
+                      //padding-left: .5rem;
+                    }
+                  }
+                }
+              }
+
+              &-right {
+                //border: 1px solid red;
+                width: 45%;
+                height: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 1rem;
+
+                .like-status {
+                  //border: 1px solid red;
+                  display: flex;
+                  align-items: center;
+                  gap: 0.3rem;
+                  height: 100%;
+
+                  .status-icon {
+                    background-color: #e8ebed;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                  }
+
+                  span {
+                    font-size: 0.75rem;
+                    margin-top: 0.1rem;
+                  }
+
+                  svg {
+                    color: var(--blueBgColor);
+                    font-size: 14.39px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .newsImage {
+        width: 100%;
+        aspect-ratio: 3/2;
+        object-fit: cover;
+
+        @media screen and (max-width: 768px) {
+          block-size: auto;
+          height: auto;
+          max-width: 100%;
+        }
+      }
+
+      .pic2 {
+        position: relative;
+        margin-top: 1rem;
+        height: 20rem;
+      }
+    }
+
+    &-adds {
+      // border: 1px solid red;
+      background-color: inherit;
+      width: 100%;
+      padding: 1rem;
+      padding-left: 1rem;
+
+      @media screen and (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}

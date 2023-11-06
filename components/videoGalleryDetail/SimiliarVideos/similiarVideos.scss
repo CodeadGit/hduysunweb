@@ -1,0 +1,35 @@
+.similiarVideos {
+  height: 100%;
+  padding-bottom: 1rem;
+  // border: 1px solid red;
+   @media screen and (max-width:1170px){
+      margin-top: 5rem;
+    }
+    @media screen and (max-width:768px){
+      height: 80%;
+    }
+
+  &-title {
+    padding-bottom: 1rem;
+    font-size: 19px;
+    font-weight: 600;
+    padding-bottom: 2rem;
+ 
+  }
+
+  &-list {
+    display: grid;
+    grid-template-rows: 33%;
+    height: 100%;
+    border-color: #707070;
+    border-radius: 10px;
+    background-color: white;
+
+    @media screen and (max-width:1170px){
+      background-color: #f7f7f7;
+    }
+    @media screen and (max-width:768px){
+            gap:1rem;
+    }
+  }
+}

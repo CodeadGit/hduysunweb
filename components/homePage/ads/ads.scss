@@ -1,0 +1,21 @@
+ .arcelik{
+    display: flex;
+    width: 100%;
+
+    // img {
+    //     @media screen and (max-width:1200px) {
+    //         &:first-child {
+    //             display: none;
+    //         }
+    //     }
+    // } 
+  
+        a:last-child {
+            // border: 1px solid red;
+            flex:1;
+
+            img{
+                width: 100%;
+            } 
+    }
+}

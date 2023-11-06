@@ -1,0 +1,32 @@
+.photoGallerySlider {
+
+  &-wrapper {
+    width: 60%;
+    height: 35rem;
+    padding-top: 2rem;
+    margin: 0 auto;
+
+    @media screen and (max-width: 450px) {
+      width: 80%;
+    }
+
+    &-sliders {
+      box-sizing: border-box;
+      min-height: 0;
+      min-width: 0;
+      margin: 0 auto;
+      width: 100%;
+
+      .slick-next {
+        &:before {
+          color: #095985;
+        }
+      }
+      .slick-prev {
+        &:before {
+          color: #095985;
+        }
+      }
+    }
+  }
+}

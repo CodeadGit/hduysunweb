@@ -1,0 +1,11 @@
+.firstDescription {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: .5rem;
+    transition: var(--transition);
+ 
+    &.dark {
+        color: white;
+      }
+
+  }

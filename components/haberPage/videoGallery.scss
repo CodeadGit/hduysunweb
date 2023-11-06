@@ -1,0 +1,90 @@
+.video-gallery {
+  //border: 1px solid red;
+  margin-top: 1.5rem;
+
+  &-title {
+    //   border: 1px solid;
+    transition: var(--transition);
+
+    &.dark {
+      color: var(--whiteBgColor);
+    }
+
+    span {
+      color: var(--blueBgColor);
+      transition: var(--transition);
+
+      &.dark {
+        color: var(--redBgColor);
+      }
+    }
+  }
+
+  .video-live {
+    // border: 1px solid red;
+    position: relative;
+    margin-top: 1.5rem;
+    height: 12.5rem;
+  }
+
+  &-news-header {
+    //   border: 1px solid red;
+    font-size: 1rem;
+    margin-top: 1rem;
+    color: black;
+    transition: var(--transition);
+
+    &.visited,
+    &.active,
+    &.hover {
+      color: black;
+    }
+
+    &.dark {
+      color: var(--whiteBgColor);
+    }
+  }
+
+  .authors-info {
+    // border: 1px solid red;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--blueBgColor);
+    font-size: 0.6rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    transition: var(--transition);
+
+    &.dark {
+      color: var(--whiteBgColor);
+    }
+
+    .circle {
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 50%;
+      background-color: var(--blueBgColor);
+      transition: var(--transition);
+
+      &.dark {
+        background-color: var(--redBgColor);
+      }
+    }
+
+    span {
+      margin-left: -0.2rem;
+    }
+
+    svg {
+      font-size: 1rem;
+      margin-top: -0.1rem;
+    }
+  }
+
+  &-news-container {
+    // border: 1px solid green;
+    margin-top: 1rem;
+  }
+}

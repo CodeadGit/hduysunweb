@@ -1,0 +1,25 @@
+.videoGalleryItem {
+  display: block;
+  width: 100%;
+  position: relative;
+  //  width: 17.5rem;
+  // height: 20rem;
+  // border: 1px solid lightgray;
+
+  &-img {
+    object-fit: cover;
+    width: 100%;
+    aspect-ratio: 3.26/2;
+    border-radius: 0;
+    height: 32rem;
+  }
+  .icon {
+    position: absolute;
+    top: 36%;
+    left: 44%;
+    font-size: 4rem;
+    width: 140px;
+    height: 140px;
+    color: white;
+  }
+}

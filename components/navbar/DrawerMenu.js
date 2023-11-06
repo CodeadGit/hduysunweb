@@ -1,0 +1,109 @@
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import Button from "@mui/material/Button";
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
+import { IconButton } from "@mui/material";
+import { Close, MenuBook } from "@mui/icons-material";
+import { categories, editLink } from "@/context/utils";
+import { BsMoonFill } from "react-icons/bs";
+import Link from "next/link";
+import DensityMediumIcon from '@mui/icons-material/DensityMedium';
+import MenuIcon from '@mui/icons-material/Menu';
+
+export default function DrawerMenu({ toggle, modeStatus }) {
+
+  const [isMenuDrawer, setIsMenuDrawer] = React.useState(false);
+
+  const toggleDrawer = (open) => (event) => {
+    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
+      return;
+    }
+    setIsMenuDrawer(open);
+  };
+
+  const darkBoxStyle = { width: "200px", height: "100%", backgroundColor: "#3e474f", transition: "0.3s all ease-in-out" };
+
+  const lightBoxStyle = {  width: "200px", height: "100%", backgroundColor: "#fff", transition: "0.3s all ease-in-out" };
+
+  const darkListItemStyle = { textTransform: "capitalize", color: "#fff",  transition: "0.3s all ease-in-out" };
+
+  const lightListItemStyle = { textTransform: "capitalize", color: "#000", transition: "0.3s all ease-in-out" };
+
+  const darkIconBoxStyle = { display: "flex", justifyContent: "space-between", backgroundColor: "#3e474f", transition: "0.3s all ease-in-out" };
+
+  const lightIconBoxStyle = { display: "flex", justifyContent: "space-between",
+  backgroundColor: "#fff", transition: "0.3s all ease-in-out" };
+
+  const boxStyle = modeStatus ? darkBoxStyle : lightBoxStyle;
+
+  const listItemStyle = modeStatus ? darkListItemStyle : lightListItemStyle;
+
+  const iconBoxStyle = modeStatus ? darkIconBoxStyle : lightIconBoxStyle;
+
+  const list = () => (
+    <Box
+      sx={boxStyle}
+      role="presentation"
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
+      <List>
+        {categories.map((text, index) => (
+          <Link href={`/${text}`} key={index}>
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                {/* <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon> */}
+                <ListItemText
+                  sx={listItemStyle}
+                  primary={editLink(text)}
+                />
+              </ListItemButton>
+            </ListItem>
+          </Link>
+        ))}
+      </List>
+    </Box>
+  );
+
+  return (
+    <div>
+      <React.Fragment>
+        <IconButton
+          className={`menu-icon ${modeStatus ? "dark" : ""}`}
+          size="large"
+          onClick={toggleDrawer(true)}
+        >
+          {/* <MenuBook /> */}
+          {/* <DensityMediumIcon/> */}
+          <MenuIcon></MenuIcon>
+
+        </IconButton>
+        <Drawer
+          anchor="right"
+          open={isMenuDrawer}
+          onClose={toggleDrawer(false)}
+        >
+          <div style={iconBoxStyle}>
+            <IconButton className={`close-icon ${modeStatus ? "dark" :  ""}`} onClick={toggleDrawer(false)}>
+              <Close />
+            </IconButton>
+            <IconButton className={`mode-icon ${modeStatus ? "dark" :  ""}`} onClick={toggle}>
+              <BsMoonFill style={{height: "20px"}} />
+            </IconButton>
+          </div>
+          {list()}
+        </Drawer>
+      </React.Fragment>
+    </div>
+  );
+}

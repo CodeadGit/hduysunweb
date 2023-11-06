@@ -1,0 +1,179 @@
+@import "./mixin.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: "Poppins";
+}
+
+body {
+  line-height: 1.2;
+  background-color: #f7f7f7;
+}
+
+:root {
+  --blueBgColor: #095985;
+  --redBgColor: #e40e20;
+  --whiteBgColor: #f7f7f7;
+  --textColor: #333;
+  --darkBgColor: #3e474f;
+  --subBgColor: #1f252b;
+  --transition: 0.3s all ease-in-out;
+    overflow-x: hidden;
+}
+
+.border {
+  border: 1px solid red;
+}
+
+.wholePageWrapper {
+  // border: 1px solid red;
+  display: flex;
+ //justify-content: space-evenly;
+  //gap: 0.5rem;
+  min-height: 84.6vh;
+  transition: var(--transition);
+
+  @media screen and (min-width:1201px) {
+    justify-content: space-evenly;
+    gap: .5rem;
+
+  }
+
+  @media screen and (max-width:1200px) {
+     gap: 0.5rem;
+     justify-content: center;
+  } 
+
+  &.dark {
+    background-color: var(--darkBgColor);
+  }
+
+  .leftPageWrapper {
+    // border: 2px solid red;
+    margin-top: 0.5rem;
+    width: 10rem;
+
+    &.none {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  .centerPageWrapper {
+    width: 100%;
+  }
+
+  .rightPageWrapper {
+    // border: 2px solid red;
+    margin-top: 0.5rem;
+    width: 10rem;
+
+    &.none {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+}
+
+img {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.ads-extended {
+
+  @media screen and (max-width: 768px) {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width:769px) and (max-width:1200px) {
+  body {
+    overflow-x: hidden !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  body {
+    overflow-x: hidden !important;
+    width: 100%;
+  }
+
+  .navbar {
+    height: auto !important;
+
+    img {
+      height: 40px !important ;
+      align-self: flex-start;
+    }
+
+    &-sub-header {
+      
+      .title {
+        padding: 0 0.3rem;
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  .close-icon {
+    // border: 1px solid red;
+    align-self: flex-start;
+    width: 2.5rem;
+    left: 0;
+    transition: var(--transition);
+
+    &.dark {
+      color: #fff;
+    }
+  }
+
+  .mode-icon {
+    transition: var(--transition);
+
+    &.dark {
+      color: #fff;
+    }
+  }
+}

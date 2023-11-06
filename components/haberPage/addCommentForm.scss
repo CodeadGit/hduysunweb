@@ -1,0 +1,78 @@
+.comments-add {
+    // border: 1px solid red;
+    margin-top: 2.5rem;
+    // padding-top: 2.5rem;
+
+    h4 {
+      margin-bottom: 2.25rem;
+      transition: var(--transition);
+
+      &.dark {
+        color: #fff;
+      }
+    }
+
+    input {
+      font-family: inherit;
+      width: 100%;
+      height: 2.5rem;
+      border: 1px solid #707070;
+      border-radius: 3px;
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+
+      &::placeholder {
+        color: #6e6e6e;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    textarea {
+      font-family: inherit;
+      width: 100%;
+      height: 2.5rem;
+      resize: none;
+      display: inline-block;
+      margin-bottom: 0.6rem;
+      padding: 0.5rem 1rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .informative {
+      padding: 0;
+      color: var(--textColor);
+      font-size: 0.75rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+      transition: var(--transition);
+
+      &.dark {
+        color: #fff;
+      }
+    }
+
+    .submit-btn {
+      width: 11rem;
+      height: 3rem;
+      border: none;
+      background-color: #3174dd;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #fff;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      transition: var(--transition);
+
+      &.dark {
+        background-color: #e8e8e8;
+        color: var(--subBgColor);
+      }
+    }
+  }

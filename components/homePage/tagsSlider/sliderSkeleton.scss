@@ -1,0 +1,15 @@
+.sliderSkeleton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 9.5rem;
+    max-width: 990px;
+    gap: 1rem;
+
+    .sliderItem {
+      height: 6rem;
+      width: 100%;
+    }
+}
