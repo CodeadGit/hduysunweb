@@ -18,9 +18,12 @@ const SingleHaber = ({ image, category, eng, id, title, mode }) => {
         <p className={`content-title ${mode ? "dark" : ""}`}>
           {categoryUpperConvertor[category]}
         </p>
-        <p className={`content-itself ${mode ? "dark" : ""}`}>
-          {handleShort(title, 7)}
+        {/* <p className={`content-itself ${mode ? "dark" : ""}`}>
+          {handleShort(title, 9)}
         </p>
+        <p className={`content-med ${mode ? "dark" : ""}`}>
+          {handleShort(title, 7)}
+        </p> */}
         <p className={`content-res ${mode ? "dark" : ""}`}>
           {handleShort(title, 5)}
         </p>

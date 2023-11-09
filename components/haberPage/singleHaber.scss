@@ -4,6 +4,7 @@
   flex-direction: row;
   gap: 1rem;
   width: 100%;
+  border: 1px solid red;
 
   &:not(:last-child) {
     margin-bottom: 0.75rem;
@@ -70,11 +71,24 @@
       font-weight: 600;
       transition: var(--transition);
 
-      @media screen and (min-width:1051px) {
+      @media screen and (min-width:769px) {
         display: none;
       }
-      @media screen and (max-width:767px) {
+      // @media screen and (max-width:767px) {
+      //   display: none;
+      // }
+    }
+    .content-med {
+      color: #000;
+      font-size: .8rem;
+      font-weight: 600;
+      transition: var(--transition);
+
+      @media screen and (max-width:768px) {
         display: none;
+      }
+      @media screen and (min-width:1050px) {
+        
       }
     }
   }

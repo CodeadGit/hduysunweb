@@ -1,10 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="15.447" height="16" viewBox="0 0 15.447 16">
-  <g id="Group_11492" data-name="Group 11492" transform="translate(-322.378 -473.5)">
-    <g id="Group_11491" data-name="Group 11491">
-      <text id="A" transform="translate(323.378 486.5)" fill="#5088f0" font-size="13" font-family="HelveticaNeue-Medium, Helvetica Neue" font-weight="500"><tspan x="0" y="0">A</tspan></text>
+  <g id="Group_11494" data-name="Group 11494" transform="translate(-322.12 -430.5)">
+    <line id="Line_258" data-name="Line 258" y2="4.556" transform="translate(334.499 434.754)" fill="none" stroke="#5088f0" stroke-linecap="round" stroke-width="1.5"/>
+    <g id="Group_11493" data-name="Group 11493">
+      <text id="A" transform="translate(323.12 443.5)" fill="#5088f0" font-size="13" font-family="HelveticaNeue-Medium, Helvetica Neue" font-weight="500"><tspan x="0" y="0">A</tspan></text>
+      <line id="Line_259" data-name="Line 259" x2="4.636" transform="translate(332.181 437.072)" fill="none" stroke="#5088f0" stroke-linecap="round" stroke-width="1.5"/>
     </g>
-    <line id="Line_259" data-name="Line 259" x2="4.636" transform="translate(332.438 480.072)" fill="none" stroke="#5088f0" stroke-linecap="round" stroke-width="1.5"/>
   </g>
 </svg>
-
-  

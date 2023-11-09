@@ -12,19 +12,7 @@ const StoryPage = ({ stories }) => {
       type: i.image ? "image" : "video",
       content: ({ action, isPaused }) => {
         return (
-          <div
-            style={{
-              display: "flex",
-              // alignItems: "center",
-              justifyContent: "center",
-              alignItems: "flex-start",
-              flexDirection: "column",
-              width: "50%",
-              position: "relative",
-              aspectRatio: 9 / 16,
-              backgroundColor: "rgba(0,0,0,.5)",
-            }}
-          >
+          <div className="img-wrapper">
             <img
               src={i?.media}
               style={{
@@ -115,7 +103,7 @@ const StoryPage = ({ stories }) => {
     height: "100% !important",
     margin: "0 auto",
     padding: "0",
-    alignSelf: "center",
+    alignSelf: "center"
   };
 
   return (
@@ -134,7 +122,7 @@ const StoryPage = ({ stories }) => {
           storyContent={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "center"
           }}
         />
       )}

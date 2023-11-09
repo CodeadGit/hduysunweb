@@ -9,6 +9,13 @@
     background-color: var(--subBgColor);
   }
 
+  @media screen and (min-width:768px) and (max-width: 1200px) {
+    padding-left: 1.5rem;
+  }
+  @media screen and (max-width:767px) {
+    padding-left: 1rem;
+  }
+
   .sub-header-wrapper {
     // border: 2px solid red;
     // display: flex;
@@ -18,15 +25,14 @@
     grid-template-columns: 12% 85%;
     gap: 3%;
 
-    @media screen and (max-width: 768px) {
+    @media screen and ((min-width:421px) and (max-width: 768px)) {
       grid-template-columns: 17% 81%;
       gap: 2%;
     }
-
-    @media screen and (max-width: 420px) {
-      grid-template-columns: 27% 73%;
-      gap: 0;
-    }
+     @media screen and (max-width:420px) {
+      grid-template-columns: 17% 81%;
+       gap: 3%;
+     }
 
     // .title {
     //   background-color: var(--redBgColor);
@@ -60,10 +66,14 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: textclip 2s linear infinite;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
 
-      @media screen and (max-width: 768px) {
-        font-size: .8rem;
+      @media screen and (min-width:769px) and (max-width:1200px) {
+        font-size: 1rem;
+      }
+
+      @media screen and  (max-width: 768px) {
+        font-size: 0.85rem;
       }
     }
 
@@ -116,16 +126,42 @@
                 font-size: 0.875rem;
                 font-weight: 400;
                 margin-right: 0.5rem;
+
+                @media screen and (max-width: 769px) {
+                  font-size: 0.75rem;
+                }
               }
 
               &-info {
                 font-size: 0.875rem;
-                @media screen and (max-width:768px) {
+                @media screen and (max-width: 790px) {
+                  display: none;
+                }
+                @media screen and ((min-width: 920px)and (max-width:1199px)) {
                   display: none;
                 }
               }
-              &-res {
-                @media screen and (min-width:769px) {
+              &-infoTall {
+                font-size: 0.875rem;
+                @media screen and (min-width: 1200px) {
+                  display: none;
+                }
+                @media screen and (max-width: 919px) {
+                  display: none;
+                }
+              }
+              &-res-m {
+                font-size: 0.75rem;
+                @media screen and (min-width: 791px) {
+                  display: none;
+                }
+                @media screen and (max-width:419px) {
+                  display: none;
+                }
+              }
+              &-res-s {
+                font-size: 0.75rem;
+                @media screen and (min-width: 420px) {
                   display: none;
                 }
               }

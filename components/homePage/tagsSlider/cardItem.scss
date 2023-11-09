@@ -1,29 +1,17 @@
 .card {
-  // border: 1px solid red;
   width: 13.5rem;
-  margin-bottom: 0;
+  margin: 0 auto;
+  padding: 0;
   transition: var(--transition);
-
-  @media screen and (max-width: 768px) {
-    width: 10.5rem;
-    height: auto;
-  }
-
-  @media screen and (max-width: 420px) {
-    width: 8.5rem;
-  }
 
   &.dark {
     color: var(--whiteBgColor);
   }
 
   .card-wrapper {
-    // border: 1px solid red;
-    width: 14rem;
-    margin-bottom: 0;
+    margin: 0 auto;
 
     .image {
-      // border: 1px solid red;
       display: inline-block;
       width: 100%;
       aspect-ratio: 3/2;
@@ -48,15 +36,15 @@
       flex-direction: row;
       align-items: center;
       justify-content: space-around;
-      
-      padding-top: .5rem;
+
+      padding-top: 0.5rem;
 
       &-left {
         width: 50%;
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        gap: .25rem;
+        gap: 0.25rem;
         flex-direction: row;
 
         .disc {
@@ -93,7 +81,7 @@
 
         &-time {
           width: 100%;
-          padding-right: .5rem;
+          padding-right: 0.5rem;
 
           &.dark {
             color: white;
@@ -112,10 +100,6 @@
           color: var(--whiteBgColor);
         }
 
-        @media screen and (max-width: 420px) {
-          font-size: 0.6rem;
-          font-weight: 500;
-        }
       }
     }
   }

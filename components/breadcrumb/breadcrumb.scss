@@ -4,12 +4,19 @@
   max-width: 1200px;
   margin: 0 auto;
   // padding: 0.5rem 2rem 0;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0.5rem;
   font-size: 1rem;
 
-  @media screen and (max-width: 420px) {
-    padding: 0.5rem 0.25rem;
-    font-size: 0.75rem;
+  @media screen and ((min-width: 769px) and (max-width:1200px)) {
+    padding-left: 1.5rem;
+  }
+
+  @media screen and (min-width:421px) and (max-width: 768px) {
+    font-size: 0.7rem;
+    padding-left: 1rem;
+  }
+  @media  screen and (max-width:420px) {
+    font-size: 0.6rem;
   }
 
   .breadcrumb {
@@ -19,32 +26,49 @@
     width: 100%;
     color: gray;
     font-weight: 500;
+    //padding-left: 1rem;
+
+    svg {
+      @media screen and (max-width:420px) {
+        font-size: 0.75rem;
+      }
+    }
 
     .home-title {
+      padding-left: .5rem;
       @media screen and (max-width: 900px) {
         display: none;
       }
     }
 
     .item {
-      @media screen and (width <= 766px) {
+      padding-left: .5rem;
+      @media screen and (width <= 1025px) {
         display: none;
       }
     }
     .res-item {
-      @media screen and (width >= 767px) {
+      padding-left: .5rem;
+      @media screen and (width >= 1026px) {
         display: none;
       }
-      @media screen and (width <= 650px) {
+      @media screen and (width <= 767px) {
         display: none;
       }
     }
     .res-small-item {
-      @media screen and (650px <= width <= 767px) {
+      padding-left: .5rem;
+      @media screen and (width >= 768px) {
         display: none;
       }
-      @media screen and (width >= 767px) {
+      @media screen and (max-width:470px){
         display: none;
+      }
+    }
+    .res-mobil-item {
+      padding-left: .5rem;
+      @media screen and (min-width:471px) {
+        display:none;
       }
     }
 
@@ -80,9 +104,13 @@
       &:not(:first-of-type) {
         padding-left: 10px;
 
-        @media screen and (max-width: 420px) {
+        @media screen and (max-width:420px) {
           padding-left: 0;
         }
+
+        // @media screen and (max-width: 420px) {
+        //   padding-left: 0;
+        // }
       }
 
       &:last-of-type {

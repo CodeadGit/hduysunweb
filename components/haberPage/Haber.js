@@ -78,11 +78,13 @@ const Haber = ({ thisPageArticle, thisPage }) => {
       id: useId(),
       title: categoryConvertor[category] || category,
       link: `/${category}`,
+      titleContent:false
     },
     {
       id: useId(),
       title,
       link: `/${category}/${eng}-${id}`,
+      titleContent:true
     },
   ];
 

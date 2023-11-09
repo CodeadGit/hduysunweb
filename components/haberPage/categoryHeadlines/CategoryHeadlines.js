@@ -26,73 +26,73 @@ const CategoryHeadlines = () => {
           {
             breakpoint: 1200,
             settings: {
-              slidesToShow: 3,
-              slidesToScroll: 1,
-              arrows:true,
-              nextArrow: (
-                <button type="button" class="slick-next">
-                    Next
-                  </button>
-                ),
-                prevArrow: (
-                  <button type="button" class="slick-prev">
-                    Previous
-                  </button>
-                ),
-            }
-          },
-          {
-            breakpoint: 1150,
-            settings: {
               slidesToShow: 2,
               slidesToScroll: 1,
-              arrows:true,
-              nextArrow: (
-                <button type="button" class="slick-next">
-                    Next
-                  </button>
-                ),
-                prevArrow: (
-                  <button type="button" class="slick-prev">
-                    Previous
-                  </button>
-                ),
+              arrows:false,
+              // nextArrow: (
+              //   <button type="button" class="slick-next">
+              //       Next
+              //     </button>
+              //   ),
+              //   prevArrow: (
+              //     <button type="button" class="slick-prev">
+              //       Previous
+              //     </button>
+              //   ),
             }
           },
-          {
-            breakpoint: 900,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1,
-              arrows:true,
-              nextArrow: (
-                <button type="button" class="slick-next">
-                    Next
-                  </button>
-                ),
-                prevArrow: (
-                  <button type="button" class="slick-prev">
-                    Previous
-                  </button>
-                ),
-            }
-          },
+          // {
+          //   breakpoint: 1150,
+          //   settings: {
+          //     slidesToShow: 2,
+          //     slidesToScroll: 1,
+          //     arrows:true,
+          //     nextArrow: (
+          //       <button type="button" class="slick-next">
+          //           Next
+          //         </button>
+          //       ),
+          //       prevArrow: (
+          //         <button type="button" class="slick-prev">
+          //           Previous
+          //         </button>
+          //       ),
+          //   }
+          // },
+          // {
+          //   breakpoint: 900,
+          //   settings: {
+          //     slidesToShow: 2,
+          //     slidesToScroll: 1,
+          //     arrows:true,
+          //     nextArrow: (
+          //       <button type="button" class="slick-next">
+          //           Next
+          //         </button>
+          //       ),
+          //       prevArrow: (
+          //         <button type="button" class="slick-prev">
+          //           Previous
+          //         </button>
+          //       ),
+          //   }
+          // },
           {
             breakpoint: 768,
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              arrows:true,
-              nextArrow: (
-                <button type="button" class="slick-next">
-                    Next
-                  </button>
-                ),
-                prevArrow: (
-                  <button type="button" class="slick-prev">
-                    Previous
-                  </button>
-                ),
+              arrows:false,
+              // nextArrow: (
+              //   <button type="button" class="slick-next">
+              //       Next
+              //     </button>
+              //   ),
+              //   prevArrow: (
+              //     <button type="button" class="slick-prev">
+              //       Previous
+              //     </button>
+              //   ),
             }
           },
           {
@@ -100,17 +100,17 @@ const CategoryHeadlines = () => {
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              arrows:true,
-              nextArrow: (
-                <button type="button" class="slick-next">
-                    Next
-                  </button>
-                ),
-                prevArrow: (
-                  <button type="button" class="slick-prev">
-                    Previous
-                  </button>
-                ),
+              arrows:false,
+              // nextArrow: (
+              //   <button type="button" class="slick-next">
+              //       Next
+              //     </button>
+              //   ),
+              //   prevArrow: (
+              //     <button type="button" class="slick-prev">
+              //       Previous
+              //     </button>
+              //   ),
             }
           },
         ]
@@ -121,6 +121,14 @@ const CategoryHeadlines = () => {
       <div className="category-headlines-title">
         <h2 className={modeStatus ? "dark" : ""}>Kategori Manşet Haberleri</h2>
         <div className="slider-buttons">
+          <button onClick={sliderRef?.slickPrev}>
+            <FaChevronLeft />
+          </button>
+          <button onClick={sliderRef?.slickNext}>
+            <FaChevronRight />
+          </button>
+        </div>
+        <div className="slider-buttonsRes">
           <button onClick={sliderRef?.slickPrev}>
             <FaChevronLeft />
           </button>

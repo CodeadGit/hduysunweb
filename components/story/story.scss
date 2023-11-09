@@ -1,3 +1,14 @@
-.home-stories {
-    background-color: aqua !important;
+.img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 50%;
+  position: relative;
+  aspect-ratio: 9 / 16;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 }

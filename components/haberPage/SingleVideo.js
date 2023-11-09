@@ -1,10 +1,10 @@
 import React from "react";
 import "./singleVideo.scss";
-import { handleShort } from "@/context/utils";
+import { handleShort, handleShortt } from "@/context/utils";
 import Link from "next/link";
 
 const SingleVideo = ({ mode, item = {} }) => {
-  const { headImg, description, author, eng, id } = item;
+  const { headImg, description, author, eng, id,title } = item;
 
   return (
     <Link
@@ -20,13 +20,13 @@ const SingleVideo = ({ mode, item = {} }) => {
           YAZAR: {author}
         </p>
         <p className={`content-news ${mode ? "dark" : ""}`}>
-          {" "}
-          {handleShort(description, 9)}{" "}
+          {title}
+          {/* {handleShort(description, 9)} */}
         </p>
-        {/* <p className={`content-news-res ${mode ? "dark" : ""}`}>
-          {" "}
-          {handleShort(description, 9)}{" "}
-        </p> */}
+        <p className={`content-newsRes ${mode ? "dark" : ""}`}>
+          {/* {handleShortt(title)} */}
+          {title}
+        </p>
       </div>
     </Link>
   );

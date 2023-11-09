@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./breakingNews.scss";
 import Slider from "react-slick";
 import Link from "next/link";
@@ -7,12 +7,11 @@ import { useThemeContext } from "@/context/ThemeContext";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import { handleShort } from "@/context/utils";
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { handleShortt } from "@/context/utils";
+import { handleShortt, handleShorttBreadcrump,handleShorttSmall, handleShorttMed } from "@/context/utils";
 
 const BreakingNews = () => {
-
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
   const [breakingNews, setBreakingNews] = useState([]);
@@ -28,18 +27,24 @@ const BreakingNews = () => {
     autoplay: true,
     responsive: [
       {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-        }
+        },
       },
       {
         breakpoint: 420,
         settings: {
-          slidesToShow: 1
-        }
-      }
-    ]
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   // console.log(breakingNews);
@@ -111,20 +116,23 @@ const BreakingNews = () => {
 export default BreakingNews;
 
 const SingleBreakingNews = ({ title, datePublished, eng, id }) => {
-  
-  const time = new Date(datePublished.seconds * 1000).toLocaleTimeString().substring(0, 5);
+  const time = new Date(datePublished.seconds * 1000)
+    .toLocaleTimeString()
+    .substring(0, 5);
 
   return (
-   <div>
+    <div>
       <Link href={`/sonDakika/${eng}-${id}`} target="_blank">
         <GoClock />
         <div className="news">
           <span className="news-time">{time}</span>
           <span className="news-info">{`${handleShortt(title)}`}</span>
-          <span className="news-res">{`${handleShort(title,2)}`}</span>
+          <span className="news-infoTall">{`${handleShorttBreadcrump(title)}`}</span>
+          <span className="news-res-m">{`${handleShorttMed(title)}`}</span>{/*420px ile 768px arası için */}
+          <span className="news-res-s">{`${handleShorttSmall(title)}`}</span>{/*420px için */}
         </div>
         {/* <div className="disc"></div>  */}
       </Link>
-      </div>
+    </div>
   );
 };

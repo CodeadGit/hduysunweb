@@ -54,6 +54,8 @@ export const ThemeProvider = ({ children }) => {
   const [photoGallery, setPhotoGallery] = useState([]);
   const [videoGallery, setVideoGallery] = useState([]);
   const [formalAdv, setFormalAdv] = useState([]);
+  const [fontInc, setFontInc ] = useState(0.2)
+  const [fontDec, setFontDec] = useState(0.2)
 
   const hideAds = () => setShowAds(false);
 
@@ -65,6 +67,16 @@ export const ThemeProvider = ({ children }) => {
 
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const fontDecBtnClickHandler = () => {
+    setFontDec(+0.2)
+    console.log("dec tıklandı", fontDec)
+  };
+
+  const fontIncBtnClickHandler = () => {
+    setFontInc(-0.2)
+    console.log("inc tıklandı", fontInc)
+  };
 
   useEffect(() => {
     const categories = [...new Set(news.map((item) => item.category))];
@@ -279,6 +291,8 @@ export const ThemeProvider = ({ children }) => {
     photoGallery,
     videoGallery,
     formalAdv,
+    fontDecBtnClickHandler,
+    fontIncBtnClickHandler
   };
 
   return (

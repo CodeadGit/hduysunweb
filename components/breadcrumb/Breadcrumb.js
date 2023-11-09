@@ -6,7 +6,7 @@ import { AiFillHome } from "react-icons/ai";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useThemeContext } from "@/context/ThemeContext";
 import { handleShort,handleShortBreadcrump} from "@/context/utils";
-import { handleShortt } from "@/context/utils";
+import { handleShortt,handleShorttLetter } from "@/context/utils";
 const Breadcrumb = ({ links }) => {
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
@@ -32,15 +32,26 @@ const Breadcrumb = ({ links }) => {
 
 export default Breadcrumb;
 
-function BreadcrumbItem({ title, link, modeStatus }) {
+function BreadcrumbItem({ title, link, modeStatus, breadcrumpTitle }) {
 
-  return (
+  // const handleShortWord = (title) => {
+  //   const res = title?.split(" ");
+  //   if (res.length <= 2) return res.join(" ");
+  //   return res.substring(0,3)
+  // };
+
+ // console.log(title.substring(0,13).concat("..."))
+  const titleSplitted = title.split("")
+  console.log(titleSplitted.slice(0,30).join("").concat("..."))
+
+   return (
     <li className={modeStatus ? "dark" : ""}>
       <Link href={link} className={modeStatus ? "dark" : ""}>
         {/* <span>{handleShort(title,3)}</span> */}
-        <span className="item">{title}</span>
-        <span className="res-item">{handleShortBreadcrump(title,8)}</span> 
-        <span className="res-small-item">{handleShortBreadcrump(title,4)}</span> 
+        <span className="item">{handleShortBreadcrump(title,12)}</span>
+        <span className="res-item">{handleShortBreadcrump(title,10)}</span> 
+        <span className="res-small-item">{handleShortBreadcrump(title,6)}</span> 
+        <span className="res-mobil-item">{handleShortBreadcrump(title,3)}</span>
         <FaChevronRight />
       </Link>
     </li>

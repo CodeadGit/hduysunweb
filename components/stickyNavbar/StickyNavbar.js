@@ -5,15 +5,18 @@ import mailIcon from "./stickyNavbarIcons/mailIcon.svg";
 import printIcon from "./stickyNavbarIcons/printIcon.svg";
 import twitterIcon from "./stickyNavbarIcons/twitterIcon.svg";
 import whatsapp from "./stickyNavbarIcons/whatsapp.svg";
-import fontPlusIcon from "./stickyNavbarIcons/fontPlusIcon.svg";
 import fontIncIcon from "./stickyNavbarIcons/fontIncIcon.svg";
+import fontDecIcon from "./stickyNavbarIcons/fontIncIcon.svg";
 import StickyNavbarIconWrapper from "./stickyNavbarIconWrapper/StickyNavbarIconWrapper";
 import linkedinIcon from "./stickyNavbarIcons/linkedinIcon.svg";
 const StickyNavbar = () => {
+
+
   const stickyNavbarData = [
     {
       id: 1,
       icon: twitterIcon,
+      kindOf: "link",
       title: "twitter",
       url: "https://twitter.com/i/flow/login?redirect_after_login=%2Fherkesduysuncom",
       color: "twitter",
@@ -21,13 +24,15 @@ const StickyNavbar = () => {
     {
       id: 2,
       icon: whatsapp,
+      kindOf: "link",
       title: "whatsapp",
-      url: "",//Whatsapp 0 (541) 160 40 40
+      url: "https://wa.me/+905411604040", //Whatsapp 0 (541) 160 40 40
       color: "whatsapp",
     },
     {
       id: 3,
       icon: facebookIcon,
+      kindOf: "link",
       title: "facebook",
       url: "https://www.facebook.com/herkesduysun",
       color: "facebook",
@@ -36,6 +41,7 @@ const StickyNavbar = () => {
       id: 4,
       icon: mailIcon,
       title: "email",
+      kindOf: "link",
       url: "mailto: iletisim@herkesduysun.com",
       color: "mail",
     },
@@ -43,26 +49,32 @@ const StickyNavbar = () => {
       id: 5,
       icon: linkedinIcon,
       title: "linkedin",
-      url: "",
+      kindOf: "link",
+      url: "", //sonra hesap açılıp eklenecek
       color: "linkedin",
     },
-    {
-      id: 6,
-      icon: printIcon,
-      title: "printer",
-      url: "",
-      color: "printer",
-    },
+    // {
+    //   id: 6,
+    //   icon: printIcon,
+    //   title: "printer",
+    //   kindOf: "link",
+    //   url: "",
+    //   color: "printer",
+    // },
     {
       id: 7,
-      icon: fontPlusIcon,
+      icon: fontIncIcon,
+      kindOf: "button",
+      work:"inc",
       title: "",
       url: "",
       color: "fontPlus",
     },
     {
       id: 8,
-      icon: fontIncIcon,
+      icon: fontDecIcon,
+      kindOf: "button",
+      work:"dec",
       title: "",
       url: "",
       color: "fontInc",

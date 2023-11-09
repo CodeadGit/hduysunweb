@@ -1,7 +1,7 @@
 .category-headlines-slider-single {    
     // border:1px solid red;
     // height: 12rem;
-    width: 16rem !important;
+    width: 14rem !important;
     display: block;
     margin: 0 auto;
 
@@ -10,11 +10,11 @@
     }
 
     @media screen and (max-width: 768px) {
-      width: 16.2rem !important;
+      width: 16rem !important;
     }
 
     @media screen and (max-width: 420px) {
-      width: 16.5rem !important;
+      width: 14rem !important;
     }
     
     .slider-single-img {

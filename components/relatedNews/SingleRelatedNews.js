@@ -3,6 +3,7 @@ import "./singleRelated.scss";
 import moment from "moment";
 import { AiFillEye } from "react-icons/ai";
 import Link from "next/link";
+import { handleShort } from "@/context/utils";
 
 const SingleRelatedNews = ({ item = {}, mode }) => {
   const { image, title, read, datePublished, category, eng, id } = item;
@@ -25,7 +26,7 @@ const SingleRelatedNews = ({ item = {}, mode }) => {
           </div>
         </div>
         <p className={`related-news-single-content ${mode ? "dark" : ""}`}>
-          {title}
+          {handleShort(title,10)}
         </p>
     </Link>
   );

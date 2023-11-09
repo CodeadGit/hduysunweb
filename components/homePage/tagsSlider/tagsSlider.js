@@ -50,22 +50,36 @@ const TagsSlider = () => {
     arrows:false,
     infinite: true,
     slidesToShow:5,
-    centerPadding: "60px",
+    centerMode:false,
     responsive: [
       {
-        breakpoint: 768,
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1
+        },
+      },
+      {
+        breakpoint: 1000,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 420,
+        breakpoint: 720,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
+      {
+        breakpoint:500,
+        settings: {
+          slidesToShow:1,
+          slidesToScroll:1
+        }
+      }
     ],
   };
 
@@ -87,7 +101,7 @@ const TagsSlider = () => {
     <div className="sliderContainer">
       <span className={`sliderContainer-title ${modeStatus ? "dark" : ""}`}>Popüler Etiketler</span>
       <div className="sliderContainer-tags">{tagsList}</div>
-      <Slider {...settings}>
+      <Slider {...settings} className="sliderContainer-slides">
         {sliderNews.map((item) => {
           return (
             <CardItem

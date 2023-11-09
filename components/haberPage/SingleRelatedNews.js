@@ -2,6 +2,7 @@ import React from "react";
 import "./singleRelatedNews.scss";
 import Image from "next/image";
 import { AiFillEye } from "react-icons/ai";
+import { handleShort } from "@/context/utils";
 
 const SingleRelatedNews = ({ image, content, time, view, mode }) => {
   return (

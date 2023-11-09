@@ -42,11 +42,20 @@ const MainSlider = () => {
  
   return (
     <div className="mainSlider">
-      <Slider {...settings} className="mainSlider-sliders">
+      <div className="mainSlider-large">
+      <Slider {...settings} className="mainSlider-large-sliders">
       {mansetNewsList.slice(0, 20).map((item) => {
         return <MainSliderItem item={item} key={item.id} />;
       })}
     </Slider>
+      </div>
+      <div className="mainSlider-med">
+      <Slider {...settings} className="mainSlider-med-slidersRes">
+      {mansetNewsList.slice(0, 15).map((item) => {
+        return <MainSliderItem item={item} key={item.id} />;
+      })}
+    </Slider>
+      </div>
     </div>
   );
 };
