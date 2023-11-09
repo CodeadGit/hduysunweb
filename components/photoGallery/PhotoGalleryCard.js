@@ -1,5 +1,5 @@
 import Link from "next/link";
-import "./photoGalleryCard.scss";
+import "./PhotoGalleryCard.scss";
 import { useThemeContext } from "@/context/ThemeContext";
 import { handleShort } from "@/context/utils";
 
