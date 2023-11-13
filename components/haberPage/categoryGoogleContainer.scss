@@ -14,7 +14,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #fff;
+      background-color: inherit;
       padding: 0.5rem;
       height: 100%;
       width: 7rem;
@@ -24,6 +24,10 @@
       color: #000;
       text-transform: capitalize;
       cursor: pointer;
+
+      &.dark {
+        color: white;
+      }
     }
 
     img {

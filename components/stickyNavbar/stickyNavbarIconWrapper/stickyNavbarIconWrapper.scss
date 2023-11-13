@@ -9,6 +9,7 @@
     justify-content: center;
     border: 1px solid red;
     border-width: .12rem;
+    cursor: pointer;
 
     a {
         text-align: center;
@@ -16,7 +17,7 @@
     }
 
     &.twitter {
-       border-color: black;
+       border-color: #14171A;
     }
     &.whatsapp {
         border-color: #26C463;
@@ -35,6 +36,7 @@
     // }
     &.fontPlus , &.fontInc{
         border-color: #5088F0;
+        background-color: inherit;
     }
 
     &-icon {

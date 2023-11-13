@@ -1,7 +1,7 @@
-
+import BizeUlasin from "@/components/footerPages/BizeUlasin";
 const BizeUlasinPage = () => {
   return (
-    <div>BizeUlasinPage</div>
+    <BizeUlasin/>
   )
 }
 

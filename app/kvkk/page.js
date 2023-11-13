@@ -1,8 +1,7 @@
-import React from 'react'
-
+import Kvkk from "@/components/footerPages/Kvkk";
 const KvkkPage = () => {
   return (
-    <div>KvkkPage</div>
+    <Kvkk/>
   )
 }
 

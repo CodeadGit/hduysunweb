@@ -8,21 +8,26 @@
     .content {
       color: inherit !important;
       background-color: inherit !important;
-      font-size: 1.125rem !important;
+     // font-size: 1.125rem !important;
       font-weight: 400 !important;
       text-align: justify !important;
       transition: var(--transition) !important;
 
+      & > p , & > div{
+        background-color: inherit !important;
+        color: inherit !important;
+       }
+
       &.dark {
         color: #fff !important;
 
-        & > p {
+        & > p , & > div{
            background-color: inherit !important;
            color: inherit !important;
           }
       }
 
-      & > p {
+      & > p , & > div{
         font-size: inherit !important;
         margin-bottom: 0.5rem !important;
         text-align: justify !important;

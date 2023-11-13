@@ -6,6 +6,8 @@ import Link from "next/link";
 const SingleVideo = ({ mode, item = {} }) => {
   const { headImg, description, author, eng, id,title } = item;
 
+  console.log(author)
+
   return (
     <Link
       target="_blank"

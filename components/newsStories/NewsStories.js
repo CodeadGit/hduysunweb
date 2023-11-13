@@ -8,7 +8,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
-// import { storiesInfo } from "@/context/storiesInfo";
 import NewsStoriesItem from "./NewsStoriesItem";
 import { useAdsContext } from "@/context/AdsContext";
 
@@ -17,8 +16,6 @@ const NewsStories = () => {
   const { storyList, combineStories, changeStoryModall, singleStories } =
     useAdsContext();
   const modeStatus = mode === "dark";
-
-  //  console.log(storyList);
 
   return (
     <div className="main-fluid">

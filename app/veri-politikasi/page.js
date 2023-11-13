@@ -1,8 +1,9 @@
+import VeriPolitikasi from '@/components/footerPages/VeriPolitikasi';
 import React from 'react'
 
 const VeriPolitikasiPage = () => {
   return (
-    <div>VeriPolitikasiPage</div>
+    <VeriPolitikasi/>
   )
 }
 

@@ -9,4 +9,13 @@
     overflow-x: hidden;
     // flex-wrap: wrap;
     // align-content: center;
+
+    // @media screen and (max-width:768px) {
+    //     overflow-x: auto;
+    //     overflow-y: hidden;
+
+    //     &::-webkit-scrollbar {
+    //         display: none;
+    //       }
+    // }
 }

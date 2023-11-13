@@ -1,4 +1,4 @@
-.caption {
+.categoryCaption {
   // border: 1px solid red;
   width: 100%;
   max-width: 1200px;
@@ -8,22 +8,12 @@
   color: #333;
   transition: var(--transition);
 
-  overflow: hidden;
-display: -webkit-box;
-/* display 2 lines only */
--webkit-line-clamp: 3;
-line-clamp: 3;
--webkit-box-orient: vertical;
-
-
-
   @media screen and (max-width: 768px) {
-    padding-inline: 1rem;
-    justify-content: space-between;
+    justify-content: space-around;
   }
-  @media screen and (max-width: 1200px) and (min-width: 768px) {
-    padding-inline: 1rem;
-  }
+  // @media screen and (max-width: 1200px) and (min-width: 768px) {
+  //   padding-inline: 1rem;
+  // }
 
   &.dark {
     color: var(--whiteBgColor);

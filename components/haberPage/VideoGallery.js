@@ -7,12 +7,11 @@ import SingleVideo from "./SingleVideo";
 import { useThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
 
+// haber içi video galeri ilk büyük video galeri componenti
 const VideoGallery = ({ modeStatus, videoNewsList }) => {
   const { videoGallery } = useThemeContext();
 
   const options = { year: "numeric", month: "numeric", day: "2-digit" };
-
-  console.log(videoGallery)
 
   return (
     <div className="video-gallery">
@@ -33,7 +32,6 @@ const VideoGallery = ({ modeStatus, videoNewsList }) => {
               {item.title}
             </h4>
             <div className={`authors-info ${modeStatus ? "dark" : ""}`}>
-              {/* <p>YAZAR LEE MORAN</p> */}
               <div className={`circle ${modeStatus ? "dark" : ""}`}></div>
               <p>
                 {new Date(item.datePublished.seconds * 1000).toLocaleDateString(
@@ -47,8 +45,8 @@ const VideoGallery = ({ modeStatus, videoNewsList }) => {
           </Link>
         );
       })}
-      <div className="video-gallery-news-container">
-        {videoGallery?.slice(0, 3).map((item) => {
+      <div className="video-gallery-news-container"> {/*alttaki 3 adet olan video galeri kartları*/}
+        {videoGallery?.slice(1, 4).map((item) => {
           return <SingleVideo key={item.id} mode={modeStatus} item={item} />;
         })}
       </div>

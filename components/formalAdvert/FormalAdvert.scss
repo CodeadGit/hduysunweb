@@ -1,12 +1,40 @@
 .content {
-   padding:2rem 0;
+  padding: 2rem 0;
 
+  color: inherit !important;
+  background-color: inherit !important;
+  // font-size: 1.125rem !important;
+  font-weight: 400 !important;
+  text-align: justify !important;
+  transition: var(--transition) !important;
 
-table{
-   width: 100% !important;
+  & > p,
+  & > div,
+  & > table {
+    background-color: inherit !important;
+    color: inherit !important;
+  }
+
+  &.dark {
+    color: #fff !important;
+
+    & > p,
+    & > div,
+    & > table {
+      background-color: inherit !important;
+      color: inherit !important;
+    }
+  }
+
+  & > p,
+  & > div,
+  & > table {
+    font-size: inherit !important;
+    margin-bottom: 0.5rem !important;
+    text-align: justify !important;
+  }
+
+  table {
+    width: 100% !important;
+  }
 }
-
-}
-
-
-

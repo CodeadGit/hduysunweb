@@ -55,7 +55,7 @@ const Category = ({ category }) => {
 
   if (filteredNews.length > 0) {
     return (
-      <div className="container">
+      <div className="categoryContainer">
         {filteredNews?.map((item) => {
           return (
             <CategoryItem key={item.id} item={item} modeStatus={modeStatus} />

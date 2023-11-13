@@ -1,9 +1,4 @@
 .stickyNavbar {
-  // height: 300px;
-  // width: 50px;
-  // position: fixed;
-  // overflow-x: visible;
-  // margin-left: -55px;
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -23,6 +18,12 @@
     height: 100dvh;
     position: sticky;
     position: -webkit-sticky;
+
+    @media screen  and (max-width:1200px){
+      top: 1rem !important;
+      position: sticky;
+      position: -webkit-sticky;
+    }
 
   }
 }

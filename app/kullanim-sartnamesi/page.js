@@ -1,8 +1,8 @@
-import React from 'react'
+import KullanimSartnamesi from "@/components/footerPages/KullanimSartnamesi";
 
 const KullanimSartnamesiPage = () => {
   return (
-    <div>KullanimSartnamesiPage</div>
+    <KullanimSartnamesi/>
   )
 }
 

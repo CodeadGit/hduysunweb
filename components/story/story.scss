@@ -11,4 +11,51 @@
   @media screen and (max-width: 768px) {
     width: 100%;
   }
+
+  &-img {
+    width: 100%;
+    height: 100% !important;
+    margin: 0 auto;
+    padding: 0;
+    align-self: center;
+    z-index: 1;
+    position: relative;
+    aspect-ratio: 9 / 16;
+    object-fit: contain;
+  }
+
+  .info-wrapper {
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    width: 100%;
+    top: 60%;
+    gap: 1rem;
+
+    &-title {
+      z-index: 1000;
+     // position: absolute;
+      width: 100%;
+      color: white;
+      margin-top: 1rem;
+    }
+
+    &-des {
+      z-index: 1000;
+      width: 100%;
+      white-space: wrap;
+      color: white;
+      padding-top: 0.5rem;
+    }
+
+    &-link {
+      z-index: 1000;
+      color: white;
+     // position: absolute;
+      margin-top: 4rem;
+      text-decoration: underline;
+    }
+  }
 }

@@ -1,8 +1,8 @@
-import React from 'react'
+import Kunye from '@/components/footerPages/Kunye';
 
 const KunyePage = () => {
   return (
-    <div>KunyePage</div>
+    <Kunye/>
   )
 }
 

@@ -22,7 +22,7 @@ const SingleHaber = ({ image, category, eng, id, title, mode }) => {
           {handleShort(title, 9)}
         </p>
         <p className={`content-med ${mode ? "dark" : ""}`}>
-          {handleShort(title, 6)}
+          {handleShort(title, 5)}
         </p> 
         <p className={`content-res ${mode ? "dark" : ""}`}>
           {handleShort(title, 5)}

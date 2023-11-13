@@ -1,9 +1,8 @@
-import React from 'react'
-
-const KullanimSartnamesiPage = () => {
+import GizlilikPolitikasi from "@/components/footerPages/GizlilikPolitikasi";
+const GizlilikPolitikasiPage = () => {
   return (
-    <div>KullanimSartnamesiPage</div>
+    <GizlilikPolitikasi/>
   )
 }
 
-export default KullanimSartnamesiPage;
+export default GizlilikPolitikasiPage;

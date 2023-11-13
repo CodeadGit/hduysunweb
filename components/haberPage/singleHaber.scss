@@ -57,7 +57,7 @@
       &.dark {
         color: #fff;
       }
-      @media screen and (min-width:768px) and (max-width:1050px){
+      @media screen and (min-width:768px) and (max-width:1250px){
         display: none;
       }
       @media screen and (max-width:767px) {
@@ -69,6 +69,10 @@
       font-size: .8rem;
       font-weight: 600;
       transition: var(--transition);
+
+      &.dark {
+        color: #fff;
+      }
 
       @media screen and (min-width:769px) {
         display: none;
@@ -83,10 +87,14 @@
       font-weight: 600;
       transition: var(--transition);
 
+      &.dark {
+        color: #fff;
+      }
+
       @media screen and (max-width:768px) {
         display: none;
       }
-      @media screen and (min-width:1051px) {
+      @media screen and (min-width:1251px) {
         display: none;
       }
     }

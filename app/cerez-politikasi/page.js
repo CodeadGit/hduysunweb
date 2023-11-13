@@ -1,8 +1,7 @@
+import CerezPolitikasi from "@/components/footerPages/CerezPolitikasi";
 
-const CerezPolitikasi = () => {
-  return (
-    <div>CerezPolitikasi</div>
-  )
-}
+const CerezPolitikasiPage = () => {
+  return <CerezPolitikasi />;
+};
 
-export default CerezPolitikasi;
+export default CerezPolitikasiPage;
