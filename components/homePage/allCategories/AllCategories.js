@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import "./allCategories.scss";
-
 import spor from "../assets/spor.png";
 import magazin from "../assets/magazin.png";
 import gelisim from "../assets/gelisim.png";
@@ -15,7 +14,6 @@ import teknoloji from "../assets/teknoloji.png";
 import otomobil from "../assets/otomobil.png";
 import seyahat from "../assets/seyahat.png";
 import gastro from "../assets/gastro.png";
-
 import CategoryItem from "./CategoryItem";
 import SmallCatItem from "./SmallCatItem";
 import { useThemeContext } from "@/context/ThemeContext";

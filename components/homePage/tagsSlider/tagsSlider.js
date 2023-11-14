@@ -1,9 +1,7 @@
 "use client";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-
 import "./tagsSlider.scss";
 import CardItem from "./CardItem";
 import { useThemeContext } from "@/context/ThemeContext";
@@ -31,7 +29,7 @@ const TagsSlider = () => {
     setTagClicked(i.title);
   };
 
-  const tagsList = Object.keys(tagsTitles).slice(0,5).map((i, idx) => (
+  const tagsList = Object.keys(tagsTitles).slice(0,5).map((i) => (
     <button
       onClick={() => tagButtonClickHandler(i)}
       className={`tag-btn ${tagClicked} ${modeStatus ? "dark" : ""}`}
@@ -88,6 +86,8 @@ const TagsSlider = () => {
     alignItems: "center",
     justifyContent: "center",
   };
+
+  console.log(tagsTitles);
 
   if (loading) {
     return (

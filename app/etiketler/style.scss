@@ -1,0 +1,22 @@
+.tags-container {
+    // border: 1px solid red;
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    a {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+        border-radius: 3px;
+        background-color: transparent;
+        color: var(--blueBgColor);
+        border: 1px solid var(--blueBgColor);
+        transition: var(--transition);
+  
+        &.dark {
+          color: white;
+          border: 1px solid white;
+        }
+      }
+}

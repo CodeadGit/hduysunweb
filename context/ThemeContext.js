@@ -42,7 +42,6 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   const [mode, setMode] = useState("light");
   const [storyModal, setStoryModal] = useState(false);
-
   const [stories, setStories] = useState([]);
   const [mansetNewsList, setMansetNewsList] = useState([]);
   const [mostReadNewsList, setMostReadNewsList] = useState([]);
@@ -54,8 +53,11 @@ export const ThemeProvider = ({ children }) => {
   const [photoGallery, setPhotoGallery] = useState([]);
   const [videoGallery, setVideoGallery] = useState([]);
   const [formalAdv, setFormalAdv] = useState([]);
-  const [fontInc, setFontInc ] = useState(50)
-  const [fontDec, setFontDec] = useState(50)
+  const [fontInc, setFontInc] = useState(50);
+  const [fontDec, setFontDec] = useState(50);
+  const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [tagsList, setTagsList] = useState([]);
 
   const hideAds = () => setShowAds(false);
 
@@ -65,18 +67,26 @@ export const ThemeProvider = ({ children }) => {
     league2: [],
   });
 
-  const [news, setNews] = useState([]);
-  const [loading, setLoading] = useState(true);
-
   const fontDecBtnClickHandler = () => {
-    setFontDec(fontDec + 1)
-    console.log("tıklandı" + fontDec)
+    setFontDec(fontDec + 1);
+    console.log("tıklandı" + fontDec);
   };
 
   const fontIncBtnClickHandler = () => {
-    setFontInc(fontInc - 1)
-    console.log("tıklandı" + fontInc)
+    setFontInc(fontInc - 1);
+    console.log("tıklandı" + fontInc);
   };
+
+  useEffect(() => {
+    let tagsContainer = [];
+    news.forEach((item) => {
+      const newsTags = [...item.tags];
+      tagsContainer.push(...newsTags);
+    });
+    setTagsList(tagsContainer);
+  }, [news]);
+
+  const uniqueTags = [...new Set(tagsList)];
 
   useEffect(() => {
     const categories = [...new Set(news.map((item) => item.category))];
@@ -180,7 +190,6 @@ export const ThemeProvider = ({ children }) => {
     })();
     return () => controller?.abort();
   }, []);
-  console.log(formalAdv);
 
   useEffect(() => {
     let controller = new AbortController();
@@ -191,7 +200,7 @@ export const ThemeProvider = ({ children }) => {
         const q = query(
           collection(db, categoryList[i].collection),
           orderBy("datePublished", "desc"),
-          limit(5)
+          // limit(5)
         );
         const newsGetting = onSnapshot(q, (snap) => {
           snap.forEach((doc) => {
@@ -234,7 +243,9 @@ export const ThemeProvider = ({ children }) => {
     result[item.tags] = [];
     return result;
   }, {});
+
   Object.keys(tagsTitles).forEach((tags) => {
+    // console.log(tagsTitles);
     let findTags = news.filter((title) => title.tags == tags);
     tagsTitles[tags] = findTags;
   });
@@ -294,7 +305,9 @@ export const ThemeProvider = ({ children }) => {
     videoGallery,
     formalAdv,
     fontDecBtnClickHandler,
-    fontIncBtnClickHandler
+    fontIncBtnClickHandler,
+    tagsList,
+    uniqueTags,
   };
 
   return (
