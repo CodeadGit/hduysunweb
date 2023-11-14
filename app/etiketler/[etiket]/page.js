@@ -44,7 +44,7 @@ const SingleTag = ({ params }) => {
 
   // console.log(etiket);
 
-  console.log(relatedTagsNews);
+  // console.log(relatedTagsNews);
 
   if (loading) return <h2>LOADING...</h2>;
 
