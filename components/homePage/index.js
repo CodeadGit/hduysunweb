@@ -41,7 +41,7 @@ const Home = () => {
       <TrialComp />
       <Video />
       <Register /> 
-      {/* <Login/> */}
+       {/* <Login/> */}
     </div>
   );
 };

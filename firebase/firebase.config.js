@@ -28,7 +28,8 @@ const firebaseConfig = {
   projectId: "hduysun-v1",
   storageBucket: "hduysun-v1.appspot.com",
   messagingSenderId: "882470643229",
-  appId: "1:882470643229:web:ce837a6bed272eac1a08f4"
+  appId: "1:882470643229:web:ce837a6bed272eac1a08f4",
+  measurementId: "G-TCZHRER09B"
 };
 
 

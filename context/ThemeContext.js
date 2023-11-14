@@ -68,6 +68,8 @@ export const ThemeProvider = ({ children }) => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  console.log(news)
+
   const fontDecBtnClickHandler = () => {
     setFontDec(fontDec + 1)
     console.log("tıklandı" + fontDec)
@@ -238,6 +240,7 @@ export const ThemeProvider = ({ children }) => {
     let findTags = news.filter((title) => title.tags == tags);
     tagsTitles[tags] = findTags;
   });
+  console.log(tagsTitles)
 
   // const handleChangeTitle = (title) => {
   //   for(let s=1;s<=title.length;s++){
