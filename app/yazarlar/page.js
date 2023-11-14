@@ -1,9 +1,13 @@
 import React from 'react';
+import Yazar from "@/components/Yazarlar/Yazar";
 
-const YazarlarPage = () => {
+
+function YazarlarPage() {
   return (
-    <h3>Yazarlar Page</h3>
-  )
+   
+      <Yazar /> 
+     
+  );
 }
 
 export default YazarlarPage;

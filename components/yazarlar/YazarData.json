@@ -1,0 +1,58 @@
+
+[
+{
+    "id":1,
+    "image":"/indir.jpg",
+    "yazar":"Hasan Can Kurşun",
+    "yazisayisi":20
+},
+
+{
+    "id":2,
+    "image":"/2.webp",
+    "yazar":"Rüstem P.",
+    "yazisayisi":3
+    
+},
+
+{
+    "id":3,
+    "image":"/1.webp",
+    "yazar":"Ali Enes Yaman",
+    "yazisayisi":12
+},
+
+{
+    "id":4,
+    "image":"/1.webp",
+    "yazar":"Cüneyt Yaman",
+    "yazisayisi":11
+},
+{
+    "id":5,
+    "image":"/1.webp",
+    "yazar":"ahmet hamdi",
+    "yazisayisi":30
+},
+{
+    "id":6,
+    "image":"/1.webp",
+    "yazar":"ahmet hamdi",
+    "yazisayisi":30
+},
+{
+    "id":7,
+    "image":"/1.webp",
+    "yazar":"ahmet hamdi",
+    "yazisayisi":30
+},
+{
+    "id":8,
+    "image":"/1.webp",
+    "yazar":"ahmet hamdi",
+    "yazisayisi":30
+}
+
+
+
+]
