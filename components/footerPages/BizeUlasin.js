@@ -1,6 +1,6 @@
 "use client";
 import "./bizeUlasin.scss";
-import FooterSidebar from "./footerSidebar";
+import FooterSidebar from "./FooterSidebar";
 import { useThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
 

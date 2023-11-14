@@ -1,6 +1,6 @@
 "use client"
 import "./cerezPolitikasi.scss";
-import FooterSidebar from "./footerSidebar";
+import FooterSidebar from "./FooterSidebar";
 import { useThemeContext } from "@/context/ThemeContext";
 const CerezPolitikasi = () => {
     const { mode } = useThemeContext();

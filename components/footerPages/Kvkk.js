@@ -1,6 +1,6 @@
 "use client";
 import "./kvkk.scss";
-import FooterSidebar from "./footerSidebar";
+import FooterSidebar from "./FooterSidebar";
 import { useThemeContext } from "@/context/ThemeContext";
 const Kvkk = () => {
   const { mode } = useThemeContext();

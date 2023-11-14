@@ -1,5 +1,5 @@
 "use client";
-import FooterSidebar from "./footerSidebar";
+import FooterSidebar from "./FooterSidebar";
 import { useThemeContext } from "@/context/ThemeContext";
 import "./kunye.scss";
 const Kunye = () => {

@@ -1,6 +1,6 @@
 "use client";
 import "./kullanimSartnamesi.scss";
-import FooterSidebar from "./footerSidebar";
+import FooterSidebar from "./FooterSidebar";
 import { useThemeContext } from "@/context/ThemeContext";
 const KullanimSartnamesi = () => {
   const { mode } = useThemeContext();
