@@ -2,7 +2,7 @@ import ColumnistsAuthors from '@/components/columnistsAuthors/ColumnistsAuthors'
 import React from 'react';
 
 
-function YazarlarPage() {
+const YazarlarPage=()=> {
   return (
     <ColumnistsAuthors/>
   )
