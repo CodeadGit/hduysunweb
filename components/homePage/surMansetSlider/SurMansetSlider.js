@@ -9,7 +9,7 @@ import Link from "next/link";
 const SurMansetSlider = () => {
   const { mansetNewsList, mode } = useThemeContext();
 
-  const surMansetNews = mansetNewsList.filter((i) => i.isManset);
+  const surMansetNews = mansetNewsList.filter((i) => i.isSurmanset);
 
   const settings = {
     infinite: true,

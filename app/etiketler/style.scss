@@ -1,0 +1,62 @@
+.tags-page-container {
+    // border: 1px solid blue;
+    display: grid;
+    grid-template-columns: 67% 28%;
+    gap: 5%;
+    margin-top: 1.5rem;
+  
+    &-left {
+      // border: 1px solid red;
+  
+      .tags-page-title {
+        font-size: 22px;
+      }
+  
+      .tags-list {
+        // border: 1px solid red;
+        margin-top: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+  
+        .tag-link {
+          // transition: var(--transition);
+          min-width: 9rem;
+          height: 4rem;
+          border-radius: 10px;
+          background-color: #fff;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 0.25rem;
+          padding-inline: 0.5rem;
+  
+          &:link,
+          &:visited {
+            color: #000;
+          }
+  
+          &-item {
+            font-size: 14px;
+            font-weight: 600;
+          }
+  
+          &-info {
+            font-size: 12px;
+            color: #000;
+          }
+  
+          &.dark {
+            color: white;
+            border: 1px solid white;
+          }
+        }
+      }
+    }
+  
+    &-right {
+      // border: 1px solid red;
+      display: block;
+    }
+  }

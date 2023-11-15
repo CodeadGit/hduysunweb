@@ -4,36 +4,43 @@ import "./cardItem.scss";
 import { handleShort } from "@/context/utils";
 import moment from "moment";
 import { categoryConvertorFunc } from "@/context/utils";
+import { useThemeContext } from "@/context/ThemeContext";
 const CardItem = ({ item, modeStatus }) => {
   const { image, title, eng, id, category, datePublished, tags } = item;
+  const { handleReadIncrement } = useThemeContext();
 
   const timePublished = new Date(datePublished.seconds * 1000);
   const options = { year: "numeric", month: "long", day: "2-digit" };
   const formattedDate = timePublished.toLocaleString("tr-TR", options);
- 
+
   return (
-    <div className={`card ${modeStatus ? "dark" : ""}`}>
-      <Link
-        href={`/${category}/${eng}-${id}`}
-        className="card-wrapper"
-        target="_blank"
-      >
+    <Link
+      href={`/${category}/${eng}-${id}`}
+      target="_blank"
+      className={`card ${modeStatus ? "dark" : ""}`}
+      onClick={() => handleReadIncrement(category, id)}
+    >
+      <div className="card-wrapper">
         <img src={image} alt={title} className="image" />
-      </Link>   
-      <Link
-        href={`/${category}/${eng}-${id}`}
-        className="content"
-        target="_blank"
-      >
+      </div>
+      <div className="content">
         <div className="content-top">
           <div className="content-top-left">
             <span className={`disc ${modeStatus ? "dark" : ""}`}></span>
-            <span className={`content-top-left-category ${modeStatus ? "dark" : ""}`}>
+            <span
+              className={`content-top-left-category ${
+                modeStatus ? "dark" : ""
+              }`}
+            >
               {categoryConvertorFunc(category)}
             </span>
           </div>
           <div className="content-top-right">
-            <span className={`content-top-right-time ${modeStatus ? "dark" : ""}`}>{formattedDate}</span>
+            <span
+              className={`content-top-right-time ${modeStatus ? "dark" : ""}`}
+            >
+              {formattedDate}
+            </span>
           </div>
         </div>
         <div className="content-bottom">
@@ -41,8 +48,8 @@ const CardItem = ({ item, modeStatus }) => {
             {handleShort(title, 7)}
           </p>
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 

@@ -1,11 +1,12 @@
 import { useThemeContext } from "@/context/ThemeContext";
 import "./similiarVideosCard.scss";
 import { handleShort } from "@/context/utils";
+import Link from "next/link";
 
 const SimiliarVideosCard = ({ item }) => {
   const { headImg, title, id, eng, url, datePublished } = item;
 
-  const { mode } = useThemeContext();
+  const { mode, handleVideoGalleryReadInc } = useThemeContext();
 
   const modeStatus = mode === "dark";
 
@@ -14,7 +15,7 @@ const SimiliarVideosCard = ({ item }) => {
   const formattedDate = timePublished.toLocaleString("tr-TR", options);
 
   return (
-    <div className="similiarVideosCard">
+    <Link className="similiarVideosCard" target="_blank" href={`/video-galeri/${eng}-${id}`} onClick={()=>handleVideoGalleryReadInc(id)}>
       <div className="similiarVideosCard-container">
         <div className="similiarVideosCard-container-left">
           <img
@@ -42,7 +43,7 @@ const SimiliarVideosCard = ({ item }) => {
       {/* <div
           className={`similiarVideosCard-line ${modeStatus ? "dark" : ""}`}
         ></div> */}
-    </div>
+    </Link>
   );
 };
 

@@ -56,6 +56,11 @@ export const ThemeProvider = ({ children }) => {
   const [formalAdv, setFormalAdv] = useState([]);
   const [fontInc, setFontInc ] = useState(50)
   const [fontDec, setFontDec] = useState(50)
+  const [autors, setAutors] = useState([]);
+  const [columnists, setColumnists] = useState([])
+  const [searchWord, setSearchWord] = useState("");
+  const [wordNews, setWordNews] = useState([]);
+  const [tagsList, setTagsList] = useState([]);
 
   const hideAds = () => setShowAds(false);
 
@@ -79,6 +84,33 @@ export const ThemeProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    let controller = new AbortController();
+    var autorsList = [];
+    (async () => {
+      const qc = query(collection(db, "Columnists"));
+      const autorsGetting = onSnapshot(qc, (snap) => {
+        snap.forEach((doc) => {
+          autorsList.push({ ...doc.data(), doc: doc.id });
+        });
+        setAutors(autorsList);
+      });
+      return () => autorsGetting();
+    })();
+    return () => controller?.abort();
+  }, []);
+
+  useEffect(() => {
+    let tagsContainer = [];
+    news.forEach((item) => {
+      const newsTags = [...item.tags];
+      tagsContainer.push(...newsTags);
+    });
+    setTagsList(tagsContainer);
+  }, [news]);
+
+  const uniqueTags = [...new Set(tagsList)];
+
+  useEffect(() => {
     const categories = [...new Set(news.map((item) => item.category))];
     const sortedMostReadNews = news.sort((a, b) => b.read - a.read);
 
@@ -98,6 +130,44 @@ export const ThemeProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+  const handlePhotoGallerySliderReadInc = async (gDoc,fDoc) => {
+
+    var referance = doc(db,"PhotoGallery", gDoc, "Photos", fDoc); 
+    var referanceUp = doc(db,"PhotoGallery", gDoc); 
+    try {
+      await updateDoc(referanceUp, {
+        read: increment(1),
+      });
+      await updateDoc(referance, {
+        read: increment(1),
+      });
+    }catch(error) {
+      console.log(error)
+    }
+  }
+
+  const handlePhotoGalleryReadInc = async ( id) => {
+    var referance = doc(db,"PhotoGallery", id); 
+    try {
+      await updateDoc(referance, {
+        read: increment(1),
+      });
+    }catch(error) {
+      console.log(error)
+    }
+  }
+
+  const handleVideoGalleryReadInc = async (id) => {
+    var reference = doc(db,"VideoGallery",id);
+    try {
+      await updateDoc(reference, {
+        read: increment(1)
+      });
+    }catch(error) {
+      console.log(error)
+    }
+  }
 
   const fetchPoints = async () => {
     try {
@@ -180,7 +250,6 @@ export const ThemeProvider = ({ children }) => {
     })();
     return () => controller?.abort();
   }, []);
-  console.log(formalAdv);
 
   useEffect(() => {
     let controller = new AbortController();
@@ -214,6 +283,22 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     fetchPoints();
+  }, []);
+
+  useEffect(() => {
+    let controller = new AbortController();
+    var autorsList = [];
+    (async () => {
+      const qc = query(collection(db, "Columnists"));
+      const autorsGetting = onSnapshot(qc, (snap) => {
+        snap.forEach((doc) => {
+          autorsList.push({ ...doc.data(), doc: doc.id });
+        });
+        setAutors(autorsList);
+      });
+      return () => autorsGetting();
+    })();
+    return () => controller?.abort();
   }, []);
 
   useEffect(() => {
@@ -271,6 +356,7 @@ export const ThemeProvider = ({ children }) => {
     mode,
     storyModal,
     changeStoryModal,
+    handlePhotoGalleryReadInc,
     navigateStory,
     stories,
     category,
@@ -286,15 +372,24 @@ export const ThemeProvider = ({ children }) => {
     mansetNewsList,
     mostReadNewsList,
     categoryHeadlines,
+    handlePhotoGallerySliderReadInc,
+    handleVideoGalleryReadInc,
     hideAds,
     showAds,
     // videoNewsList,
     tagsTitles,
+    autors,
     photoGallery,
     videoGallery,
     formalAdv,
     fontDecBtnClickHandler,
-    fontIncBtnClickHandler
+    fontIncBtnClickHandler,
+    columnists,
+    searchWord,
+    setSearchWord,
+    wordNews, 
+    setWordNews,
+    tagsList
   };
 
   return (

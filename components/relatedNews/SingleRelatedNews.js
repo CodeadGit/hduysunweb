@@ -4,6 +4,7 @@ import moment from "moment";
 import { AiFillEye } from "react-icons/ai";
 import Link from "next/link";
 import { handleShort } from "@/context/utils";
+import { useThemeContext } from "@/context/ThemeContext";
 
 const SingleRelatedNews = ({ item = {}, mode }) => {
   const { image, title, read, datePublished, category, eng, id } = item;
@@ -12,9 +13,12 @@ const SingleRelatedNews = ({ item = {}, mode }) => {
     // "DD.MM.YYYY - HH:mm"
   );
 
+  const { handleReadIncrement } = useThemeContext();
+
   return (
     <Link
       href={`/${category}/${eng}-${id}`}
+      onClick={() => handleReadIncrement(category, id)}
       className="related-news-single"
       target="_blank">
       <img src={image} alt="asd" className="single-img-wrapper" />

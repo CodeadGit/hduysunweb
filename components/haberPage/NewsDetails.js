@@ -7,7 +7,6 @@ import { useThemeContext } from "@/context/ThemeContext";
 const NewsDetails = ({ modeStatus, source, body }) => {
   const newsSource = source ? source : "Haber Merkezi";
 
-
   return (
     <div className="news-details">
       {body ? (

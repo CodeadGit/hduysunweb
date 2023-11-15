@@ -1,19 +1,36 @@
-import React from "react";
+"use client";
+import { useState } from "react";
 import "./login.scss";
 import darkLogo from "../navbarLogo/darkLogo.svg";
 import Image from "next/image";
 import { BsApple } from "react-icons/bs";
 import { FaGooglePlusG } from "react-icons/fa";
+import LoginRegisterContainer from "./LoginRegisterContainer";
+import LoginContainer from "./LoginContainer";
+import { useAuthenticationContext } from "@/context/AuthenticationContext";
 import Link from "next/link";
-
 const Login = () => {
+  const [loginClicked, setLoginClicked] = useState(true);
+
+  const loginBtnClickHandler = () => {
+    setLoginClicked(true);
+  };
+
+  const registerBtnClickHandler = () => {
+    setLoginClicked(false);
+  };
+
+  const { googlelogin, applelogin,submitReset } = useAuthenticationContext();
+
   return (
     <div className="login">
       <div className="login-container">
         <div className="login-container-left">
           <div className="login-container-left-top">
             <Image src={darkLogo} alt="logo" />
-            <h3>BİZE KATIL</h3>
+            <h3 className="h3-btn" onClick={registerBtnClickHandler}>
+              BİZE KATIL
+            </h3>
           </div>
           <div className="login-container-left-bottom">
             <p>Özel Haberlerini Seç</p>
@@ -22,28 +39,48 @@ const Login = () => {
           </div>
         </div>
         <div className="login-container-right">
-          <div className="login-container-right-inputs">
-            <input type="email" placeholder="E-posta Adresi" />
-            <input type="text" placeholder="İsim" />
-            <input type="password" placeholder="Şifre" />
-            <button type="submit">DEVAM ET</button>
-          </div>
+          {loginClicked === true ? (
+            <LoginContainer />
+          ) : (
+            <LoginRegisterContainer />
+          )}
           <div className="login-container-right-auth">
-            <h6>Ya da şununla giriş yap</h6>
+            <>
+              <span onClick={submitReset} className="forget">Şifremi unuttum</span>
+            </>
+            {loginClicked === true ? (
+              <h6>Ya da şununla giriş yap</h6>
+            ) : (
+              <h6>Ya da şununla kayıt ol</h6>
+            )}
             <div className="login-container-right-auth-icons">
-              <span className="icon-circle">
+              <span className="icon-circle" onClick={applelogin}>
                 <BsApple />
               </span>
-              <span className="icon-circle">
+              <span className="icon-circle" onClick={googlelogin}>
                 <FaGooglePlusG />
               </span>
             </div>
-            <h6 className="account">Zaten hesabın var mı?</h6>
-            <Link href="/">Giriş yap</Link>
+            {loginClicked === false ? (
+              <>
+                <h6 className="account">Zaten hesabın var mı?</h6>
+                <span className="span-btn" onClick={loginBtnClickHandler}>
+                  Giriş yap
+                </span>
+              </>
+            ) : (
+              <>
+                <h6 className="account">Hesabınız yok mu?</h6>
+                <span className="span-btn" onClick={registerBtnClickHandler}>
+                  Kayıt ol
+                </span>
+              </>
+            )}
           </div>
           <p className="policy">
-            Devam ederek şunu kabul ediyorsun: Kullanım Koşulları ve Gizlilik
-            Politikası
+            Devam ederek şunu kabul ediyorsun:{" "}
+            <Link href="/kullanim-sartnamesi">Kullanım Koşulları</Link> ve
+            <Link href="/gizlilik-politikasi"> Gizlilik Politikası</Link>
           </p>
         </div>
       </div>

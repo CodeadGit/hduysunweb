@@ -4,7 +4,6 @@ import { useThemeContext } from "@/context/ThemeContext";
 import DOMPurify from "dompurify";
 
 const FormalAdvert = ({ titleArray, filterFormalAdv }) => {
-
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
 
@@ -21,17 +20,22 @@ const FormalAdvert = ({ titleArray, filterFormalAdv }) => {
     },
   ];
 
+  console.log(filterFormalAdv);
+
   return (
     <div className="text">
       <Breadcrumb links={links} />
       {filterFormalAdv.map((i) => (
-        <p
-          className={`content ${modeStatus ? "dark" : ""}`}
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(i.content)
-          }}
-        >
-        </p>
+        <>
+          <span>İlan No : {i.advNo}</span>
+          <p
+            className={`content ${modeStatus ? "dark" : ""}`}
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(i.content),
+            }}
+          ></p>
+          <span> #ilangovtr Basın no {i.advNo}</span>
+        </>
       ))}
     </div>
   );

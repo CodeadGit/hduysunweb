@@ -7,6 +7,7 @@ import Footer from "@/components/footer/Footer";
 import { AdsContextProvider } from "@/context/AdsContext";
 // import PageSkinRight from "@/components/ads/adsComponents/PageSkinRight";
 import BaseWrapper from "@/components/BaseWrapper";
+import { AuthenticationProvider } from "@/context/AuthenticationContext";
 // import LogoNext from "@/components/ads/adsComponents/LogoNext";
 // import MiniNavbar from '@/components/miniNavbar/MiniNavbar';
 
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={poppins.className} suppressHydrationWarning={true}>
+        <AuthenticationProvider>
         <ThemeProvider>
           <AdsContextProvider>
             <Navbar />
@@ -33,6 +35,7 @@ export default function RootLayout({ children }) {
           <Footer />
           </AdsContextProvider>
         </ThemeProvider>
+        </AuthenticationProvider>
       </body>
     </html>
   );

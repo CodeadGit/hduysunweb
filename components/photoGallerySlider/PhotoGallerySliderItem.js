@@ -1,9 +1,14 @@
 import "./photoGallerySliderItem.scss";
-const PhotoGallerySliderItem = ({ image }) => {
+import { useThemeContext } from "@/context/ThemeContext";
+const PhotoGallerySliderItem = ({ item }) => {
+  const { handlePhotoGallerySliderReadInc } = useThemeContext();
+
+  const {url, doc, id,} = item;
+
   return (
     <div className="photoGalerySlider-item">
       <img
-        src={image}
+        src={url}
         alt="photogallery-item"
         style={{
           objectFit: "cover",

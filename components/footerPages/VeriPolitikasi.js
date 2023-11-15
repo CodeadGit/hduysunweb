@@ -1,5 +1,5 @@
 "use client";
-import FooterSidebar from "./footerSidebar";
+import FooterSidebar from "./FooterSidebar";
 import "./veriPolitikasi.scss";
 import { useThemeContext } from "@/context/ThemeContext";
 const VeriPolitikasi = () => {
