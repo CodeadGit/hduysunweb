@@ -1,10 +1,12 @@
 import ColumnistsAuthors from '@/components/columnistsAuthors/ColumnistsAuthors';
 import React from 'react';
+import Yazar from "@/components/Yazarlar/Yazar";
 
-const YazarlarPage = () => {
+
+function YazarlarPage() {
   return (
     <ColumnistsAuthors/>
   )
-}
+
 
 export default YazarlarPage;
