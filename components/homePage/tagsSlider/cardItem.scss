@@ -65,7 +65,8 @@
         }
         &-category {
           color: #095985;
-          font-size: 11px;
+          font-size: 14px;
+          font-weight: 400;
           text-transform: capitalize;
 
           &.dark {
@@ -83,6 +84,8 @@
         &-time {
           width: 100%;
           padding-right: 0.5rem;
+          font-size: .75rem;
+          font-weight: 500;
 
           &.dark {
             color: white;
@@ -90,10 +93,12 @@
         }
       }
     }
+    
     &-bottom {
       width: 100%;
+
       .title {
-        font-size: 15px;
+        font-size: 1rem;
         font-weight: 500;
         transition: var(--transition);
 
