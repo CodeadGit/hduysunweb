@@ -1,62 +1,64 @@
 "use client";
-import { categoryList, useThemeContext } from "@/context/ThemeContext";
-import React, { useEffect, useState } from "react";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import React, { useEffect } from "react";
+import { useThemeContext } from "@/context/ThemeContext";
+import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import Link from "next/link";
-import "./format.scss";
+import { useRouter } from "next/navigation";
+import "./search.scss";
 
-const SingleTag = ({ params }) => {
-  const { tagsList } = useThemeContext();
-  const [relatedTagsNews, setRelatedTagsNews] = useState([]);
-  const [loading, setLoading] = useState(true);
+const SearchPage = () => {
 
-  let { etiket } = params;
+  const { searchWord, setSearchWord, wordNews, setWordNews } = useThemeContext();
 
-  if (etiket.includes("%C5%9F")) {
-    etiket = etiket.replaceAll("%C5%9F", "ş");
-  };
+  const router = useRouter();
 
   useEffect(() => {
     let controller = new AbortController();
     let tagsListArray = [];
 
-    for (let i = 0; i < categoryList.length; i++) {
-      (async () => {
-        const q = query(
-          collection(db, categoryList[i].collection)
-        );
-        const newsGetting = onSnapshot(q, (snap) => {
-          snap.forEach((doc) => {
-            if (doc.data().tags.includes(etiket)) {
-              tagsListArray.push({ ...doc.data(), doc: doc.id });
-            }
-          });
-          setRelatedTagsNews(tagsListArray);
-          setLoading(false);
+    if (searchWord.length <= 3) {
+      setWordNews([]);
+      return;
+    };
+
+    (async () => {
+      const q = query(collection(db, "HDSearch"));
+      const newsGetting = onSnapshot(q, (snap) => {
+        snap.forEach((doc) => {
+          if (doc.data().searchArray.includes(searchWord)) {
+            tagsListArray.push({ ...doc.data(), doc: doc.id });
+          }
         });
-        return () => newsGetting();
-      })();
+        setWordNews(tagsListArray);
+      });
+      return () => newsGetting();
+    })();
+
+    return () => {
+      controller?.abort();
+      setSearchWord("");
     }
-    return () => controller?.abort();
-  }, []);
+  }, [searchWord]);
 
-  // console.log(etiket);
+  // console.log(wordNews);
 
-  // console.log(relatedTagsNews);
-
-  if (loading) return <h2>LOADING...</h2>;
-
-  if (!tagsList.includes(etiket)) return <h2>NOT FOUND</h2>;
+  // if (wordNews.length === 0) {
+  //   router.push("/");
+  // };
 
   return (
+    <>
+      <h3>{searchWord}</h3>
       <div className="tagsListWrapper">
-        {relatedTagsNews.map((item) => {
+
+        {wordNews.map((item) => {
+
           const { id, eng, category, image, title, datePublished } = item;
           const timePublished = new Date(datePublished.seconds * 1000);
           const options = { year: "numeric", month: "numeric", day: "2-digit" };
           const formattedDate = timePublished.toLocaleString("tr-TR", options);
-          console.log(image);
+
           return (
             <div className="tagCardContainer">
               <div className="tagCardContainer-top">
@@ -82,7 +84,8 @@ const SingleTag = ({ params }) => {
           );
         })}
       </div>
+    </>
   );
 };
 
-export default SingleTag;
+export default SearchPage;

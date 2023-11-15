@@ -7,6 +7,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useThemeContext } from "@/context/ThemeContext";
 import { handleShort,handleShortBreadcrump} from "@/context/utils";
 import { handleShortt,handleShorttLetter } from "@/context/utils";
+
 const Breadcrumb = ({ links }) => {
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
@@ -32,7 +33,7 @@ const Breadcrumb = ({ links }) => {
 
 export default Breadcrumb;
 
-function BreadcrumbItem({ title, link, modeStatus, breadcrumpTitle }) {
+function BreadcrumbItem({ title, link, modeStatus }) {
 
   // const handleShortWord = (title) => {
   //   const res = title?.split(" ");
@@ -41,8 +42,8 @@ function BreadcrumbItem({ title, link, modeStatus, breadcrumpTitle }) {
   // };
 
  // console.log(title.substring(0,13).concat("..."))
-  const titleSplitted = title.split("")
-  console.log(titleSplitted.slice(0,30).join("").concat("..."))
+  // const titleSplitted = title.split("");
+  // console.log(titleSplitted.slice(0,30).join("").concat("..."));
 
    return (
     <li className={modeStatus ? "dark" : ""}>

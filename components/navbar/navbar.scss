@@ -25,7 +25,6 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    // gap: 4%;
     height: 104px;
 
     @media screen and (max-width:768px) {
@@ -56,28 +55,18 @@
       flex-direction: column;
       flex: 75;
       width: 100%;
-      // gap: 1rem;
 
       .info-section {
+        // border: 1px solid blue;
         display: flex;
         height: 2.5rem;
-
-        // .buttons {
-        //   display: flex;
-        //   align-items: center;
-        //   justify-content: space-between;
-        //   gap: 1rem;
-        //   flex: 17.3;
-        // }
 
         .buttons {
           // border: 1px solid red;
           display: flex;
           align-items: center;
-          justify-content: flex-start;
-          padding-left: 2.5rem;
-          // justify-content: flex-end;
-          // gap: 3.5rem;
+          justify-content: flex-end;
+          gap: .5rem;
           flex: 17.3;
         }
       }

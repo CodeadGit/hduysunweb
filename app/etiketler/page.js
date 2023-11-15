@@ -3,10 +3,14 @@ import React from "react";
 import "./style.scss";
 import { useThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
+import MostReadNews from "@/components/haberPage/MostReadNews";
+import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
+import CategoryNewsTitle from "@/components/haberPage/CategoryNewsTitle";
 
 const TagsPage = () => {
+  const { news, loading, mode, mostReadNewsList } = useThemeContext();
 
-  const { news, loading } = useThemeContext();
+  const modeStatus = mode === "dark";
 
   const res = news.reduce((acc, item) => {
     for (const tag of item.tags) {
@@ -17,24 +21,47 @@ const TagsPage = () => {
 
   const categories = Object.entries(res);
 
-  const result = categories.sort((a, b) => b[1] - a[1]).slice(0, 10);
+  const result = categories.sort((a, b) => b[1] - a[1]);
 
-  if (loading) return <h2>LOADING...</h2>
+  const links = [
+    {
+      id: 1,
+      title: "Etiketler",
+      link: "/etiketler",
+    },
+  ];
+
+  if (loading) return <h2>LOADING...</h2>;
 
   return (
-    <>
-      <h3>Popüler Etiketler</h3>
-      <div className="tags-container">
-        {result.map((item, idx) => (
-          <TagList key={idx} item={item} />
-        ))}
+    <div className="whole-tags-page">
+      <Breadcrumb links={links} />
+      <div className="tags-page-container">
+        <div className="tags-page-container-left">
+          <h3 className="tags-page-title">Popüler Etiketler</h3>
+          <div className="tags-list">
+            {result.map((item, idx) => (
+              <TagList key={idx} item={item} />
+            ))}
+          </div>
+        </div>
+        <div className="tags-page-container-right">
+          <CategoryNewsTitle title="En Çok Okunan" modeStatus={modeStatus} />
+          <MostReadNews modeStatus={modeStatus} mostReadNews={mostReadNewsList}
+          />
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
 export default TagsPage;
 
 const TagList = ({ item }) => {
-  return <Link href={`/etiketler/${item[0]}`}># {item[0]}</Link>
+  return (
+    <Link href={`/etiketler/${item[0]}`} className="tag-link">
+      <span className="tag-link-item">#{item[0]}</span>
+      <span className="tag-link-info">{item[1]} haber</span>
+    </Link>
+  );
 };

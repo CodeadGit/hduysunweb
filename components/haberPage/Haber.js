@@ -35,6 +35,7 @@ import VideoGallery from "./VideoGallery";
 import StickyNavbar from "../stickyNavbar/StickyNavbar";
 
 const Haber = ({ thisPageArticle, thisPage }) => {
+  
   const { mode, mostReadNewsList, videoNewsList } = useThemeContext();
   const modeStatus = mode === "dark";
   const [loading, setLoading] = useState(true);

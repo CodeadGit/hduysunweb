@@ -40,6 +40,7 @@ export const categoryList = [
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
+
   const [mode, setMode] = useState("light");
   const [storyModal, setStoryModal] = useState(false);
   const [stories, setStories] = useState([]);
@@ -58,6 +59,8 @@ export const ThemeProvider = ({ children }) => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [tagsList, setTagsList] = useState([]);
+  const [searchWord, setSearchWord] = useState("");
+  const [wordNews, setWordNews] = useState([]);
 
   const hideAds = () => setShowAds(false);
 
@@ -308,6 +311,10 @@ export const ThemeProvider = ({ children }) => {
     fontIncBtnClickHandler,
     tagsList,
     uniqueTags,
+    searchWord,
+    setSearchWord,
+    wordNews, 
+    setWordNews,
   };
 
   return (

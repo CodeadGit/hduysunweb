@@ -87,7 +87,7 @@ const TagsSlider = () => {
     justifyContent: "center",
   };
 
-  console.log(tagsTitles);
+  // console.log(tagsTitles);
 
   if (loading) {
     return (

@@ -19,7 +19,7 @@ import { BsCloudDrizzleFill } from "react-icons/bs";
 import { LuCloudDrizzle } from "react-icons/lu";
 import { useThemeContext } from "@/context/ThemeContext";
 
-const Weather = () => {
+const Weather = ({showSearchBar}) => {
 
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
@@ -132,7 +132,7 @@ const Weather = () => {
   // };
 
   return (
-    <div className={`weather ${modeStatus ? "dark" : ""}`}>
+    <div className={`weather ${showSearchBar ? "none" : ""} ${modeStatus ? "dark" : ""}`}>
       {icon}
       <div className="weather-info">
         <span>{Math.round(temperature)} °C</span>
