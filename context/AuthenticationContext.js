@@ -14,9 +14,11 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "@/firebase/firebase.config";
 import firebase from "firebase/app";
+import { useRouter } from "next/navigation";
 import {
   sendPasswordResetEmail,
   onAuthStateChanged,
+  sendEmailVerification,
   signOut,
   getAuth,
   updateProfile,
@@ -31,6 +33,7 @@ export const AuthenticationContext = createContext();
 
 export const AuthenticationProvider = ({ children }) => {
   const [reader, setReader] = useState(null);
+  const [changed, setChanged] = useState(false);
   const [readers, setReaders] = useState([]);
   const [readerData, setReaderData] = useState(null);
   const [logining, setLogining] = useState(false);
@@ -47,6 +50,8 @@ export const AuthenticationProvider = ({ children }) => {
     confirmPass: "",
   });
 
+  const router = useRouter();
+
   const {name,email,password} = regForm;
 
   const [loginForm, setLoginForm] = useState({
@@ -57,18 +62,24 @@ export const AuthenticationProvider = ({ children }) => {
   const userObj = {
     createdAt: new Date(),
     updatedAt: new Date(),
-    activedAt: false,
-    interestedCat: "",
-    interestedTag: "",
-    likes: "",
-    comments: "",
-    dislikes: "",
-    readerUnique: "",
+    active: false,
+    likes: 0,
+    comments: 0,
+    dislikes: 0,
   };
 
   const providerG = new GoogleAuthProvider();
   const providerA = new OAuthProvider('apple.com');
 
+  const whatTranslator={
+    1:{code:1,p:1,tr:"Beğeni"},
+    2:{code:2,p:1,tr:"Beğenmeme"},
+    3:{code:3,p:1,tr:"Yorum Yapma"},
+    4:{code:4,p:1,tr:"Favorileme"},
+    5:{code:5,p:1,tr:"ilgilendiği kategori"},
+    6:{code:5,p:1,tr:"ilgilendiği etiket"},
+  }
+  
   const googlelogin = async (e) => {
     e.preventDefault();
 
@@ -115,7 +126,6 @@ export const AuthenticationProvider = ({ children }) => {
     }).then(() => setLogining(false));
   }
 
-
   const onSubmitRegisterHandler = (e) => {
     e.preventDefault();
   };
@@ -132,6 +142,45 @@ export const AuthenticationProvider = ({ children }) => {
     setRegForm({ ...regForm, [e.target.name]: e.target.value });
   };
 
+  const addManner=async(collect,what,path,detailStr)=>{
+
+    var userid=auth.currentUser.uid;
+    var idForAll=new Date().valueOf().toString();
+    var colreferance=doc(db,"Readers",userid,collect,idForAll)
+    try {
+      await setDoc(colreferance,{
+        what:what,
+        id:idForAll,
+        referance:path,
+        detailStr:detailStr
+      })
+    } catch (error) {
+      return
+    }
+
+  }
+  const addLogToNew=async(item,collect)=>{
+
+    var userid=auth.currentUser.uid;
+    var colreferanceone=doc(db,item?.category,item.id)
+    var colreferancedeep=doc(db,item?.category,item.id,collect,userid)
+    try {
+      await updateDoc(colreferanceone,{
+        likes:increment(1)
+      })
+    } catch (error) {
+      return
+    }
+    try {
+      await setDoc(colreferancedeep,{
+        who:userid,
+        when:new Date(),
+      })
+    } catch (error) {
+      return
+    }
+
+  }
   const errorTranslater = (message) => {
     if (message === "Firebase: Error (auth/wrong-password).") {
       setErrorMessage("E-posta ve/ veya şifre hatalı");
@@ -190,77 +239,82 @@ export const AuthenticationProvider = ({ children }) => {
     } catch (error) {
       console.log("hata");
     }
-  }, []);
+  }, [changed]);
 
-  // const register = async (e) => {
-  //   e.preventDefault();
-  //   let a, b, c;
-  //   if (regForm.password !== regForm.confirmPass) {
-  //     setLogining(false);
-  //     setErrorMessage("Şifreler eşleşmiyor");
-  //   } else {
-  //     try {
-  //       const auth = getAuth();
-  //       a = await createUserWithEmailAndPassword(
-  //         auth,
-  //         regForm.email,
-  //         regForm.password
-  //       );
-  //       setReader(a.user);
-  //     } catch (error) {
-  //       setLogining(false);
-  //       errorTranslater(error.message);
-  //       console.log(error);
-  //     }
-  //     try {
-  //       b = updateProfile(auth.currentUser, { displayName: regForm.name });
-  //     } catch (error) {
-  //       setLogining(false);
-  //       errorTranslater(error.message);
-  //     }
-  //     try {
-  //       b = updateProfile(auth.currentUser, {
-  //         displayName: regForm.name,
-  //       });
-  //     } catch (error) {
-  //       setLogining(false); 
-  //       errorTranslater(error.message);
-  //     }
-  //     try {
-  //       c = await setDoc(doc(db, "Readers", a.user.uid), {
-  //         readerid: a.user.uid,
-  //         ...regForm,
-  //         userObj,
-  //       });
-  //       setLogining(false);
-  //       setErrorMessage(null);
-  //       setRegForm({
-  //         name: "",
-  //         email: "",
-  //         password: "",
-  //         confirmPass: "",
-  //       });
-  //       setReaderData({
-  //         readerid: a.user.uid,
-  //         name: regForm.name,
-  //         email: regForm.email,
-  //         createdAt: new Date(),
-  //         updatedAt: new Date(),
-  //         activedAt: false,
-  //         interestedCat: "",
-  //         interestedTag: "",
-  //         likes: "",
-  //         comments: "",
-  //         dislikes: "",
-  //         readerUnique: new Date().valueOf().toString().substring(6),
-  //       });
-  //    } catch (error) {
-    //    setLogining(false);
-     //   alert(error);
-     // }
-     // return a + b + c;
-   // }
-   //};
+   const register = async (e,go) => {
+     e.preventDefault();
+     let a, b, c;
+     if (regForm.password !== regForm.confirmPass) {
+       setLogining(false);
+       setErrorMessage("Şifreler eşleşmiyor");
+     } else {
+       try {
+         const auth = getAuth();
+         a = await createUserWithEmailAndPassword(
+           auth,
+           regForm.email,
+           regForm.password
+         );
+         setReader(a.user);
+       } catch (error) {
+       setLogining(false);
+         errorTranslater(error.message);
+         console.log(error);
+       }
+       try {
+         b = updateProfile(auth.currentUser, { displayName: regForm.name });
+       } catch (error) {
+         setLogining(false);
+         errorTranslater(error.message);
+       }
+       try {
+         b = updateProfile(auth.currentUser, {
+           displayName: regForm.name,
+         });
+       } catch (error) {
+         setLogining(false); 
+         errorTranslater(error.message);
+       }
+       try {
+         c = await setDoc(doc(db, "Readers", a.user.uid), {
+           readerid: a.user.uid,
+           email:a.user.email,
+           name:a.user.displayName,
+           ...userObj,
+         });
+         setLogining(false);
+         setErrorMessage(null);
+          setRegForm({
+           name: "",
+           email: "",
+           password: "",
+           confirmPass: "",
+         });
+         setReaderData({
+           readerid: a.user.uid,
+           name: regForm.name,
+           email: regForm.email,
+           createdAt: new Date(),
+           updatedAt: new Date(),
+           activedAt: false,
+           interestedCat: "",
+           interestedTag: "",
+           likes: "",
+           comments: "",
+           dislikes: "",
+           readerUnique: new Date().valueOf().toString().substring(6),
+         });
+         await sendEmailVerification(auth.currentUser).catch((e) => {
+          handleErrorMessage(e.message);
+        });
+        go()
+      } catch (error) {
+        setLogining(false);
+        alert(error);
+      }
+      return a + b + c;
+    }
+   };
 
   const logout = async (e) => {
     e.preventDefault();
@@ -337,9 +391,13 @@ export const AuthenticationProvider = ({ children }) => {
      };
  });
 
+ const changedUser=()=>{
+  setChanged(pre=>!pre)
+}
+
   const values = {
     readers,
-    //register,
+    register,
     logout,
     applelogin,
     logining,
@@ -360,6 +418,7 @@ export const AuthenticationProvider = ({ children }) => {
     googlelogin,
     loginForm,
     onSubmitLoginHandler,
+    changedUser
   };
 
   return (

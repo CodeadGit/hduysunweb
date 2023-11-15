@@ -20,7 +20,7 @@ const Login = () => {
     setLoginClicked(false);
   };
 
-  const { googlelogin, applelogin } = useAuthenticationContext();
+  const { googlelogin, applelogin,submitReset } = useAuthenticationContext();
 
   return (
     <div className="login">
@@ -45,6 +45,9 @@ const Login = () => {
             <LoginRegisterContainer />
           )}
           <div className="login-container-right-auth">
+            <>
+              <span onClick={submitReset} className="forget">Şifremi unuttum</span>
+            </>
             {loginClicked === true ? (
               <h6>Ya da şununla giriş yap</h6>
             ) : (
@@ -75,8 +78,8 @@ const Login = () => {
             )}
           </div>
           <p className="policy">
-            Devam ederek şunu kabul ediyorsun: <Link href="/kullanim-sartnamesi">Kullanım Koşulları</Link>{" "}
-            ve
+            Devam ederek şunu kabul ediyorsun:{" "}
+            <Link href="/kullanim-sartnamesi">Kullanım Koşulları</Link> ve
             <Link href="/gizlilik-politikasi"> Gizlilik Politikası</Link>
           </p>
         </div>

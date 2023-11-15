@@ -28,7 +28,7 @@ const Home = () => {
       <MenuUnderAds />
       <Caption title="Gündem" link="gundem" />
       <Category category="gundem" />
-      <Caption title="Tüm Kategori Haberleri" link="spor" /> 
+      <Caption title="Tüm Kategori Haberleri" link="tumkategoriler" /> 
       <AllCategories />
       {/* <Authors /> */}
       {/* <Arcelik /> */}

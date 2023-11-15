@@ -47,7 +47,7 @@ const PhotoGalleryDetail = ({ params }) => {
 
   return (
     <div>
-      <PhotoGallerySlider titleArray={titleArray} thisPhotoGallery={thisPhotoGallery} />
+      <PhotoGallerySlider titleArray={titleArray} thisPhotoGallery={thisPhotoGallery} gDoc={idForThisPhotoGallery} />
     </div>
   );
 };

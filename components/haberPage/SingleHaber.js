@@ -10,6 +10,7 @@ const SingleHaber = ({ image, category, eng, id, title, mode }) => {
       href={`/${category}/${eng}-${id}`}
       className="most-reads-single"
       target="_blank"
+      onClick={() => handleReadIncrement(category, id)}
     >
       <div className="most-reads-single-pic">
         <img src={image} alt={title} />

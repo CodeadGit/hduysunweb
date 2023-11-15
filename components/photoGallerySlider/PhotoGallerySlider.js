@@ -5,12 +5,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useThemeContext } from "@/context/ThemeContext";
 import Breadcrumb from "../breadcrumb/Breadcrumb";
+import { useState } from "react";
 
-const PhotoGallerySlider = ({ thisPhotoGallery,titleArray }) => {
+const PhotoGallerySlider = ({ thisPhotoGallery, titleArray,gDoc }) => {
+  const { handlePhotoGallerySliderReadInc } = useThemeContext();
+ 
+const [currentSlide, setCurrentSlide] = useState(0);
 
- const { handleReadIncrement } = useThemeContext()
 
   const settings = {
+
     dots: true,
     adaptiveHeight: false,
     slidecount: null,
@@ -19,8 +23,18 @@ const PhotoGallerySlider = ({ thisPhotoGallery,titleArray }) => {
     focusOnSelect: true,
     slideToShow: 1,
     slideToScroll: 1,
+    afterChange: (currentSlide) => setCurrentSlide(currentSlide),
     nextArrow: (
-    <button type="button" class="slick-next">
+      <button
+        type="button"
+        class="slick-next"
+        onClick={() =>
+          console.log(
+            gDoc,
+            thisPhotoGallery?.[currentSlide]?.id
+          )
+        }
+      >
         Next
       </button>
     ),
@@ -29,19 +43,23 @@ const PhotoGallerySlider = ({ thisPhotoGallery,titleArray }) => {
         Previous
       </button>
     ),
+    // nextClick: function(e){
+    //   //alert('next');
+    //   console.log(e);
+    // },
     touchMovie: true,
   };
 
-   const links = [
-     { id: 1, title: "Foto Galeri", link: "/foto-galeri" },
-     { id: 2, title: titleArray, link:"" },
-   ];
+  const links = [
+    { id: 1, title: "Foto Galeri", link: "/foto-galeri" },
+    { id: 2, title: titleArray, link: "" },
+  ];
 
-   //onClick={() => handleReadIncrement(id)
+  //onClick={() => handleReadIncrement(id)
 
   return (
     <div className="photoGallerySlider">
-       <Breadcrumb links={links} /> 
+      <Breadcrumb links={links} />
       <div className="photoGallerySlider-wrapper">
         <Slider {...settings} className="photoGallerySlider-wrapper-sliders">
           {thisPhotoGallery.map((item) => {
@@ -50,6 +68,8 @@ const PhotoGallerySlider = ({ thisPhotoGallery,titleArray }) => {
                 item={item}
                 key={item.id}
                 image={item.url}
+                doc={item.doc}
+                index={item.index}
               />
             );
           })}

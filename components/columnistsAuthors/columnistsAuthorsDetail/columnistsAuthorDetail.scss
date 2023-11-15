@@ -1,0 +1,114 @@
+.yazarpage {
+  // border: 1px solid red;
+  margin-top: 5rem;
+  padding-inline: 1rem;
+
+  .yazarpage-top {
+    // border: 1px solid blue;
+    display: flex;
+    height: 8rem;
+    width: 20rem;
+    // background-color: white;
+    // border-radius: 1rem;
+
+    &-img {
+      height: 8rem;
+      width: 8rem;
+      border-radius: 1rem;
+      // border: 1px solid violet;
+    }
+
+    .yazarpage-top-title {
+      // border: 1px solid gold;
+      width: 12rem;
+
+      &-header {
+        // border: 1px solid black;
+        margin-top: 1.4rem;
+        margin-left: 1rem;
+        font-weight: bold;
+        &.dark {
+          color: white;
+        }
+      }
+
+      &-bottom {
+        display: flex;
+        // justify-content: space-evenly;
+        margin-left: 0.7rem;
+
+        &-text {
+          font-size: 12px;
+          color: gray;
+          padding-left: 0.3rem;
+        }
+      }
+    }
+  }
+
+  .line {
+    border: 1px solid rgb(206, 206, 206);
+
+    width: 70%;
+    margin: 1rem;
+  }
+
+  .yazarpage-bottom {
+    // border: 1px solid yellowgreen;
+    margin-bottom: 1rem;
+
+    &-box {
+      height: 17rem;
+      width: 100%;
+      background-color: white;
+      line-height: 1.3;
+      padding-left: 1rem;
+      padding-top: 1rem;
+      border-radius: 1rem;
+      margin-top: 1rem;
+      &.dark {
+        background-color: var(--subBgColor);
+        border-color: var(--subBgColor);
+        color: white;
+      }
+
+      &-header {
+        @media screen and (max-width: 480px) {
+          font-size: 24px;
+        }
+      }
+
+      &-time {
+        font-size: 1rem;
+        font-weight: 500;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        color: rgb(118, 118, 118);
+
+        &.dark {
+          color: white;
+        }
+      }
+
+      &-p {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        color: rgb(118, 118, 118);
+
+        &.dark {
+          color: white;
+        }
+      }
+
+      &-button {
+        color: rgb(118, 118, 118);
+        font-size: 0.9rem;
+        display: flex;
+        margin-top: 1rem;
+        font-weight: 550;
+      }
+    }
+  }
+}

@@ -7,7 +7,7 @@ import { PiPlayCircleLight } from "react-icons/pi";
 const VideoGalleryCard = ({ item }) => {
   const { title, datePublished, headImg, eng, id } = item;
 
-  const { mode } = useThemeContext();
+  const { mode, handleVideoGalleryReadInc } = useThemeContext();
 
   const modeStatus = mode === "dark";
 
@@ -16,21 +16,19 @@ const VideoGalleryCard = ({ item }) => {
   const formattedDate = timePublished.toLocaleString("tr-TR", options);
 
   return (
-    <div className={`videoGalleryCard ${modeStatus ? "dark" : ""}`}>
+    <Link target="_blank" href={`/video-galeri/${eng}-${id}`} onClick={()=>handleVideoGalleryReadInc(id)} className={`videoGalleryCard ${modeStatus ? "dark" : ""}`}>
       <div className="videoGalleryCard-top">
-        <Link target="_blank" href={`/video-galeri/${eng}-${id}`}>
+        <div >
           <img src={headImg} className="videoGalleryCard-top-img" />
-        </Link>
+        </div>
         <PiPlayCircleLight className="card-icon"/>
       </div>
       <div className="videoGalleryCard-bottom">
-        <Link
-         target="_blank"
-          href={`/video-galeri/${eng}-${id}`}
+        <div
           className={`videoGalleryCard-bottom-title ${modeStatus ? "dark" : ""}`}
         >
            {handleShort(title, 8)}
-        </Link>
+        </div>
         <div
           className={`videoGalleryCard-bottom-line ${modeStatus ? "dark" : ""}`}
         ></div>
@@ -39,7 +37,7 @@ const VideoGalleryCard = ({ item }) => {
           <span className={`video-date ${modeStatus ? "dark" : ""}`}>{formattedDate}</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

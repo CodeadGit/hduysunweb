@@ -27,4 +27,9 @@
       cursor: pointer;
       letter-spacing: 1px;
     }
+    .error-message {
+      color: var(--whiteBgColor);
+      font-size: 0.75rem;
+      padding-top: .5rem;
+    }
   }

@@ -19,6 +19,7 @@ export const categories = [
   "inanc",
   "emlak",
   "astroloji",
+  "roportaj"
 ];
 
 export const editLink = (link) => {
@@ -26,6 +27,7 @@ export const editLink = (link) => {
   if (link === "yasam") return "yaşam";
   if (link === "asayis") return "asayiş";
   if (link === "egitim") return "eğitim";
+  if (link === "roportaj") return "röportaj"
   return link.replace("u", "ü");
 };
 

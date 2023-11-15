@@ -1,8 +1,9 @@
+import ColumnistsAuthors from '@/components/columnistsAuthors/ColumnistsAuthors';
 import React from 'react';
 
 const YazarlarPage = () => {
   return (
-    <h3>Yazarlar Page</h3>
+    <ColumnistsAuthors/>
   )
 }
 

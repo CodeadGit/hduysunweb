@@ -100,11 +100,17 @@ const Footer = () => {
                     <Link href="/magazin"> Magazin</Link>
                   </li>
                   <li>
-                    <Link href="asayis"> Asayiş</Link>
+                    <Link href="/asayis"> Asayiş</Link>
                   </li>
-                  {/* <li>Röportajlar</li> */}
+                   <li><Link href="/roportaj">Röportajlar</Link></li> 
                   <li>
-                    <Link href="yasam">Yaşam</Link>
+                    <Link href="/yasam">Yaşam</Link>
+                  </li>
+                  <li>
+                    <Link href="/resmi-ilanlar">Resmi İlanlar</Link>
+                  </li>
+                  <li>
+                    <Link href="/yazarlar">Yazarlar</Link>
                   </li>
                 </ul>
               </div>

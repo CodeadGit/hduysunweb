@@ -4,7 +4,7 @@ import { useThemeContext } from "@/context/ThemeContext";
 import { handleShort } from "@/context/utils";
 
 const PhotoGalleryCard = ({ item }) => {
-  const { mode } = useThemeContext();
+  const { mode, handlePhotoGalleryReadInc } = useThemeContext();
   const modeStatus = mode === "dark";
 
   const { category, datePublished, description, headImg, eng, id, title, url } =
@@ -18,8 +18,9 @@ const PhotoGalleryCard = ({ item }) => {
     <div className={`photoGalleryCard ${modeStatus ? "dark" : ""}`}>
       <Link
         href={`foto-galeri/${eng}-${id}`}
-        target="_blank"
+        onClick={() => handlePhotoGalleryReadInc(id)}
         className="photoGalleryCard-imageBox"
+        target="_blank"
       >
         <img
           src={headImg}

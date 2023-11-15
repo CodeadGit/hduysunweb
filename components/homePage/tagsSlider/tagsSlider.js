@@ -12,7 +12,7 @@ import moment from "moment";
 import { useState } from "react";
 
 const TagsSlider = () => {
-  const { mode, news, loading, tagsTitles } = useThemeContext();
+  const { mode, news, loading, tagsList } = useThemeContext();
   const [tagClicked, setTagClicked] = useState("");
   const modeStatus = mode === "dark";
 
@@ -31,15 +31,15 @@ const TagsSlider = () => {
     setTagClicked(i.title);
   };
 
-  const tagsList = Object.keys(tagsTitles).slice(0,5).map((i, idx) => (
-    <button
-      onClick={() => tagButtonClickHandler(i)}
-      className={`tag-btn ${tagClicked} ${modeStatus ? "dark" : ""}`}
-      key={i.id}
-    >
-      #{i}
-    </button>
-  ));
+  // const tagsList = Object.keys(tagsTitles).slice(0,5).map((i, idx) => (
+  //   <button
+  //     onClick={() => tagButtonClickHandler(i)}
+  //     className={`tag-btn ${tagClicked} ${modeStatus ? "dark" : ""}`}
+  //     key={i.id}
+  //   >
+  //     #{i}
+  //   </button>
+  // ));
 
   //const mostPopularTags = tagsTitles.sort((i,j) => i.length - j.length).slice(0,6)
   const settings = {
@@ -97,10 +97,14 @@ const TagsSlider = () => {
     );
   }
 
+  console.log(tagsList)
+
   return (
     <div className="sliderContainer">
       <span className={`sliderContainer-title ${modeStatus ? "dark" : ""}`}>Popüler Etiketler</span>
-      <div className="sliderContainer-tags">{tagsList}</div>
+      <div className="sliderContainer-tags">
+        {tagsList.slice(0,6).map((i)=> <button>{i}</button>)}
+        </div>
       <Slider {...settings} className="sliderContainer-slides">
         {sliderNews.map((item) => {
           return (

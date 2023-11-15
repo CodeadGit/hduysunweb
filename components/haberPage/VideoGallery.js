@@ -9,7 +9,7 @@ import Link from "next/link";
 
 // haber içi video galeri ilk büyük video galeri componenti
 const VideoGallery = ({ modeStatus, videoNewsList }) => {
-  const { videoGallery } = useThemeContext();
+  const { videoGallery, handleReadIncrement } = useThemeContext();
 
   const options = { year: "numeric", month: "numeric", day: "2-digit" };
 
@@ -20,7 +20,7 @@ const VideoGallery = ({ modeStatus, videoNewsList }) => {
       </h3>
       {videoGallery?.slice(0, 1).map((item) => {
         return (
-          <Link target="_blank" href={`/video-galeri/${item.eng}-${item.id}`}>
+          <Link target="_blank" href={`/video-galeri/${item.eng}-${item.id}`} onClick={() => handleReadIncrement(category, id)}>
             <div className="video-live">
               <Image src={item.headImg} alt="google-news" fill />
             </div>
