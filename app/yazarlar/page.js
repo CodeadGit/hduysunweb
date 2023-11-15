@@ -6,6 +6,7 @@ const YazarlarPage=()=> {
   return (
     <ColumnistsAuthors/>
   )
+}
 
 
 export default YazarlarPage;
