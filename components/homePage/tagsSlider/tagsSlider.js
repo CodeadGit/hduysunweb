@@ -1,9 +1,7 @@
 "use client";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-
 import "./tagsSlider.scss";
 import CardItem from "./CardItem";
 import { useThemeContext } from "@/context/ThemeContext";
@@ -97,13 +95,11 @@ const TagsSlider = () => {
     );
   }
 
-  console.log(tagsList)
-
   return (
     <div className="sliderContainer">
       <span className={`sliderContainer-title ${modeStatus ? "dark" : ""}`}>Popüler Etiketler</span>
       <div className="sliderContainer-tags">
-        {tagsList.slice(0,6).map((i)=> <button>{i}</button>)}
+        {tagsList.slice(0,6).map((i)=> <div>#{i}</div>)}
         </div>
       <Slider {...settings} className="sliderContainer-slides">
         {sliderNews.map((item) => {

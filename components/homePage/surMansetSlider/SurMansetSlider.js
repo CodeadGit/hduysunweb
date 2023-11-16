@@ -1,3 +1,4 @@
+import React from "react";
 import "./surMansetSlider.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -7,9 +8,8 @@ import SurMansetSliderItem from "./SurMansetSliderItem";
 import Link from "next/link";
 
 const SurMansetSlider = () => {
-  const { mansetNewsList, mode } = useThemeContext();
-
-  const surMansetNews = mansetNewsList.filter((i) => i.isSurmanset);
+  
+  const { surMansetNewsList } = useThemeContext();
 
   const settings = {
     infinite: true,
@@ -43,7 +43,7 @@ const SurMansetSlider = () => {
   return (
     <div className="surMansetSlider">
       <Slider {...settings} className="surMansetSlider-sliders">
-        {surMansetNews.slice(0, 10).map((item) => {
+        {surMansetNewsList.slice(0, 10).map((item) => {
           return (
             <SurMansetSliderItem item={item} key={item.id} title={item.title} />
           );
