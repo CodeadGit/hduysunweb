@@ -45,6 +45,7 @@ export const ThemeProvider = ({ children }) => {
 
   const [stories, setStories] = useState([]);
   const [mansetNewsList, setMansetNewsList] = useState([]);
+  const [surMansetNewsList, setSurMansetNewsList] = useState([]);
   const [mostReadNewsList, setMostReadNewsList] = useState([]);
   const [videoNewsList, setVideoNewsList] = useState([]);
   const [surMansetNewsList, setSurMansetNewsList] = useState([]);
@@ -316,6 +317,7 @@ export const ThemeProvider = ({ children }) => {
       setSurMansetNewsList(surMansetNews);
   }, [news]);
 
+
   useEffect(() => {
     const mostReadNews = news?.sort((a, b) => b.read - a.read).slice(0, 6);
     setMostReadNewsList(mostReadNews);
@@ -370,6 +372,7 @@ export const ThemeProvider = ({ children }) => {
     category,
     fontDec,
     fontInc,
+    surMansetNewsList,
     //handleStories,
     closeStoryModal,
     news,

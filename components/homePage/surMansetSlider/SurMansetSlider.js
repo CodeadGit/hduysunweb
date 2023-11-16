@@ -8,8 +8,10 @@ import SurMansetSliderItem from "./SurMansetSliderItem";
 import Link from "next/link";
 
 const SurMansetSlider = () => {
-  
-  const { surMansetNewsList } = useThemeContext();
+  const { surMansetNewsList, mode } = useThemeContext();
+
+  console.log(surMansetNewsList)
+
 
   const settings = {
     infinite: true,
