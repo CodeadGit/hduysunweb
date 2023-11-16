@@ -26,7 +26,7 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
-  OAuthProvider
+  OAuthProvider,
 } from "firebase/auth";
 
 export const AuthenticationContext = createContext();
@@ -39,6 +39,7 @@ export const AuthenticationProvider = ({ children }) => {
   const [logining, setLogining] = useState(false);
   const [apploading, setAppLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(true);
+  const [alertMessage,setAlertMessage] = useState("");
   const [quota, setQuota] = useState(false);
   const [myLogs, setMyLogs] = useState([]);
   const [myLogsLoading, setMyLogsLoading] = useState(true);
@@ -52,7 +53,7 @@ export const AuthenticationProvider = ({ children }) => {
 
   const router = useRouter();
 
-  const {name,email,password} = regForm;
+  const { name, email, password } = regForm;
 
   const [loginForm, setLoginForm] = useState({
     email: "",
@@ -69,62 +70,98 @@ export const AuthenticationProvider = ({ children }) => {
   };
 
   const providerG = new GoogleAuthProvider();
-  const providerA = new OAuthProvider('apple.com');
+  const providerA = new OAuthProvider("apple.com");
 
-  const whatTranslator={
-    1:{code:1,p:1,tr:"Beğeni"},
-    2:{code:2,p:1,tr:"Beğenmeme"},
-    3:{code:3,p:1,tr:"Yorum Yapma"},
-    4:{code:4,p:1,tr:"Favorileme"},
-    5:{code:5,p:1,tr:"ilgilendiği kategori"},
-    6:{code:5,p:1,tr:"ilgilendiği etiket"},
-  }
-  
-  const googlelogin = async (e) => {
+  const whatTranslator = {
+    1: { code: 1, p: 1, tr: "Beğeni" },
+    2: { code: 2, p: 1, tr: "Beğenmeme" },
+    3: { code: 3, p: 1, tr: "Yorum Yapma" },
+    4: { code: 4, p: 1, tr: "Favorileme" },
+    5: { code: 5, p: 1, tr: "ilgilendiği kategori" },
+    6: { code: 5, p: 1, tr: "ilgilendiği etiket" },
+  };
+
+
+  const handleErrorMessageforAll = (err) => {
+
+    if (err === "Firebase: Error (auth/email-already-in-use).") {
+      setErrorMessage("Bu email zaten kullanılıyor");
+    } else if (err === "Firebase: Error (auth/id-token-expired).") {
+      setErrorMessage("kullanıcı hatırlama süresi doldu.");
+    } else if (err === "Firebase: Error (auth/internal-error).") {
+      setErrorMessage(
+        "Kimlik doğrulama sunucusu beklenmeyen bir hatayla karşılaştı. "
+      );
+    } else if (err === "Firebase: Error (auth/invalid-email).") {
+      setErrorMessage(
+        "email kullanıcı özelliği için sağlanan değer geçersiz. mail adresi, geçerli e-posta adresi olmalıdır."
+      );
+    } else if (err === "Firebase: Error (auth/wrong-password).") {
+      setErrorMessage("şifreyi yanlış girdiniz");
+    } else if (err === "Firebase: Error (auth/user-not-found).") {
+      setErrorMessage("Kullanıcı bulunamadı, kaydolun veya tekrar deneyin");
+    } else {
+      setErrorMessage(
+        "Bir hata meydana geldi, tekrar deneyin");
+    }
+  };
+
+  const googlelogin = async (e, go) => {
     e.preventDefault();
 
     const subs = await signInWithPopup(auth, providerG);
+    var readerid = subs.user.uid;
+    var email = subs.user.email;
+    var provider = subs.operationType;
+    var referance = doc(db, "Readers", readerid);
+    go();
 
-    await setDoc(doc(db, "Readers", subs.user.uid), {
-      readerid: subs.user.uid,
-      name: subs.user.name,
-      email: subs.user.email,
-      provider: subs.user.operationType,
-      createdAt: new Date(),
-      readerUnique: new Date().valueOf().toString().substring(6),
-      updatedAt: "",
-      activedAt: false,
-      interestedCat: "",
-      interestedTag: "",
-      likes: "",
-      comments: "",
-      dislikes: "",
-    }).then(() => setLogining(false));
+    try {
+      await setDoc(referance, {
+        readerid: readerid,
+        name: "",
+        email: email,
+        provider: "Google",
+        createdAt: new Date(),
+        readerUnique: new Date().valueOf().toString().substring(6),
+        updatedAt: "",
+        activedAt: false,
+        interestedCat: "",
+        interestedTag: "",
+        likes: 0,
+        comments: "",
+        dislikes: 0,
+      });
+    } catch (error) {
+      setLogining(false);
+      console.log("google kayıt", error);
+    }
+
     // This gives you a Google Access Token. You can use it to access the Google API.
     // The signed-in user info.
   };
 
-  const applelogin = async (e) => {
-    e.preventDefault();
+  // const applelogin = async (e) => {
+  //   e.preventDefault();
 
-    const subsA = await signInWithPopup(auth, providerA)
-  
-    await setDoc(doc(db, "Readers", subsA.user.uid), {
-      readerid: subsA.user.uid,
-      name: subsA.user.name,
-      email: subsA.user.email,
-      provider: subsA.user.operationType,
-      createdAt: new Date(),
-      readerUnique: new Date().valueOf().toString().substring(6),
-      updatedAt: "",
-      activedAt: false,
-      interestedCat: "",
-      interestedTag: "",
-      likes: "",
-      comments: "",
-      dislikes: "",
-    }).then(() => setLogining(false));
-  }
+  //   const subsA = await signInWithPopup(auth, providerA);
+
+  //   await setDoc(doc(db, "Readers", subsA.user.uid), {
+  //     readerid: subsA.user.uid,
+  //     name: subsA.user.name,
+  //     email: subsA.user.email,
+  //     provider: subsA.user.operationType,
+  //     createdAt: new Date(),
+  //     readerUnique: new Date().valueOf().toString().substring(6),
+  //     updatedAt: "",
+  //     activedAt: false,
+  //     interestedCat: "",
+  //     interestedTag: "",
+  //     likes: "",
+  //     comments: "",
+  //     dislikes: "",
+  //   }).then(() => setLogining(false));
+  // };
 
   const onSubmitRegisterHandler = (e) => {
     e.preventDefault();
@@ -142,45 +179,41 @@ export const AuthenticationProvider = ({ children }) => {
     setRegForm({ ...regForm, [e.target.name]: e.target.value });
   };
 
-  const addManner=async(collect,what,path,detailStr)=>{
-
-    var userid=auth.currentUser.uid;
-    var idForAll=new Date().valueOf().toString();
-    var colreferance=doc(db,"Readers",userid,collect,idForAll)
+  const addManner = async (collect, what, path, detailStr) => {
+    var userid = auth.currentUser.uid;
+    var idForAll = new Date().valueOf().toString();
+    var colreferance = doc(db, "Readers", userid, collect, idForAll);
     try {
-      await setDoc(colreferance,{
-        what:what,
-        id:idForAll,
-        referance:path,
-        detailStr:detailStr
-      })
+      await setDoc(colreferance, {
+        what: what,
+        id: idForAll,
+        referance: path,
+        detailStr: detailStr,
+      });
     } catch (error) {
-      return
+      return;
     }
-
-  }
-  const addLogToNew=async(item,collect)=>{
-
-    var userid=auth.currentUser.uid;
-    var colreferanceone=doc(db,item?.category,item.id)
-    var colreferancedeep=doc(db,item?.category,item.id,collect,userid)
+  };
+  const addLogToNew = async (item, collect) => {
+    var userid = auth.currentUser.uid;
+    var colreferanceone = doc(db, item?.category, item.id);
+    var colreferancedeep = doc(db, item?.category, item.id, collect, userid);
     try {
-      await updateDoc(colreferanceone,{
-        likes:increment(1)
-      })
+      await updateDoc(colreferanceone, {
+        likes: increment(1),
+      });
     } catch (error) {
-      return
+      return;
     }
     try {
-      await setDoc(colreferancedeep,{
-        who:userid,
-        when:new Date(),
-      })
+      await setDoc(colreferancedeep, {
+        who: userid,
+        when: new Date(),
+      });
     } catch (error) {
-      return
+      return;
     }
-
-  }
+  };
   const errorTranslater = (message) => {
     if (message === "Firebase: Error (auth/wrong-password).") {
       setErrorMessage("E-posta ve/ veya şifre hatalı");
@@ -241,80 +274,83 @@ export const AuthenticationProvider = ({ children }) => {
     }
   }, [changed]);
 
-   const register = async (e,go) => {
-     e.preventDefault();
-     let a, b, c;
-     if (regForm.password !== regForm.confirmPass) {
-       setLogining(false);
-       setErrorMessage("Şifreler eşleşmiyor");
-     } else {
-       try {
-         const auth = getAuth();
-         a = await createUserWithEmailAndPassword(
-           auth,
-           regForm.email,
-           regForm.password
-         );
-         setReader(a.user);
-       } catch (error) {
-       setLogining(false);
-         errorTranslater(error.message);
-         console.log(error);
-       }
-       try {
-         b = updateProfile(auth.currentUser, { displayName: regForm.name });
-       } catch (error) {
-         setLogining(false);
-         errorTranslater(error.message);
-       }
-       try {
-         b = updateProfile(auth.currentUser, {
-           displayName: regForm.name,
-         });
-       } catch (error) {
-         setLogining(false); 
-         errorTranslater(error.message);
-       }
-       try {
-         c = await setDoc(doc(db, "Readers", a.user.uid), {
-           readerid: a.user.uid,
-           email:a.user.email,
-           name:a.user.displayName,
-           ...userObj,
-         });
-         setLogining(false);
-         setErrorMessage(null);
-          setRegForm({
-           name: "",
-           email: "",
-           password: "",
-           confirmPass: "",
-         });
-         setReaderData({
-           readerid: a.user.uid,
-           name: regForm.name,
-           email: regForm.email,
-           createdAt: new Date(),
-           updatedAt: new Date(),
-           activedAt: false,
-           interestedCat: "",
-           interestedTag: "",
-           likes: "",
-           comments: "",
-           dislikes: "",
-           readerUnique: new Date().valueOf().toString().substring(6),
-         });
-         await sendEmailVerification(auth.currentUser).catch((e) => {
-          handleErrorMessage(e.message);
+  const register = async (e, go) => {
+    e.preventDefault();
+    setLogining(true);
+    let a, b, c;
+    if (regForm.password !== regForm.confirmPass) {
+      setLogining(false);
+      setErrorMessage("Şifreler eşleşmiyor");
+    } else {
+      try {
+        const auth = getAuth();
+        a = await createUserWithEmailAndPassword(
+          auth,
+          regForm.email,
+          regForm.password
+        );
+        setReader(a.user);
+      } catch (error) {
+        setLogining(false);
+        handleErrorMessageforAll(error.message);
+        console.log(error);
+      }
+      try {
+        b = updateProfile(auth.currentUser, { displayName: regForm.name });
+      } catch (error) {
+        setLogining(false);
+        handleErrorMessageforAll(error.message);
+      }
+      try {
+        b = updateProfile(auth.currentUser, {
+          displayName: regForm.name,
         });
-        go()
+      } catch (error) {
+        setLogining(false);
+        handleErrorMessageforAll(error.message);
+      }
+      try {
+        c = await setDoc(doc(db, "Readers", a.user.uid), {
+          readerid: a.user.uid,
+          email: a.user.email,
+          name: a.user.displayName,
+          provider: a.operationType,
+          readerUnique: new Date().valueOf().toString().substring(6),
+          ...userObj,
+        });
+        setLogining(false);
+        setErrorMessage(null);
+        setRegForm({
+          name: "",
+          email: "",
+          password: "",
+          confirmPass: "",
+        });
+        setReaderData({
+          readerid: a.user.uid,
+          name: regForm.name,
+          email: regForm.email,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          activedAt: false,
+          interestedCat: "",
+          interestedTag: "",
+          likes: 0,
+          comments: 0,
+          dislikes: 0,
+          readerUnique: new Date().valueOf().toString().substring(6),
+        });
+        await sendEmailVerification(auth.currentUser).catch((e) => {
+          handleErrorMessageforAll(e.message);
+        });
+        go();
       } catch (error) {
         setLogining(false);
         alert(error);
       }
       return a + b + c;
     }
-   };
+  };
 
   const logout = async (e) => {
     e.preventDefault();
@@ -372,39 +408,40 @@ export const AuthenticationProvider = ({ children }) => {
     return Boolean(userData?.[field]);
   };
 
-   useEffect(() => {
-     async () => {
-       const q = query(collection(db, "Readers"));
-       try {
-         const newsGetting = onSnapshot(q, (snap) => {
-           var list = [];
+  useEffect(() => {
+    async () => {
+      const q = query(collection(db, "Readers"));
+      try {
+        const newsGetting = onSnapshot(q, (snap) => {
+          var list = [];
 
-           snap.forEach((doc) => {
-             list.unshift({ ...doc.data() });
-           });
-           setReaders(list);
-         });
-         return () => newsGetting();
-       } catch (error) {
-         console.log(error.message);
-       }
-     };
- });
+          snap.forEach((doc) => {
+            list.unshift({ ...doc.data() });
+          });
+          setReaders(list);
+        });
+        return () => newsGetting();
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+  });
 
- const changedUser=()=>{
-  setChanged(pre=>!pre)
-}
+  const changedUser = () => {
+    setChanged((pre) => !pre);
+  };
 
   const values = {
     readers,
     register,
     logout,
-    applelogin,
+   // applelogin,
     logining,
     reader,
     apploading,
     login,
     errorMessage,
+    alertMessage,
     handleErrorMessage,
     reportQuotaExceeded,
     quota,
@@ -418,7 +455,7 @@ export const AuthenticationProvider = ({ children }) => {
     googlelogin,
     loginForm,
     onSubmitLoginHandler,
-    changedUser
+    changedUser,
   };
 
   return (

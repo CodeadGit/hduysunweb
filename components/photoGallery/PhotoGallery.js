@@ -12,7 +12,7 @@ const PhotoGallery = () => {
 
   console.log(photoGallery)
 
-  const photoGalleryList = photoGallery.map((item) => {
+  const photoGalleryList = photoGallery.sort((a,b) => b.index - a.index).map((item) => {
     return <PhotoGalleryCard key={item.id} item={item} />;
   });
 

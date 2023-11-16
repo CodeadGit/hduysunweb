@@ -19,7 +19,8 @@
     flex-wrap: wrap;
     gap: 1rem;
 
-    button {
+    a {
+      display: inline-block;
       padding: 0.3rem 0.5rem;
       font-size: 0.75rem;
       border-radius: 3px;

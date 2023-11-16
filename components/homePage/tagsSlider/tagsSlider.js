@@ -7,11 +7,16 @@ import CardItem from "./CardItem";
 import { useThemeContext } from "@/context/ThemeContext";
 import SliderSkeleton from "./SliderSkeleton";
 import moment from "moment";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { db } from "@/firebase/firebase.config";
+import { categoryList } from "@/context/ThemeContext";
 
 const TagsSlider = () => {
-  const { mode, news, loading, tagsList } = useThemeContext();
+  const { mode, news, tagsList } = useThemeContext();
   const [tagClicked, setTagClicked] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [filteredNewsbyTag, setFilteredNewsbyTag] = useState([]);
   const modeStatus = mode === "dark";
 
   const newsAmount = news.length;
@@ -26,18 +31,37 @@ const TagsSlider = () => {
   );
 
   const tagButtonClickHandler = (i) => {
-    setTagClicked(i.title);
+    setTagClicked(i);
   };
 
-  // const tagsList = Object.keys(tagsTitles).slice(0,5).map((i, idx) => (
-  //   <button
-  //     onClick={() => tagButtonClickHandler(i)}
-  //     className={`tag-btn ${tagClicked} ${modeStatus ? "dark" : ""}`}
-  //     key={i.id}
-  //   >
-  //     #{i}
-  //   </button>
-  // ));
+  // const categories = Object.entries(res);
+
+  // const result = categories.sort((a, b) => b[1] - a[1]);
+
+  useEffect(() => {
+    let controller = new AbortController();
+    let tagsListArray = [];
+
+    for (let i = 0; i < categoryList?.length; i++) {
+      (async () => {
+        const q = query(collection(db, categoryList[i].collection));
+        const newsGetting = onSnapshot(q, (snap) => {
+          snap.forEach((doc) => {
+            if (doc.data().tags.includes(tagClicked)) {
+              tagsListArray.push({ ...doc.data(), doc: doc.id });
+            }
+          });
+          setFilteredNewsbyTag(tagsListArray);
+          setLoading(false);
+        });
+        return () => newsGetting();
+      })();
+    }
+    return () => controller?.abort();
+  }, []);
+
+  console.log(filteredNewsbyTag);
+  console.log(tagClicked)
 
   //const mostPopularTags = tagsTitles.sort((i,j) => i.length - j.length).slice(0,6)
   const settings = {
@@ -45,16 +69,16 @@ const TagsSlider = () => {
     //slidesToShow: newsToShow,
     slidesToScroll: 1,
     autoplay: true,
-    arrows:false,
+    arrows: false,
     infinite: true,
-    slidesToShow:5,
-    centerMode:false,
+    slidesToShow: 5,
+    centerMode: false,
     responsive: [
       {
         breakpoint: 1200,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 1
+          slidesToScroll: 1,
         },
       },
       {
@@ -72,12 +96,12 @@ const TagsSlider = () => {
         },
       },
       {
-        breakpoint:500,
+        breakpoint: 500,
         settings: {
-          slidesToShow:1,
-          slidesToScroll:1
-        }
-      }
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
     ],
   };
 
@@ -97,12 +121,26 @@ const TagsSlider = () => {
 
   return (
     <div className="sliderContainer">
-      <span className={`sliderContainer-title ${modeStatus ? "dark" : ""}`}>Popüler Etiketler</span>
+      <span className={`sliderContainer-title ${modeStatus ? "dark" : ""}`}>
+        Popüler Etiketler
+      </span>
       <div className="sliderContainer-tags">
-        {tagsList.slice(0,6).map((i)=> <div>#{i}</div>)}
-        </div>
+        {tagsList.slice(0, 7).map((i, idx) => (
+          <div
+            key={idx}
+            onClick={() => tagButtonClickHandler(i)}
+            className="tag-btn"
+          >
+            {idx === 6 ? (
+              <span onClick={() => tagButtonClickHandler(i)}>#Bursa</span>
+            ) : (
+              "#" + i.trimStart()
+            )}
+          </div>
+        ))}
+      </div>
       <Slider {...settings} className="sliderContainer-slides">
-        {sliderNews.map((item) => {
+        {filteredNewsbyTag.map((item) => {
           return (
             <CardItem
               item={item}

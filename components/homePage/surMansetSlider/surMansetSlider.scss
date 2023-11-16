@@ -6,6 +6,10 @@
     padding: 0;
     margin: 0;
 
+    @media screen and (max-width:768px) {
+      display: none;
+    }
+
     &-sliders {
         margin: 0 auto;
           .surmanset-dots-ul {
