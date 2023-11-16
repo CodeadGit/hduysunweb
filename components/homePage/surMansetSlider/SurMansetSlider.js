@@ -1,3 +1,4 @@
+import React from "react";
 import "./surMansetSlider.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -11,7 +12,6 @@ const SurMansetSlider = () => {
 
   console.log(surMansetNewsList)
 
- // const surMansetNews = surMansetNewsList.filter((i) => i.isSurmanset);
 
   const settings = {
     infinite: true,

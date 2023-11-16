@@ -1,6 +1,7 @@
 import ReactPlayer from "react-player";
 import "./videoGalleryDetailVideo.scss";
 import eyeIcon from "./videogallerydetailIcon/eyeIcon.svg"
+import { BsEye } from "react-icons/bs";
 
 const VideoGalleryDetailVideo = ({ item }) => {
   const { datePublished, dateModified, embed, read, title, description } = item;
@@ -33,7 +34,10 @@ const VideoGalleryDetailVideo = ({ item }) => {
             <span>{formattedModifiedDate}</span>
           </div>
           <div className="videoGalleryDetailVideo-info__top-read">
-            <span><img src={eyeIcon}/></span>
+            <span>
+              {/* <img style={{width:40, height:40, objectFit:"contain"}} src={eyeIcon}/> */}
+              <BsEye/>
+              </span>
             <span>{read}</span>
           </div>
         </div>

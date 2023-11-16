@@ -48,6 +48,7 @@ export const ThemeProvider = ({ children }) => {
   const [surMansetNewsList, setSurMansetNewsList] = useState([]);
   const [mostReadNewsList, setMostReadNewsList] = useState([]);
   const [videoNewsList, setVideoNewsList] = useState([]);
+  const [surMansetNewsList, setSurMansetNewsList] = useState([]);
   const [categoryHeadlines, setCategoryHeadlines] = useState([]);
   const [category, setCategory] = useState("dünya");
   const [fetching, setFetching] = useState(true);
@@ -315,7 +316,7 @@ export const ThemeProvider = ({ children }) => {
       .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds);
       setSurMansetNewsList(surMansetNews);
   }, [news]);
-  console.log(surMansetNewsList)
+
 
   useEffect(() => {
     const mostReadNews = news?.sort((a, b) => b.read - a.read).slice(0, 6);
@@ -399,7 +400,8 @@ export const ThemeProvider = ({ children }) => {
     setSearchWord,
     wordNews, 
     setWordNews,
-    tagsList
+    tagsList,
+    surMansetNewsList,
   };
 
   return (

@@ -4,7 +4,6 @@ import HomePage from "./HomePage";
 import Caption from "./caption/Caption";
 import Category from "./category/Category";
 import AllCategories from "./allCategories/AllCategories";
-
 import Register from "./register/Register";
 import WeatherInfo from "./weather/WeatherInfo";
 import Currency from "./currency/Currency";
@@ -15,9 +14,7 @@ import Masthead from "../ads/adsComponents/Masthead";
 import Health from "../health/Health";
 import TagsSlider from "./tagsSlider/tagsSlider";
 
-
 const Home = () => {
-
   return (
     <div>
       <Stories />
