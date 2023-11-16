@@ -19,6 +19,9 @@ import { BsCloudDrizzleFill } from "react-icons/bs";
 import { LuCloudDrizzle } from "react-icons/lu";
 import { useThemeContext } from "@/context/ThemeContext";
 
+const API_KEY = "dFNu5EYXyQrBWpae";
+const GOOGLE_API_KEY = "AIzaSyCluWp7DJQ3HpAMJrUerzfd2RYbSBVvePw";
+
 const Weather = ({showSearchBar}) => {
 
   const { mode } = useThemeContext();
@@ -26,6 +29,8 @@ const Weather = ({showSearchBar}) => {
 
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
+  const [cityName, setCityName] = useState("");
+  const [countryName, setCountryName] = useState("");
   const [temperature, setTemperature] = useState("");
   const [weathercode, setweathercode] = useState("");
 
@@ -79,9 +84,10 @@ const Weather = ({showSearchBar}) => {
   // const dateTime2 = date.toISOString().split("T")[0];
 
   const fakeFetch = async () => {
+
     try {
       const res = await axios.get(
-        `https://api.open-meteo.com/v1/dwd-icon?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weathercode&current_weather=true&timezone=auto&start_date=${dayTime}&end_date=${dayTime}`,
+        `https://api.open-meteo.com/v1/dwd-icon?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weathercode&current_weather=true&timezone=auto&start_date=${dayTime}&end_date=${dayTime}&apikey=dFNu5EYXyQrBWpae`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -100,17 +106,79 @@ const Weather = ({showSearchBar}) => {
     }
   };
 
+  const fetchCityName = async () => {
+
+    const config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: "http://localhost:3001/cityfinder",
+      data: {
+        lat: latitude,
+        long: longitude,
+      },
+    };
+
+    try {
+      const res = await axios(config);
+      const fetchedCityName = res.data.result.results[0].name;
+      setCityName(fetchedCityName);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchCountryName = async () => {
+
+    const config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: "http://localhost:3001/countryfinder",
+      data: {
+        lat: latitude,
+        long: longitude,
+      },
+    };
+
+    try {
+      const res = await axios(config);
+      console.log(res);
+      const addressComponents = res.data.result.results[0].address_components;
+      for (const component of addressComponents) {
+        if (component.types.includes('country')) {
+          setCountryName(component.long_name); 
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     }
-    // console.log("latitude: ", latitude)
-    // console.log("longitude: ", longitude);
-    if (latitude && longitude) fakeFetch();
-    // if (latitude && longitude) fetchWeather();
+    if (latitude && longitude) {
+      fakeFetch();
+      fetchCityName();
+      fetchCountryName();
+    }
   }, [latitude, longitude]);
 
-  // const data = {
+  return (
+    <div className={`weather ${showSearchBar ? "none" : ""} ${modeStatus ? "dark" : ""}`}>
+      {icon}
+      <div className="weather-info">
+        <span>{Math.round(temperature)} °C</span>
+        <span>{cityName} {countryName}</span>
+      </div>
+    </div>
+  );
+};
+
+export default Weather;
+
+
+ // const data = {
   //   lat: String(latitude),
   //   long: String(longitude),
   //   startDate: dayDate,
@@ -130,16 +198,3 @@ const Weather = ({showSearchBar}) => {
   //     console.log(error);
   //   }
   // };
-
-  return (
-    <div className={`weather ${showSearchBar ? "none" : ""} ${modeStatus ? "dark" : ""}`}>
-      {icon}
-      <div className="weather-info">
-        <span>{Math.round(temperature)} °C</span>
-        <span>Bursa, Türkiye</span>
-      </div>
-    </div>
-  );
-};
-
-export default Weather;

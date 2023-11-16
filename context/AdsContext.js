@@ -23,8 +23,6 @@ export const AdsContextProvider = ({ children }) => {
   const [storyModall, setStoryModall] = useState(false);
   const [advertPage, setAdvertPage] = useState(true);
 
-  console.log(advertPage)
-
   const handleReadIncrementAds = async (id) => {
     var referance = doc(db, "Ads", id);
     try {

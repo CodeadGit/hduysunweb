@@ -13,35 +13,8 @@ const Search = ({showSearchBar, setShowSearchBar}) => {
 
   const inputRef = useRef(null);
 
-  function replaceTurkishCharacters(inputString) {
-    const turkishToEnglishMap = {
-      ı: "i",
-      i: "i",
-      ş: "s",
-      Ş: "s",
-      ğ: "g",
-      Ğ: "g",
-      ü: "u",
-      Ü: "u",
-      ö: "o",
-      Ö: "o",
-      ç: "c",
-      Ç: "c",
-    };
-    return inputString.replace(
-      /[\u0130\u0049\u0131\u0069\u015F\u015E\u011F\u011E\u00FC\u00DC\u00F6\u00D6\u00E7\u00C7]/g,
-      function (match) {
-        return turkishToEnglishMap[match];
-      }
-    );
-  }
-
-  //   const y = replaceTurkishCharacters("şükRÜŞ");
-  //   console.log(y);
-
   const handleChange = (e) => {
-    const text = replaceTurkishCharacters(e.target.value);
-    setSearchWord(text);
+    setSearchWord(e.target.value);
   };
 
   const handleSubmit = (e) => {
