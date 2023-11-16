@@ -9,6 +9,8 @@ import LoginRegisterContainer from "./LoginRegisterContainer";
 import LoginContainer from "./LoginContainer";
 import { useAuthenticationContext } from "@/context/AuthenticationContext";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 const Login = () => {
   const [loginClicked, setLoginClicked] = useState(true);
 
@@ -19,6 +21,10 @@ const Login = () => {
   const registerBtnClickHandler = () => {
     setLoginClicked(false);
   };
+
+  const router = useRouter();
+
+  var go = () => router.push("/");
 
   const { googlelogin, applelogin,submitReset } = useAuthenticationContext();
 
@@ -54,10 +60,10 @@ const Login = () => {
               <h6>Ya da şununla kayıt ol</h6>
             )}
             <div className="login-container-right-auth-icons">
-              <span className="icon-circle" onClick={applelogin}>
+              {/* <span className="icon-circle" onClick={applelogin}>
                 <BsApple />
-              </span>
-              <span className="icon-circle" onClick={googlelogin}>
+              </span> */}
+              <span className="icon-circle" onClick={(e)=>googlelogin(e,go)} >
                 <FaGooglePlusG />
               </span>
             </div>

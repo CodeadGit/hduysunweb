@@ -39,7 +39,7 @@ const LoginRegisterContainer = () => {
     register,
     handleRegFormChange,
     regForm,
-    logining,
+    logining
   } = useAuthenticationContext();
 
   //  const handleRegFormChange = (e) => {
@@ -198,6 +198,7 @@ const LoginRegisterContainer = () => {
         placeholder="Şifreyi doğrulayın"
       />
       <button type="submit">Kayıt Ol</button>
+      {console.log(errorMessage)}
       {errorMessage ? (
         <div className="error-message">{errorMessage}</div>
       ) : null}

@@ -1,5 +1,6 @@
 import React from "react";
 import "./newsTags.scss";
+import Link from "next/link";
 
 const NewsTags = ({ modeStatus, tags }) => {
 
@@ -8,9 +9,9 @@ const NewsTags = ({ modeStatus, tags }) => {
       <h3 className={`tags-title ${modeStatus ? "dark" : ""}`}>Etiketler</h3>
       <div className="tags-buttons-wrapper">
         {tags?.map((item, idx) => (
-          <button key={idx} className={modeStatus ? "dark" : ""}>
+          <Link key={idx} href={`/etiketler/${item}`} className={modeStatus ? "dark" : ""}>
             {item}
-          </button>
+          </Link>
         ))}
       </div>
     </div>

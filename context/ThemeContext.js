@@ -387,7 +387,7 @@ export const ThemeProvider = ({ children }) => {
     hideAds,
     showAds,
     // videoNewsList,
-    tagsTitles,
+    //tagsTitles,
     autors,
     photoGallery,
     videoGallery,

@@ -41,10 +41,6 @@ const SingleTag = ({ params }) => {
     return () => controller?.abort();
   }, []);
 
-  // console.log(etiket);
-
-  console.log(relatedTagsNews);
-
   if (loading) return <h2>LOADING...</h2>;
 
   if (!tagsList.includes(etiket)) return <h2>NOT FOUND</h2>;
@@ -56,7 +52,6 @@ const SingleTag = ({ params }) => {
           const timePublished = new Date(datePublished.seconds * 1000);
           const options = { year: "numeric", month: "numeric", day: "2-digit" };
           const formattedDate = timePublished.toLocaleString("tr-TR", options);
-          console.log(image);
           return (
             <div className="tagCardContainer">
               <div className="tagCardContainer-top">

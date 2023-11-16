@@ -9,6 +9,11 @@ import Link from "next/link";
 const MainSlider = () => {
   const { mansetNewsList, mode } = useThemeContext();
 
+  // let data = { image: "" };
+  // const newSplicedData = mansetNewsList.splice(4, 0, data);
+
+  // console.log(newSplicedData);
+
   const modeStatus = mode === "dark";
 
   const settings = {
@@ -39,22 +44,22 @@ const MainSlider = () => {
       </>
     ),
   };
- 
+
   return (
     <div className="mainSlider">
       <div className="mainSlider-large">
-      <Slider {...settings} className="mainSlider-large-sliders">
-      {mansetNewsList.slice(0, 20).map((item) => {
-        return <MainSliderItem item={item} key={item.id} />;
-      })}
-    </Slider>
+        <Slider {...settings} className="mainSlider-large-sliders">
+          {mansetNewsList.slice(0, 20).map((item,idx) => {
+            return <MainSliderItem item={item} key={item.id} idx={idx}/>;
+          })}
+        </Slider>
       </div>
       <div className="mainSlider-med">
-      <Slider {...settings} className="mainSlider-med-slidersRes">
-      {mansetNewsList.slice(0, 15).map((item) => {
-        return <MainSliderItem item={item} key={item.id} />;
-      })}
-    </Slider>
+        <Slider {...settings} className="mainSlider-med-slidersRes">
+          {mansetNewsList.slice(0, 15).map((item) => {
+            return <MainSliderItem item={item} key={item.id} />;
+          })}
+        </Slider>
       </div>
     </div>
   );

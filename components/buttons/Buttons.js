@@ -16,16 +16,21 @@ const Buttons = ({wrapper, showSearchBar, setShowSearchBar}) => {
   
   const router = useRouter();
   const { mode, toggle } = useThemeContext();
+  const [isClicked, setIsClicked] = useState("close");
   const { reader, readerData, logout } = useAuthenticationContext();
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const handleToggle = () => {
+    setIsClicked((curr)=>(curr=== "close" ? "" : "close") )
+  }
+
+  // const [anchorEl, setAnchorEl] = useState(null);
+  // const open = Boolean(anchorEl);
+  // const handleClick = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
 
   const navigateLogin = (e) => {
     e.preventDefault();
@@ -53,29 +58,14 @@ const Buttons = ({wrapper, showSearchBar, setShowSearchBar}) => {
         </button>
       )} */}
       {reader ? (
-        <div style={{position:"relative"}}> 
-          <Button
-            id="basic-button"
-            aria-controls={open ? "basic-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            className={`user ${modeStatus ? "dark" : ""}`}
-            onClick={handleClick}
+        <div className={`loginBtn-wrapper ${isClicked}`}> 
+          <button
+            className={`user ${isClicked} ${modeStatus ? "dark" : ""}`}
+            onClick={handleToggle}
           >
-            <span>{String(reader.displayName.slice(0,1)+".")}</span>
-          </Button>
-          <Menu
-            id="basic-menu"
-            anchorEl={anchorEl}
-            open={open}
-            sx={{padding:0,margin:0, fontSize:".5rem"}}
-            onClose={handleClose}
-            MenuListProps={{
-              "aria-labelledby": "basic-button",
-            }}
-          >
-            <MenuItem  sx={{padding:"0.5rem",margin:0}} onClick={logout}>Çıkış Yap</MenuItem>
-          </Menu>
+            <span>{String(reader.displayName)}</span>
+          </button>
+          <button className={`logout-btn ${isClicked}`} onClick={logout}>Çıkış Yap</button>
         </div>
       ) : (
         <button
@@ -86,7 +76,7 @@ const Buttons = ({wrapper, showSearchBar, setShowSearchBar}) => {
           Giriş
         </button>
       )}
-    </div>
+      </div>
   );
 };
 
