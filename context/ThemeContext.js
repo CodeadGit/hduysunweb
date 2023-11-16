@@ -48,7 +48,6 @@ export const ThemeProvider = ({ children }) => {
   const [surMansetNewsList, setSurMansetNewsList] = useState([]);
   const [mostReadNewsList, setMostReadNewsList] = useState([]);
   const [videoNewsList, setVideoNewsList] = useState([]);
-  const [surMansetNewsList, setSurMansetNewsList] = useState([]);
   const [categoryHeadlines, setCategoryHeadlines] = useState([]);
   const [category, setCategory] = useState("dünya");
   const [fetching, setFetching] = useState(true);
