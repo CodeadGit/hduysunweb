@@ -4,14 +4,35 @@ import { useThemeContext } from "@/context/ThemeContext";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import "./search.scss";
+
+function replaceTurkishCharacters(inputString) {
+  const turkishToEnglishMap = {
+    ı: "i",
+    i: "i",
+    ş: "s",
+    Ş: "s",
+    ğ: "g",
+    Ğ: "g",
+    ü: "u",
+    Ü: "u",
+    ö: "o",
+    Ö: "o",
+    ç: "c",
+    Ç: "c",
+  };
+  return inputString.replace(
+    /[\u0130\u0049\u0131\u0069\u015F\u015E\u011F\u011E\u00FC\u00DC\u00F6\u00D6\u00E7\u00C7]/g,
+    function (match) {
+      return turkishToEnglishMap[match];
+    }
+  );
+}
 
 const SearchPage = () => {
 
   const { searchWord, setSearchWord, wordNews, setWordNews } = useThemeContext();
-
-  const router = useRouter();
 
   useEffect(() => {
     let controller = new AbortController();
@@ -22,11 +43,13 @@ const SearchPage = () => {
       return;
     };
 
+    let willBeSearched = replaceTurkishCharacters(searchWord);
+
     (async () => {
       const q = query(collection(db, "HDSearch"));
       const newsGetting = onSnapshot(q, (snap) => {
         snap.forEach((doc) => {
-          if (doc.data().searchArray.includes(searchWord)) {
+          if (doc.data().searchArray.includes(willBeSearched)) {
             tagsListArray.push({ ...doc.data(), doc: doc.id });
           }
         });
@@ -37,15 +60,9 @@ const SearchPage = () => {
 
     return () => {
       controller?.abort();
-      setSearchWord("");
+      // setSearchWord("");
     }
   }, [searchWord]);
-
-  // console.log(wordNews);
-
-  // if (wordNews.length === 0) {
-  //   router.push("/");
-  // };
 
   return (
     <>

@@ -25,9 +25,6 @@ const Finance = () => {
       headers: {
         "Content-Type" : "application/json",
       }
-
-
-
     });
     const { data } = res;
     const obj = data.result;

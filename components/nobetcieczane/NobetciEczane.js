@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import "./nobetci.scss";
-// import axios from "axios";
+import axios from "axios";
 import { cities, regions } from "../../context/districts";
 import eczane from "../homePage/assets/eczane.jpg";
 import home from "../homePage/assets/adres.png";
@@ -42,15 +42,18 @@ const eczaneInfo = [
   },
 ];
 
+const APIKEY = "apikey 0GQBAjriPIwWIqjcxU7MhJ:5p1vdCUZGkH9xE3UI5ihuh";
+
 const NobetciEczaneComp = () => {
 
   const [info, setInfo] = useState({
-    city: "",
+    city: "bursa",
     region: "",
   });
 
   const [regionList, setRegionList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [eczaneList, setEczaneList] = useState([]);
 
   const options = {
     weekday: "long",
@@ -64,45 +67,43 @@ const NobetciEczaneComp = () => {
     const { name, value } = event.target;
 
     if (name === "city") {
-      setInfo((pre) => ({ ...pre, [name]: value }));
+      setInfo((pre) => ({ ...pre, [name]: value, region: "" }));
       setRegionList(regions[value]);
     } else {
       setInfo((pre) => ({ ...pre, [name]: value }));
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // fetchEczaneInfo();
-    // fetchApi();
-    alert("submitted");
+  const fetchEczaneInfo = async () => {
+    try {
+      const res = await axios.get(
+        `https://api.collectapi.com/health/dutyPharmacy?ilce=${info.region}&il=${info.city}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "apikey 0GQBAjriPIwWIqjcxU7MhJ:5p1vdCUZGkH9xE3UI5ihuh",
+          },
+        }
+      );
+      const list = res.data.result;
+      setEczaneList(list);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  // const fetchEczaneInfo = async () => {
-  //   try {
-  //     const res = await axios.get(
-  //       "https://api.collectapi.com/health/dutyPharmacy?&il=Ankara",
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization:
-  //             "apikey 5bEMEXwCqtxYkxuJPA2Xxy:2cblCG2r0k0oNNLP6eXqQC",
-  //         },
-  //       }
-  //     );
-  //     console.log(res);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // console.log(regions);
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetchEczaneInfo();
+  };
+  
   useEffect(() => {
-    setTimeout(() => setLoading(false), 3000);
-  }, []);
+   fetchEczaneInfo();
+  }, [info.city, info.region]);
 
-  if (loading) return <NobetciEczaneSkeleton/>
+  if (loading) return <NobetciEczaneSkeleton />
   
   return (
     <div className="form-wrapper">
@@ -117,9 +118,11 @@ const NobetciEczaneComp = () => {
           <option value="" selected hidden disabled>
             --İl seçiniz--
           </option>
-          {cities.map((i) => (
-            <option value={i}>{i}</option>
-          ))}
+          {cities.map((i) => {
+            return (
+              <option key={i} value={i}>{i}</option>
+            )
+          })}
         </select>
         <select
           onChange={handleChange}
@@ -142,21 +145,21 @@ const NobetciEczaneComp = () => {
         </select>
         <input className="submit-btn" type="submit" value="Eczane Bul"/>
       </form>
-      <h4>{now} Bursa Nöbetçi Eczaneleri</h4>
-      {eczaneInfo.map((i, idx) => (
-        <div className="info-wrapper">
+      <h4>{now} {info.city} İli { info.region && `${info.region} İlçesi`} Nöbetçi Eczaneleri</h4>
+      { eczaneList && !eczaneList.error && eczaneList?.map((i) => (
+        <div key={i.phone} className="info-wrapper">
           <div className="item">
             <div className="upside">
               <div className="upside-left">
                 <Image src={eczane} alt="" />
-                <h5>{i.name}</h5>
+                <h5>{i.name} ECZANESİ</h5>
                 <div className="location-icon">
                   <FmdGoodOutlinedIcon />
                 </div>
               </div>
               <div className="upside-right">
-               <span>{i.phone}</span> 
-                <span>{i.district}</span>
+               <span>0{i.phone}</span> 
+                <span>{i.dist}</span>
               </div>
             </div>
             <div className="downside">

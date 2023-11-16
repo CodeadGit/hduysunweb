@@ -1,5 +1,6 @@
-import NobetciEczaneComp from '@/components/nobetcieczane/NobetciEczane';
 import React from 'react';
+import NobetciEczaneComp from '@/components/nobetcieczane/NobetciEczane';
+
 
 const NobetciEczane = () => {
   return (
