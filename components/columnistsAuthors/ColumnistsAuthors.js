@@ -2,6 +2,7 @@
 import { useThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
 import "./columnistsAuthors.scss";
+
 const ColumnistsAuthors = (item) => {
   const { eng, tittle } = item;
   const { mode, autors } = useThemeContext();

@@ -7,9 +7,11 @@ import SurMansetSliderItem from "./SurMansetSliderItem";
 import Link from "next/link";
 
 const SurMansetSlider = () => {
-  const { mansetNewsList, mode } = useThemeContext();
+  const { surMansetNewsList, mode } = useThemeContext();
 
-  const surMansetNews = mansetNewsList.filter((i) => i.isSurmanset);
+  console.log(surMansetNewsList)
+
+ // const surMansetNews = surMansetNewsList.filter((i) => i.isSurmanset);
 
   const settings = {
     infinite: true,
@@ -43,7 +45,7 @@ const SurMansetSlider = () => {
   return (
     <div className="surMansetSlider">
       <Slider {...settings} className="surMansetSlider-sliders">
-        {surMansetNews.slice(0, 10).map((item) => {
+        {surMansetNewsList.slice(0, 10).map((item) => {
           return (
             <SurMansetSliderItem item={item} key={item.id} title={item.title} />
           );
