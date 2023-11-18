@@ -19,13 +19,11 @@ import { BsCloudDrizzleFill } from "react-icons/bs";
 import { LuCloudDrizzle } from "react-icons/lu";
 import { useThemeContext } from "@/context/ThemeContext";
 
-const API_KEY = "dFNu5EYXyQrBWpae";
-const GOOGLE_API_KEY = "AIzaSyCluWp7DJQ3HpAMJrUerzfd2RYbSBVvePw";
-
-const Weather = ({showSearchBar}) => {
-
+const Weather = ({ showSearchBar }) => {
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
+
+  const API_KEY = process.env.NEXT_PUBLIC_OPEN_METEO_API_KEY;
 
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
@@ -74,9 +72,9 @@ const Weather = ({showSearchBar}) => {
     setLongitude(longitude);
   };
 
-  const errorCallback = (error) => {
-    console.log(error);
-  };
+  // const errorCallback = (error) => {
+  //   console.log(error);
+  // };
 
   const date = new Date();
   // const clockTime = date.getHours();
@@ -84,10 +82,9 @@ const Weather = ({showSearchBar}) => {
   // const dateTime2 = date.toISOString().split("T")[0];
 
   const fakeFetch = async () => {
-
     try {
       const res = await axios.get(
-        `https://api.open-meteo.com/v1/dwd-icon?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weathercode&current_weather=true&timezone=auto&start_date=${dayTime}&end_date=${dayTime}&apikey=dFNu5EYXyQrBWpae`,
+        `https://api.open-meteo.com/v1/dwd-icon?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weathercode&current_weather=true&timezone=auto&start_date=${dayTime}&end_date=${dayTime}&apikey=${API_KEY}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -102,12 +99,11 @@ const Weather = ({showSearchBar}) => {
       setTemperature(currentTemp);
       // setTemperature(temp);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
   const fetchCityName = async () => {
-
     const config = {
       method: "post",
       maxBodyLength: Infinity,
@@ -123,12 +119,11 @@ const Weather = ({showSearchBar}) => {
       const fetchedCityName = res.data.result.results[0].name;
       setCityName(fetchedCityName);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
   const fetchCountryName = async () => {
-
     const config = {
       method: "post",
       maxBodyLength: Infinity,
@@ -144,18 +139,18 @@ const Weather = ({showSearchBar}) => {
       // console.log(res);
       const addressComponents = res.data.result.results[0].address_components;
       for (const component of addressComponents) {
-        if (component.types.includes('country')) {
-          setCountryName(component.long_name); 
+        if (component.types.includes("country")) {
+          setCountryName(component.long_name);
         }
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+      navigator.geolocation.getCurrentPosition(successCallback);
     }
     if (latitude && longitude) {
       fakeFetch();
@@ -165,11 +160,17 @@ const Weather = ({showSearchBar}) => {
   }, [latitude, longitude]);
 
   return (
-    <div className={`weather ${showSearchBar ? "none" : ""} ${modeStatus ? "dark" : ""}`}>
+    <div
+      className={`weather ${showSearchBar ? "none" : ""} ${
+        modeStatus ? "dark" : ""
+      }`}
+    >
       {icon}
       <div className="weather-info">
         <span>{Math.round(temperature)} °C</span>
-        <span>{cityName} {countryName}</span>
+        <span>
+          {cityName} {countryName}
+        </span>
       </div>
     </div>
   );
@@ -177,24 +178,23 @@ const Weather = ({showSearchBar}) => {
 
 export default Weather;
 
+// const data = {
+//   lat: String(latitude),
+//   long: String(longitude),
+//   startDate: dayDate,
+//   endDate: dayDate,
+// };
 
- // const data = {
-  //   lat: String(latitude),
-  //   long: String(longitude),
-  //   startDate: dayDate,
-  //   endDate: dayDate,
-  // };
-
-  // const fetchWeather = async () => {
-  //   try {
-  //     const res = await axios.get("https://payment.onlinekesif.com/weather", {
-  //       params: data,
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     console.log(res);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+// const fetchWeather = async () => {
+//   try {
+//     const res = await axios.get("https://payment.onlinekesif.com/weather", {
+//       params: data,
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     });
+//     console.log(res);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };

@@ -20,8 +20,6 @@ const FormalAdvert = ({ titleArray, filterFormalAdv }) => {
     },
   ];
 
-  console.log(filterFormalAdv);
-
   return (
     <div className="text">
       <Breadcrumb links={links} />

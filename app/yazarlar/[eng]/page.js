@@ -41,7 +41,6 @@ const YazarDetayPage = ({ params }) => {
     })();
     return () => controller?.abort();
   }, []);
-  console.log(posts);
 
 
   // var {datePublished} = posts;

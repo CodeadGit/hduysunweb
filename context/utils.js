@@ -1,3 +1,4 @@
+
 export const categories = [
   "gundem",
   "siyaset",
@@ -22,13 +23,13 @@ export const categories = [
   "roportaj"
 ];
 
-export const editLink = (link) => {
-  if (link === "saglik") return "sağlık";
-  if (link === "yasam") return "yaşam";
-  if (link === "asayis") return "asayiş";
-  if (link === "egitim") return "eğitim";
-  if (link === "roportaj") return "röportaj"
-  return link.replace("u", "ü");
+export const editLink = (collection) => {
+  if (collection === "saglik") return "sağlık";
+  if (collection === "yasam") return "yaşam";
+  if (collection === "asayis") return "asayiş";
+  if (collection === "egitim") return "eğitim";
+  if (collection === "roportaj") return "röportaj"
+  return collection.replace("u", "ü");
 };
 
 export const shortNewsTitle = (word) => `${word.substring(0, 50)}...`;

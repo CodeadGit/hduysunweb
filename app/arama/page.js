@@ -33,14 +33,8 @@ function replaceTurkishCharacters(inputString) {
 }
 
 const SearchPage = () => {
-  const {
-    searchWord,
-    setSearchWord,
-    wordNews,
-    setWordNews,
-    mode,
-    mostReadNewsList,
-  } = useThemeContext();
+  const { searchWord, wordNews, setWordNews, mode, mostReadNewsList } =
+    useThemeContext();
 
   const modeStatus = mode === "dark";
 
@@ -78,7 +72,6 @@ const SearchPage = () => {
 
     return () => {
       controller?.abort();
-      // setSearchWord("");
     };
   }, [searchWord]);
 

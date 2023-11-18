@@ -123,7 +123,7 @@ const SingleComment = ({
     } catch (error) {
       setAdding(false);
       window.alert("Bir hata meydana geldi", error);
-      console.log(error);
+     // console.log(error);
     }
     return a;
   };

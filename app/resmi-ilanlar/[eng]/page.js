@@ -15,8 +15,6 @@ const FormalAdvertDetail = ({params}) => {
     closeAdv()
   }
 
-  console.log(advertPage)
-
   var idArray = String(params.eng).split("-");
   var idForThisAdvert = idArray.at(-1);
   var titleArray = idArray.slice(0,-1).join(" ").toString();

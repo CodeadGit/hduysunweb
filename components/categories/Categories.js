@@ -2,28 +2,52 @@
 import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { categories, editLink } from "@/context/utils";
+import { editLink } from "@/context/utils";
 import { useThemeContext } from "@/context/ThemeContext";
-
-const Categories = ({wrapper}) => {
-
+import { useCategoriesContext } from "@/context/CategoriesContext";
+const Categories = ({ wrapper }) => {
   const pathname = usePathname();
   const { mode, closeStoryModal } = useThemeContext();
+  const { categories } = useCategoriesContext();
 
   const modeStatus = mode === "dark";
 
+  const sorttedCategories = categories.sort((a, b) => a.index - b.index);
+  //const isActive = pathname.substring(1).startsWith(i);
+ 
   return (
     <div className={wrapper}>
-      {categories?.slice(0,11).map((cat, index) => {
-        const isActive = pathname.substring(1).startsWith(cat);
-        
-        return (
-          <Link href={`/${cat}`} key={index} className={`link ${isActive ? "active" : ""} ${modeStatus ? "dark" : ""}`} onClick={closeStoryModal}>
-            <span>{editLink(cat)}</span>
-            {isActive && <div className={`${modeStatus ? "darkUnderline" : "underline"}`}></div>}
-          </Link>
-        );
-      })}
+      <div className="categories-wrapper">
+        {categories?.map((i,idx) => {
+          const isActive = pathname.substring(1).startsWith(i);
+          return (
+            <div key={idx}>
+              <Link
+                href={`/${i.collection}`}
+                key={i.index}
+                className={`link ${isActive ? "active" : ""} ${
+                  modeStatus ? "dark" : ""
+                }`}
+                onClick={closeStoryModal}
+              >
+                <span>{i.label}</span>
+                {isActive && (
+                  <div
+                    className={`${modeStatus ? "darkUnderline" : "underline"}`}
+                  ></div>
+                )}
+              </Link>
+            </div>
+          );
+        })}
+      </div>
+      {/* <Link
+        href={`/foto-galeri`}
+        className={`link-fotoGaleri ${modeStatus ? "dark" : ""}`}
+        onClick={closeStoryModal}
+      >
+        Foto Galeri
+      </Link> */}
     </div>
   );
 };

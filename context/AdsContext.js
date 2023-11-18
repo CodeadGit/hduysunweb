@@ -30,7 +30,7 @@ export const AdsContextProvider = ({ children }) => {
         read: increment(1),
       });
     } catch (error) {
-      console.log(error);
+     // console.log(error);
     }
   };
 

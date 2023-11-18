@@ -6,9 +6,6 @@ const NewsTitle = ({ modeStatus, title }) => {
 
   const { fontDec, fontInc } = useThemeContext;
 
-  console.log("fontdec"+fontDec)
-  console.log("fontınc"+fontInc)
-
   return (
     <div className="newss-container-content-title">
       {/* <div className={`blue-line ${modeStatus ? "dark" : ""}`}></div> */}

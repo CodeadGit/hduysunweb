@@ -53,8 +53,6 @@ export const AuthenticationProvider = ({ children }) => {
     confirmPass: "",
   });
 
-  console.log(regForm)
-
   const router = useRouter();
 
   const { name, email, password } = regForm;
@@ -115,7 +113,7 @@ export const AuthenticationProvider = ({ children }) => {
     var name = subs.user.displayName;
     var provider = subs.operationType;
     var referance = doc(db, "Readers", readerid);
-    console.log(user);
+
     go();
     try {
       await setDoc(referance, {
@@ -135,7 +133,6 @@ export const AuthenticationProvider = ({ children }) => {
       });
     } catch (error) {
       setLogining(false);
-      console.log("face kayıt", error);
     }
     setReader({
       readerid: readerid,
@@ -183,7 +180,6 @@ export const AuthenticationProvider = ({ children }) => {
       });
     } catch (error) {
       setLogining(false);
-      console.log("google kayıt", error);
     }
     setReader({
       readerid: readerid,
@@ -297,9 +293,8 @@ export const AuthenticationProvider = ({ children }) => {
         });
         return () => readerGetting();
       } catch (error) {
-        console.log(error.message);
         if (error.message === "Quota exceeded.") {
-          console.log("bedava bitti");
+          //console.log("bedava bitti");
           reportQuotaExceeded("readers pulling");
         }
       }
@@ -374,7 +369,7 @@ export const AuthenticationProvider = ({ children }) => {
       } catch (error) {
         setLogining(false);
         handleErrorMessageforAll(error.message);
-        console.log(error);
+      //  console.log(error);
       }
       try {
         const auth = getAuth();
@@ -435,7 +430,7 @@ export const AuthenticationProvider = ({ children }) => {
         go();
       } catch (error) {
         setLogining(false);
-        console.log(error)
+       // console.log(error)
         alert(error);
       }
       return a + b + c;
@@ -477,7 +472,7 @@ export const AuthenticationProvider = ({ children }) => {
       setLogining(false);
 
       if (error.message == "Quota exceeded.") {
-        console.log("bedava bitti");
+       // console.log("bedava bitti");
         reportQuotaExceeded("login");
       }
     }
@@ -512,7 +507,7 @@ export const AuthenticationProvider = ({ children }) => {
         });
         return () => newsGetting();
       } catch (error) {
-        console.log(error.message);
+        //console.log(error.message);
       }
     };
   });

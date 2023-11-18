@@ -6,7 +6,7 @@ import { newsArray } from "../homePage/tagsSlider/tagsSlider";
 import "./details.scss";
 
 const Details = () => {
-  console.log(newsArray);
+  //console.log(newsArray);
 
   return (
     <div className="details">

@@ -15,7 +15,6 @@ const LoginContainer = () => {
   } = useAuthenticationContext();
 
   const router = useRouter();
-  console.log(reader);
 
   return (
     <form

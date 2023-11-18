@@ -137,9 +137,9 @@ const WeatherInfo = () => {
   return (
     <div className="weatherContainer">
       <div className="info-section">
-        { citiesWeatherInfo?.map((city) => {
+        { citiesWeatherInfo?.map((city,idx) => {
            return (
-            <div className="wrapper">
+            <div className="wrapper" key={idx}>
                 <SingleWeather key={new Date().getTime()} {...city} modeStatus={modeStatus} />
                 <div className="rightLine"></div>
             </div>

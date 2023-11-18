@@ -6,8 +6,6 @@ import { useParams } from "next/navigation";
 const ResmiIlanlarPage = ({params}) => {
   const links = [{ id: 1, title: "Resmi İlanlar", link: "/resmi-ilanlar" }];
 
-  console.log(params.eng)
-
   return (
     <div>
       <Breadcrumb links={links} />

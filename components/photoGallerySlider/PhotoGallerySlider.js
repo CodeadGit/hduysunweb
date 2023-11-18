@@ -28,12 +28,12 @@ const [currentSlide, setCurrentSlide] = useState(0);
       <button
         type="button"
         class="slick-next"
-        onClick={() =>
-          console.log(
-            gDoc,
-            thisPhotoGallery?.[currentSlide]?.id
-          )
-        }
+        // onClick={() =>
+        //   console.log(
+        //     gDoc,
+        //     thisPhotoGallery?.[currentSlide]?.id
+        //   )
+        // }
       >
         Next
       </button>

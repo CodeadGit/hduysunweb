@@ -29,7 +29,6 @@ const NewsDetails = ({ modeStatus, source, body }) => {
     </div>
   );
   const currentFontSize = window.getComputedStyle(content, null).getPropertyValue('font-size');
-  console.log("font size" + currentFontSize)
 };
 
 export default NewsDetails;

@@ -12,7 +12,6 @@ import DrawerMenu from "./DrawerMenu";
 import { useAdsContext } from "@/context/AdsContext";
 
 const Navbar = () => {
-
   const { mode, toggle, setSearchWord } = useThemeContext();
   const modeStatus = mode === "dark";
   const { storyModall } = useAdsContext();

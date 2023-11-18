@@ -14,7 +14,7 @@ import Masthead from "../ads/adsComponents/Masthead";
 import Health from "../health/Health";
 import HomeCategory from "./homeCategory/HomeCategory";
 import TagsSlider from "./tagsSlider/tagsSlider";
-
+import Pharmacy from "./pharmacy/Pharmacy";
 const Home = () => {
   return (
     <div>
@@ -31,7 +31,8 @@ const Home = () => {
       {/* <Authors /> */}
       {/* <Arcelik /> */}
       <Masthead />
-      <Currency />
+      {/* <Currency /> */}
+      <Pharmacy/>
       <Caption title="Sağlık" link="saglik" />
       <HomeCategory category="saglik" />
       <Health />

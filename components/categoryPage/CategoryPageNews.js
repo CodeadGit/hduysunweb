@@ -58,7 +58,7 @@ const CategoryPageNews = ({category,totalPage}) => {
               demopagList.push({ ...doc.data(), doc: doc.id });
             }
           });
-          console.log(demopagList);
+          //console.log(demopagList);
           setPagList(demopagList);
           setLastData(demopagList[19]);
           setLoading(false);

@@ -9,8 +9,6 @@ const VideoGalleryDetailPage = ({ params }) => {
   var titleArray = idArray.slice(0,-1).join(" ").toString();
 
   const filteredVideo = videoGallery.filter((i) => String(i.id) === idForThisVideoGallery);
-  console.log(idForThisVideoGallery )
-  console.log(videoGallery)
 
   return (
     <div>

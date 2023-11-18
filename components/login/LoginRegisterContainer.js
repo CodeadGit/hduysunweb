@@ -39,7 +39,6 @@ const LoginRegisterContainer = () => {
 
 
   const router = useRouter();
-  console.log(readerData);
 
   return (
     <form
@@ -86,7 +85,6 @@ const LoginRegisterContainer = () => {
         placeholder="Şifreyi doğrulayın"
       />
       <button type="submit">Kayıt Ol</button>
-      {console.log(errorMessage)}
       {errorMessage ? (
         <div className="error-message">{errorMessage}</div>
       ) : null}

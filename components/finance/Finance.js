@@ -18,7 +18,7 @@ const Finance = () => {
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
 
-  // const necessaryCurrencyTypes = ["USD", "EUR", "BTC", "GA"];
+  const API_KEY = process.env.NEXT_PUBLIC_GENERAL_API_KEY;
 
   const [currencyInfo, setCurrencyInfo] = useState([]);
 
@@ -39,21 +39,21 @@ const Finance = () => {
     const resCurrency = await axios.get("https://api.collectapi.com/economy/allCurrency", {
       headers: {
         "Content-Type" : "application/json",
-        Authorization: "apikey 0GQBAjriPIwWIqjcxU7MhJ:5p1vdCUZGkH9xE3UI5ihuh",
+        Authorization: API_KEY,
       }
     });
 
     const resGold = await axios.get("https://api.collectapi.com/economy/goldPrice", {
       headers: {
         "Content-Type" : "application/json",
-        Authorization: "apikey 0GQBAjriPIwWIqjcxU7MhJ:5p1vdCUZGkH9xE3UI5ihuh",
+        Authorization: API_KEY,
       }
     });
 
     const resBitcoin = await axios.get("https://api.collectapi.com/economy/cripto", {
       headers: {
         "Content-Type" : "application/json",
-        Authorization: "apikey 0GQBAjriPIwWIqjcxU7MhJ:5p1vdCUZGkH9xE3UI5ihuh",
+        Authorization: API_KEY,
       }
     });
 

@@ -8,18 +8,16 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import { IconButton } from "@mui/material";
 import { Close, MenuBook } from "@mui/icons-material";
-import { categories, editLink } from "@/context/utils";
+import { editLink } from "@/context/utils";
 import { BsMoonFill } from "react-icons/bs";
 import Link from "next/link";
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 import MenuIcon from '@mui/icons-material/Menu';
-
+import { useCategoriesContext } from "@/context/CategoriesContext";
 export default function DrawerMenu({ toggle, modeStatus }) {
-
+  const { categories } = useCategoriesContext();
   const [isMenuDrawer, setIsMenuDrawer] = React.useState(false);
 
   const toggleDrawer = (open) => (event) => {
@@ -56,16 +54,13 @@ export default function DrawerMenu({ toggle, modeStatus }) {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {categories.map((text, index) => (
-          <Link href={`/${text}`} key={index}>
-            <ListItem key={text} disablePadding>
+        {categories.map((i, index) => (
+          <Link href={`/${i.collection}`} key={index}>
+            <ListItem key={index} disablePadding>
               <ListItemButton>
-                {/* <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon> */}
                 <ListItemText
                   sx={listItemStyle}
-                  primary={editLink(text)}
+                  primary={editLink(i.label)}
                 />
               </ListItemButton>
             </ListItem>
@@ -92,6 +87,7 @@ export default function DrawerMenu({ toggle, modeStatus }) {
           anchor="right"
           open={isMenuDrawer}
           onClose={toggleDrawer(false)}
+          sx={{height:"auto"}}
         >
           <div style={iconBoxStyle}>
             <IconButton className={`close-icon ${modeStatus ? "dark" :  ""}`} onClick={toggleDrawer(false)}>
