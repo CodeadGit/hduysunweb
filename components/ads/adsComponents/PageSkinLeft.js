@@ -35,7 +35,7 @@ export default PageSkinLeft;
 
 function SingleLeftAds({item, handleReadIncrementAds}) {
 
-  const { image, url, boy, en} = item;
+  const { image, url, boy, en, id} = item;
 
   return (
     <Link href={url ||"/"} target="_blank" onClick={() => handleReadIncrementAds(id)}>

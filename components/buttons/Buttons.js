@@ -30,8 +30,6 @@ const Buttons = ({
   };
   const modeStatus = mode === "dark";
 
-  console.log(isClicked)
-
   return (
     <div className={wrapper}>
       <Search

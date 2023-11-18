@@ -61,24 +61,24 @@ const StickyNavbar = () => {
     //   url: "",
     //   color: "printer",
     // },
-    {
-      id: 7,
-      icon: fontIncIcon,
-      kindOf: "button",
-      work:"inc",
-      title: "",
-      url: "",
-      color: "fontPlus",
-    },
-    {
-      id: 8,
-      icon: fontDecIcon,
-      kindOf: "button",
-      work:"dec",
-      title: "",
-      url: "",
-      color: "fontInc",
-    },
+    // {
+    //   id: 7,
+    //   icon: fontIncIcon,
+    //   kindOf: "button",
+    //   work:"inc",
+    //   title: "",
+    //   url: "",
+    //   color: "fontPlus",
+    // },
+    // {
+    //   id: 8,
+    //   icon: fontDecIcon,
+    //   kindOf: "button",
+    //   work:"dec",
+    //   title: "",
+    //   url: "",
+    //   color: "fontInc",
+    // },
   ];
 
   return (

@@ -47,6 +47,9 @@ export const handleShortBreadcrump = (text, number) => {
 export const handleShortt = (text) => {
   return text?.substring(0,33).concat(" ...");
 };
+export const handleShorttSonDakika = (text) => {
+  return text?.substring(0,50).concat(" ...");
+};
 export const handleShorttLetter = (title,number) => {
   // const res = title?.split("");
   // if (res.length <= number) return res.join("");

@@ -37,10 +37,10 @@ const TagsSlider = () => {
   // const categories = Object.entries(res);
 
   // const result = categories.sort((a, b) => b[1] - a[1]);
-  const firstItem = tagsList.slice(0,1) 
+  const firstItem = tagsList.slice(0, 1);
 
-  if(tagClicked===""){
-     setTagClicked(firstItem)
+  if (tagClicked === "") {
+    setTagClicked(firstItem);
   }
 
   useEffect(() => {
@@ -64,9 +64,6 @@ const TagsSlider = () => {
     }
     return () => controller?.abort();
   }, []);
-
-  console.log(filteredNewsbyTag);
-  console.log(tagClicked)
 
   //const mostPopularTags = tagsTitles.sort((i,j) => i.length - j.length).slice(0,6)
   const settings = {
@@ -144,18 +141,33 @@ const TagsSlider = () => {
           </div>
         ))}
       </div>
-      <Slider {...settings} className="sliderContainer-slides">
-        {filteredNewsbyTag.map((item) => {
-          return (
-            <CardItem
-              item={item}
-              key={item.id}
-              datePublished={item.datePublished}
-              modeStatus={modeStatus}
-            />
-          );
-        })}
-      </Slider>
+      {filteredNewsbyTag.length < 10 ? (
+       <Slider {...settings} className="sliderContainer-slides">
+       {sliderNews.map((item) => {
+         return (
+           <CardItem
+             item={item}
+             key={item.id}
+             datePublished={item.datePublished}
+             modeStatus={modeStatus}
+           />
+         );
+       })}
+     </Slider>
+      ) : (
+        <Slider {...settings} className="sliderContainer-slides">
+          {filteredNewsbyTag.map((item) => {
+            return (
+              <CardItem
+                item={item}
+                key={item.id}
+                datePublished={item.datePublished}
+                modeStatus={modeStatus}
+              />
+            );
+          })}
+        </Slider>
+      )}
     </div>
   );
 };

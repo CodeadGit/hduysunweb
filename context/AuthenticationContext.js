@@ -377,6 +377,7 @@ export const AuthenticationProvider = ({ children }) => {
         console.log(error);
       }
       try {
+        const auth = getAuth();
         b = updateProfile(auth.currentUser, { displayName: regForm.name });
       } catch (error) {
         setLogining(false);

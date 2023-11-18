@@ -1,11 +1,11 @@
-"use client";
+"use client"
 import React, { useEffect, useState } from "react";
-import "./category.scss";
-import CategoryItem from "./CategoryItem";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useParams } from "next/navigation";
 import CategorySkeleton from "./CategorySkeleton";
 import CategoryPagination from "./CategoryPagination";
+import CategoryItem from "./CategoryItem";
+import "./categoryPageNews.scss";
 import {
   collection,
   limit,
@@ -16,8 +16,8 @@ import {
   startAfter,
 } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
-const Category = ({ category, totalPage }) => {
-  const { mode } = useThemeContext();
+const CategoryPageNews = ({category,totalPage}) => {
+    const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
   const [filteredNews, setFilteredNews] = useState([]);
   const [categoryLoading, setCategoryLoading] = useState(true);
@@ -69,49 +69,12 @@ const Category = ({ category, totalPage }) => {
     return () => controller?.abort();
   }, [page]);
 
-  console.log(pagList);
-
   useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   }, [page]);
-
-  // useEffect(() => {
-  //   let controller = new AbortController();
-  //   (async () => {
-  //     const q = query(
-  //       collection(db, category),
-  //       orderBy("datePublished", "desc"),
-  //       limit(newsNumber),
-  //     );
-  //     const sondakikaGetting = onSnapshot(q, (snap) => {
-  //       var breakingNewsList = [];
-
-  //       snap.forEach((doc) => {
-  //         breakingNewsList.push(doc.data());
-  //       });
-
-  //       setFilteredNews(breakingNewsList);
-  //       setCategoryLoading(false);
-  //     });
-
-  //     return () => sondakikaGetting();
-  //   })();
-
-  //   return () => controller?.abort();
-  // }, []);
-
-  // console.log(news);
-
-  // if (categoryLoading) {
-  //   return (
-  //     <div style={{display: "flex", justifyContent:"center"}}>
-  //      <CategorySkeleton/>
-  //     </div>
-  //   )
-  // };
 
   if (pagList.length > 0) {
     return (
@@ -135,4 +98,4 @@ const Category = ({ category, totalPage }) => {
   }
 };
 
-export default Category;
+export default CategoryPageNews

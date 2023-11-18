@@ -43,7 +43,13 @@ const SingleComment = ({
 
   useEffect(() => {
     let controller = new AbortController();
-    var referance = collection(db, thisPage.category, thisPage.id, "comments", item.doc, "answers"
+    var referance = collection(
+      db,
+      thisPage.category,
+      thisPage.id,
+      "comments",
+      item.doc,
+      "answers"
     );
 
     (async () => {
@@ -74,7 +80,22 @@ const SingleComment = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     var referancefirst = doc(db, thisPage.category, thisPage.id);
-    var referance = collection(db, thisPage.category, thisPage.id, "comments", item.doc,"answers");
+    var referance = collection(
+      db,
+      thisPage.category,
+      thisPage.id,
+      "comments",
+      item.doc,
+      "answers"
+    );
+    var referanceC = doc(
+      db,
+      thisPage.category,
+      thisPage.id,
+      "comments",
+      item.doc
+    );
+
     setAdding(true);
     var createdAt = new Date();
     let a;
@@ -87,6 +108,9 @@ const SingleComment = ({
         confirmed: false,
       });
       await updateDoc(referancefirst, {
+        comments: increment(1),
+      });
+      await updateDoc(referanceC, {
         comments: increment(1),
       });
       setAdding(false);
@@ -169,13 +193,18 @@ const SingleComment = ({
         />
       )}
 
-      {confirmedAnswers?.length > 0 && (
-         confirmedAnswers?.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds).map((answer) => {
-          return (
-            <AnswerstoComments modeStatus={modeStatus} answer={answer} key={answer.id} />
-          )
-         })   
-      )} 
+      {confirmedAnswers?.length > 0 &&
+        confirmedAnswers
+          ?.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
+          .map((answer) => {
+            return (
+              <AnswerstoComments
+                modeStatus={modeStatus}
+                answer={answer}
+                key={answer.id}
+              />
+            );
+          })}
     </div>
   );
 };

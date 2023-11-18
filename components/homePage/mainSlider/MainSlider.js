@@ -9,11 +9,6 @@ import Link from "next/link";
 const MainSlider = () => {
   const { mansetNewsList, mode } = useThemeContext();
 
-  // let data = { image: "" };
-  // const newSplicedData = mansetNewsList.splice(4, 0, data);
-
-  // console.log(newSplicedData);
-
   const modeStatus = mode === "dark";
 
   const settings = {
@@ -44,6 +39,8 @@ const MainSlider = () => {
       </>
     ),
   };
+
+ // const sonDakikaManset =  mansetNewsList.map((i) => i.category === "sonDakika")
 
   return (
     <div className="mainSlider">

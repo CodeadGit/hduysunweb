@@ -62,6 +62,8 @@ export const ThemeProvider = ({ children }) => {
   const [searchWord, setSearchWord] = useState("");
   const [wordNews, setWordNews] = useState([]);
   const [tagsList, setTagsList] = useState([]);
+  const [pinnedMansetData, setPinnedMansetData ] = useState([]);
+  const [pinnedSurmansetData, setPinnedSurMansetData] = useState([]);
 
   const hideAds = () => setShowAds(false);
 
@@ -101,6 +103,42 @@ export const ThemeProvider = ({ children }) => {
     })();
     return () => controller?.abort();
   }, []);
+
+  useEffect(() => {
+    let controller = new AbortController();
+    var pinnedMansetDataList = [];
+    (async ()=> {
+      const q = query(collection(db, "MansetPinned"));
+      const pinnedGetting = onSnapshot(q,(snap) => {
+        snap.forEach((doc) => {
+          if(doc.data().insistent===false) {
+            pinnedMansetDataList.push({...doc.data(), doc:doc.id});
+          }
+        });
+        setPinnedMansetData(pinnedMansetDataList)
+      })
+      return () => pinnedGetting();
+    })();
+    return () => controller?.abort();
+  })
+
+  useEffect(() => {
+    let controller = new AbortController();
+    var pinnedSurMansetDataList = [];
+    (async () => {
+      const q = query(collection(db,"SurMansetPinned"));
+      const pinnedSurmansetGetting = onSnapshot(q,(snap) => {
+        snap.forEach((doc) => {
+          if(doc.data().insistent===true){
+             pinnedSurMansetDataList.push({...doc.data(), doc:doc.id});
+          }
+        });
+        setPinnedSurMansetData(pinnedSurMansetDataList)
+      })
+      return () => pinnedSurmansetGetting();
+    })();
+    return () => controller?.abort();
+  })
 
   useEffect(() => {
     let tagsContainer = [];
@@ -369,6 +407,7 @@ export const ThemeProvider = ({ children }) => {
     changeStoryModal,
     handlePhotoGalleryReadInc,
     navigateStory,
+    pinnedSurmansetData,
     stories,
     category,
     fontDec,
@@ -387,6 +426,7 @@ export const ThemeProvider = ({ children }) => {
     handlePhotoGallerySliderReadInc,
     handleVideoGalleryReadInc,
     hideAds,
+    pinnedMansetData,
     showAds,
     // videoNewsList,
     //tagsTitles,

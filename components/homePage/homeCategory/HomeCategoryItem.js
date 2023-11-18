@@ -1,8 +1,8 @@
 import React from "react";
-import "./categoryItem.scss";
+import "./homeCategoryItem.scss";
 import Link from "next/link";
 import { useThemeContext } from "@/context/ThemeContext";
-const CategoryItem = ({ item, modeStatus }) => {
+const HomeCategoryItem = ({ item, modeStatus }) => {
 
   const { title, image, category, eng, id } = item;
   const { handleReadIncrement} = useThemeContext();
@@ -16,5 +16,5 @@ const CategoryItem = ({ item, modeStatus }) => {
   );
 };
 
-export default CategoryItem;
+export default HomeCategoryItem;
 

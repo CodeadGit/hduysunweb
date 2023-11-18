@@ -1,5 +1,4 @@
 "use client";
-import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -7,7 +6,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const CategoryPagination = ({ handleChange, page, totalPage }) => {
   return (
-    <div className="">
+    <div >
       <Pagination
         count={Math.ceil(totalPage / 20)}
         page={page}

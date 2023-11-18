@@ -10,9 +10,6 @@ import Link from "next/link";
 const SurMansetSlider = () => {
   const { surMansetNewsList, mode } = useThemeContext();
 
-  console.log(surMansetNewsList)
-
-
   const settings = {
     infinite: true,
     swipeToSlide: true,
@@ -45,9 +42,9 @@ const SurMansetSlider = () => {
   return (
     <div className="surMansetSlider">
       <Slider {...settings} className="surMansetSlider-sliders">
-        {surMansetNewsList.slice(0, 10).map((item) => {
+        {surMansetNewsList.slice(0, 10).map((item,idx) => {
           return (
-            <SurMansetSliderItem item={item} key={item.id} title={item.title} />
+            <SurMansetSliderItem item={item} idx={idx} key={item.id} title={item.title} />
           );
         })}
       </Slider>
