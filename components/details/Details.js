@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { newsArray } from "../homePage/tagsSlider/tagsSlider";
+import { newsArray } from "../homePage/tagsSlider/TagsSlider";
 import "./details.scss";
 
 const Details = () => {
