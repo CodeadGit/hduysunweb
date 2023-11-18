@@ -9,8 +9,6 @@ const SingleVideo = ({ mode, item = {} }) => {
   const { headImg, description, author, eng, id,title } = item;
   const { handleReadIncrement} = useThemeContext();
 
-  console.log(author)
-
   return (
     <Link
       target="_blank"

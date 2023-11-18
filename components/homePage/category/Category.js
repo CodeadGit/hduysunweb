@@ -58,7 +58,6 @@ const Category = ({ category, totalPage }) => {
               demopagList.push({ ...doc.data(), doc: doc.id });
             }
           });
-          console.log(demopagList);
           setPagList(demopagList);
           setLastData(demopagList[19]);
           setLoading(false);
@@ -68,8 +67,6 @@ const Category = ({ category, totalPage }) => {
     })();
     return () => controller?.abort();
   }, [page]);
-
-  console.log(pagList);
 
   useEffect(() => {
     window.scrollTo({

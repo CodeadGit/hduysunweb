@@ -52,9 +52,7 @@ export const AuthenticationProvider = ({ children }) => {
     password: "",
     confirmPass: "",
   });
-
-  console.log(regForm)
-
+  
   const router = useRouter();
 
   const { name, email, password } = regForm;

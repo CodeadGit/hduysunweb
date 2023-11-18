@@ -37,11 +37,11 @@ const TagsSlider = () => {
   // const categories = Object.entries(res);
 
   // const result = categories.sort((a, b) => b[1] - a[1]);
-  const firstItem = tagsList.slice(0,1) 
+  const firstItem = tagsList.slice(0,1);
 
-  if(tagClicked===""){
-     setTagClicked(firstItem)
-  }
+  if (tagClicked==="") {
+     setTagClicked(firstItem);
+  };
 
   useEffect(() => {
     let controller = new AbortController();
@@ -65,10 +65,6 @@ const TagsSlider = () => {
     return () => controller?.abort();
   }, []);
 
-  console.log(filteredNewsbyTag);
-  console.log(tagClicked)
-
-  //const mostPopularTags = tagsTitles.sort((i,j) => i.length - j.length).slice(0,6)
   const settings = {
     speed: 5000,
     //slidesToShow: newsToShow,

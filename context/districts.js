@@ -1,5 +1,5 @@
 export const cities = [
-  "Adana",
+  "Bursa",
   "Adıyaman",
   "Afyonkarahisar",
   "Ağrı",
@@ -14,7 +14,7 @@ export const cities = [
   "Bitlis",
   "Bolu",
   "Burdur",
-  "Bursa",
+  "Adana",
   "Çanakkale",
   "Çankırı",
   "Çorum",
