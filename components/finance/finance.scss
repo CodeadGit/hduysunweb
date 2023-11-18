@@ -4,18 +4,17 @@
   display: flex;
   flex: 63.5;
   user-select: none;
-  margin-right: 1rem;
+  // margin-right: 1rem;
   font-size: 14px;
   font-weight: 400;
 
   .column {
-    //border: 1px solid red;
+    // border: 1px solid red;
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 2.5rem;
     gap: .6rem;
-    // flex: 1;
     width: fit-content;
     color: var(--textColor);
     transition: 1s all ease-in-out;
@@ -23,7 +22,7 @@
     &:nth-child(3) {
      
       .currency{
-        //  border: 1px solid fuchsia;
+        // border: 1px solid fuchsia;
         justify-content: flex-start;
       }
 
@@ -43,8 +42,8 @@
     //border: 1px solid blue;
      padding-left: .6rem;
      justify-content: flex-start;
-     flex: 1;
-     gap: .8rem;
+    //  flex: 1;
+     gap: 1.125rem;
 
       .line {
         display: none;

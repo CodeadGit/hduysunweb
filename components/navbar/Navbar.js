@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./navbar.scss";
 import NavbarLogo from "../navbarLogo/NavbarLogo";
 import Categories from "../categories/Categories";
@@ -13,7 +13,7 @@ import { useAdsContext } from "@/context/AdsContext";
 
 const Navbar = () => {
 
-  const { mode, toggle } = useThemeContext();
+  const { mode, toggle, setSearchWord } = useThemeContext();
   const modeStatus = mode === "dark";
   const { storyModall } = useAdsContext();
   const [showSearchBar, setShowSearchBar] = useState(false);

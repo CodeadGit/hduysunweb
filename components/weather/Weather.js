@@ -141,7 +141,7 @@ const Weather = ({showSearchBar}) => {
 
     try {
       const res = await axios(config);
-      console.log(res);
+      // console.log(res);
       const addressComponents = res.data.result.results[0].address_components;
       for (const component of addressComponents) {
         if (component.types.includes('country')) {
