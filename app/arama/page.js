@@ -4,8 +4,10 @@ import { useThemeContext } from "@/context/ThemeContext";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import Link from "next/link";
-// import { useRouter } from "next/navigation";
 import "./search.scss";
+import CategoryNewsTitle from "@/components/haberPage/CategoryNewsTitle";
+import MostReadNews from "@/components/haberPage/MostReadNews";
+import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
 
 function replaceTurkishCharacters(inputString) {
   const turkishToEnglishMap = {
@@ -31,8 +33,24 @@ function replaceTurkishCharacters(inputString) {
 }
 
 const SearchPage = () => {
+  const {
+    searchWord,
+    setSearchWord,
+    wordNews,
+    setWordNews,
+    mode,
+    mostReadNewsList,
+  } = useThemeContext();
 
-  const { searchWord, setSearchWord, wordNews, setWordNews } = useThemeContext();
+  const modeStatus = mode === "dark";
+
+  const links = [
+    {
+      id: 1,
+      title: "Arama Sayfası",
+      link: "/arama",
+    },
+  ];
 
   useEffect(() => {
     let controller = new AbortController();
@@ -41,7 +59,7 @@ const SearchPage = () => {
     if (searchWord.length <= 3) {
       setWordNews([]);
       return;
-    };
+    }
 
     let willBeSearched = replaceTurkishCharacters(searchWord);
 
@@ -61,47 +79,64 @@ const SearchPage = () => {
     return () => {
       controller?.abort();
       // setSearchWord("");
-    }
+    };
   }, [searchWord]);
 
   return (
-    <>
-      <h3>{searchWord}</h3>
-      <div className="tagsListWrapper">
+    <div className="whole-search-page">
+      <Breadcrumb links={links} />
+      <div className="search-wrapper">
+        {/* <h3>{searchWord}</h3> */}
+        {/* <input type="text" value={searchWord} placeholder="ile ilgili haberler"/> */}
+        <div className="search-wrapper-left">
+          {wordNews.map((item) => {
+            const { id, eng, category, image, title, datePublished } = item;
+            const timePublished = new Date(datePublished.seconds * 1000);
+            const options = {
+              year: "numeric",
+              month: "numeric",
+              day: "2-digit",
+            };
+            const formattedDate = timePublished.toLocaleString(
+              "tr-TR",
+              options
+            );
 
-        {wordNews.map((item) => {
-
-          const { id, eng, category, image, title, datePublished } = item;
-          const timePublished = new Date(datePublished.seconds * 1000);
-          const options = { year: "numeric", month: "numeric", day: "2-digit" };
-          const formattedDate = timePublished.toLocaleString("tr-TR", options);
-
-          return (
-            <div className="tagCardContainer">
-              <div className="tagCardContainer-top">
-                <Link target="_blank" href={`/${category}/${eng}-${id}`}>
-                  <img src={image} className="tagCardContainer-top-img" />
-                </Link>
-              </div>
-              <div className="tagCardContainer-bottom">
-                <Link
-                  target="_blank"
-                  href={`/${category}/${eng}-${id}`}
-                  className="tagCardContainer-bottom-title"
-                >
-                  {title}
-                </Link>
-                <div className="tagCardContainer-bottom-line"></div>
-                <div className="tagCardContainer-bottom-date">
-                  <span className="video-date-title">Yayınlanma T.</span>
-                  <span className="video-date">{formattedDate}</span>
+            return (
+              <div className="tagCardContainer">
+                <div className="tagCardContainer-top">
+                  <Link target="_blank" href={`/${category}/${eng}-${id}`}>
+                    <img src={image} className="tagCardContainer-top-img" />
+                  </Link>
+                </div>
+                <div className="tagCardContainer-bottom">
+                  <Link
+                    target="_blank"
+                    href={`/${category}/${eng}-${id}`}
+                    className="tagCardContainer-bottom-title"
+                  >
+                    {title}
+                  </Link>
+                  <div className="tagCardContainer-bottom-line"></div>
+                  <div className="tagCardContainer-bottom-date">
+                    <span className="video-date-title">Yayınlanma T.</span>
+                    <span className="video-date">{formattedDate}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
+
+        <div className="search-wrapper-right">
+          <CategoryNewsTitle title="En Çok Okunan" modeStatus={modeStatus} />
+          <MostReadNews
+            modeStatus={modeStatus}
+            mostReadNews={mostReadNewsList}
+          />
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

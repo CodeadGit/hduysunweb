@@ -1,6 +1,6 @@
 .form-wrapper {
 
-  // border: 1px solid blue;
+  padding-bottom: 2rem;
 
   @media screen and (max-width: 768px) {
     width: 100%;
@@ -11,9 +11,6 @@
   .city-form {
     width: 728px;
     margin: 2rem auto;
-    // display: flex;
-    // justify-content: center;
-    // gap: .75rem;
     display: grid;
     gap: 2%;
     grid-template-columns: 32% 32% 32%;
@@ -28,8 +25,6 @@
 
     select,
     input {
-      // flex: 1;
-      border: 1px solid red;
       width: 100%;
       padding: 0.5rem;
       cursor: pointer;
@@ -46,6 +41,7 @@
     input {
       background-color: transparent;
     }
+
     .submit-btn {
       background-color: var(--blueBgColor);
       color:white;
@@ -141,11 +137,13 @@
         gap: 4rem;
         border-top: 1px solid gray;
         padding-top: 0.5rem;
+
         img {
           width: 32px;
           height: 32px;
           margin-left: 0.5rem;
         }
+
         p {
           font-size: 1rem;
 

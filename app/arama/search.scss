@@ -1,11 +1,19 @@
-.tagsListWrapper {
-    display: grid;
-    place-items: center;
-    place-content: center;
+.search-wrapper {
+
+  display: grid;
+  grid-template-columns: 67% 28%;
+  gap: 5%;
+  margin-top: 1.5rem;
+
+  &-left {
+    // border: 1px solid red;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
     width: 100%;
     padding-top: 1rem;
     gap: 1rem;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   
     @media screen and (max-width: 1180px) and (min-width: 876px) {
       grid-template-columns: repeat(3, 1fr);
@@ -18,8 +26,7 @@
     }
   
     .tagCardContainer {
-      width: 17.5rem;
-      // height: 20rem;
+      width: 16rem;
       border: 1px solid white;
       border-radius: 1rem;
       box-shadow: 0, 0, 0, 0.3;
@@ -95,3 +102,9 @@
       }
     }
   }
+
+  &-right {
+    display: block;
+  }
+}
+

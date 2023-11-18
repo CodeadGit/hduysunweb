@@ -9,45 +9,12 @@ import Image from "next/image";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 import NobetciEczaneSkeleton from "./NobetciEczaneSkeleton";
 
-const eczaneInfo = [
-  {
-    id: 1,
-    name: "Orhan Eczanesi",
-    phone: "02243986742",
-    district: "Nilüfer",
-    address: "Orhan Mahallesi, Dr. İbrahim Öktem Caddesi, No:35 Nilüfer/Bursa",
-  },
-  {
-    id: 1,
-    name: "Yeliz Eczanesi",
-    phone: "02243986742",
-    district: "Osmangazi",
-    address:
-      "Orhan Mahallesi, Dr. İbrahim Öktem Caddesi, No:35 Osmangazi/Bursa",
-  },
-  {
-    id: 1,
-    name: "Yeni Eczane",
-    phone: "02243986742",
-    district: "Karacabey",
-    address:
-      "Orhan Mahallesi, Dr. İbrahim Öktem Caddesi, No:35 Karacabey/Bursa",
-  },
-  {
-    id: 1,
-    name: "Orhan Eczanesi",
-    phone: "02243986742",
-    district: "Gemlik",
-    address: "Orhan Mahallesi, Dr. İbrahim Öktem Caddesi, No:35 Gemlik/Bursa",
-  },
-];
-
 const APIKEY = "apikey 0GQBAjriPIwWIqjcxU7MhJ:5p1vdCUZGkH9xE3UI5ihuh";
 
 const NobetciEczaneComp = () => {
 
   const [info, setInfo] = useState({
-    city: "bursa",
+    city: "Bursa",
     region: "",
   });
 
@@ -103,6 +70,10 @@ const NobetciEczaneComp = () => {
    fetchEczaneInfo();
   }, [info.city, info.region]);
 
+  useEffect(() => {
+    setRegionList(regions["Bursa"]);
+  }, []);
+  
   if (loading) return <NobetciEczaneSkeleton />
   
   return (
@@ -152,7 +123,7 @@ const NobetciEczaneComp = () => {
             <div className="upside">
               <div className="upside-left">
                 <Image src={eczane} alt="" />
-                <h5>{i.name} ECZANESİ</h5>
+                <h5>{i.name.includes("ECZANESİ") ? i.name : i.name.concat(" ECZANESİ")}</h5>
                 <div className="location-icon">
                   <FmdGoodOutlinedIcon />
                 </div>

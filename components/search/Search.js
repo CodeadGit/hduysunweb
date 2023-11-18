@@ -27,10 +27,14 @@ const Search = ({showSearchBar, setShowSearchBar}) => {
     router.push("/arama");
   };
 
-  const toggleSearchButton = () => setShowSearchBar((prev) => !prev);
-
   const handleClick = (e) => {
-    toggleSearchButton();
+
+    if (!showSearchBar) {
+      setShowSearchBar(true);
+      inputRef?.current?.focus();
+      return;
+    }
+    setShowSearchBar(false);
     handleSubmit(e);
   };
 
