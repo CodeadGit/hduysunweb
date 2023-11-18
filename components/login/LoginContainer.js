@@ -10,13 +10,11 @@ const LoginContainer = () => {
     login,
     reader,
     loginForm,
-    handleLoginFormChange,
+    readerData,
+    handleLoginFormChange
   } = useAuthenticationContext();
 
-  console.log("loginform", loginForm);
-
   const router = useRouter();
-
   console.log(reader);
 
   return (

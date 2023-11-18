@@ -25,6 +25,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
+  FacebookAuthProvider,
   signInWithPopup,
   OAuthProvider,
 } from "firebase/auth";
@@ -37,9 +38,10 @@ export const AuthenticationProvider = ({ children }) => {
   const [readers, setReaders] = useState([]);
   const [readerData, setReaderData] = useState(null);
   const [logining, setLogining] = useState(false);
+  const [gettingReader, setGettingReader] = useState(false);
   const [apploading, setAppLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(true);
-  const [alertMessage,setAlertMessage] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
   const [quota, setQuota] = useState(false);
   const [myLogs, setMyLogs] = useState([]);
   const [myLogsLoading, setMyLogsLoading] = useState(true);
@@ -50,6 +52,8 @@ export const AuthenticationProvider = ({ children }) => {
     password: "",
     confirmPass: "",
   });
+
+  console.log(regForm)
 
   const router = useRouter();
 
@@ -70,7 +74,7 @@ export const AuthenticationProvider = ({ children }) => {
   };
 
   const providerG = new GoogleAuthProvider();
-  const providerA = new OAuthProvider("apple.com");
+  const providerF = new FacebookAuthProvider();
 
   const whatTranslator = {
     1: { code: 1, p: 1, tr: "Beğeni" },
@@ -81,9 +85,7 @@ export const AuthenticationProvider = ({ children }) => {
     6: { code: 5, p: 1, tr: "ilgilendiği etiket" },
   };
 
-
   const handleErrorMessageforAll = (err) => {
-
     if (err === "Firebase: Error (auth/email-already-in-use).") {
       setErrorMessage("Bu email zaten kullanılıyor");
     } else if (err === "Firebase: Error (auth/id-token-expired).") {
@@ -101,9 +103,55 @@ export const AuthenticationProvider = ({ children }) => {
     } else if (err === "Firebase: Error (auth/user-not-found).") {
       setErrorMessage("Kullanıcı bulunamadı, kaydolun veya tekrar deneyin");
     } else {
-      setErrorMessage(
-        "Bir hata meydana geldi, tekrar deneyin");
+      setErrorMessage("Bir hata meydana geldi, tekrar deneyin");
     }
+  };
+
+  const facebooklogin = async (e, go) => {
+    e.preventDefault();
+    const subs = await signInWithPopup(auth, providerF);
+    var readerid = subs.user.uid;
+    var email = subs.user.email;
+    var name = subs.user.displayName;
+    var provider = subs.operationType;
+    var referance = doc(db, "Readers", readerid);
+    console.log(user);
+    go();
+    try {
+      await setDoc(referance, {
+        readerid: readerid,
+        name: name,
+        email: email,
+        provider: provider,
+        createdAt: new Date(),
+        readerUnique: new Date().valueOf().toString().substring(6),
+        updatedAt: "",
+        activedAt: false,
+        interestedCat: "",
+        interestedTag: "",
+        likes: 0,
+        comments: "",
+        dislikes: 0,
+      });
+    } catch (error) {
+      setLogining(false);
+      console.log("face kayıt", error);
+    }
+    setReader({
+      readerid: readerid,
+      name: name,
+      email: email,
+      provider: provider,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      activedAt: false,
+      interestedCat: "",
+      interestedTag: "",
+      likes: 0,
+      comments: 0,
+      dislikes: 0,
+      readerUnique: new Date().valueOf().toString().substring(6),
+    })
   };
 
   const googlelogin = async (e, go) => {
@@ -112,6 +160,7 @@ export const AuthenticationProvider = ({ children }) => {
     const subs = await signInWithPopup(auth, providerG);
     var readerid = subs.user.uid;
     var email = subs.user.email;
+    var name = subs.user.displayName;
     var provider = subs.operationType;
     var referance = doc(db, "Readers", readerid);
     go();
@@ -119,7 +168,7 @@ export const AuthenticationProvider = ({ children }) => {
     try {
       await setDoc(referance, {
         readerid: readerid,
-        name: "",
+        name: name,
         email: email,
         provider: "Google",
         createdAt: new Date(),
@@ -136,6 +185,21 @@ export const AuthenticationProvider = ({ children }) => {
       setLogining(false);
       console.log("google kayıt", error);
     }
+    setReader({
+      readerid: readerid,
+      name: name,
+      email: email,
+      provider: provider,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      activedAt: false,
+      interestedCat: "",
+      interestedTag: "",
+      likes: 0,
+      comments: 0,
+      dislikes: 0,
+      readerUnique: new Date().valueOf().toString().substring(6),
+    })
 
     // This gives you a Google Access Token. You can use it to access the Google API.
     // The signed-in user info.
@@ -163,13 +227,6 @@ export const AuthenticationProvider = ({ children }) => {
   //   }).then(() => setLogining(false));
   // };
 
-  const onSubmitRegisterHandler = (e) => {
-    e.preventDefault();
-  };
-
-  const onSubmitLoginHandler = (e) => {
-    e.preventDefault();
-  };
 
   const handleLoginFormChange = (e) => {
     setLoginForm({ ...loginForm, [e.target.name]: e.target.value });
@@ -249,30 +306,53 @@ export const AuthenticationProvider = ({ children }) => {
     })();
   }, []);
 
-  useEffect(() => {
-    const getUser = onAuthStateChanged(auth, async (currentUser) => {
-      if (currentUser) {
-        setReader(currentUser);
-        const userRef = doc(db, "Readers", currentUser.uid);
-        getDoc(userRef).then((doc) => {
-          if (doc.exists()) {
-            setReaderData(doc.data());
-          } else {
-            console.log("user yok");
-          }
-        });
-        setAppLoading(false);
-      } else {
-        setAppLoading(false);
-      }
-      setErrorMessage(null);
-    });
-    try {
-      getUser();
-    } catch (error) {
-      console.log("hata");
-    }
-  }, [changed]);
+  // const getReaderData = async () => {
+  //   if (reader) {
+  //     setGettingReader(true);
+  //     try {
+  //       const readerRef = doc(db, "Readers", reader.uid);
+  //       const docSnap = await getDoc(readerRef);
+  //       if (docSnap.exists()) {
+  //         setReaderData({
+  //           ...docSnap.data(),
+  //           readerNameAuth: auth.currentUser.displayName,
+  //         });
+  //         setGettingReader(false);
+  //       } else {
+  //         alert("context:user bulunamadı");
+  //         setGettingReader(false);
+  //       }
+  //     } catch (e) {
+  //       console.log(e.message);
+  //       setGettingReader(false);
+  //     }
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const getUser = onAuthStateChanged(auth, async (currentUser) => {
+  //     if (currentUser) {
+  //       setReader(currentUser);
+  //       const userRef = doc(db, "Readers", currentUser.uid);
+  //       getDoc(userRef).then((doc) => {
+  //         if (doc.exists()) {
+  //           setReaderData(doc.data());
+  //         } else {
+  //           console.log("user yok");
+  //         }
+  //       });
+  //       setAppLoading(false);
+  //     } else {
+  //       setAppLoading(false);
+  //     }
+  //     setErrorMessage(null);
+  //   });
+  //   try {
+  //     getUser();
+  //   } catch (error) {
+  //     console.log("hata");
+  //   }
+  // }, [changed]);
 
   const register = async (e, go) => {
     e.preventDefault();
@@ -287,6 +367,7 @@ export const AuthenticationProvider = ({ children }) => {
         a = await createUserWithEmailAndPassword(
           auth,
           regForm.email,
+          regForm.name,
           regForm.password
         );
         setReader(a.user);
@@ -302,18 +383,11 @@ export const AuthenticationProvider = ({ children }) => {
         handleErrorMessageforAll(error.message);
       }
       try {
-        b = updateProfile(auth.currentUser, {
-          displayName: regForm.name,
-        });
-      } catch (error) {
-        setLogining(false);
-        handleErrorMessageforAll(error.message);
-      }
-      try {
         c = await setDoc(doc(db, "Readers", a.user.uid), {
-          readerid: a.user.uid,
-          email: a.user.email,
-          name: a.user.displayName,
+           readerid: a.user.uid,
+          //  ...regForm,
+           email: a.user.email,
+           name: a.user.displayName,
           provider: a.operationType,
           readerUnique: new Date().valueOf().toString().substring(6),
           ...userObj,
@@ -326,10 +400,24 @@ export const AuthenticationProvider = ({ children }) => {
           password: "",
           confirmPass: "",
         });
-        setReaderData({
+        // setReaderData({
+        //   readerid: a.user.uid,
+        //   name: regForm.name,
+        //   email: regForm.email,
+        //   createdAt: new Date(),
+        //   updatedAt: new Date(),
+        //   activedAt: false,
+        //   interestedCat: "",
+        //   interestedTag: "",
+        //   likes: 0,
+        //   comments: 0,
+        //   dislikes: 0,
+        //   readerUnique: new Date().valueOf().toString().substring(6),
+        // });
+        setReader({
           readerid: a.user.uid,
-          name: regForm.name,
-          email: regForm.email,
+          name: a.user.displayName,
+          email: a.user.email,
           createdAt: new Date(),
           updatedAt: new Date(),
           activedAt: false,
@@ -339,13 +427,14 @@ export const AuthenticationProvider = ({ children }) => {
           comments: 0,
           dislikes: 0,
           readerUnique: new Date().valueOf().toString().substring(6),
-        });
+        })
         await sendEmailVerification(auth.currentUser).catch((e) => {
           handleErrorMessageforAll(e.message);
         });
         go();
       } catch (error) {
         setLogining(false);
+        console.log(error)
         alert(error);
       }
       return a + b + c;
@@ -427,15 +516,12 @@ export const AuthenticationProvider = ({ children }) => {
     };
   });
 
-  const changedUser = () => {
-    setChanged((pre) => !pre);
-  };
 
   const values = {
     readers,
     register,
     logout,
-   // applelogin,
+    // applelogin,
     logining,
     reader,
     apploading,
@@ -448,14 +534,12 @@ export const AuthenticationProvider = ({ children }) => {
     submitReset,
     readerData,
     handleLoginFormChange,
-    onSubmitRegisterHandler,
     handleRegFormChange,
+    facebooklogin,
     regForm,
     amIauthorized,
     googlelogin,
-    loginForm,
-    onSubmitLoginHandler,
-    changedUser,
+    loginForm
   };
 
   return (

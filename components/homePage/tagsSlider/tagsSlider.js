@@ -37,6 +37,11 @@ const TagsSlider = () => {
   // const categories = Object.entries(res);
 
   // const result = categories.sort((a, b) => b[1] - a[1]);
+  const firstItem = tagsList.slice(0,1) 
+
+  if(tagClicked===""){
+     setTagClicked(firstItem)
+  }
 
   useEffect(() => {
     let controller = new AbortController();
@@ -47,7 +52,7 @@ const TagsSlider = () => {
         const q = query(collection(db, categoryList[i].collection));
         const newsGetting = onSnapshot(q, (snap) => {
           snap.forEach((doc) => {
-            if (doc.data().tags.includes(tagClicked)) {
+            if (doc.data().tags.includes(`${tagClicked}`)) {
               tagsListArray.push({ ...doc.data(), doc: doc.id });
             }
           });

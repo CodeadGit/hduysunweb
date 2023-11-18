@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import Link from "next/link";
 import { GoClock } from "react-icons/go";
 import { useThemeContext } from "@/context/ThemeContext";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { collection, endBefore, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import { handleShort } from "@/context/utils";
 import "slick-carousel/slick/slick.css";
@@ -49,12 +49,17 @@ const BreakingNews = () => {
 
   // console.log(breakingNews);
 
+  var today=new Date();
+  var todayEarly=today.setHours(today.getHours()-6)
+  var todayDated=new Date(todayEarly)
+
   useEffect(() => {
     let controller = new AbortController();
     (async () => {
       const q = query(
         collection(db, "sonDakika"),
-        orderBy("datePublished", "asc")
+        orderBy("datePublished", "asc"),
+        // endBefore( "datePublished" > todayDated)
       );
       const sondakikaGetting = onSnapshot(q, (snap) => {
         var breakingNewsList = [];

@@ -3,8 +3,8 @@ import { useState } from "react";
 import "./login.scss";
 import darkLogo from "../navbarLogo/darkLogo.svg";
 import Image from "next/image";
-import { BsApple } from "react-icons/bs";
 import { FaGooglePlusG } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
 import LoginRegisterContainer from "./LoginRegisterContainer";
 import LoginContainer from "./LoginContainer";
 import { useAuthenticationContext } from "@/context/AuthenticationContext";
@@ -26,7 +26,7 @@ const Login = () => {
 
   var go = () => router.push("/");
 
-  const { googlelogin, applelogin,submitReset } = useAuthenticationContext();
+  const { googlelogin, facebooklogin,submitReset } = useAuthenticationContext();
 
   return (
     <div className="login">
@@ -65,6 +65,9 @@ const Login = () => {
               </span> */}
               <span className="icon-circle" onClick={(e)=>googlelogin(e,go)} >
                 <FaGooglePlusG />
+              </span>
+              <span className="icon-circle" onClick={(e)=>facebooklogin(e,go)} >
+                <FaFacebookF />
               </span>
             </div>
             {loginClicked === false ? (

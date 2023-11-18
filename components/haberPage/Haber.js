@@ -60,12 +60,7 @@ const Haber = ({ thisPageArticle, thisPage }) => {
     source,
   } = thisPage;
 
-  // console.log(thisPageArticle);
   const body = thisPageArticle?.body;
-
-  // console.log(thisPage);
-  // console.log(source);
-  // console.log(thisPageArticle);
 
   const mostReadNews = mostReadNewsList
     .filter((item) => item.id !== id)
@@ -78,13 +73,13 @@ const Haber = ({ thisPageArticle, thisPage }) => {
       id: useId(),
       title: categoryConvertor[category] || category,
       link: `/${category}`,
-      titleContent:false
+      titleContent: false,
     },
     {
       id: useId(),
       title,
       link: `/${category}/${eng}-${id}`,
-      titleContent:true
+      titleContent: true,
     },
   ];
 
@@ -183,13 +178,15 @@ const Haber = ({ thisPageArticle, thisPage }) => {
           <Amblem modeStatus={modeStatus} />
           <CategoryHeadlines />
           <Amblem modeStatus={modeStatus} />
-          <Comments
-            confirmedComments={confirmedComments}
-            modeStatus={modeStatus}
-            thisPage={thisPage}
-            setShowAnswers={setShowAnswers}
-            showAnswers={showAnswers}
-          />
+          { thisPage.isCommentable  && (
+            <Comments
+              confirmedComments={confirmedComments}
+              modeStatus={modeStatus}
+              thisPage={thisPage}
+              setShowAnswers={setShowAnswers}
+              showAnswers={showAnswers}
+            />
+          )}
           {!showAnswers ? (
             <AddCommentForm
               formSubmitHandler={formSubmitHandler}
