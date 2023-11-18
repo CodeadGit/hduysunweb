@@ -91,7 +91,9 @@ export const ThemeProvider = ({ children }) => {
       const qc = query(collection(db, "Columnists"));
       const autorsGetting = onSnapshot(qc, (snap) => {
         snap.forEach((doc) => {
-          autorsList.push({ ...doc.data(), doc: doc.id });
+          if(doc.data().active){
+            autorsList.push({ ...doc.data(), doc: doc.id });
+          }
         });
         setAutors(autorsList);
       });

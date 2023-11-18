@@ -45,9 +45,9 @@ export const AdsContextProvider = ({ children }) => {
         var adsListArray = [];
 
         snap.forEach((doc) => {
+          if(doc.data().active && doc.data().expired === false)
           adsListArray.push(doc.data());
         });
-
         setAdsList(adsListArray);
         setLoading(false);
       });
@@ -65,21 +65,18 @@ export const AdsContextProvider = ({ children }) => {
         collection(db, "Stories"),
         orderBy("datePublished", "asc")
       );
-
       const sondakikaGetting = onSnapshot(q, (snap) => {
         var adsListArray = [];
-
         snap.forEach((doc) => {
-          adsListArray.push(doc.data());
+          if(doc.data().isNow){
+            adsListArray.push(doc.data());
+          }
         });
-
         setStoriesList(adsListArray);
         setStoriesLoading(false);
       });
-
       return () => sondakikaGetting();
     })();
-
     return () => controller?.abort();
   }, []);
 

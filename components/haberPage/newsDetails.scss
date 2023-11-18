@@ -8,10 +8,12 @@
     .content {
       color: inherit !important;
       background-color: inherit !important;
-     // font-size: 1.125rem !important;
+      font-size: 1.125rem !important;
       font-weight: 400 !important;
       text-align: justify !important;
       transition: var(--transition) !important;
+
+
 
       & > p , & > div{
         background-color: inherit !important;
@@ -37,6 +39,8 @@
         //border: 3px solid red !important;
         aspect-ratio: 3/2 !important;
         object-fit: cover !important;
+        max-width: 100% !important;
+       // z-index: -5;
       }
     }
 

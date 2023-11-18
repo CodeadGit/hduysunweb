@@ -7,7 +7,7 @@ import Link from "next/link";
 import "./format.scss";
 
 const SingleTag = ({ params }) => {
-  const { tagsList } = useThemeContext();
+  const { tagsList, handleReadIncrement } = useThemeContext();
   const [relatedTagsNews, setRelatedTagsNews] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -64,6 +64,7 @@ const SingleTag = ({ params }) => {
                   target="_blank"
                   href={`/${category}/${eng}-${id}`}
                   className="tagCardContainer-bottom-title"
+                  onClick={()=>handleReadIncrement(category,id)}
                 >
                   {title}
                 </Link>

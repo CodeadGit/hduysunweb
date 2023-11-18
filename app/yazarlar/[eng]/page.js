@@ -28,7 +28,7 @@ const YazarDetayPage = ({ params }) => {
       const columnistsGetting = onSnapshot(qp, (snap) => {
         if (!snap.empty) {
           snap.forEach((doc) => {
-            if (doc.data().authorid === idForThisAuthor) {
+            if (doc.data().authorid === idForThisAuthor && doc.data().active) {
               columnistsData.push({ ...doc.data(), doc: doc.id });
             }
           });
