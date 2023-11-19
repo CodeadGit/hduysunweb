@@ -20,8 +20,9 @@
     align-items: center;
     // border: 1px solid blue;
 
-    @media screen and (max-width: 1200px) and (min-width: 786px) {
-    }
+    // @media screen and (max-width: 768px)  {
+    //   flex-direction: column;
+    // }
 
     .wrapper {
       display: flex;

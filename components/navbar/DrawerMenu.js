@@ -13,6 +13,7 @@ import { Close, MenuBook } from "@mui/icons-material";
 import { editLink } from "@/context/utils";
 import { BsMoonFill } from "react-icons/bs";
 import Link from "next/link";
+import "./drawerMenu.scss";
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useCategoriesContext } from "@/context/CategoriesContext";
@@ -27,9 +28,9 @@ export default function DrawerMenu({ toggle, modeStatus }) {
     setIsMenuDrawer(open);
   };
 
-  const darkBoxStyle = { width: "200px", height: "100%", backgroundColor: "#3e474f", transition: "0.3s all ease-in-out" };
+  const darkBoxStyle = { width: "200px", height: "auto", backgroundColor: "#3e474f", transition: "0.3s all ease-in-out" };
 
-  const lightBoxStyle = {  width: "200px", height: "100%", backgroundColor: "#fff", transition: "0.3s all ease-in-out" };
+  const lightBoxStyle = {  width: "200px", height: "auto", backgroundColor: "#fff", transition: "0.3s all ease-in-out" };
 
   const darkListItemStyle = { textTransform: "capitalize", color: "#fff",  transition: "0.3s all ease-in-out" };
 
@@ -49,11 +50,12 @@ export default function DrawerMenu({ toggle, modeStatus }) {
   const list = () => (
     <Box
       sx={boxStyle}
+     // className="box"
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
-      <List>
+      <List sx={{height:"auto"}}>
         {categories.map((i, index) => (
           <Link href={`/${i.collection}`} key={index}>
             <ListItem key={index} disablePadding>

@@ -26,6 +26,7 @@
     display: flex;
     justify-content: space-between;
     // gap: 4%;
+    gap: 1rem;
     height: 104px;
 
     @media screen and (max-width: 768px) {
@@ -118,6 +119,9 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 1rem;
+            &.dark {
+              color: white;
+            }
 
             span {
               text-transform: capitalize;
@@ -126,6 +130,7 @@
               display: inline-block;
               width: max-content;
               font-size: 1rem;
+
             }
           }
         }
