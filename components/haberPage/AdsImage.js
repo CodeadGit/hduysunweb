@@ -25,12 +25,13 @@ const AdsImage = () => {
 
   return (
     <div className="most">
-      {relatedAds.map((i) => (
+      {relatedAds.map((i,idx) => (
         <Link
           href={i.url || "/"}
           target="_blank"
           onClick={() => handleReadIncrementAds(id)}
           style={containerStyle}
+          key={idx}
         >
           <img
             className="most-img"

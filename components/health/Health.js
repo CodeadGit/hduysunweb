@@ -22,8 +22,8 @@ const Health = () => {
         </div> */}
       </div>
       <div className="pointss-right-section">
-        {filteredNews?.slice(0, 9).map((item) => {
-          return <CategoryItem key={item.id} item={item} modeStatus={modeStatus} />
+        {filteredNews?.slice(0, 9).map((item,idx) => {
+          return <CategoryItem key={idx} item={item} modeStatus={modeStatus} />
         })}
       </div>
     </div>

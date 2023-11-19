@@ -47,14 +47,14 @@ const MainSlider = () => {
       <div className="mainSlider-large">
         <Slider {...settings} className="mainSlider-large-sliders">
           {mansetNewsList.slice(0, 20).map((item,idx) => {
-            return <MainSliderItem item={item} key={item.id} idx={idx}/>;
+            return <MainSliderItem item={item} key={idx} idx={idx}/>;
           })}
         </Slider>
       </div>
       <div className="mainSlider-med">
         <Slider {...settings} className="mainSlider-med-slidersRes">
-          {mansetNewsList.slice(0, 15).map((item) => {
-            return <MainSliderItem item={item} key={item.id} />;
+          {mansetNewsList.slice(0, 15).map((item,idx) => {
+            return <MainSliderItem item={item} key={idx} />;
           })}
         </Slider>
       </div>

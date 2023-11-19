@@ -22,10 +22,10 @@ const NewsStories = () => {
       <div className="cont">
         <div className="cats">
           <div className="cats-background">
-          {singleStories.map((item) => {
+          {singleStories.map((item,idx) => {
             return (
               <NewsStoriesItem
-                key={item.id}
+                key={idx}
                 item={item}
                 combineStories={combineStories}
                 modeStatus={modeStatus}

@@ -196,12 +196,12 @@ const SingleComment = ({
       {confirmedAnswers?.length > 0 &&
         confirmedAnswers
           ?.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
-          .map((answer) => {
+          .map((answer,idx) => {
             return (
               <AnswerstoComments
                 modeStatus={modeStatus}
                 answer={answer}
-                key={answer.id}
+                key={idx}
               />
             );
           })}

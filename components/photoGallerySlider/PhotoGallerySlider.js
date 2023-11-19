@@ -62,11 +62,11 @@ const [currentSlide, setCurrentSlide] = useState(0);
       <Breadcrumb links={links} />
       <div className="photoGallerySlider-wrapper">
         <Slider {...settings} className="photoGallerySlider-wrapper-sliders">
-          {thisPhotoGallery.map((item) => {
+          {thisPhotoGallery.map((item,idx) => {
             return (
               <PhotoGallerySliderItem
                 item={item}
-                key={item.id}
+                key={idx}
                 image={item.url}
                 doc={item.doc}
                 index={item.index}

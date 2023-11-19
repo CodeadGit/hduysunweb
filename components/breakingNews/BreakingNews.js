@@ -107,8 +107,8 @@ const BreakingNews = () => {
         <ul className="stories">
           {breakingNews.length > 0 && (
             <Slider {...settings}>
-              {breakingNews?.map((item) => {
-                return <SingleBreakingNews key={item.id} {...item} />;
+              {breakingNews?.map((item,idx) => {
+                return <SingleBreakingNews key={idx} {...item} />;
               })}
             </Slider>
           )}

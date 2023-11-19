@@ -10,8 +10,8 @@ const PhotoGallery = () => {
 
   const { photoGallery } = useThemeContext();
 
-  const photoGalleryList = photoGallery.sort((a,b) => b.index - a.index).map((item) => {
-    return <PhotoGalleryCard key={item.id} item={item} />;
+  const photoGalleryList = photoGallery.sort((a,b) => b.index - a.index).map((item,idx) => {
+    return <PhotoGalleryCard key={idx} item={item} />;
   });
 
   return (

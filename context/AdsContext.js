@@ -30,7 +30,7 @@ export const AdsContextProvider = ({ children }) => {
         read: increment(1),
       });
     } catch (error) {
-     // console.log(error);
+      console.log(error);
     }
   };
 
@@ -68,7 +68,7 @@ export const AdsContextProvider = ({ children }) => {
       const sondakikaGetting = onSnapshot(q, (snap) => {
         var adsListArray = [];
         snap.forEach((doc) => {
-          if(doc.data().isNow){
+          if(doc.data().isNow.isActive){
             adsListArray.push(doc.data());
           }
         });

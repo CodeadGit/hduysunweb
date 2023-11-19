@@ -6,9 +6,9 @@ const SimilarVideos = () => {
 
   const { videoGallery } = useThemeContext();
 
-  const similiarVideos = videoGallery.slice(0,3).map((item) => {
+  const similiarVideos = videoGallery.slice(0,3).map((item,idx) => {
     return (
-      <SimiliarVideosCard key={item.id} item={item}/>
+      <SimiliarVideosCard key={idx} item={item}/>
     )
   })
 

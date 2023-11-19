@@ -431,7 +431,7 @@ export const AuthenticationProvider = ({ children }) => {
       } catch (error) {
         setLogining(false);
        // console.log(error)
-        alert(error);
+       // alert(error);
       }
       return a + b + c;
     }
@@ -507,7 +507,7 @@ export const AuthenticationProvider = ({ children }) => {
         });
         return () => newsGetting();
       } catch (error) {
-        //console.log(error.message);
+        console.log(error);
       }
     };
   });

@@ -18,9 +18,9 @@ const VideoGallery = ({ modeStatus, videoNewsList }) => {
       <h3 className={`video-gallery-title ${modeStatus ? "dark" : ""}`}>
         Video <span className={modeStatus ? "dark" : ""}> Galeri </span>
       </h3>
-      {videoGallery?.slice(0, 1).map((item) => {
+      {videoGallery?.slice(0, 1).map((item,idx) => {
         return (
-          <Link target="_blank" href={`/video-galeri/${item.eng}-${item.id}`} onClick={() => handleReadIncrement(category, id)}>
+          <Link key={idx} target="_blank" href={`/video-galeri/${item.eng}-${item.id}`} onClick={() => handleReadIncrement(category, id)}>
             <div className="video-live">
               <Image src={item.headImg} alt="google-news" fill />
             </div>
@@ -46,8 +46,8 @@ const VideoGallery = ({ modeStatus, videoNewsList }) => {
         );
       })}
       <div className="video-gallery-news-container"> {/*alttaki 3 adet olan video galeri kartları*/}
-        {videoGallery?.slice(1, 4).map((item) => {
-          return <SingleVideo key={item.id} mode={modeStatus} item={item} />;
+        {videoGallery?.slice(1, 4).map((item,idx) => {
+          return <SingleVideo key={idx} mode={modeStatus} item={item} />;
         })}
       </div>
     </div>

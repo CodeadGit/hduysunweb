@@ -11,10 +11,10 @@ const HeadlineNewsPage = () => {
 
   const links = [{ id: 1, title: "Manşetler", link: "/mansetler" }];
 
-  const mansetNews = mansetNewsList.map((item) => {
+  const mansetNews = mansetNewsList.map((item,idx) => {
     return (
       <HeadlineNewsCard
-        key={item.id}
+        key={idx}
         item={item}
       />
     );

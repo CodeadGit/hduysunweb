@@ -63,9 +63,9 @@ const HomeCategory = ({ category, totalPage }) => {
     return (
       <div className="categoryWrapper">
         <div className="categoryWrapper_container">
-          {filteredNews?.map((item) => {
+          {filteredNews?.map((item,idx) => {
             return (
-              <CategoryItem key={item.id} item={item} modeStatus={modeStatus} />
+              <CategoryItem key={idx} item={item} modeStatus={modeStatus} />
             );
           })}
         </div>

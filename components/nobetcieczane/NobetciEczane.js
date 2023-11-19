@@ -88,9 +88,9 @@ const NobetciEczaneComp = () => {
           <option value="" selected hidden disabled>
             --İl seçiniz--
           </option>
-          {cities.map((i) => {
+          {cities.map((i,idx) => {
             return (
-              <option key={i} value={i}>{i}</option>
+              <option key={idx} value={i}>{i}</option>
             )
           })}
         </select>
@@ -116,8 +116,8 @@ const NobetciEczaneComp = () => {
         <input className="submit-btn" type="submit" value="Eczane Bul"/>
       </form>
       <h4>{now} {info.city} İli { info.region && `${info.region} İlçesi`} Nöbetçi Eczaneleri</h4>
-      { eczaneList && !eczaneList.error && eczaneList?.map((i) => (
-        <div key={i.phone} className="info-wrapper">
+      { eczaneList && !eczaneList.error && eczaneList?.map((i,idx) => (
+        <div key={i.idx} className="info-wrapper">
           <div className="item">
             <div className="upside">
               <div className="upside-left">

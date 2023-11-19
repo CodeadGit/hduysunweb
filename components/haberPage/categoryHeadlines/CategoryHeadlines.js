@@ -139,8 +139,8 @@ const CategoryHeadlines = () => {
       </div>
       <div className="category-headlines-slider">
         <Slider ref={setSliderRef} {...settings} className="category-headlines-slider-slides">
-          {categoryHeadlines.map((item) => {
-            return <SingleSliderItem key={item.id} {...item} mode={modeStatus} />;
+          {categoryHeadlines.map((item,idx) => {
+            return <SingleSliderItem key={idx} {...item} mode={modeStatus} />;
           })}
         </Slider>
       </div>

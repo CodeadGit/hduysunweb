@@ -22,8 +22,8 @@ const Breadcrumb = ({ links }) => {
           </Link>
         </li>
 
-        {links?.map((item) => (
-          <BreadcrumbItem key={item.id} {...item} modeStatus={modeStatus} />
+        {links?.map((item,idx) => (
+          <BreadcrumbItem key={idx} {...item} modeStatus={modeStatus} />
         ))}
       </ul>
     </div>

@@ -24,8 +24,8 @@ const PageSkinLeft = () => {
 
   return (
     <div style={style}>
-      {relatedAds.map((i) => {
-        return <SingleLeftAds key={i.id} item={i} handleReadIncrementAds={handleReadIncrementAds} />
+      {relatedAds.map((i,idx) => {
+        return <SingleLeftAds key={idx} item={i} handleReadIncrementAds={handleReadIncrementAds} />
       })}
     </div>
   );

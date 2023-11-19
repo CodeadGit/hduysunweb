@@ -38,9 +38,9 @@ const Currency = () => {
   return (
     <div className="currency-container">
       <div className="currency-container-section">
-        {currencyInfoArray.map((item) => {
+        {currencyInfoArray.map((item,idx) => {
           return (
-            <div className="wrapper">
+            <div key={idx} className="wrapper">
                 <CurrencyItem key={item.id} {...item} modeStatus={modeStatus} />
                 <div className="rightLine"></div>
             </div>

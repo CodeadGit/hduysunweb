@@ -14,11 +14,11 @@ const Categories = ({ wrapper }) => {
 
   const sorttedCategories = categories.sort((a, b) => a.index - b.index);
   //const isActive = pathname.substring(1).startsWith(i);
- 
+
   return (
     <div className={wrapper}>
       <div className="categories-wrapper">
-        {categories?.map((i,idx) => {
+        {categories?.map((i, idx) => {
           const isActive = pathname.substring(1).startsWith(i);
           return (
             <div key={idx}>

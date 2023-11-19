@@ -168,8 +168,8 @@ const Footer = () => {
           </div>
         </div>
         <ul className="footer-fluid-kunye">
-          {kunyeArray.map((item) => (
-            <KunyeItem key={item.id} {...item} item={item}/>
+          {kunyeArray.map((item,idx) => (
+            <KunyeItem key={idx} {...item} item={item}/>
           ))}
         </ul>
       </div>

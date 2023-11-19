@@ -85,8 +85,8 @@ const Finance = () => {
 
   return (
     <ul className="finance">
-      {currencyInfo.map((item) => {
-        return <Currency key={item.name} item={item} modeStatus={modeStatus} />
+      {currencyInfo.map((item,idx) => {
+        return <Currency key={idx} item={item} modeStatus={modeStatus} />
       })}
     </ul>
   );

@@ -7,10 +7,10 @@ import VideoGalleryDetailVideo from "./VideoGalleryDetailVideo/VideoGalleryDetai
 
 const VideoGalleryDetail = ({ filteredVideo, titleArray }) => {
 
-  const videoInfo = filteredVideo.map((item) => {
+  const videoInfo = filteredVideo.map((item,idx) => {
     return (
       <>
-        <VideoGalleryDetailVideo item={item} />
+        <VideoGalleryDetailVideo key={idx} item={item} />
       </>
     );
   });

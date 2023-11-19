@@ -11,8 +11,8 @@ const Details = () => {
   return (
     <div className="details">
       <div className="details-container">
-        {newsArray.slice(0, 5).map((item) => {
-          return <CardItem key={item.id} {...item} />
+        {newsArray.slice(0, 5).map((item,idx) => {
+          return <CardItem key={idx} {...item} />
         })}
       </div>
     </div>

@@ -44,7 +44,7 @@ const SurMansetSlider = () => {
       <Slider {...settings} className="surMansetSlider-sliders">
         {surMansetNewsList.slice(0, 10).map((item,idx) => {
           return (
-            <SurMansetSliderItem item={item} idx={idx} key={item.id} title={item.title} />
+            <SurMansetSliderItem item={item} idx={idx} key={idx} title={item.title} />
           );
         })}
       </Slider>

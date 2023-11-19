@@ -99,7 +99,7 @@ const Weather = ({ showSearchBar }) => {
       setTemperature(currentTemp);
       // setTemperature(temp);
     } catch (error) {
-      // console.log(error);
+       console.log(error);
     }
   };
 
@@ -119,7 +119,7 @@ const Weather = ({ showSearchBar }) => {
       const fetchedCityName = res.data.result.results[0].name;
       setCityName(fetchedCityName);
     } catch (error) {
-      // console.log(error);
+       console.log(error);
     }
   };
 
@@ -144,7 +144,7 @@ const Weather = ({ showSearchBar }) => {
         }
       }
     } catch (error) {
-      // console.log(error);
+       console.log(error);
     }
   };
 

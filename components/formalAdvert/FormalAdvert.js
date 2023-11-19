@@ -23,8 +23,8 @@ const FormalAdvert = ({ titleArray, filterFormalAdv }) => {
   return (
     <div className="text">
       <Breadcrumb links={links} />
-      {filterFormalAdv.map((i) => (
-        <>
+      {filterFormalAdv.map((i,idx) => (
+        <div key={idx}>
           <span>İlan No : {i.advNo}</span>
           <p
             className={`content ${modeStatus ? "dark" : ""}`}
@@ -33,7 +33,7 @@ const FormalAdvert = ({ titleArray, filterFormalAdv }) => {
             }}
           ></p>
           <span> #ilangovtr Basın no {i.advNo}</span>
-        </>
+        </div>
       ))}
     </div>
   );

@@ -84,8 +84,8 @@ const StickyNavbar = () => {
   return (
     <div className="stickyNavbar">
       <div className="stickyNavbar-container">
-        {stickyNavbarData.map((item) => {
-          return <StickyNavbarIconWrapper key={item.id} item={item} />;
+        {stickyNavbarData.map((item,idx) => {
+          return <StickyNavbarIconWrapper key={idx} item={item} />;
         })}
       </div>
     </div>

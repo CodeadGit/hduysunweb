@@ -82,7 +82,7 @@ const SearchPage = () => {
         {/* <h3>{searchWord}</h3> */}
         {/* <input type="text" value={searchWord} placeholder="ile ilgili haberler"/> */}
         <div className="search-wrapper-left">
-          {wordNews.map((item) => {
+          {wordNews.map((item,idx) => {
             const { id, eng, category, image, title, datePublished } = item;
             const timePublished = new Date(datePublished.seconds * 1000);
             const options = {
@@ -96,7 +96,7 @@ const SearchPage = () => {
             );
 
             return (
-              <div className="tagCardContainer">
+              <div className="tagCardContainer" key={idx}>
                 <div className="tagCardContainer-top">
                   <Link target="_blank" href={`/${category}/${eng}-${id}`}>
                     <img src={image} className="tagCardContainer-top-img" />

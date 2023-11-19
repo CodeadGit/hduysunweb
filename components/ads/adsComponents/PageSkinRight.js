@@ -23,8 +23,8 @@ const PageSkinRight = () => {
 
   return (
     <div style={style}>
-      {relatedAds.map((i) => {
-        return <SingleRightAds key={i.id} item={i} handleReadIncrementAds={handleReadIncrementAds} />
+      {relatedAds.map((i,idx) => {
+        return <SingleRightAds key={idx} item={i} handleReadIncrementAds={handleReadIncrementAds} />
       })}
     </div>
   );

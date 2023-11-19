@@ -99,14 +99,14 @@ const AllCategories = () => {
   return (
     <div className="allCats">
       <div className="left-side">
-        {categories.map((item) => {
-          return <CategoryItem key={item.id} {...item} modeStatus={modeStatus} />;
+        {categories.map((item,idx) => {
+          return <CategoryItem key={idx} {...item} modeStatus={modeStatus} />;
         })}
       </div>
 
       <div className="right-side">
-        {smallCategories.map((item) => {
-          return <SmallCatItem key={item.id} {...item} modeStatus={modeStatus} />;
+        {smallCategories.map((item,idx) => {
+          return <SmallCatItem key={idx} {...item} modeStatus={modeStatus} />;
         })}
       </div>
     </div>

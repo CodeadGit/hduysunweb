@@ -168,7 +168,7 @@ export const ThemeProvider = ({ children }) => {
         read: increment(1),
       });
     } catch (error) {
-     //console.log(error);
+     console.log(error);
     }
   };
 
@@ -184,7 +184,7 @@ export const ThemeProvider = ({ children }) => {
         read: increment(1),
       });
     }catch(error) {
-     // console.log(error)
+      console.log(error)
     }
   }
 
@@ -195,7 +195,7 @@ export const ThemeProvider = ({ children }) => {
         read: increment(1),
       });
     }catch(error) {
-     // console.log(error)
+      console.log(error)
     }
   }
 
@@ -206,7 +206,7 @@ export const ThemeProvider = ({ children }) => {
         read: increment(1)
       });
     }catch(error) {
-     // console.log(error)
+      console.log(error)
     }
   }
 
@@ -229,7 +229,7 @@ export const ThemeProvider = ({ children }) => {
       setFetching(false);
     } catch (error) {
       setFetching(false);
-     // console.log(error);
+      console.log(error);
     }
   };
 

@@ -8,10 +8,10 @@ const SubHeadlineNews = () => {
   const { mansetNewsList, mode } = useThemeContext();
   const modeStatus = mode === "dark";
 
-  const surMansetNews = mansetNewsList.map((item) => {
+  const surMansetNews = mansetNewsList.map((item,idx) => {
     return (
       <SubHeadlineNewsCard
-        key={item.id}
+        key={idx}
         item={item}
       />
     );

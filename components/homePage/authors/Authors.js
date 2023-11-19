@@ -76,8 +76,8 @@ const Authors = () => {
     <div className='authors'>
         <h3 className={modeStatus ? "dark" : ""}>YAZARLARIMIZ</h3>
         <Slider {...settings}>
-        {newsArray.map((item) => {
-            return <CardItem {...item} key={item.id} modeStatus={modeStatus} />
+        {newsArray.map((item,idx) => {
+            return <CardItem {...item} key={idx} modeStatus={modeStatus} />
         })}
       </Slider>
     </div>

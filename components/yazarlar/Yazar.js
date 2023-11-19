@@ -12,8 +12,8 @@ const Yazar = () => {
   return (
     <div className="yazarcard">
       <div className="yazarcard-card">
-        {YazarData.map((item) => (
-          <div className={`yazarcard-card-one ${modeStatus ? "dark" : ""}`}>
+        {YazarData.map((item,idx) => (
+          <div key={idx} className={`yazarcard-card-one ${modeStatus ? "dark" : ""}`}>
             <div className="yazarcard-card-one-top" >
               <img 
               className="yazarcard-card-one-top-img"

@@ -31,7 +31,7 @@ const Pharmacy = () => {
       const list = res.data.result;
       setEczaneList(list);
     } catch (error) {
-     // console.log(error);
+      console.log(error);
     }
   };
 
@@ -54,7 +54,7 @@ const Pharmacy = () => {
       <div className="pharmacy-list">
         <h5 className={`pharmacy-list-title ${modeStatus ? "dark" : ""}`}>Bursa</h5>
         <div className="pharmacy-list-cities">
-          {eczaneList.slice(0, 5).map((item) => {
+          {eczaneList.slice(0, 5).map((item,idx) => {
             const { name, dist, phone } = item;
             return (
               <div key={name} className="pharmacy-single">

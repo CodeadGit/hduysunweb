@@ -5,8 +5,8 @@ import "./mostReadNews.scss";
 function MostReadNews({ modeStatus, mostReadNews }) {
     return (
       <div className="most-read-news">
-        {mostReadNews.map((item) => {
-          return <SingleHaber key={item.id} {...item} mode={modeStatus} />;
+        {mostReadNews.map((item,idx) => {
+          return <SingleHaber key={idx} {...item} mode={modeStatus} />;
         })}
       </div>
     );

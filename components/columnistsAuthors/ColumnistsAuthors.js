@@ -12,10 +12,11 @@ const ColumnistsAuthors = (item) => {
   return (
     <div className="yazarcard">
       <div className="yazarcard-card">
-        {autors.map((item) => (
+        {autors.map((item,idx) => (
           <Link
             href={`yazarlar/${item?.urledTitle}-${item?.id}`}
             className={`yazarcard-card-one ${modeStatus ? "dark" : ""}`}
+            key={idx}
           >
             <div className="yazarcard-card-one-top">
               <img

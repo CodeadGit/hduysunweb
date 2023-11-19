@@ -9,10 +9,10 @@ const Comments = ({confirmedComments, modeStatus, thisPage, setShowAnswers, show
     <div className="comments" id="comments">
       <h4 className={modeStatus ? "dark" : ""}>Yorumlar</h4>
 
-      {confirmedComments.map((comment) => {
+      {confirmedComments.map((comment,idx) => {
         return (
           <SingleComment
-            key={comment.id}
+            key={idx}
             thisPage={thisPage}
             item={comment}
             modeStatus={modeStatus}

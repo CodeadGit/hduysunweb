@@ -47,15 +47,15 @@ const VideoGallery = () => {
           {...settings}
           className="videoGallerySlider-slideWrapper-slides"
         >
-          {videoGallery.map((item) => {
-            return <VideoGalleryItem item={item} />;
+          {videoGallery.map((item,idx) => {
+            return <VideoGalleryItem item={item} key={idx}/>;
           })}
         </Slider>
       </div>
       <span className={`list-all ${modeStatus ? "dark" : ""}`}>Tümü</span>
       <div className="videoGallerySlider-list">
-        {videoGallery.map((item) => {
-          return <VideoGalleryCard key={item.id} item={item} />;
+        {videoGallery.map((item,idx) => {
+          return <VideoGalleryCard key={idx} item={item} />;
         })}
       </div>
     </div>

@@ -6,8 +6,8 @@ import FormalAdvertCard from "./FormalAdvertsCard";
 const FormalAdverts = () => {
   const { formalAdv } = useThemeContext();
 
-  const formalAdvList = formalAdv.map((item, id) => (
-    <FormalAdvertCard key={id} item={item} content={item.content} />
+  const formalAdvList = formalAdv.map((item, idx) => (
+    <FormalAdvertCard key={idx} item={item} content={item.content} />
   ));
 
   return (

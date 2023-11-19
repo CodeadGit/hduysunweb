@@ -49,8 +49,8 @@ const Video = () => {
       </div>
       <div className="video-others">
         <h4 className={modeStatus ? "dark" : ""}>Diğer Haber Videoları</h4>
-        {videosArray.slice(0,6).map((item) => (
-            <SingleVideo key={item.id} {...item} modeStatus={modeStatus} />
+        {videosArray.slice(0,6).map((item,idx) => (
+            <SingleVideo key={idx} {...item} modeStatus={modeStatus} />
         ))}
       </div>
     </div>

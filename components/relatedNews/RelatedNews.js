@@ -64,9 +64,9 @@ const RelatedNews = ({ subCategories, id, category }) => {
   return (
     <div className="related-news">
       <div className="related-news-container">
-        {relatedNews?.sort((a,b) => b.datePublished.seconds - a.datePublished.seconds).slice(0,3).map((item) => {
+        {relatedNews?.sort((a,b) => b.datePublished.seconds - a.datePublished.seconds).slice(0,3).map((item,idx) => {
           return (
-             <SingleRelatedNews key={item?.id} item={item} mode={modeStatus} />
+             <SingleRelatedNews key={idx} item={item} mode={modeStatus} />
           );
         })}
       </div>

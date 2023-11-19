@@ -47,13 +47,13 @@ const SingleTag = ({ params }) => {
 
   return (
       <div className="tagsListWrapper">
-        {relatedTagsNews.map((item) => {
+        {relatedTagsNews.map((item,idx) => {
           const { id, eng, category, image, title, datePublished } = item;
           const timePublished = new Date(datePublished.seconds * 1000);
           const options = { year: "numeric", month: "numeric", day: "2-digit" };
           const formattedDate = timePublished.toLocaleString("tr-TR", options);
           return (
-            <div className="tagCardContainer">
+            <div className="tagCardContainer" key={idx}>
               <div className="tagCardContainer-top">
                 <Link target="_blank" href={`/${category}/${eng}-${id}`}>
                   <img src={image} className="tagCardContainer-top-img" />

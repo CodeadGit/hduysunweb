@@ -23,10 +23,11 @@ const TagsSlider = () => {
   const newsToShow = newsAmount >= 5 ? 5 : newsAmount;
 
   const sliderNews = news
-    .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds)
-    .filter((item) => item.isSlider);
+    .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds).
+    slice(0,20)
+   
 
-  const y = sliderNews.map((i) =>
+  const y = sliderNews.map((i,idx) =>
     moment(i.datePublished.seconds * 1000).format("DD.MM.YYYY - HH:mm")
   );
 
@@ -143,11 +144,11 @@ const TagsSlider = () => {
       </div>
       {filteredNewsbyTag.length < 10 ? (
        <Slider {...settings} className="sliderContainer-slides">
-       {sliderNews.map((item) => {
+       {sliderNews.map((item,idx) => {
          return (
            <CardItem
              item={item}
-             key={item.id}
+             key={idx}
              datePublished={item.datePublished}
              modeStatus={modeStatus}
            />
@@ -156,11 +157,11 @@ const TagsSlider = () => {
      </Slider>
       ) : (
         <Slider {...settings} className="sliderContainer-slides">
-          {filteredNewsbyTag.map((item) => {
+          {filteredNewsbyTag.map((item,idx) => {
             return (
               <CardItem
                 item={item}
-                key={item.id}
+                key={idx}
                 datePublished={item.datePublished}
                 modeStatus={modeStatus}
               />
