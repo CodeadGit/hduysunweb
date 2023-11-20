@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import "./search.scss";
 import { useRouter } from "next/navigation";
 import { useThemeContext } from "@/context/ThemeContext";
@@ -27,7 +27,7 @@ const Search = ({ showSearchBar, setShowSearchBar }) => {
       setSearchWord("");
       return;
     }
-    router.push("/arama");
+    router.push(`/arama?=${searchWord}`);
   };
 
   const handleClick = (e) => {
@@ -47,6 +47,10 @@ const Search = ({ showSearchBar, setShowSearchBar }) => {
     }
   }, [pathname]);
 
+  useEffect(() => {
+    inputRef?.current?.focus();
+  }, [searchWord]);
+  
   return (
     <form onSubmit={handleSubmit} className="searchForm">
       <input

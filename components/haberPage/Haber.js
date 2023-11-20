@@ -14,7 +14,9 @@ import {
   onSnapshot,
   orderBy,
   query,
+  setDoc,
   updateDoc,
+  where,
 } from "firebase/firestore";
 import { db } from "../../firebase/firebase.config";
 import { categoryConvertor } from "@/context/utils";
@@ -35,10 +37,10 @@ import VideoGallery from "./VideoGallery";
 import StickyNavbar from "../stickyNavbar/StickyNavbar";
 
 const Haber = ({ thisPageArticle, thisPage }) => {
+
   const { mode, mostReadNewsList, videoNewsList } = useThemeContext();
   const modeStatus = mode === "dark";
   const [loading, setLoading] = useState(true);
-  // const [loadingComments, setLoadingComments] = useState(true);
   const [comments, setComments] = useState([]);
   const [showAnswers, setShowAnswers] = useState(null);
   const [comment, setComment] = useState({
@@ -62,9 +64,7 @@ const Haber = ({ thisPageArticle, thisPage }) => {
 
   const body = thisPageArticle?.body;
 
-  const mostReadNews = mostReadNewsList
-    .filter((item) => item.id !== id)
-    .slice(0, 5);
+  const mostReadNews = mostReadNewsList.filter((item) => item.id !== id).slice(0, 5);
 
   const existingCategory = categoryConvertor[category] || category;
 
@@ -85,25 +85,29 @@ const Haber = ({ thisPageArticle, thisPage }) => {
 
   const formSubmitHandler = async (e) => {
     e.preventDefault();
-    var referancefirst = doc(db, thisPage.category, thisPage.id);
-    var referance = collection(db, thisPage.category, thisPage.id, "comments");
+    var referancePost = doc(db, thisPage.category, thisPage.id);
+    var idForC = new Date().valueOf().toString().substring(6);
+    var referanceC = doc(db, "Comments", idForC);
     setLoading(true);
     var createdAt = new Date();
-    let a;
 
     try {
-      a = await addDoc(referance, {
+
+      await setDoc(referanceC, {
         ...comment,
         likes: 0,
         comments: 0,
         dislikes: 0,
-        id: new Date().valueOf().toString().substring(6),
+        id: idForC,
         createdAt: createdAt,
         confirmed: false,
+        ref:`${thisPage?.category}/${thisPage?.id}`
       });
-      await updateDoc(referancefirst, {
+
+      await updateDoc(referancePost, {
         comments: increment(1),
       });
+      
       setLoading(false);
       window.alert("Yorum yüklendi");
       setComment({
@@ -115,7 +119,6 @@ const Haber = ({ thisPageArticle, thisPage }) => {
       window.alert("Bir hata meydana geldi", error);
       console.log(error);
     }
-    return a;
   };
 
   const handleChange = (e) => {
@@ -125,31 +128,27 @@ const Haber = ({ thisPageArticle, thisPage }) => {
 
   useEffect(() => {
     let controller = new AbortController();
-    var referance = collection(db, thisPage.category, thisPage.id, "comments");
+    let referance = query(collection(db, "Comments"),where("ref","==",`${thisPage?.category}/${thisPage?.id}`));
 
     (async () => {
-      const q = query(referance, orderBy("createdAt", "asc"));
+      const q = query(referance);
       const jobgetting = onSnapshot(q, (snap) => {
         var thisComments = [];
+        if(!snap.empty){
+          snap.forEach((doc) => {
+            if(doc.data().confirmed){
+              thisComments.unshift({ ...doc.data()});
+            }})};
 
-        snap.forEach((doc) => {
-          thisComments.unshift({ ...doc.data(), doc: doc.id });
-        });
-        setComments(thisComments);
-        // setLoadingComments(false);
+        const sortedComments = thisComments.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
+        setComments(sortedComments);
       });
       return () => jobgetting();
     })();
 
     return () => controller?.abort();
   }, []);
-
-  // console.log(comments);
-  // console.log(showAnswers);
-  // console.log(selectedComment);
-
-  const confirmedComments = comments.filter((comment) => comment.confirmed);
-
+  
   return (
     <div className={`newss ${modeStatus ? "dark" : ""}`}>
       <Breadcrumb mode={mode} links={categoryBreadcrumb} />
@@ -180,7 +179,7 @@ const Haber = ({ thisPageArticle, thisPage }) => {
           <Amblem modeStatus={modeStatus} />
           { thisPage.isCommentable  && (
             <Comments
-              confirmedComments={confirmedComments}
+              comments={comments}
               modeStatus={modeStatus}
               thisPage={thisPage}
               setShowAnswers={setShowAnswers}

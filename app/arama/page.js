@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useThemeContext } from "@/context/ThemeContext";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
@@ -33,10 +33,12 @@ function replaceTurkishCharacters(inputString) {
 }
 
 const SearchPage = () => {
-  const { searchWord, wordNews, setWordNews, mode, mostReadNewsList } =
+  const { searchWord, setSearchWord, wordNews, setWordNews, mode, mostReadNewsList } =
     useThemeContext();
 
   const modeStatus = mode === "dark";
+
+  const inputRef = useRef(null);
 
   const links = [
     {
@@ -53,7 +55,7 @@ const SearchPage = () => {
     if (searchWord.length <= 3) {
       setWordNews([]);
       return;
-    }
+    };
 
     let willBeSearched = replaceTurkishCharacters(searchWord);
 
@@ -75,14 +77,18 @@ const SearchPage = () => {
     };
   }, [searchWord]);
 
+  useEffect(() => {
+    inputRef?.current?.focus();
+  }, [searchWord]);
+
   return (
     <div className="whole-search-page">
       <Breadcrumb links={links} />
+      <input style={{width:"50%"}} type="text" value={searchWord} ref={inputRef} onChange={(e) => setSearchWord(e.target.value)} />
       <div className="search-wrapper">
         {/* <h3>{searchWord}</h3> */}
-        {/* <input type="text" value={searchWord} placeholder="ile ilgili haberler"/> */}
         <div className="search-wrapper-left">
-          {wordNews.map((item,idx) => {
+          {wordNews.map((item, idx) => {
             const { id, eng, category, image, title, datePublished } = item;
             const timePublished = new Date(datePublished.seconds * 1000);
             const options = {

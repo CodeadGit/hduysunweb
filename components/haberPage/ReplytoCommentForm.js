@@ -1,10 +1,16 @@
 import React from "react";
 import "./replytoCommentForm.scss";
 
-const ReplytoCommentForm = ({modeStatus, handleSubmit, handleChange, handleKeyPress}) => {
+const ReplytoCommentForm = ({
+  modeStatus, 
+  comment,
+  handleChange,
+  handleKeyPress,
+  handleSubmitAnswerUpdated
+}) => {
 
   return (
-    <form onSubmit={handleSubmit} className="comments-adds">
+    <form onSubmit={(e)=>{handleSubmitAnswerUpdated(e, comment)}} className="comments-adds">
       <h4 className={modeStatus ? "dark" : ""}>Habere Yorum Ekle</h4>
       <input
         className="input"
@@ -17,7 +23,7 @@ const ReplytoCommentForm = ({modeStatus, handleSubmit, handleChange, handleKeyPr
       <textarea
         className="textarea"
         placeholder="Yorumunuz"
-        rows={"3"}
+        rows="3"
         name="comment"
         required
         onChange={handleChange}

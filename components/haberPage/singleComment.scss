@@ -28,7 +28,6 @@
       transition: var(--transition);
 
       &.dark {
-        // color: var(--redBgColor);
         color: #fff;
       }
 
@@ -38,7 +37,6 @@
         transition: var(--transition);
 
         &.dark {
-          // color: var(--blueBgColor);
           color: #fff;
         }
       }
