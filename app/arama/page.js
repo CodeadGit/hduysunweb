@@ -37,8 +37,6 @@ const SearchPage = () => {
 
   const modeStatus = mode === "dark";
 
-  console.log(process.env.NEXT_PUBLIC_API_KEY)
-
   const links = [
     {
       id: 1,
@@ -54,7 +52,7 @@ const SearchPage = () => {
     if (searchWord.length <= 3) {
       setWordNews([]);
       return;
-    }
+    };
 
     let willBeSearched = replaceTurkishCharacters(searchWord);
 
