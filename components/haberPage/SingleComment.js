@@ -1,22 +1,20 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { db } from "@/firebase/firebase.config";
-import { Avatar, CircularProgress } from "@mui/material";
+import { Avatar } from "@mui/material";
 import {
-  addDoc,
   collection,
   doc,
   increment,
   onSnapshot,
   orderBy,
   query,
+  setDoc,
   updateDoc,
 } from "firebase/firestore";
-// import member1 from "../homePage/assets/member1.png";
-// import Image from "next/image";
 import { GoClock } from "react-icons/go";
-import { TiArrowForward } from "react-icons/ti";
-import { GiCancel } from "react-icons/gi";
+// import { TiArrowForward } from "react-icons/ti";
+// import { GiCancel } from "react-icons/gi";
 import "./singleComment.scss";
 import ReplytoCommentForm from "./ReplytoCommentForm";
 import AnswerstoComments from "./AnswerstoComments";
@@ -33,9 +31,6 @@ const SingleComment = ({
   const [answer, setAnswer] = useState({ author: "", comment: "" });
   const [adding, setAdding] = useState(false);
 
-  // console.log(answers)
-  // console.log(item)
-
   const handleChange = (e) => {
     const { value, name } = e.target;
     setAnswer((prevState) => ({ ...prevState, [name]: value }));
@@ -45,10 +40,8 @@ const SingleComment = ({
     let controller = new AbortController();
     var referance = collection(
       db,
-      thisPage.category,
-      thisPage.id,
-      "comments",
-      item.doc,
+      "Comments",
+      item?.id,
       "answers"
     );
 
@@ -69,31 +62,25 @@ const SingleComment = ({
     return () => controller?.abort();
   }, [adding]);
 
-  const handleShowAnswers = () => {
-    if (showAnswers === item.id) {
-      setShowAnswers(null);
-    } else {
-      setShowAnswers(item.id);
-    }
-  };
+  // const handleShowAnswers = () => {
+  //   if (showAnswers === item.id) {
+  //     setShowAnswers(null);
+  //   } else {
+  //     setShowAnswers(item.id);
+  //   }
+  // };
 
-  const handleSubmit = async (e) => {
+  const handleSubmitAnswerUpdated = async (e, c) => {
     e.preventDefault();
-    var referancefirst = doc(db, thisPage.category, thisPage.id);
-    var referance = collection(
+    var idForA = new Date().valueOf().toString().substring(6)
+    var referancePost = doc(db, thisPage.category, thisPage.id);
+    var referanceComment = doc(db, "Comments", c.id);
+    var referanceAnswer = doc(
       db,
-      thisPage.category,
-      thisPage.id,
-      "comments",
-      item.doc,
-      "answers"
-    );
-    var referanceC = doc(
-      db,
-      thisPage.category,
-      thisPage.id,
-      "comments",
-      item.doc
+      "Comments",
+      c.id,
+      "answers",
+      idForA
     );
 
     setAdding(true);
@@ -101,18 +88,23 @@ const SingleComment = ({
     let a;
 
     try {
-      a = await addDoc(referance, {
+      a = await setDoc(referanceAnswer, {
         ...answer,
-        id: new Date().valueOf().toString().substring(6),
+        likes: 0,
+        comments: 0,
+        dislikes: 0,
+        id: idForA,
         createdAt: createdAt,
         confirmed: false,
-      });
-      await updateDoc(referancefirst, {
+        ref:`${thisPage?.category}/${thisPage?.id}`}
+      );
+      await updateDoc(referancePost, {
         comments: increment(1),
       });
-      await updateDoc(referanceC, {
+      await updateDoc(referanceComment, {
         comments: increment(1),
       });
+     
       setAdding(false);
       window.alert("Yorum yüklendi");
       setAnswer({
@@ -123,7 +115,7 @@ const SingleComment = ({
     } catch (error) {
       setAdding(false);
       window.alert("Bir hata meydana geldi", error);
-     // console.log(error);
+      console.log(error);
     }
     return a;
   };
@@ -132,18 +124,11 @@ const SingleComment = ({
     if (!e.target.value.trim() && e.key === "Enter") return;
     else if (e.key === "Enter") {
       e.preventDefault();
-      handleSubmit(e);
+      handleSubmitAnswerUpdated(e, item);
     }
   };
 
   const confirmedAnswers = answers?.filter((answer) => answer.confirmed);
-
-  // if (answersLoading) {
-  //   // return <CircularProgress />
-  //   return <div className="loading">
-  //     LOADING...
-  //   </div>
-  // }
 
   return (
     <div className="comments-box" key={item.id}>
@@ -167,7 +152,7 @@ const SingleComment = ({
       <div className="likes-dislikes">
         <div className={`like ${modeStatus ? "dark" : ""}`}></div>
         <div className={`dislike ${modeStatus ? "dark" : ""}`}></div>
-        <div
+        {/* <div
           className={`reply ${modeStatus ? "dark" : ""}`}
           onClick={handleShowAnswers}
         >
@@ -182,14 +167,15 @@ const SingleComment = ({
               <span>Yanıtla</span>
             </>
           )}
-        </div>
+        </div> */}
       </div>
       {showAnswers === item.id && (
         <ReplytoCommentForm
           modeStatus={modeStatus}
-          handleSubmit={handleSubmit}
+          handleSubmitAnswerUpdated={handleSubmitAnswerUpdated}
           handleChange={handleChange}
           handleKeyPress={handleKeyPress}
+          comment={item}
         />
       )}
 
