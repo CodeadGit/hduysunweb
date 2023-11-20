@@ -1,4 +1,4 @@
-.homeCategoryCard {
+.subCategoryCard {
   width: 17.5rem;
   height: 20rem;
   border: 1px solid white;
@@ -71,15 +71,14 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-
-      .single-date-title {
+      .card-date-title {
         color: rgba(38, 38, 38, 0.56);
 
         &.dark {
           color: white;
         }
       }
-      .single-date {
+      .card-date {
         color: rgba(38, 38, 38, 0.56);
 
         &.dark {

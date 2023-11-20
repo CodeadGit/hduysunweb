@@ -2,10 +2,10 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem 1.25rem;
+  padding: 3rem 1.25rem;
 
   @media screen and (max-width: 420px) {
-    padding-inline: 1rem;
+    padding-top: 0;
   }
 
   &-title {
@@ -27,6 +27,10 @@
     gap: 1rem;
     width: 100%;
     padding-bottom: 1rem;
+
+    @media screen and (max-width:768px) {
+      display: none;
+    }
 
     .tag-btn {
       border: none;
@@ -68,7 +72,57 @@
       }
     }
   }
+  &-res {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+    padding-bottom: 1rem;
 
+    @media screen and (min-width:769px) {
+      display: none;
+    }
+
+    .tag-btn {
+      border: none;
+      color: #727272;
+      cursor: pointer;
+      padding: 0.5rem;
+      background-color: inherit;
+      color: #727272;
+
+      &.dark {
+        background-color: inherit;
+        color: white;
+      }
+
+      &:focus {
+        color: white;
+        border-radius: 40px;
+        padding: 0.5rem;
+        border-color: #005587;
+        font-weight: 600;
+        background-color: #005587;
+        &.dark {
+          background-color: #df060f;
+          border-color: #df060f;
+        }
+      }
+
+      &:hover {
+        color: white;
+        border-radius: 40px;
+        padding: 0.5rem;
+        border-color: #005587;
+        font-weight: 600;
+        background-color: #005587;
+        &.dark {
+          background-color: #df060f;
+          border-color: #df060f;
+        }
+      }
+    }
+  }
   &-slides {
     // border: 1px solid red;
     display: flex;

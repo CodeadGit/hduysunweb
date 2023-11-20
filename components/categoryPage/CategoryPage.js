@@ -10,6 +10,7 @@ import { categories } from "@/context/utils";
 import { notFound } from "next/navigation";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
+import SubCategory from './subCategories/SubCategory';
 
 const CategoryPage= ({category}) => {
 
@@ -50,6 +51,7 @@ const CategoryPage= ({category}) => {
       {/* <AllCategories /> */}
       {/* <Category category={category} /> */}
       <CategoryPageNews category={category} totalPage={totalPage}/>
+      <SubCategory category={category}/>
       {/* <Register /> */}
     </div>
   )

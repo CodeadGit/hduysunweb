@@ -78,8 +78,8 @@ const CategoryPageNews = ({category,totalPage}) => {
 
   if (pagList.length > 0) {
     return (
-      <div className="categoryWrapper">
-        <div className="categoryWrapper_container">
+      <div className="categoryPageWrapper">
+        <div className="categoryPageWrapper_container">
           {pagList?.map((item,idx) => {
             return (
               <CategoryItem key={idx} item={item} modeStatus={modeStatus} />

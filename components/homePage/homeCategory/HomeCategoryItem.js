@@ -4,17 +4,38 @@ import Link from "next/link";
 import { useThemeContext } from "@/context/ThemeContext";
 const HomeCategoryItem = ({ item, modeStatus }) => {
 
-  const { title, image, category, eng, id } = item;
+  const { title, image, category, eng, id, datePublished } = item;
   const { handleReadIncrement} = useThemeContext();
-  // console.log(item);
+
+  const timePublished = new Date(datePublished.seconds * 1000);
+  const options = { year: "numeric", month: "numeric", day: "2-digit" };
+  const formattedDate = timePublished.toLocaleString("tr-TR", options);
 
   return (
-    <Link href={`/${category}/${eng}-${id}`} target="_blank" className="single" onClick={() => handleReadIncrement(category, id)}>
-      <img className="img" src={image} alt={title} />
-      <p className={`caption ${modeStatus ? "dark" : ""}`}>{title}</p> 
+    <Link href={`/${category}/${eng}-${id}`} target="_blank" className="homeCategoryCard" onClick={() => handleReadIncrement(category, id)}>
+      <div className="homeCategoryCard-top">
+        <div >
+          <img src={image} alt={title} className="homeCategoryCard-top-img" />
+        </div>
+      </div>
+      <div className="homeCategoryCard-bottom">
+        <div
+          className={`homeCategoryCard-bottom-title ${modeStatus ? "dark" : ""}`}
+        >
+           {title}
+        </div>
+        <div
+          className={`homeCategoryCard-bottom-line ${modeStatus ? "dark" : ""}`}
+        ></div>
+        <div className="homeCategoryCard-bottom-date">
+          <span className={`single-date-title ${modeStatus ? "dark" : ""}`}>Yayınlanma T.</span>
+          <span className={`single-date ${modeStatus ? "dark" : ""}`}>{formattedDate}</span>
+        </div>
+      </div>
     </Link>
   );
 };
 
 export default HomeCategoryItem;
+
 

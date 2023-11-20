@@ -68,7 +68,7 @@ export const AdsContextProvider = ({ children }) => {
       const sondakikaGetting = onSnapshot(q, (snap) => {
         var adsListArray = [];
         snap.forEach((doc) => {
-          if(doc.data().isNow.isActive){
+          if(doc.data().isNow.active){
             adsListArray.push(doc.data());
           }
         });

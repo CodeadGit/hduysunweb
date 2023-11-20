@@ -132,16 +132,17 @@
   &-right-section {
     //border: 1px solid red;
     flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
     gap: 1rem;
 
     @media screen and (max-width: 768px) {
-      margin-top: 1rem;
       display: grid;
       padding-inline: 1rem;
-      grid-template-columns: 48% 48%;
+      margin: 0 auto;
+      place-content: center;
+      grid-template-columns: 100%;
+      padding-top: 1rem;
     }
 
     .itemm {

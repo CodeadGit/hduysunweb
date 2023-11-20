@@ -147,7 +147,7 @@ const WeatherInfo = () => {
         })}
       </div>
       <div className="link-section">
-        <Link href="/video">HAVA DURUMU</Link>
+        <div className="link-section-weather">HAVA DURUMU</div>
       </div>
     </div>
   );

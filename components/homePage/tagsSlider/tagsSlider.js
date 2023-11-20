@@ -24,8 +24,9 @@ const TagsSlider = () => {
 
   const sliderNews = news
     .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds).
-    slice(0,20)
+    slice(0,10)
    
+   const sorttedTags = tagsList.sort((a, b) => b[1] - a[1]);
 
   const y = sliderNews.map((i,idx) =>
     moment(i.datePublished.seconds * 1000).format("DD.MM.YYYY - HH:mm")
@@ -114,6 +115,8 @@ const TagsSlider = () => {
     justifyContent: "center",
   };
 
+  const lowerTags = sorttedTags.map(str => str.toLowerCase().trim())
+
   if (loading) {
     return (
       <div style={skeletonStyle}>
@@ -128,7 +131,22 @@ const TagsSlider = () => {
         Popüler Etiketler
       </span>
       <div className="sliderContainer-tags">
-        {tagsList.slice(0, 7).map((i, idx) => (
+        {lowerTags.slice(0, 7).map((i, idx) => (
+          <div
+            key={idx}
+            onClick={() => tagButtonClickHandler(i)}
+            className="tag-btn"
+          >
+            {idx === 6 ? (
+              <span onClick={() => tagButtonClickHandler(i)}>#Bursa</span>
+            ) : (
+              "#" + i.trimStart()
+            )}
+          </div>
+        ))}
+      </div>
+      <div className="sliderContainer-res">
+      {lowerTags.slice(0, 3).map((i, idx) => (
           <div
             key={idx}
             onClick={() => tagButtonClickHandler(i)}

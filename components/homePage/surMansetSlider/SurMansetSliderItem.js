@@ -1,5 +1,6 @@
 import Link from "next/link";
 import "./surMansetSliderItem.scss";
+import { handleShorttSurmanset } from "@/context/utils";
 import { useThemeContext } from "@/context/ThemeContext";
 
 const SurMansetSliderItem = ({ item }) => {
@@ -40,18 +41,24 @@ const SurMansetSliderItem = ({ item }) => {
           />
         ))
       ) : ( */}
-        <Link
-          href={`/${category}/${eng}-${id}`}
-          target="_blank"
-          onClick={() => handleReadIncrement(category, id)}
-        >
-             <img src={image} alt={title} className="surMansetSlider-item-image" />
-          { (item.category==="sonDakika" && item.isTitled) &&(
-            <div className="sondakika-wrapper">
-              <span className="sondakika-wrapper-title">{handleShorttSonDakika(title)}</span>
-            </div>
-          )}
-        </Link>
+      <Link
+        href={`/${category}/${eng}-${id}`}
+        target="_blank"
+        onClick={() => handleReadIncrement(category, id)}
+      >
+        <img src={image} alt={title} className="surMansetSlider-item-image" />
+        {item.isSurmanset && (
+          <div className="sondakika-wrapper">
+            {title.length < 40 ? (
+              <span className="sondakika-wrapper-title">{title}</span>
+            ) : (
+              <span className="sondakika-wrapper-title">
+                {handleShorttSurmanset(title)}
+              </span>
+            )}
+          </div>
+        )}
+      </Link>
     </div>
   );
 };

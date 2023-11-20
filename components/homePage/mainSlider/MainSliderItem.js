@@ -31,8 +31,8 @@ const MainSliderItem = ({ item, idx,pinArray }) => {
         mainAds.map((i,idx) => (
           <img
             key={idx}
-            style={{ width: "100%", height: "27rem", aspectRatio: "3/2.30" }}
             src={i?.image}
+            className="image"
           />
         ))
       ) : 

@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import "./homeCategory.scss";
-import CategoryItem from "./HomeCategoryItem";
+import HomeCategoryItem from "./HomeCategoryItem";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useParams } from "next/navigation";
 import CategorySkeleton from "../../categoryPage/CategorySkeleton";
@@ -30,7 +30,7 @@ const HomeCategory = ({ category, totalPage }) => {
        const q = query(
          collection(db, category),
          orderBy("datePublished", "desc"),
-         limit(9),
+         limit(12),
        );
        const sondakikaGetting = onSnapshot(q, (snap) => {
          var breakingNewsList = [];
@@ -61,11 +61,11 @@ const HomeCategory = ({ category, totalPage }) => {
 
   if (filteredNews.length > 0) {
     return (
-      <div className="categoryWrapper">
-        <div className="categoryWrapper_container">
+      <div className="homeCategoryWrapper">
+        <div className="homeCategoryWrapper_container">
           {filteredNews?.map((item,idx) => {
             return (
-              <CategoryItem key={idx} item={item} modeStatus={modeStatus} />
+              <HomeCategoryItem key={idx} item={item} modeStatus={modeStatus} />
             );
           })}
         </div>

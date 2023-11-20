@@ -49,7 +49,10 @@ export const handleShortt = (text) => {
   return text?.substring(0,33).concat(" ...");
 };
 export const handleShorttSonDakika = (text) => {
-  return text?.substring(0,50).concat(" ...");
+  return text?.substring(0,40).concat(" ...");
+};
+export const handleShorttSurmanset = (text) => {
+  return text?.substring(0,40).concat(" ...");
 };
 export const handleShorttLetter = (title,number) => {
   // const res = title?.split("");

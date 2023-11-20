@@ -18,7 +18,7 @@ const Categories = ({ wrapper }) => {
   return (
     <div className={wrapper}>
       <div className="categories-wrapper">
-        {categories?.map((i, idx) => {
+        {sorttedCategories?.map((i, idx) => {
           const isActive = pathname.substring(1).startsWith(i);
           return (
             <div key={idx}>
