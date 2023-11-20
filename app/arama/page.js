@@ -33,16 +33,11 @@ function replaceTurkishCharacters(inputString) {
 }
 
 const SearchPage = () => {
-  const {
-    searchWord,
-    setSearchWord,
-    wordNews,
-    setWordNews,
-    mode,
-    mostReadNewsList,
-  } = useThemeContext();
+  const { searchWord, wordNews, setWordNews, mode, mostReadNewsList} = useThemeContext();
 
   const modeStatus = mode === "dark";
+
+  console.log(process.env.NEXT_PUBLIC_API_KEY)
 
   const links = [
     {
@@ -76,15 +71,13 @@ const SearchPage = () => {
       return () => newsGetting();
     })();
 
-    return () => {
-      controller?.abort();
-      // setSearchWord("");
-    };
+    return () => controller?.abort();
   }, [searchWord]);
 
   return (
     <div className="whole-search-page">
       <Breadcrumb links={links} />
+      <h3>{searchWord}</h3>
       <div className="search-wrapper">
         {/* <h3>{searchWord}</h3> */}
         {/* <input type="text" value={searchWord} placeholder="ile ilgili haberler"/> */}

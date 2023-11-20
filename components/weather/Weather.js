@@ -19,13 +19,12 @@ import { BsCloudDrizzleFill } from "react-icons/bs";
 import { LuCloudDrizzle } from "react-icons/lu";
 import { useThemeContext } from "@/context/ThemeContext";
 
-const API_KEY = "dFNu5EYXyQrBWpae";
-const GOOGLE_API_KEY = "AIzaSyCluWp7DJQ3HpAMJrUerzfd2RYbSBVvePw";
-
 const Weather = ({showSearchBar}) => {
 
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
+
+  const API_KEY = process.env.NEXT_PUBLIC_OPEN_METEO_API_KEY;
 
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
@@ -87,7 +86,7 @@ const Weather = ({showSearchBar}) => {
 
     try {
       const res = await axios.get(
-        `https://api.open-meteo.com/v1/dwd-icon?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weathercode&current_weather=true&timezone=auto&start_date=${dayTime}&end_date=${dayTime}&apikey=dFNu5EYXyQrBWpae`,
+        `https://api.open-meteo.com/v1/dwd-icon?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weathercode&current_weather=true&timezone=auto&start_date=${dayTime}&end_date=${dayTime}&apikey=${API_KEY}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -176,25 +175,3 @@ const Weather = ({showSearchBar}) => {
 };
 
 export default Weather;
-
-
- // const data = {
-  //   lat: String(latitude),
-  //   long: String(longitude),
-  //   startDate: dayDate,
-  //   endDate: dayDate,
-  // };
-
-  // const fetchWeather = async () => {
-  //   try {
-  //     const res = await axios.get("https://payment.onlinekesif.com/weather", {
-  //       params: data,
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     console.log(res);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };

@@ -15,7 +15,6 @@ const Caption = ({ title, link }) => {
     <div className={`categoryCaption ${modeStatus ? "dark" : ""}`}>
       <h3>{title}</h3>
       <div className="line"></div>
-      {/* <p className={modeStatus ? "dark" : ""} onClick={() => router.push(`/${link}`)}>Hepsini Gör</p>  */}
       <Link className={modeStatus ? "dark" : ""} href={`/${link}`} target="_blank">Hepsini Gör</Link>
     </div>
   );

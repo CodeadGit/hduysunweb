@@ -1,0 +1,128 @@
+.pharmacy {
+  //border: 1px solid red;
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  transition: var(--transition);
+
+  &-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #333;
+      user-select: none;
+      transition: var(--transition);
+
+      &.dark {
+        color: #fff;
+      }
+    }
+
+    &-link {
+      font-size: 1rem;
+      font-weight: 500;
+      transition: var(--transition);
+      border-bottom: 1px solid #333;
+
+      &:link,
+      &:visited {
+        color: #333;
+        border-bottom: 1px solid #333;
+
+        &.dark {
+          color: #fff;
+          border-bottom: 1px solid #fff;
+        }
+      }
+
+      &:hover,
+      &:active {
+        color: #333;
+      }
+    }
+  }
+
+  &-list {
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+
+    &-title {
+      font-size: 1.25rem;
+      font-weight: 500;
+      transition: var(--transition);
+      user-select: none;
+
+      &.dark {
+        color: #fff;
+      }
+    }
+
+    &-cities {
+      // border: 1px solid red;
+      display: flex;
+      flex: 1;
+
+      .pharmacy-single {
+        border: 1px solid rgba(128, 128, 128, 0.185);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 25%;
+        height: 4.5rem;
+        padding: 0.5rem;
+
+        &-top {
+          // border: 1px solid red;
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: var(--textColor);
+          transition: var(--transition);
+
+          &.dark {
+            color: var(--whiteBgColor);
+          }
+        }
+
+        &-bottom {
+          // border: 1px solid red;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          &-district {
+            width: max-content;
+            font-size: 10px;
+            font-weight: 600;
+            background-color: rgba(128, 128, 128, 0.185);
+            padding: 0.3rem 0.6rem;
+            color: var(--textColor);
+            border-radius: 2px;
+            transition: var(--transition);
+
+            &.dark {
+              font-weight: 500;
+              color: var(--whiteBgColor);
+              background-color: var(--subBgColor);
+            }
+
+            &.phone {
+                background-color: transparent;
+                font-size: 12px;
+                padding: 0;
+                font-weight: 500;
+              }
+  
+          }
+        }
+      }
+    }
+  }
+}

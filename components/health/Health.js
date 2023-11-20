@@ -14,12 +14,12 @@ const Health = () => {
   return (
     <div className="pointss">
       <div className="pointss-left-section">
-        <div className="eczane">
+        {/* <div className="eczane">
           <Link href="/nobetci-eczane" target="_blank">
             <div className="big">E</div>
             <div className="down">NÖBETÇİ ECZANE</div>
           </Link>
-        </div>
+        </div> */}
       </div>
       <div className="pointss-right-section">
         {filteredNews?.slice(0, 9).map((item) => {

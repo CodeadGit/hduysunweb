@@ -4,10 +4,13 @@ import "./search.scss";
 import { useRouter } from "next/navigation";
 import { useThemeContext } from "@/context/ThemeContext";
 import { BiSearch } from "react-icons/bi";
+import { usePathname } from "next/navigation";
 
 const Search = ({showSearchBar, setShowSearchBar}) => {
 
   const { searchWord, setSearchWord } = useThemeContext();
+
+  const pathname = usePathname();
 
   const router = useRouter();
 
@@ -38,6 +41,13 @@ const Search = ({showSearchBar, setShowSearchBar}) => {
     handleSubmit(e);
   };
 
+  useEffect(() => {
+    if (showSearchBar) {
+      setShowSearchBar(false);
+      setSearchWord("");
+    }
+  }, [pathname]);
+  
   return (
     <form onSubmit={handleSubmit} className="searchForm">
       <input

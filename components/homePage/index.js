@@ -13,6 +13,7 @@ import MenuUnderAds from "../ads/adsComponents/MenuUnder";
 import Masthead from "../ads/adsComponents/Masthead";
 import Health from "../health/Health";
 import TagsSlider from "./tagsSlider/tagsSlider";
+import Pharmacy from "./pharmacy/Pharmacy";
 
 const Home = () => {
   return (
@@ -31,6 +32,7 @@ const Home = () => {
       {/* <Arcelik /> */}
       <Masthead />
       <Currency />
+      <Pharmacy />
       <Caption title="Sağlık" link="saglik" />
       <Category category="saglik" />
       <Health />

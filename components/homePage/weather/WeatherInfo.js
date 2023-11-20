@@ -103,7 +103,7 @@ const WeatherInfo = () => {
         },
       }
     );
-    // console.log(res.data);
+ 
     const { temperature, weathercode: weatherCode } = res.data.current_weather;
     const maxTemp = res.data.daily.temperature_2m_max[0];
     const minTemp = res.data.daily.temperature_2m_min[0];
