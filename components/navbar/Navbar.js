@@ -15,7 +15,6 @@ const Navbar = () => {
   const { mode, toggle } = useThemeContext();
   const modeStatus = mode === "dark";
   const { storyModall } = useAdsContext();
-  const [showSearchBar, setShowSearchBar] = useState(false);
 
   return (
     <div className={`navbar ${storyModall ? "none" : ""}  ${modeStatus ? "dark" : ""}`}>
@@ -24,8 +23,8 @@ const Navbar = () => {
         <div className="top-right-wrapper">
           <div className="info-section">
             <Finance />
-            <Weather showSearchBar={showSearchBar} />
-            <Buttons wrapper="buttons" showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar} />
+            <Weather />
+            <Buttons wrapper="buttons" />
           </div>
           <Categories wrapper="categories" />
         </div>

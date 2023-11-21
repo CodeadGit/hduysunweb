@@ -64,6 +64,7 @@ export const ThemeProvider = ({ children }) => {
   const [tagsList, setTagsList] = useState([]);
   const [pinnedMansetData, setPinnedMansetData ] = useState([]);
   const [pinnedSurmansetData, setPinnedSurMansetData] = useState([]);
+  const [searchButtonStatus, setSearchButtonStatus] = useState(true);
 
   const hideAds = () => setShowAds(false);
 
@@ -400,6 +401,8 @@ export const ThemeProvider = ({ children }) => {
     // handleStories(cat);
   };
 
+  const handleSearchButton = () => setSearchButtonStatus((pre) => !pre);
+
   const values = {
     toggle,
     mode,
@@ -443,6 +446,8 @@ export const ThemeProvider = ({ children }) => {
     setWordNews,
     tagsList,
     surMansetNewsList,
+    handleSearchButton,
+    searchButtonStatus,
   };
 
   return (

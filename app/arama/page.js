@@ -33,8 +33,16 @@ function replaceTurkishCharacters(inputString) {
 }
 
 const SearchPage = () => {
-  const { searchWord, setSearchWord, wordNews, setWordNews, mode, mostReadNewsList } =
-    useThemeContext();
+  const {
+    searchWord,
+    setSearchWord,
+    wordNews,
+    setWordNews,
+    mode,
+    mostReadNewsList,
+    handleSearchButton,
+    searchButtonStatus,
+  } = useThemeContext();
 
   const modeStatus = mode === "dark";
 
@@ -55,7 +63,7 @@ const SearchPage = () => {
     if (searchWord.length <= 3) {
       setWordNews([]);
       return;
-    };
+    }
 
     let willBeSearched = replaceTurkishCharacters(searchWord);
 
@@ -75,18 +83,33 @@ const SearchPage = () => {
     return () => {
       controller?.abort();
     };
-  }, [searchWord]);
+  }, [searchButtonStatus]);
+
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      handleSearchButton();
+    }
+  };
 
   useEffect(() => {
     inputRef?.current?.focus();
-  }, [searchWord]);
+  }, [searchButtonStatus]);
 
   return (
     <div className="whole-search-page">
       <Breadcrumb links={links} />
-      <input style={{width:"50%"}} type="text" value={searchWord} ref={inputRef} onChange={(e) => setSearchWord(e.target.value)} />
+      <div className="buttons-container">
+        <input
+          style={{ width: "50%" }}
+          type="text"
+          value={searchWord}
+          ref={inputRef}
+          onChange={(e) => setSearchWord(e.target.value)}
+          onKeyDown={handleEnter}
+        />
+        <button type="button" onClick={handleSearchButton}>Search</button>
+      </div>
       <div className="search-wrapper">
-        {/* <h3>{searchWord}</h3> */}
         <div className="search-wrapper-left">
           {wordNews.map((item, idx) => {
             const { id, eng, category, image, title, datePublished } = item;

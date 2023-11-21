@@ -20,26 +20,27 @@ const Search = ({ showSearchBar, setShowSearchBar }) => {
     setSearchWord(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
-    if (searchWord.length <= 3) {
-      setSearchWord("");
-      return;
-    }
-    router.push(`/arama?=${searchWord}`);
-  };
+  //   if (searchWord.length <= 3) {
+  //     setSearchWord("");
+  //     return;
+  //   }
+  //   router.push(`/arama?=${searchWord}`);
+  // };
 
-  const handleClick = (e) => {
-    if (!showSearchBar) {
-      setShowSearchBar(true);
-      inputRef?.current?.focus();
-      return;
-    }
-    setShowSearchBar(false);
-    handleSubmit(e);
-  };
-
+  // const handleClick = () => {
+  //   if (!showSearchBar) {
+  //     setShowSearchBar(true);
+  //     inputRef?.current?.focus();
+  //     return;
+  //   }
+  //   setShowSearchBar(false);
+  //   // handleSubmit(e);
+  //   router.push("/arama");
+  // };
+  
   useEffect(() => {
     if (showSearchBar) {
       setShowSearchBar(false);
@@ -52,7 +53,7 @@ const Search = ({ showSearchBar, setShowSearchBar }) => {
   }, [searchWord]);
   
   return (
-    <form onSubmit={handleSubmit} className="searchForm">
+    <form className="searchForm">
       <input
         ref={inputRef}
         type="text"
@@ -60,7 +61,7 @@ const Search = ({ showSearchBar, setShowSearchBar }) => {
         value={searchWord}
         className={`searchInput ${showSearchBar ? "show" : ""}`}
       />
-      <button type="submit" className="searchButton" onClick={handleClick}>
+      <button type="button" className="searchButton" onClick={() => router.push("/arama")}>
         <BiSearch />
       </button>
     </form>

@@ -15,6 +15,7 @@ import Health from "../health/Health";
 import HomeCategory from "./homeCategory/HomeCategory";
 import TagsSlider from "./tagsSlider/tagsSlider";
 import Pharmacy from "./pharmacy/Pharmacy";
+
 const Home = () => {
   return (
     <div>
