@@ -5,7 +5,7 @@ import {
   collection,
   doc,
   getDoc,
-  onSnapshot,
+  getDocs,
   orderBy,
   query,
 } from "firebase/firestore";
@@ -22,28 +22,24 @@ const PhotoGalleryDetail = ({ params }) => {
   var titleArray = idArray.slice(0,-1).join(" ").toString();
 
   useEffect(() => {
-    let controller = new AbortController();
-    var galleryDetail = [];
-    (async () => {
-      const q = collection(db, "PhotoGallery", idForThisPhotoGallery, "Photos");
+    const fetchGallery = async () => {
+      const q = query(collection(db, "PhotoGallery", idForThisPhotoGallery, "Photos"));
+      try {
+        const querySnapshot = await getDocs(q);
+        var photosList = [];
 
-      // await getDoc(qarticle)
-      //   .then((doc) => {
-      //     if (doc.exists) {
-      //       setPageArticle(doc.data());
-      //     }
-      //   })
-      //   .finally(() => setLoading(false));
-      const galleryDetailGetting = onSnapshot(q, (snap) => {
-        snap.forEach((doc) => {
-          galleryDetail.push({ ...doc.data(), doc: doc.id });
+        querySnapshot.forEach((doc) => {
+          photosList.push({ ...doc.data(), doc: doc.id });
         });
-        setThisPhotoGallery(galleryDetail);
-      });
-      return () => galleryDetailGetting();
-    })();
-    return () => controller?.abort();
+        setThisPhotoGallery(photosList);
+      }
+      catch (error) {
+        console.error("Error fetching comments:", error);
+      }
+    }
+       fetchGallery();
   }, []);
+
 
   return (
     <div>

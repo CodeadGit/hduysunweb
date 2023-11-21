@@ -10,8 +10,8 @@ import {
   addDoc,
   collection,
   doc,
+  getDocs,
   increment,
-  onSnapshot,
   orderBy,
   query,
   updateDoc,
@@ -124,25 +124,26 @@ const Haber = ({ thisPageArticle, thisPage }) => {
   };
 
   useEffect(() => {
-    let controller = new AbortController();
     var referance = collection(db, thisPage.category, thisPage.id, "comments");
 
-    (async () => {
+    const fetchNews = async () => {
       const q = query(referance, orderBy("createdAt", "asc"));
-      const jobgetting = onSnapshot(q, (snap) => {
+      try {
         var thisComments = [];
+        const querySnapshot = await getDocs(q);
 
-        snap.forEach((doc) => {
+        querySnapshot.forEach((doc) => {
           thisComments.unshift({ ...doc.data(), doc: doc.id });
         });
-        setComments(thisComments);
-        // setLoadingComments(false);
-      });
-      return () => jobgetting();
-    })();
-
-    return () => controller?.abort();
+      } catch (error) {
+        console.error(error);
+      }
+      setComments(thisComments);
+      // setLoadingComments(false);
+    };
+    fetchNews();
   }, []);
+
 
   // console.log(comments);
   // console.log(showAnswers);
@@ -178,7 +179,7 @@ const Haber = ({ thisPageArticle, thisPage }) => {
           <Amblem modeStatus={modeStatus} />
           <CategoryHeadlines />
           <Amblem modeStatus={modeStatus} />
-          { thisPage.isCommentable  && (
+          {thisPage.isCommentable && (
             <Comments
               confirmedComments={confirmedComments}
               modeStatus={modeStatus}

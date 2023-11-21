@@ -19,13 +19,13 @@ const HomePage = () => {
 
   const skeletonStyle = { display: "flex", justifyContent: "center" };
 
-  if (loading) {
-    return (
-      <div style={skeletonStyle}>
-        <HomePageSkeleton />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div style={skeletonStyle}>
+  //       <HomePageSkeleton />
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className={`homeContainer ${modeStatus ? "dark" : ""}`}>
@@ -36,7 +36,7 @@ const HomePage = () => {
         modeStatus={modeStatus}
       /> */}
       <div className="right">
-        <SurMansetSlider/>
+         <SurMansetSlider/> 
          {/* <div className="right-top">
           {/* <SecondNews
             handleReadIncrement={handleReadIncrement}

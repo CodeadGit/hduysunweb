@@ -3,7 +3,7 @@ import "./story.scss";
 import Link from "next/link";
 
 const StoryPage = ({ stories }) => {
-  const formatted = stories?.map((i,idx) => {
+  const formatted = stories?.map((i, idx) => {
     return {
       url:
         i?.media ||
@@ -12,13 +12,10 @@ const StoryPage = ({ stories }) => {
       content: ({ action, isPaused }) => {
         return (
           <div className="img-wrapper" key={idx}>
-            <img
-              src={i?.media}
-              className="img-wrapper-img"
-            />
+            {i.media && <img src={i.media} className="img-wrapper-img" alt="" />}
             <div className="info-wrapper">
-              <h4 className="info-wrapper-title">{i?.title}</h4>
-              <p className="info-wrapper-des">{i?.description}</p>
+              <h4 className="info-wrapper-title">{i?.title || ""}</h4>
+              <p className="info-wrapper-des">{i?.description || ""}</p>
               {i?.isNews && (
                 <Link href={i.url} className="info-wrapper-link">
                   Habere gitmek için tıklayın
@@ -30,7 +27,6 @@ const StoryPage = ({ stories }) => {
       },
     };
   });
-
 
   const storyContent = {
     //maxWidth: "1200px",

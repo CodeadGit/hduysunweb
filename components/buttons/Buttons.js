@@ -6,16 +6,15 @@ import { BiSearch } from "react-icons/bi";
 import { BsMoonFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import { useThemeContext } from "@/context/ThemeContext";
-import Search from "../search/Search";
 import { useAuthenticationContext } from "@/context/AuthenticationContext";
+// import Search from "../search/Search";
 
 const Buttons = ({
   wrapper,
   getReaderData,
-  showSearchBar,
-  setShowSearchBar,
 }) => {
   const router = useRouter();
+
   const { mode, toggle } = useThemeContext();
   const [isClicked, setIsClicked] = useState("close");
   const { reader, readerData, logout } = useAuthenticationContext();
@@ -32,13 +31,17 @@ const Buttons = ({
 
   return (
     <div className={wrapper}>
-      <Search
+      {/* <Search
         showSearchBar={showSearchBar}
         setShowSearchBar={setShowSearchBar}
-      />
-      {/* <button type="button" className={`search ${modeStatus ? "dark" : ""}`}>
+      /> */}
+      <button
+        type="button"
+        className={`search ${modeStatus ? "dark" : ""}`}
+        onClick={() => router.push("/arama")}
+      >
         <BiSearch />
-      </button> */}
+      </button>
       <button
         type="button"
         className={`switch ${modeStatus ? "dark" : ""}`}

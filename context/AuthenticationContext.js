@@ -3,7 +3,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 import {
   collection,
   limit,
-  onSnapshot,
   orderBy,
   query,
   doc,
@@ -11,6 +10,7 @@ import {
   updateDoc,
   setDoc,
   getDoc,
+  getDocs,
 } from "firebase/firestore";
 import { auth, db } from "@/firebase/firebase.config";
 import firebase from "firebase/app";
@@ -148,7 +148,7 @@ export const AuthenticationProvider = ({ children }) => {
       comments: 0,
       dislikes: 0,
       readerUnique: new Date().valueOf().toString().substring(6),
-    })
+    });
   };
 
   const googlelogin = async (e, go) => {
@@ -195,34 +195,11 @@ export const AuthenticationProvider = ({ children }) => {
       comments: 0,
       dislikes: 0,
       readerUnique: new Date().valueOf().toString().substring(6),
-    })
+    });
 
     // This gives you a Google Access Token. You can use it to access the Google API.
     // The signed-in user info.
   };
-
-  // const applelogin = async (e) => {
-  //   e.preventDefault();
-
-  //   const subsA = await signInWithPopup(auth, providerA);
-
-  //   await setDoc(doc(db, "Readers", subsA.user.uid), {
-  //     readerid: subsA.user.uid,
-  //     name: subsA.user.name,
-  //     email: subsA.user.email,
-  //     provider: subsA.user.operationType,
-  //     createdAt: new Date(),
-  //     readerUnique: new Date().valueOf().toString().substring(6),
-  //     updatedAt: "",
-  //     activedAt: false,
-  //     interestedCat: "",
-  //     interestedTag: "",
-  //     likes: "",
-  //     comments: "",
-  //     dislikes: "",
-  //   }).then(() => setLogining(false));
-  // };
-
 
   const handleLoginFormChange = (e) => {
     setLoginForm({ ...loginForm, [e.target.name]: e.target.value });
@@ -281,24 +258,23 @@ export const AuthenticationProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    (async () => {
+    const fetchReaders = async () => {
       const q = query(collection(db, "Readers"));
       try {
-        const readerGetting = onSnapshot(q, (snap) => {
-          var list = [];
-          snap.forEach((doc) => {
-            list.unshift({ ...doc.data() });
-          });
-          setReaders(list);
+        const querySnapshot = await getDocs(q);
+        var list = [];
+        querySnapshot.forEach((doc) => {
+          list.unshift({ ...doc.data() });
         });
-        return () => readerGetting();
+        setReaders(list);
       } catch (error) {
         if (error.message === "Quota exceeded.") {
           //console.log("bedava bitti");
           reportQuotaExceeded("readers pulling");
         }
       }
-    })();
+    }
+      fetchReaders();
   }, []);
 
   // const getReaderData = async () => {
@@ -369,7 +345,7 @@ export const AuthenticationProvider = ({ children }) => {
       } catch (error) {
         setLogining(false);
         handleErrorMessageforAll(error.message);
-      //  console.log(error);
+        //  console.log(error);
       }
       try {
         const auth = getAuth();
@@ -380,10 +356,10 @@ export const AuthenticationProvider = ({ children }) => {
       }
       try {
         c = await setDoc(doc(db, "Readers", a.user.uid), {
-           readerid: a.user.uid,
+          readerid: a.user.uid,
           //  ...regForm,
-           email: a.user.email,
-           name: a.user.displayName,
+          email: a.user.email,
+          name: a.user.displayName,
           provider: a.operationType,
           readerUnique: new Date().valueOf().toString().substring(6),
           ...userObj,
@@ -423,15 +399,15 @@ export const AuthenticationProvider = ({ children }) => {
           comments: 0,
           dislikes: 0,
           readerUnique: new Date().valueOf().toString().substring(6),
-        })
+        });
         await sendEmailVerification(auth.currentUser).catch((e) => {
           handleErrorMessageforAll(e.message);
         });
         go();
       } catch (error) {
         setLogining(false);
-       // console.log(error)
-       // alert(error);
+        // console.log(error)
+        // alert(error);
       }
       return a + b + c;
     }
@@ -472,7 +448,7 @@ export const AuthenticationProvider = ({ children }) => {
       setLogining(false);
 
       if (error.message == "Quota exceeded.") {
-       // console.log("bedava bitti");
+        // console.log("bedava bitti");
         reportQuotaExceeded("login");
       }
     }
@@ -494,24 +470,22 @@ export const AuthenticationProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    async () => {
+    const fetchReaders = async () => {
       const q = query(collection(db, "Readers"));
       try {
-        const newsGetting = onSnapshot(q, (snap) => {
-          var list = [];
+        const querySnapshot = await getDocs(q);
+        var readersList = [];
 
-          snap.forEach((doc) => {
-            list.unshift({ ...doc.data() });
-          });
-          setReaders(list);
+        querySnapshot.forEach((doc) => {
+          readersList.unshift({ ...doc.data() });
         });
-        return () => newsGetting();
+        setReaders(readersList);
       } catch (error) {
         console.log(error);
       }
     };
-  });
-
+    fetchReaders();
+  }, []);
 
   const values = {
     readers,
@@ -535,7 +509,7 @@ export const AuthenticationProvider = ({ children }) => {
     regForm,
     amIauthorized,
     googlelogin,
-    loginForm
+    loginForm,
   };
 
   return (

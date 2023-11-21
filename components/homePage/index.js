@@ -23,15 +23,15 @@ const Home = () => {
       <TagsSlider/>
       {/* <Tags /> */}
       {/* <CenterHomeAds /> */}
-      <MenuUnderAds />
+       <MenuUnderAds />
       <Caption title="Gündem" link="gundem" />
       <HomeCategory category="gundem" />
       <Caption title="Tüm Kategori Haberleri" link="tumkategoriler" /> 
-      <AllCategories />
+      <AllCategories /> 
       {/* <Authors /> */}
       {/* <Arcelik /> */}
-      <Masthead />
-      {/* <Currency /> */}
+       <Masthead /> 
+      {/* <Currency />  */}
       <Pharmacy/>
       <Caption title="Sağlık" link="saglik" />
       <HomeCategory category="saglik" />

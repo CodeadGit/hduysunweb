@@ -1,13 +1,15 @@
 "use client";
 import { categoryList, useThemeContext } from "@/context/ThemeContext";
 import React, { useEffect, useState } from "react";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import Link from "next/link";
 import "./format.scss";
+import { useCategoriesContext } from "@/context/CategoriesContext";
 
 const SingleTag = ({ params }) => {
   const { tagsList, handleReadIncrement } = useThemeContext();
+  const { categories } = useCategoriesContext();
   const [relatedTagsNews, setRelatedTagsNews] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -18,28 +20,29 @@ const SingleTag = ({ params }) => {
   };
 
   useEffect(() => {
-    let controller = new AbortController();
-    let tagsListArray = [];
+    const categoryNumber = categories.length;
+    for (let i = 0; i < categoryNumber; i++) {
 
-    for (let i = 0; i < categoryList.length; i++) {
-      (async () => {
-        const q = query(
-          collection(db, categoryList[i].collection)
-        );
-        const newsGetting = onSnapshot(q, (snap) => {
-          snap.forEach((doc) => {
+      const fetchTags = async () => {
+        const q = query(collection(db, categories[i].collection));
+        try {
+          const querySnapshot = await getDocs(q);
+          var tagsList = [];
+          querySnapshot.forEach((doc) => {
             if (doc.data().tags.includes(etiket)) {
-              tagsListArray.push({ ...doc.data(), doc: doc.id });
+              tagsList.push({ ...doc.data(), doc: doc.id });
             }
           });
-          setRelatedTagsNews(tagsListArray);
+          setRelatedTagsNews(tagsList);
           setLoading(false);
-        });
-        return () => newsGetting();
-      })();
+        } 
+      catch(error){
+        console.log(error);
+      }
     }
-    return () => controller?.abort();
-  }, []);
+    fetchTags()
+  }
+  },[]);
 
   if (loading) return <h2>LOADING...</h2>;
 

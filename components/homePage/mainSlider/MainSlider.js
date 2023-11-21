@@ -5,11 +5,44 @@ import "slick-carousel/slick/slick-theme.css";
 import { useThemeContext } from "@/context/ThemeContext";
 import MainSliderItem from "./MainSliderItem";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
+import { db } from "@/firebase/firebase.config";
 
 const MainSlider = () => {
-  const { mansetNewsList, mode } = useThemeContext();
+  const {  mode } = useThemeContext();
+  const [loading, setLoading] = useState(true);
+  const [list, setList] = useState([]);
 
   const modeStatus = mode === "dark";
+
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const q = query(collection(db, "Mansetler"),orderBy("datePublished","desc"),limit(20));
+      try {
+        const querySnapshot = await getDocs(q);
+        var categoriesList = [];
+
+        querySnapshot.forEach((doc) => {
+            //header true olanlar geliyor
+            if(doc.data().index){
+              categoriesList.push({ ...doc.data(), doc: doc.id });
+           
+            }else{
+              categoriesList.push({ ...doc.data(), doc: doc.id,autoindexed:categoriesList.length });
+         
+            }
+         });
+        setList(categoriesList);
+        setLoading(false);
+        console.log(categoriesList)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   const settings = {
     infinite: true,
@@ -40,23 +73,27 @@ const MainSlider = () => {
     ),
   };
 
- // const sonDakikaManset =  mansetNewsList.map((i) => i.category === "sonDakika")
+  // const sonDakikaManset =  mansetNewsList.map((i) => i.category === "sonDakika")
 
   return (
     <div className="mainSlider">
       <div className="mainSlider-large">
-        <Slider {...settings} className="mainSlider-large-sliders">
-          {mansetNewsList.slice(0, 20).map((item,idx) => {
-            return <MainSliderItem item={item} key={idx} idx={idx}/>;
-          })}
-        </Slider>
+        {list && !loading && (
+          <Slider {...settings} className="mainSlider-large-sliders">
+            {list?.slice(0, 20).map((item, idx) => {
+              return <MainSliderItem item={item} key={idx} idx={idx} />;
+            })}
+          </Slider>
+        )}
       </div>
       <div className="mainSlider-med">
-        <Slider {...settings} className="mainSlider-med-slidersRes">
-          {mansetNewsList.slice(0, 15).map((item,idx) => {
-            return <MainSliderItem item={item} key={idx} />;
-          })}
-        </Slider>
+        {list && !loading &&(
+          <Slider {...settings} className="mainSlider-med-slidersRes">
+            {list?.slice(0, 15).map((item, idx) => {
+              return <MainSliderItem item={item} key={idx} />;
+            })}
+          </Slider>
+        )}
       </div>
     </div>
   );

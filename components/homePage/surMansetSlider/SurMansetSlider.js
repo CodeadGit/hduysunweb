@@ -42,7 +42,7 @@ const SurMansetSlider = () => {
   return (
     <div className="surMansetSlider">
       <Slider {...settings} className="surMansetSlider-sliders">
-        {surMansetNewsList.slice(0, 10).map((item,idx) => {
+        {surMansetNewsList?.slice(0, 10).map((item,idx) => {
           return (
             <SurMansetSliderItem item={item} idx={idx} key={idx} title={item.title} />
           );

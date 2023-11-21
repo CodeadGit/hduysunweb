@@ -2,7 +2,13 @@
 import ColumnistsAuthorsDetail from "@/components/columnistsAuthors/columnistsAuthorsDetail/ColumnistsAuthorsDetail";
 import { db } from "@/firebase/firebase.config";
 import { CircularProgress } from "@mui/material";
-import { collection, doc, getDoc, onSnapshot, query } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 
 const YazarDetayPage = ({ params }) => {
@@ -16,39 +22,64 @@ const YazarDetayPage = ({ params }) => {
   var titleArray = idArray.slice(0, -1).join(" ").toString();
 
   useEffect(() => {
-    let controller = new AbortController();
-    var columnistsData = [];
-    (async () => {
+    const fetchAuthors = async () => {
       const qp = query(collection(db, "koseyazilari"));
       const qa = doc(db, "Columnists", idForThisAuthor);
-
       getDoc(qa)
         .then((data) => setAuthor(data.data()))
         .then(() => setAuthorLoading(false));
-      const columnistsGetting = onSnapshot(qp, (snap) => {
-        if (!snap.empty) {
-          snap.forEach((doc) => {
+      try {
+        const querySnapshot = await getDocs(q);
+        var columnistsData = [];
+        if (!querySnapshot.empty) {
+          querySnapshot.forEach((doc) => {
             if (doc.data().authorid === idForThisAuthor && doc.data().active) {
               columnistsData.push({ ...doc.data(), doc: doc.id });
             }
           });
         }
-
         setPosts(columnistsData);
         setLoading(false);
-      });
-      return () => columnistsGetting();
-    })();
-    return () => controller?.abort();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAuthors();
   }, []);
 
+  {
+    /*
+  useEffect(()=>{
+    const fetchData = async () => {
+      const q = query(collection(db, "Comments"), orderBy("createdAt", "desc"));
+
+      try {
+        const querySnapshot = await getDocs(q);
+        var commentList = [];
+
+        querySnapshot.forEach((doc) => {
+          if (doc.data().confirmed === false && !doc.data().denied) {
+            commentList.push(doc.data());
+          }
+        });
+
+        setAllComments(commentList);
+        setAllCommentsLoading(false);
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+      }
+    };
+
+    fetchData();
+},[updating])
+*/
+  }
 
   // var {datePublished} = posts;
- 
+
   // var timePublished = new Date(datePublished * 1000);
   // var options = { year: "numeric", month: "numeric", day: "2-digit" };
-  // var formattedDate = timePublished.toLocaleString("tr-TR", options);  
-  
+  // var formattedDate = timePublished.toLocaleString("tr-TR", options);
 
   if (loading || authorLoading) {
     return <CircularProgress />;

@@ -8,27 +8,28 @@ import { useThemeContext } from "@/context/ThemeContext";
 import SliderSkeleton from "./SliderSkeleton";
 import moment from "moment";
 import { useState, useEffect } from "react";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
-import { categoryList } from "@/context/ThemeContext";
+import { useCategoriesContext } from "@/context/CategoriesContext";
 
 const TagsSlider = () => {
   const { mode, news, tagsList } = useThemeContext();
   const [tagClicked, setTagClicked] = useState("");
   const [loading, setLoading] = useState(true);
   const [filteredNewsbyTag, setFilteredNewsbyTag] = useState([]);
+  const { categories } = useCategoriesContext();
   const modeStatus = mode === "dark";
 
   const newsAmount = news.length;
   const newsToShow = newsAmount >= 5 ? 5 : newsAmount;
 
   const sliderNews = news
-    .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds).
-    slice(0,10)
-   
-   const sorttedTags = tagsList.sort((a, b) => b[1] - a[1]);
+    .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds)
+    .slice(0, 10);
 
-  const y = sliderNews.map((i,idx) =>
+  const sorttedTags = tagsList.sort((a, b) => b[1] - a[1]);
+
+  const y = sliderNews.map((i, idx) =>
     moment(i.datePublished.seconds * 1000).format("DD.MM.YYYY - HH:mm")
   );
 
@@ -46,25 +47,28 @@ const TagsSlider = () => {
   }
 
   useEffect(() => {
-    let controller = new AbortController();
-    let tagsListArray = [];
+    const categoryNumber = categories.length;
 
-    for (let i = 0; i < categoryList?.length; i++) {
-      (async () => {
-        const q = query(collection(db, categoryList[i].collection));
-        const newsGetting = onSnapshot(q, (snap) => {
-          snap.forEach((doc) => {
+    for (let i = 0; i < categoryNumber; i++) {
+      const fetchTags = async () => {
+        const q = query(collection(db, categories[i].collection));
+        try {
+          const querySnapshot = await getDocs(q);
+          let tagsListArray = [];
+
+          querySnapshot.forEach((doc) => {
             if (doc.data().tags.includes(`${tagClicked}`)) {
               tagsListArray.push({ ...doc.data(), doc: doc.id });
             }
           });
           setFilteredNewsbyTag(tagsListArray);
           setLoading(false);
-        });
-        return () => newsGetting();
-      })();
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchTags();
     }
-    return () => controller?.abort();
   }, []);
 
   //const mostPopularTags = tagsTitles.sort((i,j) => i.length - j.length).slice(0,6)
@@ -115,7 +119,7 @@ const TagsSlider = () => {
     justifyContent: "center",
   };
 
-  const lowerTags = sorttedTags.map(str => str.toLowerCase().trim())
+  const lowerTags = sorttedTags.map((str) => str.toLowerCase().trim());
 
   if (loading) {
     return (
@@ -146,7 +150,7 @@ const TagsSlider = () => {
         ))}
       </div>
       <div className="sliderContainer-res">
-      {lowerTags.slice(0, 3).map((i, idx) => (
+        {lowerTags.slice(0, 3).map((i, idx) => (
           <div
             key={idx}
             onClick={() => tagButtonClickHandler(i)}
@@ -161,21 +165,21 @@ const TagsSlider = () => {
         ))}
       </div>
       {filteredNewsbyTag.length < 10 ? (
-       <Slider {...settings} className="sliderContainer-slides">
-       {sliderNews.map((item,idx) => {
-         return (
-           <CardItem
-             item={item}
-             key={idx}
-             datePublished={item.datePublished}
-             modeStatus={modeStatus}
-           />
-         );
-       })}
-     </Slider>
+        <Slider {...settings} className="sliderContainer-slides">
+          {sliderNews.map((item, idx) => {
+            return (
+              <CardItem
+                item={item}
+                key={idx}
+                datePublished={item.datePublished}
+                modeStatus={modeStatus}
+              />
+            );
+          })}
+        </Slider>
       ) : (
         <Slider {...settings} className="sliderContainer-slides">
-          {filteredNewsbyTag.map((item,idx) => {
+          {filteredNewsbyTag.map((item, idx) => {
             return (
               <CardItem
                 item={item}

@@ -4,15 +4,16 @@ import { createContext, useContext, useEffect, useState } from "react";
 import {
   collection,
   limit,
-  onSnapshot,
   orderBy,
   query,
   doc,
   increment,
   updateDoc,
+  getDocs,
 } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import axios from "axios";
+import { useCategoriesContext } from "./CategoriesContext";
 
 export const categoryList = [
   { id: "01", label: "Son Dakika", collection: "sonDakika" },
@@ -55,17 +56,17 @@ export const ThemeProvider = ({ children }) => {
   const [photoGallery, setPhotoGallery] = useState([]);
   const [videoGallery, setVideoGallery] = useState([]);
   const [formalAdv, setFormalAdv] = useState([]);
-  const [fontInc, setFontInc ] = useState(50)
-  const [fontDec, setFontDec] = useState(50)
+  const [fontInc, setFontInc] = useState(50);
+  const [fontDec, setFontDec] = useState(50);
   const [autors, setAutors] = useState([]);
-  const [columnists, setColumnists] = useState([])
+  const [columnists, setColumnists] = useState([]);
   const [searchWord, setSearchWord] = useState("");
   const [wordNews, setWordNews] = useState([]);
   const [tagsList, setTagsList] = useState([]);
-  const [pinnedMansetData, setPinnedMansetData ] = useState([]);
+  const [pinnedMansetData, setPinnedMansetData] = useState([]);
   const [pinnedSurmansetData, setPinnedSurMansetData] = useState([]);
+  const [searchButton, setSearchButton] = useState(true);
 
-  const hideAds = () => setShowAds(false);
 
   const [total, setTotal] = useState({
     league: [],
@@ -76,80 +77,88 @@ export const ThemeProvider = ({ children }) => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const hideAds = () => setShowAds(false);
+
+  const { categories } = useCategoriesContext();
+
   const fontDecBtnClickHandler = () => {
-    setFontDec(fontDec + 1)
-   
+    setFontDec(fontDec + 1);
   };
 
   const fontIncBtnClickHandler = () => {
-    setFontInc(fontInc - 1)
-  
+    setFontInc(fontInc - 1);
   };
 
+  const handleSearchButton = () => setSearchButton((pre) => !pre);
+
   useEffect(() => {
-    let controller = new AbortController();
-    var autorsList = [];
-    (async () => {
-      const qc = query(collection(db, "Columnists"));
-      const autorsGetting = onSnapshot(qc, (snap) => {
-        snap.forEach((doc) => {
-          if(doc.data().active){
+    const fetchAuthors = async () => {
+      const q = query(collection(db, "Columnists"));
+      try {
+        var autorsList = [];
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          if (doc.data().active) {
             autorsList.push({ ...doc.data(), doc: doc.id });
           }
         });
         setAutors(autorsList);
-      });
-      return () => autorsGetting();
-    })();
-    return () => controller?.abort();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAuthors();
   }, []);
 
   useEffect(() => {
-    let controller = new AbortController();
-    var pinnedMansetDataList = [];
-    (async ()=> {
+    const fetchMansetPinned = async () => {
       const q = query(collection(db, "MansetPinned"));
-      const pinnedGetting = onSnapshot(q,(snap) => {
-        snap.forEach((doc) => {
-          if(doc.data().insistent===false) {
-            pinnedMansetDataList.push({...doc.data(), doc:doc.id});
+      try {
+        const querySnapshot = await getDocs(q);
+        var pinnedMansetDataList = [];
+        querySnapshot.forEach((doc) => {
+          if (doc.data().insistent === false) {
+            pinnedMansetDataList.push({ ...doc.data(), doc: doc.id });
           }
         });
-        setPinnedMansetData(pinnedMansetDataList)
-      })
-      return () => pinnedGetting();
-    })();
-    return () => controller?.abort();
-  })
+        setPinnedMansetData(pinnedMansetDataList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchMansetPinned();
+  }, []);
 
   useEffect(() => {
-    let controller = new AbortController();
-    var pinnedSurMansetDataList = [];
-    (async () => {
-      const q = query(collection(db,"SurMansetPinned"));
-      const pinnedSurmansetGetting = onSnapshot(q,(snap) => {
-        snap.forEach((doc) => {
-          if(doc.data().insistent===true){
-             pinnedSurMansetDataList.push({...doc.data(), doc:doc.id});
+    const fetchSurmansetPinned = async () => {
+      const q = query(collection(db, "SurMansetPinned"));
+      try {
+        const querySnapshot = await getDocs(q);
+        var pinnedSurMansetDataList = [];
+
+        querySnapshot.forEach((doc) => {
+          if (doc.data().insistent === true) {
+            pinnedSurMansetDataList.push({ ...doc.data(), doc: doc.id });
           }
         });
-        setPinnedSurMansetData(pinnedSurMansetDataList)
-      })
-      return () => pinnedSurmansetGetting();
-    })();
-    return () => controller?.abort();
-  })
+        setPinnedSurMansetData(pinnedSurMansetDataList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchSurmansetPinned();
+  }, []);
 
-  useEffect(() => {
-    let tagsContainer = [];
-    news.forEach((item) => {
-      const newsTags = [...item.tags];
-      tagsContainer.push(...newsTags);
-    });
-    setTagsList(tagsContainer);
-  }, [news]);
+  // useEffect(() => {
+  //   let tagsContainer = [];
+  //   news.forEach((item) => {
+  //     const newsTags = [...item.tags];
+  //     tagsContainer.push(...newsTags);
+  //   });
+  //   setTagsList(tagsContainer);
+  // }, [news]);
 
-  const uniqueTags = [...new Set(tagsList)];
+  // const uniqueTags = [...new Set(tagsList)];
 
   useEffect(() => {
     const categories = [...new Set(news.map((item) => item.category))];
@@ -168,14 +177,13 @@ export const ThemeProvider = ({ children }) => {
         read: increment(1),
       });
     } catch (error) {
-     console.log(error);
+      console.log(error);
     }
   };
 
-  const handlePhotoGallerySliderReadInc = async (gDoc,fDoc) => {
-
-    var referance = doc(db,"PhotoGallery", gDoc, "Photos", fDoc); 
-    var referanceUp = doc(db,"PhotoGallery", gDoc); 
+  const handlePhotoGallerySliderReadInc = async (gDoc, fDoc) => {
+    var referance = doc(db, "PhotoGallery", gDoc, "Photos", fDoc);
+    var referanceUp = doc(db, "PhotoGallery", gDoc);
     try {
       await updateDoc(referanceUp, {
         read: increment(1),
@@ -183,32 +191,32 @@ export const ThemeProvider = ({ children }) => {
       await updateDoc(referance, {
         read: increment(1),
       });
-    }catch(error) {
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
 
-  const handlePhotoGalleryReadInc = async ( id) => {
-    var referance = doc(db,"PhotoGallery", id); 
+  const handlePhotoGalleryReadInc = async (id) => {
+    var referance = doc(db, "PhotoGallery", id);
     try {
       await updateDoc(referance, {
         read: increment(1),
       });
-    }catch(error) {
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
 
   const handleVideoGalleryReadInc = async (id) => {
-    var reference = doc(db,"VideoGallery",id);
+    var reference = doc(db, "VideoGallery", id);
     try {
       await updateDoc(reference, {
-        read: increment(1)
+        read: increment(1),
       });
-    }catch(error) {
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
 
   const fetchPoints = async () => {
     try {
@@ -234,128 +242,140 @@ export const ThemeProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    let controller = new AbortController();
-    var photoGalleryList = [];
-    (async () => {
+    const fetchPhotoGallery = async () => {
       const q = query(
         collection(db, "PhotoGallery"),
         orderBy("datePublished", "desc")
       );
-      const photoGalleryGetting = onSnapshot(q, (snap) => {
-        snap.forEach((doc) => {
+      try {
+        const querySnapshot = await getDocs(q);
+        var photoGalleryList = [];
+
+        querySnapshot.forEach((doc) => {
           photoGalleryList.push({ ...doc.data(), doc: doc.id });
         });
         setPhotoGallery(photoGalleryList);
-      });
-      return () => photoGalleryGetting();
-    })();
-    return () => controller?.abort();
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchPhotoGallery();
   }, []);
 
   useEffect(() => {
-    let controller = new AbortController();
-    var videoGalleryList = [];
-    (async () => {
+    const fetchVideoGallery = async () => {
       const q = query(
         collection(db, "VideoGallery"),
         orderBy("datePublished", "desc")
       );
-      const videoGalleryGetting = onSnapshot(q, (snap) => {
-        snap.forEach((doc) => {
+      try {
+        var videoGalleryList = [];
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
           videoGalleryList.push({ ...doc.data(), doc: doc.id });
         });
         setVideoGallery(videoGalleryList);
-      });
-      return () => videoGalleryGetting();
-    })();
-    return () => controller?.abort();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchVideoGallery();
   }, []);
 
   useEffect(() => {
-    let controller = new AbortController();
-    var formalAdvArr = [];
-    (async () => {
+    const fetchFormalAdvert = async () => {
       const q = query(
         collection(db, "FormalAdvert"),
         orderBy("datePublished", "desc")
       );
-      const formalAdvGetting = onSnapshot(q, (snap) => {
-        snap.forEach((doc) => {
+      try {
+        var formalAdvArr = [];
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
           if (doc.data().active) {
             formalAdvArr.push({ ...doc.data(), doc: doc.id });
           }
         });
         setFormalAdv(formalAdvArr);
-      });
-      return () => formalAdvGetting();
-    })();
-    return () => controller?.abort();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchFormalAdvert();
   }, []);
 
   useEffect(() => {
-    let controller = new AbortController();
-    var newsList = [];
+    const unsubscribeList = [];
 
-    for (let i = 0; i < categoryList.length; i++) {
-      (async () => {
-        const q = query(
-          collection(db, categoryList[i].collection),
+    const fetchData = async () => {
+      const promises = categories?.map(async (category) => {
+        const collectionRef = query(
+          collection(db, category.collection),
           orderBy("datePublished", "desc"),
           limit(5)
         );
-        const newsGetting = onSnapshot(q, (snap) => {
-          snap.forEach((doc) => {
-            if (
-              doc.data().active &&
-              doc.data().isConfirmed &&
-              doc.data().isNow
-            ) {
-              newsList.push({ ...doc.data(), doc: doc.id });
-            }
-          });
-          setNews(newsList);
-          setLoading(false);
-        });
-        return () => newsGetting();
-      })();
-    }
-    return () => controller?.abort();
-  }, []);
+        const snapshot = await getDocs(collectionRef);
+        const categoryNews = snapshot.docs.map((doc) => ({
+          ...doc.data(),
+          doc: doc.id,
+        }));
+        return categoryNews;
+      });
+
+      const results = await Promise.all(promises);
+
+      const allNews = results.flat();
+      const mansetler = allNews.filter((item) => item.isManset);
+      const surMansetler = allNews.filter((item) => item.isSurmanset);
+      setMansetNewsList(mansetler);
+      setSurMansetNewsList(surMansetler);
+      const sortedNews = allNews.sort(
+        (a, b) => b.datePublished.toDate() - a.datePublished.toDate()
+      );
+      setNews(sortedNews);
+    };
+
+    fetchData();
+
+    return () => {
+      unsubscribeList.forEach((unsubscribe) => unsubscribe());
+    };
+  }, [categories]);
 
   useEffect(() => {
     fetchPoints();
   }, []);
 
   useEffect(() => {
-    let controller = new AbortController();
-    var autorsList = [];
-    (async () => {
-      const qc = query(collection(db, "Columnists"));
-      const autorsGetting = onSnapshot(qc, (snap) => {
-        snap.forEach((doc) => {
+    const fetchColumnists = async () => {
+      const q = query(collection(db, "Columnists"));
+      try {
+        var autorsList = [];
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
           autorsList.push({ ...doc.data(), doc: doc.id });
         });
         setAutors(autorsList);
-      });
-      return () => autorsGetting();
-    })();
-    return () => controller?.abort();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchColumnists();
   }, []);
 
-  useEffect(() => {
-    const mansetNews = news
-      ?.filter((item) => item.isManset)
-      .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds);
-    setMansetNewsList(mansetNews);
-  }, [news]);
+  // useEffect(() => {
+  //   const mansetNews = news
+  //     ?.filter((item) => item.isManset)
+  //     .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds);
+  //   setMansetNewsList(mansetNews);
+  // }, [news]);
 
-  useEffect(() => {
-    const surMansetNews = news
-      ?.filter((item) => item.isSurmanset)
-      .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds);
-      setSurMansetNewsList(surMansetNews);
-  }, [news]);
-
+  // useEffect(() => {
+  //   const surMansetNews = news
+  //     ?.filter((item) => item.isSurmanset)
+  //     .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds);
+  //   setSurMansetNewsList(surMansetNews);
+  // }, [news]);
 
   useEffect(() => {
     const mostReadNews = news?.sort((a, b) => b.read - a.read).slice(0, 6);
@@ -364,14 +384,14 @@ export const ThemeProvider = ({ children }) => {
     // setVideoNewsList(videoNews);
   }, [news]);
 
-  const tagsTitles = news?.reduce((result, item) => {
-    result[item.tags] = [];
-    return result;
-  }, {});
-  Object.keys(tagsTitles).forEach((tags) => {
-    let findTags = news.filter((title) => title.tags == tags);
-    tagsTitles[tags] = findTags;
-  });
+  // const tagsTitles = news?.reduce((result, item) => {
+  //   result[item.tags] = [];
+  //   return result;
+  // }, {});
+  // Object.keys(tagsTitles).forEach((tags) => {
+  //   let findTags = news.filter((title) => title.tags == tags);
+  //   tagsTitles[tags] = findTags;
+  // });
 
   // const handleChangeTitle = (title) => {
   //   for(let s=1;s<=title.length;s++){
@@ -420,6 +440,8 @@ export const ThemeProvider = ({ children }) => {
     handleReadIncrement,
     total,
     fetching,
+    handleSearchButton,
+    searchButton,
     mansetNewsList,
     mostReadNewsList,
     categoryHeadlines,
@@ -439,7 +461,7 @@ export const ThemeProvider = ({ children }) => {
     columnists,
     searchWord,
     setSearchWord,
-    wordNews, 
+    wordNews,
     setWordNews,
     tagsList,
     surMansetNewsList,

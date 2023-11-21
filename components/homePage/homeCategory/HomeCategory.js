@@ -9,11 +9,11 @@ import CategoryPagination from "./HomeCategoryPagination";
 import {
   collection,
   limit,
-  onSnapshot,
   orderBy,
   query,
   doc,
   startAfter,
+  getDocs,
 } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 const HomeCategory = ({ category, totalPage }) => {
@@ -25,45 +25,43 @@ const HomeCategory = ({ category, totalPage }) => {
   const params = useParams();
 
   useEffect(() => {
-   let controller = new AbortController();
-     (async () => {
-       const q = query(
-         collection(db, category),
-         orderBy("datePublished", "desc"),
-         limit(12),
-       );
-       const sondakikaGetting = onSnapshot(q, (snap) => {
-         var breakingNewsList = [];
+    const fetchHomeCategory = async () => {
+      const q = query(
+        collection(db, category),
+        orderBy("datePublished", "desc"),
+        limit(12)
+      );
+      try {
+        const querySnapshot = await getDocs(q);
+        var breakingNewsList = [];
 
-         snap.forEach((doc) => {
-           breakingNewsList.push(doc.data());
-         });
-
+        querySnapshot.forEach((doc) => {
+          breakingNewsList.push(doc.data());
+        });
         setFilteredNews(breakingNewsList);
-         setCategoryLoading(false);
-       });
-
-       return () => sondakikaGetting();
-     })();
-
-    return () => controller?.abort();
-   }, []);
+        setCategoryLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchHomeCategory();
+  }, []);
 
   // console.log(news);
 
-   if (categoryLoading) {
-     return (
-       <div style={{display: "flex", justifyContent:"center"}}>
-        <CategorySkeleton/>
-       </div>
-     )
-   };
+  if (categoryLoading) {
+    return (
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <CategorySkeleton />
+      </div>
+    );
+  }
 
   if (filteredNews.length > 0) {
     return (
       <div className="homeCategoryWrapper">
         <div className="homeCategoryWrapper_container">
-          {filteredNews?.map((item,idx) => {
+          {filteredNews?.map((item, idx) => {
             return (
               <HomeCategoryItem key={idx} item={item} modeStatus={modeStatus} />
             );

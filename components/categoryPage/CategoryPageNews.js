@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useParams } from "next/navigation";
@@ -8,16 +8,15 @@ import CategoryItem from "./CategoryItem";
 import "./categoryPageNews.scss";
 import {
   collection,
+  getDocs,
   limit,
-  onSnapshot,
   orderBy,
   query,
-  doc,
   startAfter,
 } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
-const CategoryPageNews = ({category,totalPage}) => {
-    const { mode } = useThemeContext();
+const CategoryPageNews = ({ category, totalPage }) => {
+  const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
   const [filteredNews, setFilteredNews] = useState([]);
   const [categoryLoading, setCategoryLoading] = useState(true);
@@ -39,18 +38,18 @@ const CategoryPageNews = ({category,totalPage}) => {
   const [lastData, setLastData] = useState({});
 
   useEffect(() => {
-    let controller = new AbortController();
-    var demopagList = [];
-    (async () => {
+    const fetchCategory = async () => {
       const qc = query(
         collection(db, category),
         orderBy("datePublished", "desc"),
         limit(20),
         startAfter(page > 1 ? lastData.datePublished : new Date())
       );
-      const pagListGetting = onSnapshot(qc, (snap) => {
-        if (!snap.empty) {
-          snap.forEach((doc) => {
+      try {
+        var demopagList = [];
+        const querySnapshot = await getDocs(qc);
+        if (!querySnapshot.empty) {
+          querySnapshot.forEach((doc) => {
             if (
               doc.data().datePublished.seconds * 1000 <
               new Date().getTime()
@@ -63,10 +62,11 @@ const CategoryPageNews = ({category,totalPage}) => {
           setLastData(demopagList[19]);
           setLoading(false);
         }
-      });
-      return () => pagListGetting();
-    })();
-    return () => controller?.abort();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchCategory();
   }, [page]);
 
   useEffect(() => {
@@ -80,22 +80,22 @@ const CategoryPageNews = ({category,totalPage}) => {
     return (
       <div className="categoryPageWrapper">
         <div className="categoryPageWrapper_container">
-          {pagList?.map((item,idx) => {
+          {pagList?.map((item, idx) => {
             return (
               <CategoryItem key={idx} item={item} modeStatus={modeStatus} />
             );
           })}
         </div>
         <div>
-        <CategoryPagination
-          totalPage={totalPage}
-          handleChange={handleChange}
-          page={page}
-        />
+          <CategoryPagination
+            totalPage={totalPage}
+            handleChange={handleChange}
+            page={page}
+          />
         </div>
       </div>
     );
   }
 };
 
-export default CategoryPageNews
+export default CategoryPageNews;

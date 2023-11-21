@@ -1,44 +1,12 @@
 "use client";
 import "./loginRegisterContainer.scss";
 import { useAuthenticationContext } from "@/context/AuthenticationContext";
-import firebase from "firebase/app";
-import {
-  onAuthStateChanged,
-  signOut,
-  updateProfile,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
-import {
-  collection,
-  limit,
-  onSnapshot,
-  orderBy,
-  query,
-  doc,
-  increment,
-  updateDoc,
-  setDoc,
-  getDoc,
-} from "firebase/firestore";
-import { auth, db } from "@/firebase/firebase.config";
 import { useRouter } from "next/navigation";
 
 const LoginRegisterContainer = () => {
 
-  const {
-    changedUser,
-    reader,
-    errorMessage,
-    readerData,
-    register,
-    handleRegFormChange,
-    regForm,
-    logining
-  } = useAuthenticationContext();
-
-
   const router = useRouter();
+  const { handleRegFormChange, regForm, register,errorMessage } = useAuthenticationContext()
 
   return (
     <form

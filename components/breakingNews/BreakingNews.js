@@ -4,12 +4,23 @@ import Slider from "react-slick";
 import Link from "next/link";
 import { GoClock } from "react-icons/go";
 import { useThemeContext } from "@/context/ThemeContext";
-import { collection, endBefore, onSnapshot, orderBy, query } from "firebase/firestore";
+import {
+  collection,
+  endBefore,
+  getDocs,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import { handleShort } from "@/context/utils";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { handleShortt, handleShorttBreadcrump,handleShorttSmall, handleShorttMed } from "@/context/utils";
+import {
+  handleShortt,
+  handleShorttBreadcrump,
+  handleShorttSmall,
+  handleShorttMed,
+} from "@/context/utils";
 
 const BreakingNews = () => {
   const { mode } = useThemeContext();
@@ -49,22 +60,22 @@ const BreakingNews = () => {
 
   // console.log(breakingNews);
 
-  var today=new Date();
-  var todayEarly=today.setHours(today.getHours()-6)
-  var todayDated=new Date(todayEarly)
+  var today = new Date();
+  var todayEarly = today.setHours(today.getHours() - 6);
+  var todayDated = new Date(todayEarly);
 
   useEffect(() => {
-    let controller = new AbortController();
-    (async () => {
+    const fetchBreakingNews = async () => {
       const q = query(
         collection(db, "sonDakika"),
-        orderBy("datePublished", "asc"),
+        orderBy("datePublished", "asc")
         // endBefore( "datePublished" > todayDated)
       );
-      const sondakikaGetting = onSnapshot(q, (snap) => {
+      try {
+        const querySnapshot = await getDocs(q);
         var breakingNewsList = [];
 
-        snap.forEach((doc) => {
+        querySnapshot.forEach((doc) => {
           // var now = new Date();
           // var nowHour = now.getHours();
           // var docDate = new Date(doc.data().datePublished.seconds*1000);
@@ -79,15 +90,13 @@ const BreakingNews = () => {
           //   breakingNewsList.unshift(doc.data());
           // };
         });
-
         setBreakingNews(breakingNewsList);
         setLoading(false);
-      });
-
-      return () => sondakikaGetting();
-    })();
-
-    return () => controller?.abort();
+      } catch(error) {
+        console.log(error);
+      }
+    };
+    fetchBreakingNews();
   }, []);
 
   // if (loading) {
@@ -107,7 +116,7 @@ const BreakingNews = () => {
         <ul className="stories">
           {breakingNews.length > 0 && (
             <Slider {...settings}>
-              {breakingNews?.map((item,idx) => {
+              {breakingNews?.map((item, idx) => {
                 return <SingleBreakingNews key={idx} {...item} />;
               })}
             </Slider>
@@ -132,9 +141,13 @@ const SingleBreakingNews = ({ title, datePublished, eng, id }) => {
         <div className="news">
           <span className="news-time">{time}</span>
           <span className="news-info">{`${handleShortt(title)}`}</span>
-          <span className="news-infoTall">{`${handleShorttBreadcrump(title)}`}</span>
-          <span className="news-res-m">{`${handleShorttMed(title)}`}</span>{/*420px ile 768px arası için */}
-          <span className="news-res-s">{`${handleShorttSmall(title)}`}</span>{/*420px için */}
+          <span className="news-infoTall">{`${handleShorttBreadcrump(
+            title
+          )}`}</span>
+          <span className="news-res-m">{`${handleShorttMed(title)}`}</span>
+          {/*420px ile 768px arası için */}
+          <span className="news-res-s">{`${handleShorttSmall(title)}`}</span>
+          {/*420px için */}
         </div>
         {/* <div className="disc"></div>  */}
       </Link>

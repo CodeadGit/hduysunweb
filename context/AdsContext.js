@@ -3,11 +3,11 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   collection,
   increment,
-  onSnapshot,
   orderBy,
   query,
   updateDoc,
   doc,
+  getDocs,
 } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 
@@ -37,54 +37,53 @@ export const AdsContextProvider = ({ children }) => {
   // console.log(adsList);
 
   useEffect(() => {
-    let controller = new AbortController();
-    (async () => {
+    const fetchAds = async () => {
       const q = query(collection(db, "Ads"), orderBy("datePublished", "asc"));
+      try {
+        const adsSnapshot = await getDocs(q);
+        var adsList = [];
 
-      const sondakikaGetting = onSnapshot(q, (snap) => {
-        var adsListArray = [];
-
-        snap.forEach((doc) => {
-          if(doc.data().active && doc.data().expired === false)
-          adsListArray.push(doc.data());
+        adsSnapshot.forEach((doc) => {
+          if (doc.data().active && doc.data().expired === false)
+            adsList.push(doc.data());
         });
-        setAdsList(adsListArray);
+        setAdsList(adsList);
         setLoading(false);
-      });
-
-      return () => sondakikaGetting();
-    })();
-
-    return () => controller?.abort();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAds();
   }, []);
 
   useEffect(() => {
-    let controller = new AbortController();
-    (async () => {
-      const q = query(
-        collection(db, "Stories"),
-        orderBy("datePublished", "asc")
-      );
-      const sondakikaGetting = onSnapshot(q, (snap) => {
-        var adsListArray = [];
-        snap.forEach((doc) => {
-          if(doc.data().isNow.active){
-            adsListArray.push(doc.data());
-          }
-        });
-        setStoriesList(adsListArray);
+     const fetchStories = async () => {
+      const q = query(collection(db, "Stories"),  orderBy("datePublished", "asc"))
+      try {
+        const querySnapshot = await getDocs(q);
+        var storiesList = [];
+
+        querySnapshot.forEach((doc) => {
+          if (doc.data().isNow && doc.data().active) {
+            storiesList.push(doc.data());
+        }});
+        setStoriesList(storiesList);
         setStoriesLoading(false);
-      });
-      return () => sondakikaGetting();
-    })();
-    return () => controller?.abort();
-  }, []);
+      }catch(error) {
+        console.log(error)
+      }
+      }
+      fetchStories();
+     
+  },[]);
 
-storiesList.sort((a,b) => b.datePublished.seconds - a.datePublished.seconds);
-// console.log(storiesList)
 
-// const y = storiesList.map((i) => moment(i.datePublished.seconds * 1000).format("DD.MM.YYYY - HH:mm"))
-// console.log(y)
+
+  storiesList.sort((a, b) => b.datePublished.seconds - a.datePublished.seconds);
+  // console.log(storiesList)
+
+  // const y = storiesList.map((i) => moment(i.datePublished.seconds * 1000).format("DD.MM.YYYY - HH:mm"))
+  // console.log(y)
 
   const uniqueCategories = [...new Set(storiesList.map((i) => i.category))];
 
@@ -93,7 +92,7 @@ storiesList.sort((a,b) => b.datePublished.seconds - a.datePublished.seconds);
   const singleStories = storiesList.filter((i) => {
     if (uniqueCategories.includes(i.category)) {
       const idx = uniqueCategories.indexOf(i.category);
-      uniqueCategories.splice(idx,1);
+      uniqueCategories.splice(idx, 1);
       return i;
     }
   });
@@ -129,7 +128,7 @@ storiesList.sort((a,b) => b.datePublished.seconds - a.datePublished.seconds);
     handleStories,
     singleStories,
     closeAdv,
-    advertPage
+    advertPage,
   };
 
   return <AdsContext.Provider value={values}>{children}</AdsContext.Provider>;

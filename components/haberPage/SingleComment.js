@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { db } from "@/firebase/firebase.config";
-import { Avatar, CircularProgress } from "@mui/material";
+import { Avatar } from "@mui/material";
 import {
   addDoc,
   collection,
   doc,
+  getDocs,
   increment,
-  onSnapshot,
   orderBy,
   query,
   updateDoc,
@@ -42,7 +42,6 @@ const SingleComment = ({
   };
 
   useEffect(() => {
-    let controller = new AbortController();
     var referance = collection(
       db,
       thisPage.category,
@@ -52,21 +51,21 @@ const SingleComment = ({
       "answers"
     );
 
-    (async () => {
+    const fetchSingleComment = async () => {
       const q = query(referance, orderBy("createdAt", "asc"));
-      const jobgetting = onSnapshot(q, (snap) => {
-        var thisComments = [];
-
-        snap.forEach((doc) => {
-          thisComments.unshift({ ...doc.data(), doc: doc.id });
+      try {
+        const querySnapshot = await getDocs(q);
+        var singleComments = [];
+        querySnapshot.forEach((doc) => {
+          singleComments.unshift({ ...doc.data(), doc: doc.id });
         });
-        setAnswers(thisComments);
+        setAnswers(singleComments);
         setAnswersLoading(false);
-      });
-      return () => jobgetting();
-    })();
-
-    return () => controller?.abort();
+      } catch (error) {
+        console.log(error);
+      }
+      fetchSingleComment();
+    };
   }, [adding]);
 
   const handleShowAnswers = () => {
@@ -123,7 +122,7 @@ const SingleComment = ({
     } catch (error) {
       setAdding(false);
       window.alert("Bir hata meydana geldi", error);
-     // console.log(error);
+      // console.log(error);
     }
     return a;
   };
@@ -137,13 +136,6 @@ const SingleComment = ({
   };
 
   const confirmedAnswers = answers?.filter((answer) => answer.confirmed);
-
-  // if (answersLoading) {
-  //   // return <CircularProgress />
-  //   return <div className="loading">
-  //     LOADING...
-  //   </div>
-  // }
 
   return (
     <div className="comments-box" key={item.id}>
@@ -196,7 +188,7 @@ const SingleComment = ({
       {confirmedAnswers?.length > 0 &&
         confirmedAnswers
           ?.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
-          .map((answer,idx) => {
+          .map((answer, idx) => {
             return (
               <AnswerstoComments
                 modeStatus={modeStatus}

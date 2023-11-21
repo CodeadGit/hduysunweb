@@ -8,27 +8,26 @@ import { useThemeContext } from '@/context/ThemeContext';
 import CategoryPageNews from './CategoryPageNews';
 import { categories } from "@/context/utils";
 import { notFound } from "next/navigation";
-import { collection, onSnapshot, query } from "firebase/firestore";
+import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
-import SubCategory from './subCategories/SubCategory';
 
 const CategoryPage= ({category}) => {
 
   const [totalPage, setTotalPage] = useState(0);
+ 
   useEffect(() => {
-    let controller = new AbortController();
-    var demopagList = [];
-    (async () => {
-      const qc = query(
-        collection(db, category)
-      );
-      const pagListGetting = onSnapshot(qc, (snap) => {
-         setTotalPage(snap.size)
-      });
-      return () => pagListGetting();
-    })();
-    return () => controller?.abort();
-  }, []);
+    const fetchCategoryPage = async () => {
+      const qc = query(collection(db, category));
+      try {
+        const querySnapshot = await getDocs(qc);
+        setTotalPage(querySnapshot.size);
+      }
+      catch(error) {
+         console.log(error)
+      }
+    }
+     fetchCategoryPage();
+  },[]);
 
   const links = [
     {
@@ -51,7 +50,7 @@ const CategoryPage= ({category}) => {
       {/* <AllCategories /> */}
       {/* <Category category={category} /> */}
       <CategoryPageNews category={category} totalPage={totalPage}/>
-      <SubCategory category={category}/>
+      {/* <SubCategory category={category}/> */}
       {/* <Register /> */}
     </div>
   )

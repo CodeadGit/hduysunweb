@@ -29,70 +29,14 @@ const CategoryHeadlines = () => {
               slidesToShow: 2,
               slidesToScroll: 1,
               arrows:false,
-              // nextArrow: (
-              //   <button type="button" class="slick-next">
-              //       Next
-              //     </button>
-              //   ),
-              //   prevArrow: (
-              //     <button type="button" class="slick-prev">
-              //       Previous
-              //     </button>
-              //   ),
             }
           },
-          // {
-          //   breakpoint: 1150,
-          //   settings: {
-          //     slidesToShow: 2,
-          //     slidesToScroll: 1,
-          //     arrows:true,
-          //     nextArrow: (
-          //       <button type="button" class="slick-next">
-          //           Next
-          //         </button>
-          //       ),
-          //       prevArrow: (
-          //         <button type="button" class="slick-prev">
-          //           Previous
-          //         </button>
-          //       ),
-          //   }
-          // },
-          // {
-          //   breakpoint: 900,
-          //   settings: {
-          //     slidesToShow: 2,
-          //     slidesToScroll: 1,
-          //     arrows:true,
-          //     nextArrow: (
-          //       <button type="button" class="slick-next">
-          //           Next
-          //         </button>
-          //       ),
-          //       prevArrow: (
-          //         <button type="button" class="slick-prev">
-          //           Previous
-          //         </button>
-          //       ),
-          //   }
-          // },
           {
             breakpoint: 768,
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
               arrows:false,
-              // nextArrow: (
-              //   <button type="button" class="slick-next">
-              //       Next
-              //     </button>
-              //   ),
-              //   prevArrow: (
-              //     <button type="button" class="slick-prev">
-              //       Previous
-              //     </button>
-              //   ),
             }
           },
           {
