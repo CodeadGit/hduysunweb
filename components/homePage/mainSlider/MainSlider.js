@@ -19,7 +19,7 @@ const MainSlider = () => {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const q = query(collection(db, "Mansetler"),orderBy("datePublished","desc"),limit(20));
+      const q = query(collection(db, "isManset"),orderBy("datePublished","desc"),limit(20));
       try {
         const querySnapshot = await getDocs(q);
         var categoriesList = [];

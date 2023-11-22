@@ -10,22 +10,22 @@ import MainSlider from "./mainSlider/MainSlider";
 import SurMansetSlider from "./surMansetSlider/SurMansetSlider";
 
 const HomePage = () => {
-  const { mode, handleReadIncrement, mansetNewsList, loading } =
+  const { mode, handleReadIncrement, newsLoading } =
     useThemeContext();
   const modeStatus = mode === "dark";
 
-  const mainNews = mansetNewsList[0];
-  const secondNews = mansetNewsList[1];
+  // const mainNews = mansetNewsList[0];
+  // const secondNews = mansetNewsList[1];
 
   const skeletonStyle = { display: "flex", justifyContent: "center" };
 
-  // if (loading) {
-  //   return (
-  //     <div style={skeletonStyle}>
-  //       <HomePageSkeleton />
-  //     </div>
-  //   );
-  // }
+ if (newsLoading) {
+     return (
+       <div style={skeletonStyle}>
+         <HomePageSkeleton />
+       </div>
+     );
+   }
 
   return (
     <div className={`homeContainer ${modeStatus ? "dark" : ""}`}>

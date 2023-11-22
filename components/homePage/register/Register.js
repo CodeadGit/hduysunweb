@@ -16,7 +16,6 @@ const Register = () => {
   return (
     <div className="register">
       <div className="register-form">
-        {/* <h3 className={modeStatus ? "dark" : ""}>ÜYE OLUN</h3> */}
         <p className={modeStatus ? "dark" : ""}>
           Üyemiz olarak öncelikli haber bildirimlerine, haber takibi ve yorum
           yapabilirsiniz.

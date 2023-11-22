@@ -32,7 +32,6 @@ const TagsPage = () => {
     },
   ];
 
-  if (loading) return <h2>LOADING...</h2>;
 
   return (
     <div className="whole-tags-page">

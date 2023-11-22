@@ -21,7 +21,7 @@ const SingleSliderItem = ({ category, image, title, eng, id, mode,datePublished 
         <div className="slider-content-top">
           <div className="slider-content-top-left">
           <span className={`disc ${modeStatus ? "dark" : ""}`}></span>
-        <h5 className={`category ${mode ? "dark" : ""}`}>{categoryConvertor[category]}</h5>
+        <div className={`category ${mode ? "dark" : ""}`}>{categoryConvertor[category]}</div>
             </div>
             <div className="slider-content-top-right">
               <span className="right-date">{formattedDate}</span>

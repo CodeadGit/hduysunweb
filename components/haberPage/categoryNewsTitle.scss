@@ -1,9 +1,10 @@
 .most-read-news-title {
     //border: 1px solid red;
     font-size: 1.25rem;
+    font-weight: 600;
     padding-bottom: 0.4rem;
     border-bottom: 3px solid #e1e1e1;
-    color: #000;
+    color: #333333;
     transition: var(--transition);
 
     &.dark {

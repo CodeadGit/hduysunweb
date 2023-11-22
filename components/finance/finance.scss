@@ -8,6 +8,10 @@
   font-size: 14px;
   font-weight: 400;
 
+  @media screen and (max-width:1200px) {
+    flex: 0;
+  }
+
   .column {
     // border: 1px solid red;
     display: flex;

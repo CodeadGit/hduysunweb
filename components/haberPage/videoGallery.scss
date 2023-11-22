@@ -3,6 +3,9 @@
   margin-top: 1.5rem;
 
   &-title {
+    color: #333333;
+    font-size: 1.25rem;
+    font-weight: 600;
     //   border: 1px solid;
     transition: var(--transition);
 
@@ -29,15 +32,16 @@
 
   &-news-header {
     //   border: 1px solid red;
-    font-size: 1rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #333333;
     margin-top: 1rem;
-    color: black;
     transition: var(--transition);
 
     &.visited,
     &.active,
     &.hover {
-      color: black;
+      color: #333333;
     }
 
     &.dark {

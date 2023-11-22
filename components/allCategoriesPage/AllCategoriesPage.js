@@ -6,7 +6,6 @@ import otomobil from "../homePage/assets/otomobil.png";
 const AllCategoriesWrapper = () => {
   return (
     <div className="allCategoriesPage">
-        <h4>ALL CATEGORIES PAGE</h4>
       {/* <div className="box">
         <div className="imgWrapper" alt="dsf">
             <Image src={otomobil} fill />

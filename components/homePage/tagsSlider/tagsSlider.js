@@ -13,7 +13,7 @@ import { db } from "@/firebase/firebase.config";
 import { useCategoriesContext } from "@/context/CategoriesContext";
 
 const TagsSlider = () => {
-  const { mode, news, tagsList } = useThemeContext();
+  const { mode, news, tagsList, newsLoading } = useThemeContext();
   const [tagClicked, setTagClicked] = useState("");
   const [loading, setLoading] = useState(true);
   const [filteredNewsbyTag, setFilteredNewsbyTag] = useState([]);
@@ -121,13 +121,13 @@ const TagsSlider = () => {
 
   const lowerTags = sorttedTags.map((str) => str.toLowerCase().trim());
 
-  if (loading) {
-    return (
-      <div style={skeletonStyle}>
-        <SliderSkeleton />
-      </div>
-    );
-  }
+   if (newsLoading) {
+     return (
+       <div style={skeletonStyle}>
+         <SliderSkeleton />
+       </div>
+     );
+   }
 
   return (
     <div className="sliderContainer">

@@ -32,10 +32,10 @@ const Home = () => {
       {/* <Arcelik /> */}
        <Masthead /> 
       {/* <Currency />  */}
-      <Pharmacy/>
+      {/* <Pharmacy/> */}
       <Caption title="Sağlık" link="saglik" />
       <HomeCategory category="saglik" />
-      <Health />
+      {/* <Health /> */}
       <WeatherInfo /> 
       <TrialComp />
       <Video />

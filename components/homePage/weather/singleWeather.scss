@@ -42,6 +42,10 @@
       .temperature {
         color: #d0b01b;
 
+        @media screen and (max-width:850px) {
+          padding-left: .5rem;
+        }
+
         span {
           font-size: 10px;
           font-weight: 600;

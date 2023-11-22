@@ -6,49 +6,6 @@ import axios from "axios";
 import SingleWeather from "./SingleWeather";
 import { useThemeContext } from "@/context/ThemeContext";
 
-// const weatherArray = [
-//   {
-//     id: 1,
-//     city: "Londra",
-//     country: "Birleşik Krallık",
-//     minTemp: "4°C",
-//     maxTemp: "13°C",
-//     icon: <BsFillCloudSunFill />,
-//   },
-//   {
-//     id: 2,
-//     city: "Paris",
-//     country: "Fransa",
-//     minTemp: "4°C",
-//     maxTemp: "14°C",
-//     icon: <BsFillCloudRainFill />,
-//   },
-//   {
-//     id: 3,
-//     city: "Berlin",
-//     country: "Almanya",
-//     minTemp: "6°C",
-//     maxTemp: "11°C",
-//     icon: <BsFillCloudFill />,
-//   },
-//   {
-//     id: 4,
-//     city: "Roma",
-//     country: "İtalya",
-//     minTemp: "9°C",
-//     maxTemp: "17°C",
-//     icon: <BsFillCloudSunFill />,
-//   },
-//   {
-//     id: 5,
-//     city: "Madrid",
-//     country: "İspanya",
-//     minTemp: "8°C",
-//     maxTemp: "19°C",
-//     icon: <BsFillCloudSunFill />,
-//   },
-// ];
-
 const citiesInfo = [
   {
     cityName: "Londra",

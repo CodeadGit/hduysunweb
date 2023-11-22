@@ -47,7 +47,9 @@
     .coming-soon {
         margin-top: 2rem;
         text-align: center;
-        font-size: 1.125rem;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #333333;
 
         &.dark {
             color: #fff;
@@ -56,8 +58,10 @@
 
     .source-title {
         // border: 1px solid green;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #333333;
         margin-top: 2rem;
-        color: var(--textColor);
         transition: var(--transition);
 
         span {

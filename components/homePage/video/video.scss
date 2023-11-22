@@ -44,12 +44,16 @@ padding-inline: 1rem;
     width: 15.5rem;
 
     h4 {
-      color: var(--textColor);
-      font-weight: 600;
+      color: #333333;
+      font-weight: 500;
       letter-spacing: 0.3px;
       transition: var(--transition);
+      font-size: 1.125rem;
 
-      @media screen and (max-width: 768px) {
+      @media screen and (min-width:769px) and (max-width: 920px) {
+        font-size: .8rem;
+      }
+      @media screen and (max-width:768px) {
         display: none;
       }
 

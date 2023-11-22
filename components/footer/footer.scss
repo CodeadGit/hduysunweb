@@ -114,7 +114,11 @@
             padding-inline: 0.1rem;
 
           }
-
+           h4 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #333333;
+           }
 
 
 
@@ -173,6 +177,7 @@
               margin-bottom: 0.8rem;
             }
           }
+
 
           .right-cat-list {
             // border: 1px solid green;
@@ -329,6 +334,12 @@
     align-items: center;
     justify-content: center;
     transition: var(--transition);
+
+    h6 {
+      font-size: .875rem;
+      font-weight: 700;
+      color: #333333;
+    }
 
       @media screen and (max-width: 850px) and (min-width: 768px) {
       margin-top: 1rem;

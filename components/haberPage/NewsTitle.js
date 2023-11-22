@@ -9,7 +9,7 @@ const NewsTitle = ({ modeStatus, title }) => {
   return (
     <div className="newss-container-content-title">
       {/* <div className={`blue-line ${modeStatus ? "dark" : ""}`}></div> */}
-       <h1 style={{fontSize: `${fontDec}px`}} className={modeStatus ? "dark" : ""}> {title} </h1> 
+       <h1 style={{fontSize:"2rem",fontWeight:"600",color:"#333333"}} className={modeStatus ? "dark" : ""}> {title} </h1> 
     </div>
   );
 };

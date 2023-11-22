@@ -13,7 +13,7 @@ const TrialCardItem = ({ item, modeStatus }) => {
   return  <Link
   href={`/${category}/${eng}-${id}`}
   target="_blank"
-  className="singleSporCard"
+  className={`singleSporCard ${modeStatus ? "dark" : ""}`}
   onClick={() => handleReadIncrement(category, id)}
 >
   <div className="singleSporCard-top">

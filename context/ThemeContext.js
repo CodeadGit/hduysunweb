@@ -66,7 +66,7 @@ export const ThemeProvider = ({ children }) => {
   const [pinnedMansetData, setPinnedMansetData] = useState([]);
   const [pinnedSurmansetData, setPinnedSurMansetData] = useState([]);
   const [searchButton, setSearchButton] = useState(true);
-
+  const [newsLoading , setNewsLoading] = useState(true);
 
   const [total, setTotal] = useState({
     league: [],
@@ -333,6 +333,7 @@ export const ThemeProvider = ({ children }) => {
         (a, b) => b.datePublished.toDate() - a.datePublished.toDate()
       );
       setNews(sortedNews);
+      setNewsLoading(false);
     };
 
     fetchData();
@@ -363,35 +364,12 @@ export const ThemeProvider = ({ children }) => {
     fetchColumnists();
   }, []);
 
-  // useEffect(() => {
-  //   const mansetNews = news
-  //     ?.filter((item) => item.isManset)
-  //     .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds);
-  //   setMansetNewsList(mansetNews);
-  // }, [news]);
-
-  // useEffect(() => {
-  //   const surMansetNews = news
-  //     ?.filter((item) => item.isSurmanset)
-  //     .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds);
-  //   setSurMansetNewsList(surMansetNews);
-  // }, [news]);
-
   useEffect(() => {
     const mostReadNews = news?.sort((a, b) => b.read - a.read).slice(0, 6);
     setMostReadNewsList(mostReadNews);
     // const videoNews = videoGallery.filter((i) => i.category === "gundem");
     // setVideoNewsList(videoNews);
   }, [news]);
-
-  // const tagsTitles = news?.reduce((result, item) => {
-  //   result[item.tags] = [];
-  //   return result;
-  // }, {});
-  // Object.keys(tagsTitles).forEach((tags) => {
-  //   let findTags = news.filter((title) => title.tags == tags);
-  //   tagsTitles[tags] = findTags;
-  // });
 
   // const handleChangeTitle = (title) => {
   //   for(let s=1;s<=title.length;s++){
@@ -443,6 +421,7 @@ export const ThemeProvider = ({ children }) => {
     handleSearchButton,
     searchButton,
     mansetNewsList,
+    newsLoading,
     mostReadNewsList,
     categoryHeadlines,
     handlePhotoGallerySliderReadInc,

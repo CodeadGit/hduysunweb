@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./surMansetSlider.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -6,9 +6,44 @@ import "slick-carousel/slick/slick-theme.css";
 import { useThemeContext } from "@/context/ThemeContext";
 import SurMansetSliderItem from "./SurMansetSliderItem";
 import Link from "next/link";
+import { collection, limit, orderBy, query } from "firebase/firestore";
+import { db } from "@/firebase/firebase.config";
 
 const SurMansetSlider = () => {
-  const { surMansetNewsList, mode } = useThemeContext();
+  const { mode } = useThemeContext();
+  const [surMansetList, setSurmansetList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSurmanset = async () => {
+      const q = query(
+        collection(db, "isSurmanset"),
+        orderBy("datePublished", "desc"),
+        limit(20)
+      );
+      try {
+        const querySnapshot = await getDocs(q);
+        var surMansetArr = [];
+
+        querySnapshot.forEach((doc) => {
+          if (doc.data().index) {
+            surMansetArr.push({ ...doc.data(), doc: doc.id });
+          } else {
+            surMansetArr.push({
+              ...doc.data(),
+              doc: doc.id,
+              autoindexed: surMansetArr.length,
+            });
+          }
+        });
+        setSurmansetList(surMansetArr);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchSurmanset();
+  }, []);
 
   const settings = {
     infinite: true,
@@ -42,9 +77,14 @@ const SurMansetSlider = () => {
   return (
     <div className="surMansetSlider">
       <Slider {...settings} className="surMansetSlider-sliders">
-        {surMansetNewsList?.slice(0, 10).map((item,idx) => {
+        {surMansetList?.slice(0, 10).map((item, idx) => {
           return (
-            <SurMansetSliderItem item={item} idx={idx} key={idx} title={item.title} />
+            <SurMansetSliderItem
+              item={item}
+              idx={idx}
+              key={idx}
+              title={item.title}
+            />
           );
         })}
       </Slider>

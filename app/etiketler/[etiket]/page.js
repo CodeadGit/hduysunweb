@@ -44,9 +44,8 @@ const SingleTag = ({ params }) => {
   }
   },[]);
 
-  if (loading) return <h2>LOADING...</h2>;
 
-  if (!tagsList.includes(etiket)) return <h2>NOT FOUND</h2>;
+  if (!tagsList.includes(etiket)) return <h2 style={{fontSize:"1.375rem",fontWeight:"600",color:"#333333"}}>NOT FOUND</h2>;
 
   return (
       <div className="tagsListWrapper">

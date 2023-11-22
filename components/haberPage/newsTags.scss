@@ -4,7 +4,9 @@
 
   &-title {
     // border: 1px solid blue;
-    color: var(--textColor);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333333;
     transition: var(--transition);
 
     &.dark {

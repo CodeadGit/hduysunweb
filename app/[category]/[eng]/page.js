@@ -13,14 +13,9 @@ const DetailsPage = ({ params }) => {
   const [thisPageArticle, setThisPageArticle] = useState({});
   const [loadingThisArticle, setLoadingThisArticle] = useState(true);
 
-  // console.log(params);
-  // console.log(thisPage);
-  // console.log(thisPageArticle);
-
   var idArray = String(params.eng).split("-");
   var idForThisNews = idArray.at(-1);
 
-  // console.log(idForThisNews);
 
   useEffect(() => {
     

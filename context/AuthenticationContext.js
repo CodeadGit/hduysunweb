@@ -221,7 +221,7 @@ export const AuthenticationProvider = ({ children }) => {
         detailStr: detailStr,
       });
     } catch (error) {
-      return;
+      console.log(error)
     }
   };
   const addLogToNew = async (item, collect) => {
@@ -233,7 +233,7 @@ export const AuthenticationProvider = ({ children }) => {
         likes: increment(1),
       });
     } catch (error) {
-      return;
+      console.log(error)
     }
     try {
       await setDoc(colreferancedeep, {
@@ -241,7 +241,7 @@ export const AuthenticationProvider = ({ children }) => {
         when: new Date(),
       });
     } catch (error) {
-      return;
+      console.log(error)
     }
   };
   const errorTranslater = (message) => {
@@ -406,7 +406,7 @@ export const AuthenticationProvider = ({ children }) => {
         go();
       } catch (error) {
         setLogining(false);
-        // console.log(error)
+         console.log(error)
         // alert(error);
       }
       return a + b + c;
