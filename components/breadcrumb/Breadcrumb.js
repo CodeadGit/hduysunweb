@@ -2,14 +2,23 @@
 import React from "react";
 import "./breadcrumb.scss";
 import Link from "next/link";
+import { usePathname } from 'next/navigation'
 import { AiFillHome } from "react-icons/ai";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useThemeContext } from "@/context/ThemeContext";
 import { handleShort,handleShortBreadcrump} from "@/context/utils";
 import { handleShortt,handleShorttLetter } from "@/context/utils";
+
 const Breadcrumb = ({ links }) => {
+
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
+
+  const pathname = usePathname();
+
+  const items = pathname.split("/");
+
+  const isExceptNewsDetails = items.length > 2;
 
   return (
     <div className="breadcrumb-container">
@@ -17,7 +26,7 @@ const Breadcrumb = ({ links }) => {
         <li className={modeStatus ? "dark" : ""}>
           <Link href="/" className={modeStatus ? "dark" : ""}>
             <AiFillHome className="home" />
-            <span className="home-title"> Anasayfa </span>
+            <span className={`home-title ${!isExceptNewsDetails ? "arama" : ""}`}> Anasayfa </span>
             <FaChevronRight />
           </Link>
         </li>

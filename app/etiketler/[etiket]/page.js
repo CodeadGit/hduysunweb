@@ -20,33 +20,53 @@ const SingleTag = ({ params }) => {
   };
 
   useEffect(() => {
-    const categoryNumber = categories.length;
-    for (let i = 0; i < categoryNumber; i++) {
+    const fetchRelatedNews = async () => {
+      const q = query(collection(db, "TagsList"));
+      try {
+        const tagsArray = [];
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          console.log({...doc});
+        });
 
-      const fetchTags = async () => {
-        const q = query(collection(db, categories[i].collection));
-        try {
-          const querySnapshot = await getDocs(q);
-          var tagsList = [];
-          querySnapshot.forEach((doc) => {
-            if (doc.data().tags.includes(etiket)) {
-              tagsList.push({ ...doc.data(), doc: doc.id });
-            }
-          });
-          setRelatedTagsNews(tagsList);
-          setLoading(false);
-        } 
-      catch(error){
+        setLoading(false);
+      } catch (error) {
         console.log(error);
       }
-    }
-    fetchTags()
-  }
-  },[]);
+    };
+    fetchRelatedNews();
+  }, []);
 
-  if (loading) return <h2>LOADING...</h2>;
+  // useEffect(() => {
+  //   const categoryNumber = categories.length;
+  //   for (let i = 0; i < categoryNumber; i++) {
 
-  if (!tagsList.includes(etiket)) return <h2>NOT FOUND</h2>;
+  //     const fetchTags = async () => {
+  //       const q = query(collection(db, categories[i].collection));
+  //       try {
+  //         const querySnapshot = await getDocs(q);
+  //         var tagsList = [];
+  //         querySnapshot.forEach((doc) => {
+  //           if (doc.data().tags.includes(etiket)) {
+  //             tagsList.push({ ...doc.data(), doc: doc.id });
+  //           }
+  //         });
+  //         setRelatedTagsNews(tagsList);
+  //         setLoading(false);
+  //       } 
+  //     catch(error){
+  //       console.log(error);
+  //     }
+  //   }
+  //   fetchTags()
+  // }
+  // },[]);
+
+  console.log(etiket);
+
+  // if (loading) return <h2>LOADING...</h2>;
+
+  // if (!tagsList.includes(etiket)) return <h2>NOT FOUND</h2>;
 
   return (
       <div className="tagsListWrapper">
@@ -56,28 +76,29 @@ const SingleTag = ({ params }) => {
           const options = { year: "numeric", month: "numeric", day: "2-digit" };
           const formattedDate = timePublished.toLocaleString("tr-TR", options);
           return (
-            <div className="tagCardContainer" key={idx}>
-              <div className="tagCardContainer-top">
-                <Link target="_blank" href={`/${category}/${eng}-${id}`}>
-                  <img src={image} className="tagCardContainer-top-img" />
-                </Link>
-              </div>
-              <div className="tagCardContainer-bottom">
-                <Link
-                  target="_blank"
-                  href={`/${category}/${eng}-${id}`}
-                  className="tagCardContainer-bottom-title"
-                  onClick={()=>handleReadIncrement(category,id)}
-                >
-                  {title}
-                </Link>
-                <div className="tagCardContainer-bottom-line"></div>
-                <div className="tagCardContainer-bottom-date">
-                  <span className="video-date-title">Yayınlanma T.</span>
-                  <span className="video-date">{formattedDate}</span>
-                </div>
-              </div>
-            </div>
+            // <div className="tagCardContainer" key={idx}>
+            //   <div className="tagCardContainer-top">
+            //     <Link target="_blank" href={`/${category}/${eng}-${id}`}>
+            //       <img src={image} className="tagCardContainer-top-img" />
+            //     </Link>
+            //   </div>
+            //   <div className="tagCardContainer-bottom">
+            //     <Link
+            //       target="_blank"
+            //       href={`/${category}/${eng}-${id}`}
+            //       className="tagCardContainer-bottom-title"
+            //       onClick={()=>handleReadIncrement(category,id)}
+            //     >
+            //       {title}
+            //     </Link>
+            //     <div className="tagCardContainer-bottom-line"></div>
+            //     <div className="tagCardContainer-bottom-date">
+            //       <span className="video-date-title">Yayınlanma T.</span>
+            //       <span className="video-date">{formattedDate}</span>
+            //     </div>
+            //   </div>
+            // </div>
+            <h2>{etiket}</h2>
           );
         })}
       </div>

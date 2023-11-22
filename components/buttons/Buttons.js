@@ -13,9 +13,11 @@ const Buttons = ({
   wrapper,
   getReaderData,
 }) => {
+
   const router = useRouter();
 
-  const { mode, toggle } = useThemeContext();
+  const { mode, toggle, searchWord, setSearchWord } = useThemeContext();
+  const modeStatus = mode === "dark";
   const [isClicked, setIsClicked] = useState("close");
   const { reader, readerData, logout } = useAuthenticationContext();
 
@@ -27,7 +29,13 @@ const Buttons = ({
     e.preventDefault();
     router.push("/login");
   };
-  const modeStatus = mode === "dark";
+ 
+const handleSearchClick = () => {
+  if (searchWord) {
+    setSearchWord("");
+  };
+  router.push("/arama");
+};
 
   return (
     <div className={wrapper}>
@@ -38,7 +46,7 @@ const Buttons = ({
       <button
         type="button"
         className={`search ${modeStatus ? "dark" : ""}`}
-        onClick={() => router.push("/arama")}
+        onClick={handleSearchClick}
       >
         <BiSearch />
       </button>

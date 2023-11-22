@@ -37,8 +37,13 @@
 
     .home-title {
       padding-left: .5rem;
+
       @media screen and (max-width: 900px) {
         display: none;
+
+        &.arama {
+          display: block;
+        }
       }
     }
 

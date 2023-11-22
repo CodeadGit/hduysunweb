@@ -1,29 +1,52 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.scss";
 import { useThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
 import MostReadNews from "@/components/haberPage/MostReadNews";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
 import CategoryNewsTitle from "@/components/haberPage/CategoryNewsTitle";
+import { collection, getDocs, query } from "firebase/firestore";
+import { db } from "@/firebase/firebase.config";
 
 const TagsPage = () => {
-  const { news, loading, mode, mostReadNewsList } = useThemeContext();
+
+  const { mode, mostReadNewsList } = useThemeContext();
+
+  const [tagsList, setTagsList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const modeStatus = mode === "dark";
 
-  const res = news.reduce((acc, item) => {
-    for (const tag of item.tags) {
-      acc[tag] = (acc[tag] || 0) + 1;
-    }
-    return acc;
-  }, {});
+  // const res = news.reduce((acc, item) => {
+  //   for (const tag of item.tags) {
+  //     acc[tag] = (acc[tag] || 0) + 1;
+  //   }
+  //   return acc;
+  // }, {});
 
-  const categories = Object.entries(res);
+  // const categories = Object.entries(res);
 
-  const result = categories.sort((a, b) => b[1] - a[1]);
+  // const result = categories.sort((a, b) => b[1] - a[1]);
 
-
+  useEffect(() => {
+    const fetchTags = async () => {
+      const q = query(collection(db, "TagsList"));
+      try {
+        const tagsArray = [];
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          tagsArray.push({...doc.data(), tag:doc.id});
+        });
+        setTagsList(tagsArray);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchTags();
+  }, []);
+  
   const links = [
     {
       id: 1,
@@ -41,7 +64,7 @@ const TagsPage = () => {
         <div className="tags-page-container-left">
           <h3 className="tags-page-title">Popüler Etiketler</h3>
           <div className="tags-list">
-            {result.map((item, idx) => (
+            {tagsList?.map((item, idx) => (
               <TagList key={idx} item={item} />
             ))}
           </div>
@@ -59,10 +82,12 @@ const TagsPage = () => {
 export default TagsPage;
 
 const TagList = ({ item }) => {
+  const { tag, related } = item;
+  const numberOfNews = related.length;
   return (
-    <Link href={`/etiketler/${item[0]}`} className="tag-link">
-      <span className="tag-link-item">#{item[0]}</span>
-      <span className="tag-link-info">{item[1]} haber</span>
+    <Link href={`/etiketler/${tag}`} className="tag-link">
+      <span className="tag-link-item">#{tag}</span>
+      <span className="tag-link-info">{numberOfNews} haber</span>
     </Link>
   );
 };

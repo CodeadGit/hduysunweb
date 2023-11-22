@@ -6,6 +6,8 @@ import { useThemeContext } from "@/context/ThemeContext";
 
 const Pharmacy = () => {
 
+  const API_KEY = process.env.NEXT_PUBLIC_GENERAL_API_KEY;
+
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
 
@@ -23,8 +25,7 @@ const Pharmacy = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization:
-              "apikey 0GQBAjriPIwWIqjcxU7MhJ:5p1vdCUZGkH9xE3UI5ihuh",
+             Authorization: API_KEY,
           },
         }
       );
@@ -53,8 +54,8 @@ const Pharmacy = () => {
       </div>
       <div className="pharmacy-list">
         <h5 className={`pharmacy-list-title ${modeStatus ? "dark" : ""}`}>Bursa</h5>
-        <div className="pharmacy-list-cities">
-          {eczaneList.slice(0, 5).map((item,idx) => {
+        {/* <div className="pharmacy-list-cities">
+          {eczaneList?.slice(0, 5).map((item,idx) => {
             const { name, dist, phone } = item;
             return (
               <div key={name} className="pharmacy-single">
@@ -70,7 +71,7 @@ const Pharmacy = () => {
               </div>
             );
           })}
-        </div>
+        </div> */}
       </div>
     </div>
   );
