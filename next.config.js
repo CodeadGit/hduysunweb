@@ -1,9 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental:{
-        appDir:true,
-        typedRoutes:true
-    }
-}
+  experimental: {
+    appDir: true,
+    typedRoutes: true,
+  },
+};
 
-module.exports = nextConfig
+module.exports = {
+  distDir: "build",
+};

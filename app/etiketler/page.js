@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./style.scss";
 import { useThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
@@ -11,10 +11,7 @@ import { db } from "@/firebase/firebase.config";
 
 const TagsPage = () => {
 
-  const { mode, mostReadNewsList } = useThemeContext();
-
-  const [tagsList, setTagsList] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { mode, mostReadNewsList, tagsList, tagsListLoading } = useThemeContext();
 
   const modeStatus = mode === "dark";
 
@@ -29,24 +26,6 @@ const TagsPage = () => {
 
   // const result = categories.sort((a, b) => b[1] - a[1]);
 
-  useEffect(() => {
-    const fetchTags = async () => {
-      const q = query(collection(db, "TagsList"));
-      try {
-        const tagsArray = [];
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-          tagsArray.push({...doc.data(), tag:doc.id});
-        });
-        setTagsList(tagsArray);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchTags();
-  }, []);
-  
   const links = [
     {
       id: 1,
@@ -55,7 +34,7 @@ const TagsPage = () => {
     },
   ];
 
-  if (loading) return <h2>LOADING...</h2>;
+  if (tagsListLoading) return <h2>YÜKLENİYOR...</h2>;
 
   return (
     <div className="whole-tags-page">

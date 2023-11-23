@@ -55,7 +55,6 @@ const TagsSlider = () => {
         try {
           const querySnapshot = await getDocs(q);
           let tagsListArray = [];
-
           querySnapshot.forEach((doc) => {
             if (doc.data().tags.includes(`${tagClicked}`)) {
               tagsListArray.push({ ...doc.data(), doc: doc.id });
@@ -119,7 +118,7 @@ const TagsSlider = () => {
     justifyContent: "center",
   };
 
-  const lowerTags = sorttedTags.map((str) => str.toLowerCase().trim());
+  // const lowerTags = sorttedTags.map((str) => str.toLowerCase().trim());
 
   if (loading) {
     return (
@@ -135,7 +134,7 @@ const TagsSlider = () => {
         Popüler Etiketler
       </span>
       <div className="sliderContainer-tags">
-        {lowerTags.slice(0, 7).map((i, idx) => (
+        {sorttedTags.slice(0, 7).map((i, idx) => (
           <div
             key={idx}
             onClick={() => tagButtonClickHandler(i)}
@@ -150,7 +149,7 @@ const TagsSlider = () => {
         ))}
       </div>
       <div className="sliderContainer-res">
-        {lowerTags.slice(0, 3).map((i, idx) => (
+        {sorttedTags.slice(0, 3).map((i, idx) => (
           <div
             key={idx}
             onClick={() => tagButtonClickHandler(i)}

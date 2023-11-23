@@ -43,7 +43,6 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   const [mode, setMode] = useState("light");
   const [storyModal, setStoryModal] = useState(false);
-
   const [stories, setStories] = useState([]);
   const [mansetNewsList, setMansetNewsList] = useState([]);
   const [surMansetNewsList, setSurMansetNewsList] = useState([]);
@@ -63,6 +62,7 @@ export const ThemeProvider = ({ children }) => {
   const [searchWord, setSearchWord] = useState("");
   const [wordNews, setWordNews] = useState([]);
   const [tagsList, setTagsList] = useState([]);
+  const [tagsListLoading, setTagsListLoading] = useState(true);
   const [pinnedMansetData, setPinnedMansetData] = useState([]);
   const [pinnedSurmansetData, setPinnedSurMansetData] = useState([]);
   const [searchButtonStatus, setSearchButtonStatus] = useState(true);
@@ -363,6 +363,24 @@ export const ThemeProvider = ({ children }) => {
     fetchColumnists();
   }, []);
 
+  useEffect(() => {
+    const fetchTags = async () => {
+      const q = query(collection(db, "TagsList"));
+      try {
+        const tagsArray = [];
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          tagsArray.push({...doc.data(), tag:doc.id});
+        });
+        setTagsList(tagsArray);
+        setTagsListLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchTags();
+  }, []);
+
   // useEffect(() => {
   //   const mansetNews = news
   //     ?.filter((item) => item.isManset)
@@ -464,6 +482,7 @@ export const ThemeProvider = ({ children }) => {
     wordNews,
     setWordNews,
     tagsList,
+    tagsListLoading,
     surMansetNewsList,
   };
 
