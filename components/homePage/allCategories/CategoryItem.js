@@ -4,7 +4,7 @@ import Link from "next/link";
 import "./catItem.scss";
 import { transformCategory } from "@/context/utils";
 
-const CategoryItem = ({ image, category, modeStatus }) => {
+const CategoryItem = ({ image, category, modeStatus,title }) => {
   
   return (
     <div className="item">
@@ -13,7 +13,7 @@ const CategoryItem = ({ image, category, modeStatus }) => {
       </Link>
       <div className="info">
         <div className={`disc ${modeStatus ? "dark" : ""}`}></div>
-        <p className={`title ${modeStatus ? "dark" : ""}`}>{transformCategory(category)}</p>
+        <p className={`title ${modeStatus ? "dark" : ""}`}>{title}</p>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useThemeContext } from "@/context/ThemeContext";
 import SurMansetSliderItem from "./SurMansetSliderItem";
 import Link from "next/link";
-import { collection, limit, orderBy, query } from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 
 const SurMansetSlider = () => {
@@ -26,15 +26,15 @@ const SurMansetSlider = () => {
         var surMansetArr = [];
 
         querySnapshot.forEach((doc) => {
-          if (doc.data().index) {
+          //if (doc.data().index) {
             surMansetArr.push({ ...doc.data(), doc: doc.id });
-          } else {
-            surMansetArr.push({
-              ...doc.data(),
-              doc: doc.id,
-              autoindexed: surMansetArr.length,
-            });
-          }
+          // } else {
+          //   surMansetArr.push({
+          //     ...doc.data(),
+          //     doc: doc.id,
+          //     autoindexed: surMansetArr.length,
+          //   });
+          // }
         });
         setSurmansetList(surMansetArr);
         setLoading(false);

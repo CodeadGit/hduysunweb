@@ -67,6 +67,7 @@ export const ThemeProvider = ({ children }) => {
   const [pinnedSurmansetData, setPinnedSurMansetData] = useState([]);
   const [searchButton, setSearchButton] = useState(true);
   const [newsLoading , setNewsLoading] = useState(true);
+  const [ tagLoading ,setTagLoading] = useState(true)
 
   const [total, setTotal] = useState({
     league: [],
@@ -362,6 +363,24 @@ export const ThemeProvider = ({ children }) => {
       }
     };
     fetchColumnists();
+  }, []);
+
+  useEffect(() => {
+    const fetchTags = async () => {
+      const q = query(collection(db, "TagsList"));
+      try {
+        const tagsArray = [];
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          tagsArray.push({...doc.data(), tag:doc.id});
+        });
+        setTagsList(tagsArray);
+        setTagLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchTags();
   }, []);
 
   useEffect(() => {

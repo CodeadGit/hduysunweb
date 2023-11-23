@@ -1,7 +1,7 @@
 "use client";
 import { categoryList, useThemeContext } from "@/context/ThemeContext";
 import React, { useEffect, useState } from "react";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { collection, doc, getDoc } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import Link from "next/link";
 import "./format.scss";
@@ -10,42 +10,19 @@ import { useCategoriesContext } from "@/context/CategoriesContext";
 const SingleTag = ({ params }) => {
   const { tagsList, handleReadIncrement } = useThemeContext();
   const { categories } = useCategoriesContext();
+  const [thisTag, setThisTag] = useState([]);
   const [relatedTagsNews, setRelatedTagsNews] = useState([]);
-  const [loading, setLoading] = useState(true);
-
+  const [loading, setLoading] = useState(true)
   let { etiket } = params;
+ 
+
 
   if (etiket.includes("%C5%9F")) {
     etiket = etiket.replaceAll("%C5%9F", "ş");
   };
 
-  useEffect(() => {
-    const categoryNumber = categories.length;
-    for (let i = 0; i < categoryNumber; i++) {
-
-      const fetchTags = async () => {
-        const q = query(collection(db, categories[i].collection));
-        try {
-          const querySnapshot = await getDocs(q);
-          var tagsList = [];
-          querySnapshot.forEach((doc) => {
-            if (doc.data().tags.includes(etiket)) {
-              tagsList.push({ ...doc.data(), doc: doc.id });
-            }
-          });
-          setRelatedTagsNews(tagsList);
-          setLoading(false);
-        } 
-      catch(error){
-        console.log(error);
-      }
-    }
-    fetchTags()
-  }
-  },[]);
-
-
-  if (!tagsList.includes(etiket)) return <h2 style={{fontSize:"1.375rem",fontWeight:"600",color:"#333333"}}>NOT FOUND</h2>;
+  const filterData = tagsList.filter((i) => i.tag === etiket)
+    console.log(filterData)
 
   return (
       <div className="tagsListWrapper">

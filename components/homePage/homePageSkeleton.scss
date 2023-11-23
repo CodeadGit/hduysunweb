@@ -38,22 +38,12 @@
         gap: 1rem;
         flex-direction: column;
 
-        &__top {
-            width: 100%;
-            height: 50%;
-            display: flex;
-            flex-direction: row;
-            gap: 1rem;
 
-            .top-first {
-               width: 32%;
-               height:100%;
-            }
-            .top-second {
-                width: 63%;
-                height: 100%;
-            }
+        .left-first {
+            width: 100%;
+            height: 85%;
         }
+        
 
         &__bottom {
            width: 100%;

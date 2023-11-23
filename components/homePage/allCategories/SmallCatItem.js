@@ -4,7 +4,7 @@ import Link from "next/link";
 import "./smallCatItem.scss";
 import { navigateCategory, transformCategory } from "@/context/utils";
 
-const SmallCatItem = ({ image, category, modeStatus }) => {
+const SmallCatItem = ({ image, category, modeStatus,title }) => {
 
   return (
     <div className="box">
@@ -13,7 +13,7 @@ const SmallCatItem = ({ image, category, modeStatus }) => {
       </Link>
       <div className="info">
         <div className={`disc ${modeStatus ? "dark" : ""}`}></div>
-        <p className={`title ${modeStatus ? "dark" : ""}`}>{transformCategory(category)}</p>
+        <p className={`title ${modeStatus ? "dark" : ""}`}>{title}</p>
       </div>
     </div>
   );
