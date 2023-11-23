@@ -1,0 +1,13 @@
+.allCategoriesPage {
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1202px;
+  margin: 0 auto;
+  min-height: calc(100vh - 332px);
+
+  h2 {
+    padding:0.5rem 0;
+  }
+}

@@ -1,17 +1,19 @@
 import "./categoryItem.scss";
 import Link from "next/link";
 import { useThemeContext } from "@/context/ThemeContext";
-const CategoryItem = ({ item, modeStatus }) => {
+const CategoryItem = ({ item }) => {
 
   const { title, image, category, eng, id, datePublished } = item;
-  const { handleReadIncrement} = useThemeContext();
+  const { handleReadIncrement, mode} = useThemeContext();
+
+  const modeStatus = mode === "dark";
 
   const timePublished = new Date(datePublished.seconds * 1000);
   const options = { year: "numeric", month: "numeric", day: "2-digit" };
   const formattedDate = timePublished.toLocaleString("tr-TR", options);
 
   return (
-    <Link href={`/${category}/${eng}-${id}`} target="_blank" className="categoryItem" onClick={() => handleReadIncrement(category, id)}>
+    <Link href={`/${category}/${eng}-${id}`} target="_blank" className={`categoryItem ${modeStatus ? "dark" : ""}`} onClick={() => handleReadIncrement(category, id)}>
       <div className="categoryItem-top">
         <div >
           <img src={image} className="categoryItem-top-img" />

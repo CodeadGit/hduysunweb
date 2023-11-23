@@ -12,10 +12,10 @@ const Caption = ({ title, link }) => {
 
   return (
     <div className={`categoryCaption ${modeStatus ? "dark" : ""}`}>
-      <h3 style={{ fontSize: "1.25rem", fontWeight: "600", color: "#333333" }}>
+      <h3 className={`${modeStatus ? "dark" : ""}`} style={{ fontSize: "1.25rem", fontWeight: "600" }}>
         {title}
       </h3>
-      <div className="line"></div>
+      <div className={`line ${modeStatus ? "dark" : ""}`}></div>
       {/* <p className={modeStatus ? "dark" : ""} onClick={() => router.push(`/${link}`)}>Hepsini Gör</p>  */}
       <Link
         className={modeStatus ? "dark" : ""}

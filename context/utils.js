@@ -89,6 +89,9 @@ export const transformCategory = (category) => {
   if (category === "video") return "VİDEO";
   if (category === "teknoloji") return "TEKNOLOJİ";
   if (category === "otomobil") return "OTOMOBİL";
+  if(category === "kultursanat") return "KÜLTÜR SANAT";
+  if(category === "egitim") return "EĞİTİM";
+  if(category === "video-galeri") return "VİDEO GALERİ";
   return category.toUpperCase();
 };
 

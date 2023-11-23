@@ -43,7 +43,6 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   const [mode, setMode] = useState("light");
   const [storyModal, setStoryModal] = useState(false);
-
   const [stories, setStories] = useState([]);
   const [mansetNewsList, setMansetNewsList] = useState([]);
   const [surMansetNewsList, setSurMansetNewsList] = useState([]);
@@ -62,12 +61,12 @@ export const ThemeProvider = ({ children }) => {
   const [columnists, setColumnists] = useState([]);
   const [searchWord, setSearchWord] = useState("");
   const [wordNews, setWordNews] = useState([]);
+  const [tagsListLoading, setTagsListLoading] = useState(true);
   const [tagsList, setTagsList] = useState([]);
   const [pinnedMansetData, setPinnedMansetData] = useState([]);
   const [pinnedSurmansetData, setPinnedSurMansetData] = useState([]);
   const [searchButton, setSearchButton] = useState(true);
   const [newsLoading , setNewsLoading] = useState(true);
-  const [ tagLoading ,setTagLoading] = useState(true)
 
   const [total, setTotal] = useState({
     league: [],
@@ -375,7 +374,7 @@ export const ThemeProvider = ({ children }) => {
           tagsArray.push({...doc.data(), tag:doc.id});
         });
         setTagsList(tagsArray);
-        setTagLoading(false);
+        setTagsListLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -435,6 +434,7 @@ export const ThemeProvider = ({ children }) => {
     news,
     loading,
     handleReadIncrement,
+    tagsListLoading,
     total,
     fetching,
     handleSearchButton,

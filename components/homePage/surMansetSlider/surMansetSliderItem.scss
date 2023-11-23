@@ -17,12 +17,16 @@
     &-wrapper {
       width: 100%;
       height: 3rem;
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: rgba(0, 0, 0, 0.25);
       position: absolute;
       bottom: 0;
+      padding-top: .2rem;
+      box-sizing: border-box;
       &-title {
+        display: flex;
         font-size: 1rem;
         padding-left: 1rem;
+        padding-top: .5rem;
         color: white;
       }
     }

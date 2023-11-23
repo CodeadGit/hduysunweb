@@ -10,7 +10,7 @@ import moment from "moment";
 import { useState, useEffect } from "react";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
-
+import Link from "next/link";
 const TagsSlider = () => {
   const { mode, news, newsLoading } = useThemeContext();
   const [tagClicked, setTagClicked] = useState("");
@@ -26,8 +26,6 @@ const TagsSlider = () => {
 
   const sliderNews = news
     .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds)
-
-    console.log(sliderNews)
 
   const y = sliderNews.map((i, idx) =>
     moment(i.datePublished.seconds * 1000).format("DD.MM.YYYY - HH:mm")
@@ -153,17 +151,18 @@ const TagsSlider = () => {
       </span>
       <div className="sliderContainer-tags">
         {tagsList.slice(0, 7).map((i, idx) => (
-          <div
+          <Link
             key={idx}
             onClick={() => tagButtonClickHandler(i)}
             className="tag-btn"
+            href={`/etiketler/${i.tag}`}
           >
             {idx === 6 ? (
               <span onClick={() => tagButtonClickHandler(i)}>#Bursa</span>
             ) : (
               "#" + i.tag
             )}
-          </div>
+          </Link>
         ))}
       </div>
         <Slider {...settings} className="sliderContainer-slides">

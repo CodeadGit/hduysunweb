@@ -36,7 +36,6 @@ const MainSlider = () => {
          });
         setList(categoriesList);
         setLoading(false);
-        console.log(categoriesList)
       } catch (error) {
         console.log(error);
       }

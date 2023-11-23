@@ -28,7 +28,7 @@
     width: 100%;
     padding-bottom: 1rem;
 
-    @media screen and (max-width:768px) {
+    @media screen and (max-width: 768px) {
       display: none;
     }
 
@@ -43,6 +43,13 @@
       &.dark {
         background-color: inherit;
         color: white;
+      }
+
+      &:active,
+      &:hover,
+      &:link,
+      &:visited {
+        color: #727272;
       }
 
       &:focus {
@@ -79,7 +86,7 @@
     width: 100%;
     padding-bottom: 1rem;
 
-    @media screen and (min-width:769px) {
+    @media screen and (min-width: 769px) {
       display: none;
     }
 

@@ -1,9 +1,9 @@
 import React from 'react';
-import AllCategoriesWrapper from '@/components/allCategoriesPage/AllCategoriesPage';
+import AllCategoriesPage from '@/components/allCategoriesPage/AllCategoriesPage';
 
 const AllCategoriesPage = () => {
   return (
-    <AllCategoriesWrapper />
+    <AllCategoriesPage />
   )
 }
 

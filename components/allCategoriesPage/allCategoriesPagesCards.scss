@@ -1,0 +1,14 @@
+.allCategoriesPagesCards {
+
+  &-list {
+    padding-top: 1rem;
+    display: grid;
+    grid-template-columns: 24% 24% 24% 24%;
+    //place-content: center;
+    gap: 1rem;
+
+    .dark {
+      background-color: #1f252b;
+    }
+  }
+}

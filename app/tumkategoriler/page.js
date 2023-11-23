@@ -1,7 +1,8 @@
+import AllCategoriesPage from "@/components/allCategoriesPage/AllCategoriesPage";
 
 const TümKategoriHaberleriPage = () => {
   return (
-    <div>TümKategoriHaberleriPage</div>
+    <AllCategoriesPage/>
   )
 }
 

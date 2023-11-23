@@ -2,15 +2,12 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
 import "../navbar/navbar.scss";
-import "./categories.scss";
 import { editLink } from "@/context/utils";
 import { useThemeContext } from "@/context/ThemeContext";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import { useCategoriesContext } from "@/context/CategoriesContext";
+import CategoriesMenu from "./CategoriesMenu";
+import Link from "next/link";
 
 const Categories = ({ wrapper }) => {
   const pathname = usePathname();
@@ -19,30 +16,9 @@ const Categories = ({ wrapper }) => {
 
   const modeStatus = mode === "dark";
 
-  const handleScroll = () => {
-    const scrollPosition = window.scrollY; // => scroll position
-    scrollPosition > 0 && setAnchorEl(null);
-  };
-  useEffect(() => {
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   const darkBoxStyle = {  height: "auto", backgroundColor: "#1f252b", transition: "0.3s all ease-in-out" };
 
-  const lightBoxStyle = {  height: "100%", backgroundColor: "#fff", transition: "0.3s all ease-in-out" };
+  const lightBoxStyle = {  height: "auto", backgroundColor: "#fff", transition: "0.3s all ease-in-out" };
 
   const menuStyle = modeStatus ? darkBoxStyle : lightBoxStyle;
 
@@ -89,7 +65,8 @@ const Categories = ({ wrapper }) => {
             </div>
           );
         })}
-        <div className={`menu-navbar  ${modeStatus ? "dark" : ""}`}>
+        <CategoriesMenu/>
+        {/* <div className={`menu-navbar  ${modeStatus ? "dark" : ""}`}>
           <Button
             id="basic-button"
             className={`menu-button  ${modeStatus ? "dark" : ""}`}
@@ -129,7 +106,7 @@ const Categories = ({ wrapper }) => {
             </div>
           </Menu>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
