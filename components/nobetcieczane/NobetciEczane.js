@@ -9,14 +9,14 @@ import Image from "next/image";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 import NobetciEczaneSkeleton from "./NobetciEczaneSkeleton";
 
+const API_KEY = process.env.NEXT_PUBLIC_GENERAL_API_KEY;
+
 const NobetciEczaneComp = () => {
 
   const [info, setInfo] = useState({
     city: "Bursa",
     region: "",
   });
-
-  const API_KEY = process.env.NEXT_PUBLIC_GENERAL_API_KEY;
 
   const [regionList, setRegionList] = useState([]);
   const [loading, setLoading] = useState(true);

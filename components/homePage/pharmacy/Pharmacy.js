@@ -4,12 +4,16 @@ import Link from "next/link";
 import axios from "axios";
 import { useThemeContext } from "@/context/ThemeContext";
 
+const API_KEY = process.env.NEXT_PUBLIC_GENERAL_API_KEY;
+
 const Pharmacy = () => {
 
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
 
   const [eczaneList, setEczaneList] = useState([]);
+
+  console.log(API_KEY);
 
   const [info] = useState({
     city: "Bursa",
@@ -23,8 +27,7 @@ const Pharmacy = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization:
-              "apikey 0GQBAjriPIwWIqjcxU7MhJ:5p1vdCUZGkH9xE3UI5ihuh",
+             Authorization: API_KEY,
           },
         }
       );
