@@ -52,7 +52,6 @@ const Pharmacy = () => {
         </Link>
       </div>
       <div className="pharmacy-list">
-        <h5 className={`pharmacy-list-title ${modeStatus ? "dark" : ""}`}>Bursa</h5>
         <div className="pharmacy-list-cities">
           {eczaneList.slice(0, 5).map((item,idx) => {
             const { name, dist, phone } = item;
