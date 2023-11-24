@@ -13,7 +13,7 @@ const SmallCatItem = ({ image, category, modeStatus,title }) => {
       </Link>
       <div className="info">
         <div className={`disc ${modeStatus ? "dark" : ""}`}></div>
-        <p className={`title ${modeStatus ? "dark" : ""}`}>{title}</p>
+        <p className={`title ${modeStatus ? "dark" : ""}`}>{transformCategory(title)}</p>
       </div>
     </div>
   );

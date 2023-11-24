@@ -24,12 +24,9 @@ const TagsSlider = () => {
   const newsToShow = newsAmount >= 5 ? 5 : newsAmount;
 
 
-  const sliderNews = news
+  const sliderNews = [...news]?.filter(n=>(n?.isManset!==true||n?.isSurmanset!==true))
     .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds)
 
-  const y = sliderNews.map((i, idx) =>
-    moment(i.datePublished.seconds * 1000).format("DD.MM.YYYY - HH:mm")
-  );
 
   const tagButtonClickHandler = (i) => {
     setTagClicked(i);

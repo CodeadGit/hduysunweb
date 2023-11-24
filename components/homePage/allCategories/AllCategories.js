@@ -50,7 +50,7 @@ const smallCategories = [
   },
   {
     id: 2,
-    image: images[72],
+    image: images[70],
     category: "siyaset",
     title:"Siyaset"
   },

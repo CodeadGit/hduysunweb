@@ -16,7 +16,7 @@ const StoryPage = ({ stories }) => {
             <div className="info-wrapper">
               <h4 className="info-wrapper-title">{i?.title || ""}</h4>
               <p className="info-wrapper-des">{i?.description || ""}</p>
-              {i?.isNews && (
+              {i?.url && (
                 <Link href={i.url} className="info-wrapper-link">
                   Habere gitmek için tıklayın
                 </Link>

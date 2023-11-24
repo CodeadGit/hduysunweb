@@ -1,19 +1,17 @@
 "use client";
 import React from "react";
 import "./footer.scss";
-import Image from "next/image";
 import Link from "next/link";
-import darkLogo from "../../components/navbarLogo/darkLogo.svg";
+import darkLogo from "./newNormalLogo.svg";
 import { BsWhatsapp } from "react-icons/bs";
 import { BsFacebook } from "react-icons/bs";
 import { BsTwitter } from "react-icons/bs";
 import { BsInstagram } from "react-icons/bs";
-import google from "../../components/homePage/assets/google.png";
-import apple from "../../components/homePage/assets/apple.png";
 import KunyeItem from "./KunyeItem";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useAdsContext } from "@/context/AdsContext";
 import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
+import Image from "next/image";
 
 const kunyeArray = [
   {
@@ -43,7 +41,7 @@ const kunyeArray = [
   },
   {
     id: 6,
-    caption: "Bize Ulaşın",
+    caption: "İletişim",
     url: "/bize-ulasin",
   },
   {
@@ -68,7 +66,7 @@ const Footer = () => {
     >
       <div className="footer-fluid">
         <div className="footer-fluid-logo">
-          <Image src={darkLogo} alt="navbarLogo" priority />
+          <Image width={234} src={darkLogo} alt="navbarLogo" priority />
         </div>
         <div className="footer-fluid-info">
           <div className="info-left">
@@ -146,16 +144,16 @@ const Footer = () => {
             <div className="info-right-icons">
               <p className="follow">BİZİ TAKİP EDİN</p>
               <div className="media">
-                <Link href="https://wa.me/905411604040">
+                <Link target="_blank" href="https://wa.me/905411604040">
                   <BsWhatsapp />
                 </Link>
-                <Link href="https://www.facebook.com/herkesduysun">
+                <Link target="_blank" href="https://www.facebook.com/herkesduysun">
                   <BsFacebook />
                 </Link>
-                <Link href="https://twitter.com/herkesduysuncom">
+                <Link target="_blank" href="https://twitter.com/herkesduysuncom">
                   <BsTwitter />
                 </Link>
-                <Link href="https://www.instagram.com/herkesduysuncom">
+                <Link target="_blank" href="https://www.instagram.com/herkesduysuncom">
                   <BsInstagram />
                 </Link>
               </div>

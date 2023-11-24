@@ -1,7 +1,6 @@
 import React from "react";
 import "./videoGallery.scss";
 import Image from "next/image";
-import video2 from "../homePage/assets/video2.png";
 import { AiFillEye } from "react-icons/ai";
 import SingleVideo from "./SingleVideo";
 import { useThemeContext } from "@/context/ThemeContext";

@@ -5,10 +5,10 @@ import "./subHeadlineNews.scss";
 import { useThemeContext } from "@/context/ThemeContext";
 
 const SubHeadlineNews = () => {
-  const { mansetNewsList, mode } = useThemeContext();
+  const { surMansetNewsList, mode } = useThemeContext();
   const modeStatus = mode === "dark";
 
-  const surMansetNews = mansetNewsList.map((item,idx) => {
+  const surMansetNews = surMansetNewsList.map((item,idx) => {
     return (
       <SubHeadlineNewsCard
         key={idx}

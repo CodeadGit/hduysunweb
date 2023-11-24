@@ -78,18 +78,20 @@ const SurMansetSlider = () => {
 
   return (
     <div className="surMansetSlider">
-      <Slider {...settings} className="surMansetSlider-sliders">
-        {surMansetList?.slice(0, 10).map((item, idx) => {
-          return (
-            <SurMansetSliderItem
-              item={item}
-              idx={idx}
-              key={idx}
-              title={item.title}
-            />
-          );
-        })}
-      </Slider>
+      {surMansetList && !loading && (
+        <Slider {...settings} className="surMansetSlider-sliders">
+          {surMansetList?.slice(0, 10).map((item, idx) => {
+            return (
+              <SurMansetSliderItem
+                item={item}
+                idx={idx}
+                key={idx}
+                title={item.title}
+              />
+            );
+          })}
+        </Slider>
+      )}
     </div>
   );
 };

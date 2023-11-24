@@ -8,6 +8,7 @@ import football3 from "../assets/football3.png";
 import Image from "next/image";
 import { CircularProgress } from "@mui/material";
 import TrialCardItem from "./TrialCardItem";
+import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
 
 const TrialComp = () => {
   const {
@@ -23,6 +24,8 @@ const TrialComp = () => {
   const [number, setNumber] = useState(0);
   const [teams, setTeams] = useState([...total?.league]);
   const filteredNews = news.filter((item) => item.category === "spor");
+
+  const { images } = useFetchAssetsContext();
 
   const handleLeague1 = () => {
     setTeams([...total.league]);
@@ -48,24 +51,24 @@ const TrialComp = () => {
       <div className="points">
         <div className="points-left-section">
           <div className="points-left-section-logos">
-            <Image
-              src={football1}
+            <img
+              src={images[28]}
               alt=""
               className={`logo-img ${number === 0 ? "selected" : ""} ${
                 modeStatus ? "dark" : ""
               }`}
               onClick={handleLeague1}
             />
-            <Image
-              src={football2}
+            <img
+              src={images[29]}
               alt=""
               className={`logo-img ${number === 1 ? "selected" : ""} ${
                 modeStatus ? "dark" : ""
               }`}
               onClick={handleLeague2}
             />
-            <Image
-              src={football3}
+            <img
+              src={images[30]}
               alt=""
               className={`logo-img ${number === 2 ? "selected" : ""} ${
                 modeStatus ? "dark" : ""

@@ -1,11 +1,7 @@
 "use client";
-import React from "react";
-import Image from "next/image";
 import "./register.scss";
 import mobile from "../assets/mobile.png";
 import { useThemeContext } from "@/context/ThemeContext";
-import pngandro from "../assets/pngandro.png";
-import pngapple from "../assets/pngapple.png";
 import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
 const Register = () => {
   const { mode } = useThemeContext();
@@ -44,7 +40,7 @@ const Register = () => {
 
       <div className="register-store">
         <div className="mobile">
-          <Image src={mobile} alt="mobile" fill />
+          <img src={images[43]} alt="mobile" fill />
         </div>
         <div className="information">
           <p className={modeStatus ? "dark" : ""}>

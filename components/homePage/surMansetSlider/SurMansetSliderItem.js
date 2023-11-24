@@ -49,12 +49,10 @@ const SurMansetSliderItem = ({ item }) => {
         <img src={image} alt={title} className="surMansetSlider-item-image" />
         {item.isSurmanset && (
           <div className="sondakika-wrapper">
-            {title.length < 40 ? (
-              <span className="sondakika-wrapper-title">{title}</span>
+            {String(title.length) < 80 ? (
+              <span >{title}</span>
             ) : (
-              <span className="sondakika-wrapper-title">
-                {handleShorttSurmanset(title)}
-              </span>
+              <span>{handleShorttSurmanset(title)}</span>
             )}
           </div>
         )}

@@ -14,20 +14,25 @@
       aspect-ratio: .86/1;
       object-fit: cover;
     }
+   
     &-wrapper {
       width: 100%;
-      height: 3rem;
-      background-color: rgba(0, 0, 0, 0.25);
-      position: absolute;
+     // height: 60px;
+     // background-color: rgba(0, 0, 0, 0.25);
+      position: fixed;
       bottom: 0;
-      padding-top: .2rem;
+      padding: .2rem;
       box-sizing: border-box;
-      &-title {
-        display: flex;
-        font-size: 1rem;
-        padding-left: 1rem;
-        padding-top: .5rem;
-        color: white;
+      color: white;
+      text-decoration: none;
+      flex-wrap: wrap;
+      text-overflow: ellipsis;
+
+      span{
+        display: inline-block;
+        width: 400px;
+        padding: .5rem;
+        background-color: rgba(0, 0, 0, 0.25);
       }
     }
   }

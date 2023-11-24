@@ -2,8 +2,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import navLogo from "./HDLogoWhite.svg";
-import darkLogo from "./HDLogo.svg";
+import navLogo from "./newNormalLogo.svg";
+import darkLogo from "./newWhiteLogo.svg";
 import { useThemeContext } from "@/context/ThemeContext";
 
 const NavbarLogo = ({wrapper}) => {
@@ -14,7 +14,7 @@ const NavbarLogo = ({wrapper}) => {
   
   return (
     <Link href="/" className={wrapper}>
-      <Image src={logo} alt="navbarLogo" priority />
+      <Image width={213} src={logo} alt="navbarLogo" priority />
     </Link>
   );
 };

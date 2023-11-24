@@ -52,7 +52,7 @@ export const handleShorttSonDakika = (text) => {
   return text?.substring(0,40).concat(" ...");
 };
 export const handleShorttSurmanset = (text) => {
-  return text?.substring(0,40).concat(" ...");
+  return text?.substring(0,80).concat(" ...");
 };
 export const handleShorttLetter = (title,number) => {
   // const res = title?.split("");
@@ -92,6 +92,7 @@ export const transformCategory = (category) => {
   if(category === "kultursanat") return "KÜLTÜR SANAT";
   if(category === "egitim") return "EĞİTİM";
   if(category === "video-galeri") return "VİDEO GALERİ";
+  if(category === "otomobil") return "OTOMOBİL";
   return category.toUpperCase();
 };
 

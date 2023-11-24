@@ -1,6 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
-import most1 from "../homePage/assets/most1.png";
 import { useAdsContext } from "@/context/AdsContext";
 import "./adsImage.scss";
 
