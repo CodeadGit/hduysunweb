@@ -107,7 +107,7 @@ const Weather = ({ showSearchBar }) => {
     const config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://localhost:3001/cityfinder",
+      url: "https://payment.onlinekesif.com/cityfinder",
       data: {
         lat: latitude,
         long: longitude,
@@ -127,7 +127,7 @@ const Weather = ({ showSearchBar }) => {
     const config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://localhost:3001/countryfinder",
+      url: "https://payment.onlinekesif.com/countryfinder",
       data: {
         lat: latitude,
         long: longitude,
