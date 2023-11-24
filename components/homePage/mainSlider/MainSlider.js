@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useThemeContext } from "@/context/ThemeContext";
 import MainSliderItem from "./MainSliderItem";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 
@@ -49,6 +49,7 @@ const MainSlider = () => {
     };
     fetchCategories();
   }, []);
+  const sliderRef = useRef();
 
   const settings = {
     infinite: true,
@@ -67,9 +68,12 @@ const MainSlider = () => {
     dotsClass: "slick-dots",
     appendDots: (dots) => (
       <>
-        <ul className="dots-ul">
+        <ul 
+        
+        className="dots-ul">
           {dots}
-          <li>
+          <li
+          >
             <Link href="/mansetler" className="all-link">
               T
             </Link>

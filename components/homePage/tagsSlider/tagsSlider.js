@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import Link from "next/link";
+
 const TagsSlider = () => {
   const { mode, news, newsLoading } = useThemeContext();
   const [tagClicked, setTagClicked] = useState("");
@@ -84,13 +85,17 @@ const TagsSlider = () => {
 
   //const mostPopularTags = tagsTitles.sort((i,j) => i.length - j.length).slice(0,6)
   const settings = {
-    speed: 5000,
+    speed: 1500,
+    transtion:true,
     slidesToScroll: 1,
     autoplay: true,
     arrows: false,
     infinite: true,
     slidesToShow: 5,
     centerMode: false,
+    draggable: true,       // Enable dragging
+  swipeToSlide: true,    // Scroll to the closest slide when dragging
+
     responsive: [
       {
         breakpoint: 1200,

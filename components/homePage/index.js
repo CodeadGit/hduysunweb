@@ -15,9 +15,15 @@ import Health from "../health/Health";
 import HomeCategory from "./homeCategory/HomeCategory";
 import TagsSlider from "./tagsSlider/tagsSlider";
 import Pharmacy from "./pharmacy/Pharmacy";
-const Home = () => {
+import Head from "next/head";
+
+const Home = ({ pageTitle, pageDescription }) => {
   return (
     <div>
+      <Head>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+      </Head>
       <Stories />
       <HomePage />
       <TagsSlider/>
@@ -32,7 +38,7 @@ const Home = () => {
       {/* <Arcelik /> */}
        <Masthead /> 
       {/* <Currency />  */}
-      {/* <Pharmacy/> */}
+      <Pharmacy/>
       <Caption title="Sağlık" link="saglik" />
       <HomeCategory category="saglik" />
       {/* <Health /> */}
@@ -44,5 +50,16 @@ const Home = () => {
     </div>
   );
 };
+export async function getServerSideProps() {
+  // Fetch dynamic data for the page
+  const pageTitle = "Herkes Duysun";
+  const pageDescription = "Türkiye'nin yeni medyası. Tüm haberler, en son haberler bu platformda. Tarafsız ve objektif haber kuruluşu.";
 
+  return {
+    props: {
+      pageTitle,
+      pageDescription,
+    },
+  };
+}
 export default Home;
