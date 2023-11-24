@@ -63,7 +63,7 @@ const Register = () => {
           </a>
           
           </div> */}
-          {/* <div className="apps">
+          <div className="apps">
             <a href="https://apps.apple.com/tr/app/">
               <img
                 src={images[6]}
@@ -75,13 +75,13 @@ const Register = () => {
 
             <a href="https://play.google.com">
               <img
-                src={images[35]}
+                src={images[64]}
                 alt="mobile"
                // style={{width:"206px"}}
                 className="googlePlay"
               />
             </a>
-          </div> */}
+          </div> 
         </div>
       </div>
     </div>

@@ -32,11 +32,11 @@ const SurMansetSlider = () => {
             surMansetArr.push({
               ...doc.data(),
               doc: doc.id,
-              autoindexed: categoriesList.length,
+              autoindexed: surMansetArr.length,
             });
           }
         });
-        categoriesList.sort((a, b) => (a.index || 0) - (b.index || 0));
+        surMansetArr.sort((a, b) => (a.index || 0) - (b.index || 0));
 
         setSurmansetList(surMansetArr);
         setLoading(false);
