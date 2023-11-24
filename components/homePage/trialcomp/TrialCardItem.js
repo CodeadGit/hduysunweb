@@ -23,7 +23,7 @@ const TrialCardItem = ({ item, modeStatus }) => {
     <div
       className={`singleSporCard-bottom-title ${modeStatus ? "dark" : ""}`}
     >
-      {title}
+      {String(title).length>51?`${String(title).substring(0,50)}...`:title}
     </div>
     <div
       className={`singleSporCard-bottom-line ${modeStatus ? "dark" : ""}`}

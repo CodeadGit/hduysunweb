@@ -23,7 +23,7 @@ const CategoryItem = ({ item }) => {
         <div
           className={`categoryItem-bottom-title ${modeStatus ? "dark" : ""}`}
         >
-           {title}
+          {String(title).length>51?`${String(title).substring(0,50)}...`:title}
         </div>
         <div
           className={`categoryItem-bottom-line ${modeStatus ? "dark" : ""}`}
