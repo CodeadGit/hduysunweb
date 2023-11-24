@@ -36,8 +36,8 @@ export const shortNewsTitle = (word) => `${word.substring(0, 50)}...`;
 
 export const handleShort = (text, number) => {
   const res = text?.split(" ");
-  if (res.length <= number) return res.join(" ");
-  return res.slice(0,number).join(" ").concat(" ...");
+  if (res?.length <= number) return res?.join(" ");
+  return res?.slice(0,number).join(" ").concat(" ...");
 };
 export const handleShortBreadcrump = (text, number) => {
   const res = text?.split(" ");
