@@ -2,23 +2,24 @@
 import React from "react";
 import "./allCategories.scss";
 
-import spor from "../assets/spor.png";
+import spor from "../assets/spor.jpeg";
 import magazin from "../assets/magazin.png";
-import egitim from "../assets/egitim.png";
-import dunya from "../assets/dunya.png";
-import gundem from "../assets/gundem.png";
-import siyaset from "../assets/siyaset.png";
-import ekonomi from "../assets/ekonomi.png";
-import saglik from "../assets/saglik.png";
-import video from "../assets/video.png";
-import teknoloji from "../assets/teknoloji.png";
-import otomobil from "../assets/otomobil.png";
-import seyahat from "../assets/seyahat.png";
-import gastro from "../assets/gastro.png";
-import kultursanat from "../assets/kultursanat.png";
+import egitim from "../assets/egitim.jpeg";
+import dunya from "../assets/dunya.jpeg";
+import gundem from "../assets/gundem.jpeg";
+import siyaset from "../assets/siyaset.jpeg";
+import ekonomi from "../assets/economy.jpeg";
+import saglik from "../assets/saglik.jpeg";
+import video from "../assets/video.jpeg";
+import teknoloji from "../assets/teknoloji.jpeg";
+import otomobil from "../assets/otomobil.jpeg";
+import seyahat from "../assets/seyahat.jpeg";
+import gastro from "../assets/gastro.jpeg";
+import kultursanat from "../assets/kultursanat.jpeg";
 import CategoryItem from "./CategoryItem";
 import SmallCatItem from "./SmallCatItem";
 import { useThemeContext } from "@/context/ThemeContext";
+import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
 
 const categories = [
   {
@@ -108,6 +109,9 @@ const AllCategories = () => {
 
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
+  const {images} = useFetchAssetsContext();
+
+  console.log(images[0])
 
   return (
     <div className="allCats">

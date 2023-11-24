@@ -10,6 +10,7 @@ import BaseWrapper from "@/components/BaseWrapper";
 import { AuthenticationProvider } from "@/context/AuthenticationContext";
 import { CategoriesProvider } from "@/context/CategoriesContext";
 import { TagContextProvider } from "@/context/TagContext";
+import { FetchAssetsContextProvider } from "@/context/FetchAssetsContext";
 // import LogoNext from "@/components/ads/adsComponents/LogoNext";
 // import MiniNavbar from '@/components/miniNavbar/MiniNavbar';
 
@@ -28,19 +29,21 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={poppins.className} suppressHydrationWarning={true}>
         <AuthenticationProvider>
-          <CategoriesProvider>
-            <ThemeProvider>
-              <TagContextProvider>
-                <AdsContextProvider>
-                  <Navbar />
-                  {/* <MiniNavbar /> */}
-                  {/* <LogoNext /> */}
-                  <BaseWrapper>{children}</BaseWrapper>
-                  <Footer />
-                </AdsContextProvider>
-              </TagContextProvider>
-            </ThemeProvider>
-          </CategoriesProvider>
+          <FetchAssetsContextProvider>
+            <CategoriesProvider>
+              <ThemeProvider>
+                <TagContextProvider>
+                  <AdsContextProvider>
+                    <Navbar />
+                    {/* <MiniNavbar /> */}
+                    {/* <LogoNext /> */}
+                    <BaseWrapper>{children}</BaseWrapper>
+                    <Footer />
+                  </AdsContextProvider>
+                </TagContextProvider>
+              </ThemeProvider>
+            </CategoriesProvider>
+          </FetchAssetsContextProvider>
         </AuthenticationProvider>
       </body>
     </html>

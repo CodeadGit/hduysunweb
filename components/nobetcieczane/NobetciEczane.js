@@ -8,8 +8,11 @@ import home from "../homePage/assets/adres.png";
 import Image from "next/image";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 import NobetciEczaneSkeleton from "./NobetciEczaneSkeleton";
+import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
 
 const NobetciEczaneComp = () => {
+
+  const {images} = useFetchAssetsContext();
 
   const [info, setInfo] = useState({
     city: "Bursa",
@@ -133,7 +136,7 @@ const NobetciEczaneComp = () => {
               </div>
             </div>
             <div className="downside">
-              <Image src={home} />
+              <img alt="" src={images[0]} />
               <p>{i.address}</p>
             </div>
           </div>

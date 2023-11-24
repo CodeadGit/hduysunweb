@@ -26,16 +26,18 @@ const SurMansetSlider = () => {
         var surMansetArr = [];
 
         querySnapshot.forEach((doc) => {
-          //if (doc.data().index) {
+          if (doc.data().index) {
             surMansetArr.push({ ...doc.data(), doc: doc.id });
-          // } else {
-          //   surMansetArr.push({
-          //     ...doc.data(),
-          //     doc: doc.id,
-          //     autoindexed: surMansetArr.length,
-          //   });
-          // }
+          } else {
+            surMansetArr.push({
+              ...doc.data(),
+              doc: doc.id,
+              autoindexed: categoriesList.length,
+            });
+          }
         });
+        categoriesList.sort((a, b) => (a.index || 0) - (b.index || 0));
+
         setSurmansetList(surMansetArr);
         setLoading(false);
       } catch (error) {
