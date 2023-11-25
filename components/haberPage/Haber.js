@@ -10,11 +10,13 @@ import {
   addDoc,
   collection,
   doc,
-  getDocs,
   increment,
+  onSnapshot,
   orderBy,
   query,
+  setDoc,
   updateDoc,
+  where,
 } from "firebase/firestore";
 import { db } from "../../firebase/firebase.config";
 import { categoryConvertor } from "@/context/utils";
@@ -35,10 +37,10 @@ import VideoGallery from "./VideoGallery";
 import StickyNavbar from "../stickyNavbar/StickyNavbar";
 
 const Haber = ({ thisPageArticle, thisPage }) => {
+
   const { mode, mostReadNewsList, videoNewsList } = useThemeContext();
   const modeStatus = mode === "dark";
   const [loading, setLoading] = useState(true);
-  // const [loadingComments, setLoadingComments] = useState(true);
   const [comments, setComments] = useState([]);
   const [showAnswers, setShowAnswers] = useState(null);
   const [comment, setComment] = useState({
@@ -62,9 +64,7 @@ const Haber = ({ thisPageArticle, thisPage }) => {
 
   const body = thisPageArticle?.body;
 
-  const mostReadNews = mostReadNewsList
-    .filter((item) => item.id !== id)
-    .slice(0, 5);
+  const mostReadNews = mostReadNewsList.filter((item) => item.id !== id).slice(0, 5);
 
   const existingCategory = categoryConvertor[category] || category;
 
@@ -101,7 +101,8 @@ const Haber = ({ thisPageArticle, thisPage }) => {
         id: idForC,
         createdAt: createdAt,
         confirmed: false,
-        ref:${thisPage?.category}/${thisPage?.id}
+        ref:`${thisPage?.category}/${thisPage?.id}`
+
       });
 
       await updateDoc(referancePost, {
@@ -127,33 +128,28 @@ const Haber = ({ thisPageArticle, thisPage }) => {
   };
 
   useEffect(() => {
-    var referance = collection(db, thisPage.category, thisPage.id, "comments");
+    let controller = new AbortController();
+    let referance = query(collection(db, "Comments"),where("ref","==",`${thisPage?.category}/${thisPage?.id}`));
 
-    const fetchNews = async () => {
-      const q = query(referance, orderBy("createdAt", "asc"));
-      try {
+    (async () => {
+      const q = query(referance);
+      const jobgetting = onSnapshot(q, (snap) => {
         var thisComments = [];
-        const querySnapshot = await getDocs(q);
+        if(!snap.empty){
+          snap.forEach((doc) => {
+            if(doc.data().confirmed){
+              thisComments.unshift({ ...doc.data()});
+            }})};
 
-        querySnapshot.forEach((doc) => {
-          thisComments.unshift({ ...doc.data(), doc: doc.id });
-        });
-      } catch (error) {
-        console.error(error);
-      }
-      setComments(thisComments);
-      // setLoadingComments(false);
-    };
-    fetchNews();
+        const sortedComments = thisComments.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
+        setComments(sortedComments);
+      });
+      return () => jobgetting();
+    })();
+
+    return () => controller?.abort();
   }, []);
-
-
-  // console.log(comments);
-  // console.log(showAnswers);
-  // console.log(selectedComment);
-
-  const confirmedComments = comments.filter((comment) => comment.confirmed);
-
+  
   return (
     <div className={`newss ${modeStatus ? "dark" : ""}`}>
       <Breadcrumb mode={mode} links={categoryBreadcrumb} />
@@ -182,9 +178,9 @@ const Haber = ({ thisPageArticle, thisPage }) => {
           <Amblem modeStatus={modeStatus} />
           <CategoryHeadlines />
           <Amblem modeStatus={modeStatus} />
-          {thisPage.isCommentable && (
+          { thisPage.isCommentable  && (
             <Comments
-              confirmedComments={confirmedComments}
+              comments={comments}
               modeStatus={modeStatus}
               thisPage={thisPage}
               setShowAnswers={setShowAnswers}

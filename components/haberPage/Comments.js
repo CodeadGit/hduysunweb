@@ -2,7 +2,9 @@ import React from "react";
 import "./comments.scss";
 import SingleComment from "./SingleComment";
 
-const Comments = ({confirmedComments, modeStatus, thisPage, setShowAnswers, showAnswers}) => {
+const Comments = ({comments, modeStatus, thisPage, setShowAnswers, showAnswers}) => {
+
+ const confirmedComments = comments.filter((comment) => comment.confirmed);
 
   return (
     
