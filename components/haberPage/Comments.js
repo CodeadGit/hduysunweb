@@ -2,14 +2,16 @@ import React from "react";
 import "./comments.scss";
 import SingleComment from "./SingleComment";
 
-const Comments = ({confirmedComments, modeStatus, thisPage, setShowAnswers, showAnswers}) => {
+const Comments = ({comments, modeStatus, thisPage, setShowAnswers, showAnswers}) => {
+
+ const confirmedComments = comments.filter((comment) => comment.confirmed);
 
   return (
     
     <div className="comments" id="comments">
       <h4 className={modeStatus ? "dark" : ""}>Yorumlar</h4>
 
-      {confirmedComments?.map((comment,idx) => {
+      {confirmedComments.map((comment,idx) => {
         return (
           <SingleComment
             key={idx}
