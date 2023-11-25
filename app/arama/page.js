@@ -65,7 +65,7 @@ const SearchPage = () => {
 
     const fetchWordNews = async () => {
       const q = query(collection(db, "HDSearch"));
-      let willBeSearched = replaceTurkishCharacters(searchWord);
+      let willBeSearched = replaceTurkishCharacters(searchWord).toLowerCase();
 
       try {
         const wordsNewsList = [];
