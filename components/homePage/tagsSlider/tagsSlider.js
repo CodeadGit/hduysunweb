@@ -190,7 +190,7 @@ const TagsSlider = () => {
         </div>
         <div className="sliderContainer-top-left-ads">
           <iframe
-            src="https://www.bursa.bel.tr/reklam/?w=300"
+            src="https://www.bursa.bel.tr/reklam/?w=728"
             frameborder="0"
             scrolling="no"
             style={{ width: "728px", height: "90px", overflow: "hidden" }}
