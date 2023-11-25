@@ -39,7 +39,7 @@ const VideoGallery = ({ modeStatus, videoNewsList }) => {
                 )}
               </p>
               <AiFillEye />
-              <span>{item.read}</span>
+              {/* <span>{item.read}</span> */}
             </div>
           </Link>
         );

@@ -18,14 +18,14 @@ const NewsTimeInfo = ({ dateModified, datePublished, modeStatus }) => {
 
   return (
     <p className={`timeInfo ${modeStatus ? "dark" : ""}`} style={styleTime}>
+       <span>
+        <strong>Yayınlanma Tarihi: </strong> {publishedTime}
+      </span>
       {dateModified && (
         <span>
           <strong>Güncellenme Tarihi: </strong> {modifiedTime}
         </span>
       )}
-      <span>
-        <strong>Yayınlanma Tarihi: </strong> {publishedTime}
-      </span>
     </p>
   );
 };

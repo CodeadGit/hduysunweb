@@ -29,7 +29,7 @@ export const editLink = (collection) => {
   if (collection === "asayis") return "asayiş";
   if (collection === "egitim") return "eğitim";
   if (collection === "roportaj") return "röportaj"
-  return collection.replace("u", "ü");
+  return collection.replace("u", "u");
 };
 
 export const shortNewsTitle = (word) => `${word.substring(0, 50)}...`;

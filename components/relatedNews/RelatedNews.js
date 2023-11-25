@@ -14,7 +14,6 @@ const RelatedNews = ({ subCategories, id, category }) => {
     ?.filter((item) => item?.category === category && item.id !== id)
     .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds)
     .slice(0, 3);
-  console.log(relatedCategoryNews);
   useEffect(() => {
     const arr = [];
 
