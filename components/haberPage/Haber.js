@@ -85,25 +85,29 @@ const Haber = ({ thisPageArticle, thisPage }) => {
 
   const formSubmitHandler = async (e) => {
     e.preventDefault();
-    var referancefirst = doc(db, thisPage.category, thisPage.id);
-    var referance = collection(db, thisPage.category, thisPage.id, "comments");
+    var referancePost = doc(db, thisPage.category, thisPage.id);
+    var idForC = new Date().valueOf().toString().substring(6);
+    var referanceC = doc(db, "Comments", idForC);
     setLoading(true);
     var createdAt = new Date();
-    let a;
 
     try {
-      a = await addDoc(referance, {
+
+      await setDoc(referanceC, {
         ...comment,
         likes: 0,
         comments: 0,
         dislikes: 0,
-        id: new Date().valueOf().toString().substring(6),
+        id: idForC,
         createdAt: createdAt,
         confirmed: false,
+        ref:${thisPage?.category}/${thisPage?.id}
       });
-      await updateDoc(referancefirst, {
+
+      await updateDoc(referancePost, {
         comments: increment(1),
       });
+      
       setLoading(false);
       window.alert("Yorum yüklendi");
       setComment({
@@ -115,7 +119,6 @@ const Haber = ({ thisPageArticle, thisPage }) => {
       window.alert("Bir hata meydana geldi", error);
       console.log(error);
     }
-    return a;
   };
 
   const handleChange = (e) => {
