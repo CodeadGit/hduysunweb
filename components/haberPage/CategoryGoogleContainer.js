@@ -1,11 +1,11 @@
 import React from "react";
 import "./categoryGoogleContainer.scss";
 import { FaRegBookmark } from "react-icons/fa";
-import google from "../homePage/assets/googleNews.png";
 import Link from "next/link";
-import Image from "next/image";
+import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
 
 const CategoryGoogleContainer = ({ modeStatus, category, existingCategory}) => {
+   const { images } = useFetchAssetsContext();
 
   return (
     <div className="newss-container-content-category">
@@ -20,7 +20,7 @@ const CategoryGoogleContainer = ({ modeStatus, category, existingCategory}) => {
           target="_blank"
         >
           <p>Abone Ol</p>
-          <Image src={google} alt="google-news" />
+          <img src={images[35]} alt="google-news" />
         </Link>
       </div>
     </div>

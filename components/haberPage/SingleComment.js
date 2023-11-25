@@ -12,8 +12,6 @@ import {
   query,
   updateDoc,
 } from "firebase/firestore";
-// import member1 from "../homePage/assets/member1.png";
-// import Image from "next/image";
 import { GoClock } from "react-icons/go";
 import { TiArrowForward } from "react-icons/ti";
 import { GiCancel } from "react-icons/gi";

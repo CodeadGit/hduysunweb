@@ -1,54 +1,53 @@
 "use client";
 import React from "react";
 import "./footer.scss";
-import Image from "next/image";
 import Link from "next/link";
-import darkLogo from "../../components/navbarLogo/darkLogo.svg";
+import darkLogo from "./newNormalLogo.svg";
 import { BsWhatsapp } from "react-icons/bs";
 import { BsFacebook } from "react-icons/bs";
 import { BsTwitter } from "react-icons/bs";
 import { BsInstagram } from "react-icons/bs";
-import google from "../../components/homePage/assets/google.png";
-import apple from "../../components/homePage/assets/apple.png";
 import KunyeItem from "./KunyeItem";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useAdsContext } from "@/context/AdsContext";
+import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
+import Image from "next/image";
 
 const kunyeArray = [
   {
     id: 1,
     caption: "Künye",
-    url:"/kunye"
+    url: "/kunye",
   },
   {
     id: 2,
     caption: "Çerez Politikası",
-    url:"/cerez-politikasi"
+    url: "/cerez-politikasi",
   },
   {
     id: 3,
     caption: "Gizlilik Politikası",
-    url:"/gizlilik-politikasi"
+    url: "/gizlilik-politikasi",
   },
   {
     id: 4,
     caption: "Veri Politikası",
-    url:"/veri-politikasi"
+    url: "/veri-politikasi",
   },
   {
     id: 5,
     caption: "Kullanım Şartnamesi",
-    url:"/kullanim-sartnamesi"
+    url: "/kullanim-sartnamesi",
   },
   {
     id: 6,
-    caption: "Bize Ulaşın",
-    url:"/bize-ulasin"
+    caption: "İletişim",
+    url: "/bize-ulasin",
   },
   {
     id: 7,
     caption: "KVKK",
-    url:"kvkk"
+    url: "kvkk",
   },
 ];
 
@@ -56,6 +55,7 @@ const Footer = () => {
   const { mode } = useThemeContext();
 
   const modeStatus = mode === "dark";
+  const {images} = useFetchAssetsContext();
   const { storyModall } = useAdsContext();
 
   return (
@@ -66,7 +66,7 @@ const Footer = () => {
     >
       <div className="footer-fluid">
         <div className="footer-fluid-logo">
-          <Image src={darkLogo} alt="navbarLogo" priority />
+          <Image width={234} src={darkLogo} alt="navbarLogo" priority />
         </div>
         <div className="footer-fluid-info">
           <div className="info-left">
@@ -102,7 +102,9 @@ const Footer = () => {
                   <li>
                     <Link href="/asayis"> Asayiş</Link>
                   </li>
-                   <li><Link href="/roportaj">Röportajlar</Link></li> 
+                  <li>
+                    <Link href="/roportaj">Röportajlar</Link>
+                  </li>
                   <li>
                     <Link href="/yasam">Yaşam</Link>
                   </li>
@@ -142,16 +144,16 @@ const Footer = () => {
             <div className="info-right-icons">
               <p className="follow">BİZİ TAKİP EDİN</p>
               <div className="media">
-                <Link href="https://wa.me/905411604040">
+                <Link target="_blank" href="https://wa.me/905411604040">
                   <BsWhatsapp />
                 </Link>
-                <Link href="https://www.facebook.com/herkesduysun">
+                <Link target="_blank" href="https://www.facebook.com/herkesduysun">
                   <BsFacebook />
                 </Link>
-                <Link href="https://twitter.com/herkesduysuncom">
+                <Link target="_blank" href="https://twitter.com/herkesduysuncom">
                   <BsTwitter />
                 </Link>
-                <Link href="https://www.instagram.com/herkesduysuncom">
+                <Link target="_blank" href="https://www.instagram.com/herkesduysuncom">
                   <BsInstagram />
                 </Link>
               </div>
@@ -159,21 +161,25 @@ const Footer = () => {
             </div>
             <div className="logos">
               <div className="apple">
-               <a href="https://apps.apple.com/tr/app/"><Image src={apple} alt="navbarLogo" priority /></a> 
+                <a href="https://apps.apple.com/tr/app/">
+                  <img src={images[5]} alt="navbarLogo" priority />
+                </a>
               </div>
               <div className="google">
-              <a href="https://play.google.com/store/games?device=windows"><Image src={google} alt="navbarLogo" priority /></a> 
+                <a href="https://play.google.com/store/games?device=windows">
+                  <img src={images[34]} alt="navbarLogo" priority />
+                </a>
               </div>
             </div>
           </div>
         </div>
         <ul className="footer-fluid-kunye">
-          {kunyeArray.map((item,idx) => (
-            <KunyeItem key={idx} {...item} item={item}/>
+          {kunyeArray.map((item, idx) => (
+            <KunyeItem key={idx} {...item} item={item} />
           ))}
         </ul>
       </div>
-      
+
       <div className={`footer-bottom ${modeStatus ? "dark" : ""}`}>
         <h6>© 2023 ADİN GRUP MEDYA REKLAM. Tüm Hakları Saklıdır</h6>
       </div>

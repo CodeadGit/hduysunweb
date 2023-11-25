@@ -5,35 +5,42 @@ import "slick-carousel/slick/slick-theme.css";
 import { useThemeContext } from "@/context/ThemeContext";
 import MainSliderItem from "./MainSliderItem";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 
 const MainSlider = () => {
-  const {  mode } = useThemeContext();
+  const { mode } = useThemeContext();
   const [loading, setLoading] = useState(true);
   const [list, setList] = useState([]);
 
   const modeStatus = mode === "dark";
 
-
   useEffect(() => {
     const fetchCategories = async () => {
-      const q = query(collection(db, "isManset"),orderBy("datePublished","desc"),limit(20));
+      const q = query(
+        collection(db, "isManset"),
+        orderBy("datePublished", "desc"),
+        limit(20)
+      );
       try {
         const querySnapshot = await getDocs(q);
         var categoriesList = [];
 
         querySnapshot.forEach((doc) => {
-            //header true olanlar geliyor
-            if(doc.data().index){
-              categoriesList.push({ ...doc.data(), doc: doc.id });
-           
-            }else{
-              categoriesList.push({ ...doc.data(), doc: doc.id,autoindexed:categoriesList.length });
-         
-            }
-         });
+          //header true olanlar geliyor
+          if (doc.data().index) {
+            categoriesList.push({ ...doc.data(), doc: doc.id });
+          } else {
+            categoriesList.push({
+              ...doc.data(),
+              doc: doc.id,
+              autoindexed: categoriesList.length,
+            });
+          }
+        });
+        categoriesList.sort((a, b) => (a.index || 0) - (b.index || 0));
+
         setList(categoriesList);
         setLoading(false);
       } catch (error) {
@@ -42,6 +49,7 @@ const MainSlider = () => {
     };
     fetchCategories();
   }, []);
+  const sliderRef = useRef();
 
   const settings = {
     infinite: true,
@@ -60,9 +68,12 @@ const MainSlider = () => {
     dotsClass: "slick-dots",
     appendDots: (dots) => (
       <>
-        <ul className="dots-ul">
+        <ul 
+        
+        className="dots-ul">
           {dots}
-          <li>
+          <li
+          >
             <Link href="/mansetler" className="all-link">
               T
             </Link>
@@ -71,8 +82,6 @@ const MainSlider = () => {
       </>
     ),
   };
-
-  // const sonDakikaManset =  mansetNewsList.map((i) => i.category === "sonDakika")
 
   return (
     <div className="mainSlider">
@@ -86,10 +95,10 @@ const MainSlider = () => {
         )}
       </div>
       <div className="mainSlider-med">
-        {list && !loading &&(
+        {list && !loading && (
           <Slider {...settings} className="mainSlider-med-slidersRes">
             {list?.slice(0, 15).map((item, idx) => {
-              return <MainSliderItem item={item} key={idx} />;
+              return <MainSliderItem item={item} key={idx} idx={idx}/>;
             })}
           </Slider>
         )}

@@ -26,16 +26,18 @@ const SurMansetSlider = () => {
         var surMansetArr = [];
 
         querySnapshot.forEach((doc) => {
-          //if (doc.data().index) {
+          if (doc.data().index) {
             surMansetArr.push({ ...doc.data(), doc: doc.id });
-          // } else {
-          //   surMansetArr.push({
-          //     ...doc.data(),
-          //     doc: doc.id,
-          //     autoindexed: surMansetArr.length,
-          //   });
-          // }
+          } else {
+            surMansetArr.push({
+              ...doc.data(),
+              doc: doc.id,
+              autoindexed: surMansetArr.length,
+            });
+          }
         });
+        surMansetArr.sort((a, b) => (a.index || 0) - (b.index || 0));
+
         setSurmansetList(surMansetArr);
         setLoading(false);
       } catch (error) {
@@ -76,18 +78,20 @@ const SurMansetSlider = () => {
 
   return (
     <div className="surMansetSlider">
-      <Slider {...settings} className="surMansetSlider-sliders">
-        {surMansetList?.slice(0, 10).map((item, idx) => {
-          return (
-            <SurMansetSliderItem
-              item={item}
-              idx={idx}
-              key={idx}
-              title={item.title}
-            />
-          );
-        })}
-      </Slider>
+      {surMansetList && !loading && (
+        <Slider {...settings} className="surMansetSlider-sliders">
+          {surMansetList?.slice(0, 10).map((item, idx) => {
+            return (
+              <SurMansetSliderItem
+                item={item}
+                idx={idx}
+                key={idx}
+                title={item.title}
+              />
+            );
+          })}
+        </Slider>
+      )}
     </div>
   );
 };

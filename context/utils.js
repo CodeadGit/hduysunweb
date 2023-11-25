@@ -36,8 +36,8 @@ export const shortNewsTitle = (word) => `${word.substring(0, 50)}...`;
 
 export const handleShort = (text, number) => {
   const res = text?.split(" ");
-  if (res.length <= number) return res.join(" ");
-  return res.slice(0,number).join(" ").concat(" ...");
+  if (res?.length <= number) return res?.join(" ");
+  return res?.slice(0,number).join(" ").concat(" ...");
 };
 export const handleShortBreadcrump = (text, number) => {
   const res = text?.split(" ");
@@ -52,7 +52,7 @@ export const handleShorttSonDakika = (text) => {
   return text?.substring(0,40).concat(" ...");
 };
 export const handleShorttSurmanset = (text) => {
-  return text?.substring(0,40).concat(" ...");
+  return text?.substring(0,80).concat(" ...");
 };
 export const handleShorttLetter = (title,number) => {
   // const res = title?.split("");
@@ -92,6 +92,7 @@ export const transformCategory = (category) => {
   if(category === "kultursanat") return "KÜLTÜR SANAT";
   if(category === "egitim") return "EĞİTİM";
   if(category === "video-galeri") return "VİDEO GALERİ";
+  if(category === "otomobil") return "OTOMOBİL";
   return category.toUpperCase();
 };
 

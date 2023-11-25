@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import "./nobetci.scss";
 import axios from "axios";
 import { cities, regions } from "../../context/districts";
-import eczane from "../homePage/assets/eczane.jpg";
-import home from "../homePage/assets/adres.png";
-import Image from "next/image";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 import NobetciEczaneSkeleton from "./NobetciEczaneSkeleton";
+import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
 
 const NobetciEczaneComp = () => {
+
+  const {images} = useFetchAssetsContext();
 
   const [info, setInfo] = useState({
     city: "Bursa",
@@ -121,7 +121,7 @@ const NobetciEczaneComp = () => {
           <div className="item">
             <div className="upside">
               <div className="upside-left">
-                <Image src={eczane} alt="" />
+                <img src={images[25]} alt="" />
                 <h5>{i.name.includes("ECZANESİ") ? i.name : i.name.concat(" ECZANESİ")}</h5>
                 <div className="location-icon">
                   <FmdGoodOutlinedIcon />
@@ -133,7 +133,7 @@ const NobetciEczaneComp = () => {
               </div>
             </div>
             <div className="downside">
-              <Image src={home} />
+              <img alt="" src={images[0]} />
               <p>{i.address}</p>
             </div>
           </div>

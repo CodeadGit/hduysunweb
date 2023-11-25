@@ -65,7 +65,7 @@ export const ThemeProvider = ({ children }) => {
   const [tagsList, setTagsList] = useState([]);
   const [pinnedMansetData, setPinnedMansetData] = useState([]);
   const [pinnedSurmansetData, setPinnedSurMansetData] = useState([]);
-  const [searchButton, setSearchButton] = useState(true);
+  const [searchButtonStatus, setSearchButtonStatus] = useState(true);
   const [newsLoading , setNewsLoading] = useState(true);
 
   const [total, setTotal] = useState({
@@ -89,7 +89,7 @@ export const ThemeProvider = ({ children }) => {
     setFontInc(fontInc - 1);
   };
 
-  const handleSearchButton = () => setSearchButton((pre) => !pre);
+  const handleSearchButton = () => setSearchButtonStatus((pre) => !pre);
 
   useEffect(() => {
     const fetchAuthors = async () => {
@@ -438,7 +438,7 @@ export const ThemeProvider = ({ children }) => {
     total,
     fetching,
     handleSearchButton,
-    searchButton,
+    searchButtonStatus,
     mansetNewsList,
     newsLoading,
     mostReadNewsList,

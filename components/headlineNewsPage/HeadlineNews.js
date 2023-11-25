@@ -20,6 +20,7 @@ const HeadlineNewsPage = () => {
     );
   });
 
+
   return (
     <div className="mansetPage">
       <div className="mansetBreadcrump">

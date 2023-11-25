@@ -20,9 +20,9 @@ const SingleVideo = ({ mode, item = {} }) => {
         <img src={headImg} alt="google-news" />
       </div>
       <div className="most-reads-single-video-content">
-        <p className={`content-author ${mode ? "dark" : ""}`}>
+        {/* <p className={`content-author ${mode ? "dark" : ""}`}>
           YAZAR: {author}
-        </p>
+        </p> */}
         <p className={`content-news ${mode ? "dark" : ""}`}>
           {title}
           {/* {handleShort(description, 9)} */}

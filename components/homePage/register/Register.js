@@ -1,17 +1,12 @@
 "use client";
-import React from "react";
-import Image from "next/image";
 import "./register.scss";
 import mobile from "../assets/mobile.png";
-import appstore from "../assets/appstore.png";
-import trgoogle from "../assets/trgoogle.png";
 import { useThemeContext } from "@/context/ThemeContext";
-import pngandro from "../assets/pngandro.png";
-import pngapple from "../assets/pngapple.png";
-
+import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
 const Register = () => {
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
+  const { images } = useFetchAssetsContext();
 
   return (
     <div className="register">
@@ -45,7 +40,7 @@ const Register = () => {
 
       <div className="register-store">
         <div className="mobile">
-          <Image src={mobile} alt="mobile" fill />
+          <img src={images[43]} alt="mobile" fill />
         </div>
         <div className="information">
           <p className={modeStatus ? "dark" : ""}>
@@ -66,23 +61,23 @@ const Register = () => {
           </div> */}
           <div className="apps">
             <a href="https://apps.apple.com/tr/app/">
-              <Image
-                src={pngapple}
+              <img
+                src={images[6]}
                 alt="mobile"
-                width={208}
+               // style={{width:"208px"}}
                 className="appStore"
               />
             </a>
 
             <a href="https://play.google.com">
-              <Image
-                src={pngandro}
+              <img
+                src={images[64]}
                 alt="mobile"
-                width={206}
+               // style={{width:"206px"}}
                 className="googlePlay"
               />
             </a>
-          </div>
+          </div> 
         </div>
       </div>
     </div>
