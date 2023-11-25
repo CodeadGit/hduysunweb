@@ -13,13 +13,13 @@ const NewsAndAuthorInfo = ({ modeStatus, thisPage }) => {
       {/* <div className="user-info-img">
         <Image src={userImg} alt="google-news" fill />
       </div> */}
-      <span className="user-info-name">{author}</span>
-      <div className={`user-info-line ${modeStatus ? "dark" : ""}`}></div>
-      <div className="user-info-icon">
+      {/* <span className="user-info-name">{author}</span>
+      <div className={`user-info-line ${modeStatus ? "dark" : ""}`}></div> */}
+      {/* <div className="user-info-icon">
         <AiFillEye className={modeStatus ? "dark" : ""} />
         <span> {read} </span>
       </div>
-      <div className={`user-info-line ${modeStatus ? "dark" : ""}`}></div>
+      <div className={`user-info-line ${modeStatus ? "dark" : ""}`}></div> */}
       <Link
         href="/#comments"
         className="user-info-comment"

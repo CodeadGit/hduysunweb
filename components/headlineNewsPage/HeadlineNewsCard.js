@@ -49,12 +49,12 @@ const HeadlineNewsCard = ({ item }) => {
               >
                 Haber Kaynağı
               </span>
-              <div
+              {/* <div
                 className={`headline-author-who ${modeStatus ? "dark" : ""}`}
               >
                 <span className={`blue-box ${modeStatus ? "dark" : ""}`}></span>
                 {newAuthor}
-              </div>
+              </div> */}
             </div>
             <div className="headlineNewsCard-right-bottom-info-publishedDate">
               <span

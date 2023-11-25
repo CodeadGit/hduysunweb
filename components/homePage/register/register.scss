@@ -15,6 +15,8 @@
     flex-direction: column;
     height: auto;
     margin: 0;
+    width: 100%;
+    border: 1px solid red;
   }
 
   &-form {
@@ -146,13 +148,14 @@
   }
 
   &-store {
-    // border: 1px solid red;
+   // border: 1px solid red;
     flex: 0.5;
     margin: 0 auto;
 
     @media screen and (max-width: 768px) {
-      // border: 1px solid red;
+     border: 1px solid red;
       height: 20rem;
+      width: 100%;
     }
 
     .mobile {

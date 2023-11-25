@@ -62,10 +62,10 @@ const SubHeadlineNewsCard = ({ item }) => {
               <span className={`author-title ${modeStatus ? "dark" : ""}`}>
                 Haber Kaynağı
               </span>
-              <div className={`author-who ${modeStatus ? "dark" : ""}`}>
+              {/* <div className={`author-who ${modeStatus ? "dark" : ""}`}>
                 <span className={`blue-box ${modeStatus ? "dark" : ""}`}></span>
                 {newAuthor}
-              </div>
+              </div> */}
             </div>
             <div className="subHeadlineNewsCard-desBox-bottom-info-publishedDate">
               <span className={`published-title ${modeStatus ? "dark" : ""}`}>

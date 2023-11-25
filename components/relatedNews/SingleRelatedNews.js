@@ -24,10 +24,10 @@ const SingleRelatedNews = ({ item = {}, mode }) => {
       <img src={image} alt="asd" className="single-img-wrapper" />
         <div className={`related-news-single-comments ${mode ? "dark" : ""}`}>
           <p> {publishedTime} </p>
-          <div className="view-number">
+          {/* <div className="view-number">
             <AiFillEye />
             <span>{read}</span>
-          </div>
+          </div> */}
         </div>
         <p className={`related-news-single-content ${mode ? "dark" : ""}`}>
           {handleShort(title,10)}

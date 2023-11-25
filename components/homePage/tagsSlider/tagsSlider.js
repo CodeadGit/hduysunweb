@@ -24,10 +24,9 @@ const TagsSlider = () => {
   const newsAmount = news.length;
   const newsToShow = newsAmount >= 5 ? 5 : newsAmount;
 
-
-  const sliderNews = [...news]?.filter(n=>(n?.isManset!==true||n?.isSurmanset!==true))
-    .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds)
-
+  const sliderNews = [...news]
+    ?.filter((n) => n?.isManset !== true || n?.isSurmanset !== true)
+    .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds);
 
   const tagButtonClickHandler = (i) => {
     setTagClicked(i);
@@ -71,7 +70,7 @@ const TagsSlider = () => {
         const tagsArray = [];
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-          tagsArray.push({...doc.data(), tag:doc.id});
+          tagsArray.push({ ...doc.data(), tag: doc.id });
         });
         setTagsList(tagsArray);
         setLoading(false);
@@ -82,19 +81,18 @@ const TagsSlider = () => {
     fetchTags();
   }, []);
 
-
   //const mostPopularTags = tagsTitles.sort((i,j) => i.length - j.length).slice(0,6)
   const settings = {
     speed: 1500,
-    transtion:true,
+    transtion: true,
     slidesToScroll: 1,
     autoplay: true,
     arrows: false,
     infinite: true,
     slidesToShow: 5,
     centerMode: false,
-    draggable: true,       // Enable dragging
-  swipeToSlide: true,    // Scroll to the closest slide when dragging
+    draggable: true, // Enable dragging
+    swipeToSlide: true, // Scroll to the closest slide when dragging
 
     responsive: [
       {
@@ -136,49 +134,81 @@ const TagsSlider = () => {
 
   //const sorttedTags = news.sort((a, b) => b[1] - a[1]).slice(0,10);
 
- // const lowerTags = tagsList.map((str) => String(str.tag).toLowerCase().trim());
-  
-   if (newsLoading) {
-     return (
-       <div style={skeletonStyle}>
-         <SliderSkeleton />
-       </div>
-     );
-   }
+  // const lowerTags = tagsList.map((str) => String(str.tag).toLowerCase().trim());
+
+  if (newsLoading) {
+    return (
+      <div style={skeletonStyle}>
+        <SliderSkeleton />
+      </div>
+    );
+  }
 
   return (
     <div className="sliderContainer">
-      <span className={`sliderContainer-title ${modeStatus ? "dark" : ""}`}>
-        Popüler Etiketler
-      </span>
-      <div className="sliderContainer-tags">
-        {tagsList.slice(0, 7).map((i, idx) => (
-          <Link
-            key={idx}
-            onClick={() => tagButtonClickHandler(i)}
-            className="tag-btn"
-            href={`/etiketler/${i.tag}`}
+      <div className="sliderContainer-top">
+        <div className="sliderContainer-top-right">
+          <span
+            className={`sliderContainer-top-right-title ${
+              modeStatus ? "dark" : ""
+            }`}
           >
-            {idx === 6 ? (
-              <span onClick={() => tagButtonClickHandler(i)}>#Bursa</span>
-            ) : (
-              "#" + i.tag
-            )}
-          </Link>
-        ))}
-      </div>
-        <Slider {...settings} className="sliderContainer-slides">
-          {sliderNews.slice(0,10).map((item, idx) => {
-            return (
-              <CardItem
-                item={item}
+            Popüler Etiketler
+          </span>
+          <div className="sliderContainer-top-right-tags">
+            {tagsList.slice(0, 7).map((i, idx) => (
+              <Link
                 key={idx}
-                datePublished={item.datePublished}
-                modeStatus={modeStatus}
-              />
-            );
-          })}
-        </Slider>
+                onClick={() => tagButtonClickHandler(i)}
+                className="tag-btn"
+                href={`/etiketler/${i.tag}`}
+              >
+                {idx === 6 ? (
+                  <span onClick={() => tagButtonClickHandler(i)}>#Bursa</span>
+                ) : (
+                  "#" + i.tag
+                )}
+              </Link>
+            ))}
+          </div>
+          <div className="sliderContainer-top-right-tagsRes">
+            {tagsList.slice(0, 6).map((i, idx) => (
+              <Link
+                key={idx}
+                onClick={() => tagButtonClickHandler(i)}
+                className="tag-btn"
+                href={`/etiketler/${i.tag}`}
+              >
+                {idx === 5 ? (
+                  <span onClick={() => tagButtonClickHandler(i)}>#Bursa</span>
+                ) : (
+                  "#" + i.tag
+                )}
+              </Link>
+            ))}
+          </div>
+        </div>
+        <div className="sliderContainer-top-left-ads">
+          <iframe
+            src="https://www.bursa.bel.tr/reklam/?w=300"
+            frameborder="0"
+            scrolling="no"
+            style={{ width: "728px", height: "90px", overflow: "hidden" }}
+          />
+        </div>
+      </div>
+      <Slider {...settings} className="sliderContainer-slides">
+        {sliderNews.slice(0, 10).map((item, idx) => {
+          return (
+            <CardItem
+              item={item}
+              key={idx}
+              datePublished={item.datePublished}
+              modeStatus={modeStatus}
+            />
+          );
+        })}
+      </Slider>
     </div>
   );
 };

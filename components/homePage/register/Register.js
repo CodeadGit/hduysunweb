@@ -40,7 +40,7 @@ const Register = () => {
 
       <div className="register-store">
         <div className="mobile">
-          <img src={images[43]} alt="mobile" fill />
+          <img src={images[43]} alt="mobile"  />
         </div>
         <div className="information">
           <p className={modeStatus ? "dark" : ""}>

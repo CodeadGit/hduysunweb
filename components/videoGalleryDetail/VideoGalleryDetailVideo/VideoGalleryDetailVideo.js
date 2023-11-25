@@ -33,13 +33,13 @@ const VideoGalleryDetailVideo = ({ item }) => {
             <span>Güncellenme T.</span>
             <span>{formattedModifiedDate}</span>
           </div>
-          <div className="videoGalleryDetailVideo-info__top-read">
-            <span>
+          {/* <div className="videoGalleryDetailVideo-info__top-read"> */}
+            {/* <span>
               {/* <img style={{width:40, height:40, objectFit:"contain"}} src={eyeIcon}/> */}
-              <BsEye/>
-              </span>
-            <span>{read}</span>
-          </div>
+              {/* <BsEye/> */}
+              {/* </span> */}
+            {/* <span>{read}</span> */}
+          {/* </div> */}
         </div>
         <div className="videoGalleryDetailVideo-info__bottom">
           <span className="videoGalleryDetailVideo-info__bottom-title">
