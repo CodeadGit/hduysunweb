@@ -1,13 +1,14 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import { useThemeContext } from "@/context/ThemeContext";
-import { collection, onSnapshot, query } from "firebase/firestore";
+import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import Link from "next/link";
 import "./search.scss";
 import CategoryNewsTitle from "@/components/haberPage/CategoryNewsTitle";
 import MostReadNews from "@/components/haberPage/MostReadNews";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
+import { BiSearch } from "react-icons/bi";
 
 function replaceTurkishCharacters(inputString) {
   const turkishToEnglishMap = {
@@ -41,7 +42,7 @@ const SearchPage = () => {
     mode,
     mostReadNewsList,
     handleSearchButton,
-    searchButton,
+    searchButtonStatus,
   } = useThemeContext();
 
   const modeStatus = mode === "dark";
@@ -57,33 +58,30 @@ const SearchPage = () => {
   ];
 
   useEffect(() => {
-    let controller = new AbortController();
-    let tagsListArray = [];
-
     if (searchWord.length <= 3) {
       setWordNews([]);
       return;
     }
 
-    let willBeSearched = replaceTurkishCharacters(searchWord);
-
-    (async () => {
+    const fetchWordNews = async () => {
       const q = query(collection(db, "HDSearch"));
-      const newsGetting = onSnapshot(q, (snap) => {
-        snap.forEach((doc) => {
+      let willBeSearched = replaceTurkishCharacters(searchWord);
+
+      try {
+        const wordsNewsList = [];
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
           if (doc.data().searchArray.includes(willBeSearched)) {
-            tagsListArray.push({ ...doc.data(), doc: doc.id });
+            wordsNewsList.push({ ...doc.data(), doc: doc.id });
           }
         });
-        setWordNews(tagsListArray);
-      });
-      return () => newsGetting();
-    })();
-
-    return () => {
-      controller?.abort();
+        setWordNews(wordsNewsList);
+      } catch (error) {
+        console.log(error);
+      }
     };
-  }, [searchButton]);
+    fetchWordNews();
+  }, [searchButtonStatus]);
 
   const handleEnter = (e) => {
     if (e.key === "Enter") {
@@ -91,73 +89,92 @@ const SearchPage = () => {
     }
   };
 
+  const handleClear = () => {
+    setSearchWord("");
+    setWordNews([]);
+  };
+
   useEffect(() => {
     inputRef?.current?.focus();
-  }, [searchButton]);
+  }, [searchWord, searchButtonStatus]);
 
   return (
     <div className="whole-search-page">
       <Breadcrumb links={links} />
-      <div className="buttons-container">
-        <input
-          style={{ width: "50%" }}
-          type="text"
-          value={searchWord}
-          ref={inputRef}
-          onChange={(e) => setSearchWord(e.target.value)}
-          onKeyDown={handleEnter}
-        />
-        <button type="button" onClick={handleSearchButton}>
-          Search
-        </button>
-      </div>
-      <div className="search-wrapper">
-        <div className="search-wrapper-left">
-          {wordNews.map((item, idx) => {
-            const { id, eng, category, image, title, datePublished } = item;
-            const timePublished = new Date(datePublished.seconds * 1000);
-            const options = {
-              year: "numeric",
-              month: "numeric",
-              day: "2-digit",
-            };
-            const formattedDate = timePublished.toLocaleString(
-              "tr-TR",
-              options
-            );
-
-            return (
-              <div className="tagCardContainer" key={idx}>
-                <div className="tagCardContainer-top">
-                  <Link target="_blank" href={`/${category}/${eng}-${id}`}>
-                    <img src={image} className="tagCardContainer-top-img" />
-                  </Link>
-                </div>
-                <div className="tagCardContainer-bottom">
-                  <Link
-                    target="_blank"
-                    href={`/${category}/${eng}-${id}`}
-                    className="tagCardContainer-bottom-title"
-                  >
-                    {title}
-                  </Link>
-                  <div className="tagCardContainer-bottom-line"></div>
-                  <div className="tagCardContainer-bottom-date">
-                    <span className="video-date-title">Yayınlanma T.</span>
-                    <span className="video-date">{formattedDate}</span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="search-wrapper-right">
-          <CategoryNewsTitle title="En Çok Okunan" modeStatus={modeStatus} />
-          <MostReadNews
-            modeStatus={modeStatus}
-            mostReadNews={mostReadNewsList}
+      <div className="search-container">
+        <div className="buttons-container">
+          <input
+            style={{ width: "50%" }}
+            type="text"
+            className="searchInput"
+            value={searchWord}
+            ref={inputRef}
+            onChange={(e) => setSearchWord(e.target.value)}
+            onKeyDown={handleEnter}
           />
+          <button
+            type="button"
+            className="searchButton"
+            onClick={handleSearchButton}
+          >
+            <BiSearch />
+          </button>
+          <button type="button" className="clearButton" onClick={handleClear}>
+            Temizle
+          </button>
+        </div>
+        <div className="search-wrapper">
+          {wordNews.length === 0 ? (
+            <p className="noNews">Gösterilecek Haber Yok</p>
+          ) : (
+            <div className="search-wrapper-left">
+              {wordNews?.map((item, idx) => {
+                const { id, eng, category, image, title, datePublished, url } = item;
+                console.log(url)
+                const timePublished = new Date(datePublished.seconds * 1000);
+                const options = {
+                  year: "numeric",
+                  month: "numeric",
+                  day: "2-digit",
+                };
+                const formattedDate = timePublished.toLocaleString(
+                  "tr-TR",
+                  options
+                );
+
+                return (
+                  <div className="tagCardContainer" key={idx}>
+                    <div className="tagCardContainer-top">
+                      <Link target="_blank" href={url}>
+                        <img src={image} className="tagCardContainer-top-img" />
+                      </Link>
+                    </div>
+                    <div className="tagCardContainer-bottom">
+                      <Link
+                        target="_blank"
+                        href={url}
+                        className="tagCardContainer-bottom-title"
+                      >
+                        {title}
+                      </Link>
+                      <div className="tagCardContainer-bottom-line"></div>
+                      <div className="tagCardContainer-bottom-date">
+                        <span className="video-date-title">Yayınlanma T.</span>
+                        <span className="video-date">{formattedDate}</span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          <div className="search-wrapper-right">
+            <CategoryNewsTitle title="En Çok Okunan" modeStatus={modeStatus} />
+            <MostReadNews
+              modeStatus={modeStatus}
+              mostReadNews={mostReadNewsList}
+            />
+          </div>
         </div>
       </div>
     </div>
