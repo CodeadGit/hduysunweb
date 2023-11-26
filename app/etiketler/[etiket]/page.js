@@ -16,7 +16,6 @@ const SingleTag = ({ params }) => {
 
   etiket = decodeURIComponent(etiket);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -31,7 +30,6 @@ const SingleTag = ({ params }) => {
       fetchData();
     
   }, [etiket]);
-
 
   useEffect(() => {
     const fetchTagNews = async () => {
@@ -55,7 +53,7 @@ const SingleTag = ({ params }) => {
 
 
   if (shownNewsLoading) return <h4>yükleniyor...</h4>
-console.log(shownNews)
+
   return (
     <div className="tagsListWrapper">
       {shownNews.map((item, idx) => {
