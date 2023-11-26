@@ -101,7 +101,7 @@ const Haber = ({ thisPageArticle, thisPage }) => {
         id: idForC,
         createdAt: createdAt,
         confirmed: false,
-        ref:${thisPage?.category}/${thisPage?.id}
+        ref:`${thisPage?.category}/${thisPage?.id}`
       });
 
       await updateDoc(referancePost, {
