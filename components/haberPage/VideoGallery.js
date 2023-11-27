@@ -19,7 +19,9 @@ const VideoGallery = ({ modeStatus, videoNewsList }) => {
       </h3>
       {videoGallery?.slice(0, 1).map((item,idx) => {
         return (
-          <Link key={idx} target="_blank" href={`/video-galeri/${item.eng}-${item.id}`} onClick={() => handleReadIncrement(category, id)}>
+          <Link key={idx}
+          // target="_blank" 
+           href={`/video-galeri/${item.eng}-${item.id}`} onClick={() => handleReadIncrement(category, id)}>
             <div className="video-live">
               <Image src={item.headImg} alt="google-news" fill />
             </div>

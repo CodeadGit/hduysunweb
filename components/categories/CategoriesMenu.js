@@ -64,7 +64,6 @@ const CategoriesMenu = () => {
     setAnchorEl(null);
   };
 
-
   return (
     <>
       <Button
@@ -96,15 +95,12 @@ const CategoriesMenu = () => {
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose || handleScroll}
-          // onScroll={handleScroll}
-          // className={`menu ${modeStatus ? "dark" : ""}`}
           MenuListProps={{
             "aria-labelledby": "basic-button",
           }}
         >
           {categories?.slice(8, categories?.length).map((i, idx) => (
             <MenuItem
-             // className={`menu-item ${modeStatus ? "dark" : ""}`}
               sx={{ paddingLeft: "0.5rem", paddingRight: "1rem" }}
               onClick={handleClose}
             >

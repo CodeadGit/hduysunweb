@@ -23,7 +23,7 @@ const HeadlineNewsCard = ({ item }) => {
         <Link
           href={`/${category}/${eng}-${id}`}
           className="headlineNewsCard-left-imgBox"
-          target="_blank"
+          //target="_blank"
         >
           <img src={image} className="headline-img" />
         </Link>
@@ -33,7 +33,7 @@ const HeadlineNewsCard = ({ item }) => {
         <Link
           href={`/${category}/${eng}-${id}`}
           className={`headlineNewsCard-right-top-title ${modeStatus ? "dark" : ""}`}
-          target="_blank"
+         // target="_blank"
         >
           {handleShort(title, 8)}
         </Link>

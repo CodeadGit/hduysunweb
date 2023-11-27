@@ -4,18 +4,14 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useThemeContext } from "@/context/ThemeContext";
-import Breadcrumb from "../breadcrumb/Breadcrumb";
 import { useState } from "react";
-
-const PhotoGallerySlider = ({ thisPhotoGallery, titleArray,gDoc }) => {
+const PhotoGallerySlider = ({ thisPhotoGallery, titleArray, gDoc }) => {
   const { handlePhotoGallerySliderReadInc } = useThemeContext();
- 
-const [currentSlide, setCurrentSlide] = useState(0);
 
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {
-
-    dots: true,
+    dots: false,
     adaptiveHeight: false,
     slidecount: null,
     initialSlide: 0,
@@ -50,19 +46,13 @@ const [currentSlide, setCurrentSlide] = useState(0);
     touchMovie: true,
   };
 
-  const links = [
-    { id: 1, title: "Foto Galeri", link: "/foto-galeri" },
-    { id: 2, title: titleArray, link: "" },
-  ];
-
   //onClick={() => handleReadIncrement(id)
 
   return (
     <div className="photoGallerySlider">
-      <Breadcrumb links={links} />
       <div className="photoGallerySlider-wrapper">
         <Slider {...settings} className="photoGallerySlider-wrapper-sliders">
-          {thisPhotoGallery.map((item,idx) => {
+          {thisPhotoGallery.map((item, idx) => {
             return (
               <PhotoGallerySliderItem
                 item={item}

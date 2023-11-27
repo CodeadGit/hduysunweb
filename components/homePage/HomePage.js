@@ -77,7 +77,7 @@ const MainNewsComponent = ({
       onClick={() => handleReadIncrement(category, id)}
       className="left"
       href={`/${category}/${eng}-${id}`}
-      target="_blank"
+     // target="_blank"
     >
       <div className="left-image">
         <img src={image} alt="news" />
@@ -96,7 +96,8 @@ const SecondNews = ({ secondNews = {}, handleReadIncrement, modeStatus }) => {
       onClick={() => handleReadIncrement(category, id)}
       className="right-top-left-pic"
       href={`/${category}/${eng}-${id}`}
-      target="_blank">
+     // target="_blank"
+     >
       <div className="right-top-left-pic-wrapper">
         <img src={image} alt="news" />
       </div>
@@ -114,7 +115,7 @@ const SingleNewsComponent = ({ news, handleReadIncrement, modeStatus }) => {
       onClick={() => handleReadIncrement(category, id)}
       href={`/${category}/${eng}-${id}`}
       className="news-pic"
-      target="_blank"
+     // target="_blank"
     >
       <img src={image} alt="news" className="img" />
       <p className={modeStatus ? "dark" : ""}>{`${handleShort(title, 6)}`}</p>

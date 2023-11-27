@@ -11,7 +11,7 @@ const SingleVideo = ({ mode, item = {} }) => {
 
   return (
     <Link
-      target="_blank"
+     // target="_blank"
       className="most-reads-single-video"
       href={`/video-galeri/${item.eng}-${item.id}`}
       onClick={() => handleReadIncrement(category, id)}

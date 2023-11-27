@@ -110,7 +110,9 @@ const BreakingNews = () => {
   return (
     <div className={`navbar-sub-header ${modeStatus ? "dark" : ""}`}>
       <div className="sub-header-wrapper">
-        <Link href="/sonDakika" className="title" target="_blank">
+        <Link href="/sonDakika" className="title" 
+        //target="_blank"
+        >
           SON DAKİKA
         </Link>
         <ul className="stories">
@@ -136,17 +138,19 @@ const SingleBreakingNews = ({ title, datePublished, eng, id }) => {
 
   return (
     <div>
-      <Link href={`/sonDakika/${eng}-${id}`} target="_blank">
+      <Link href={`/sonDakika/${eng}-${id}`} 
+     // target="_blank"
+      >
         <GoClock />
         <div className="news">
           <span className="news-time">{time}</span>
           <span className="news-info">{`${handleShortt(title)}`}</span>
-          <span className="news-infoTall">{`${handleShorttBreadcrump(
+           <span className="news-infoTall">{`${handleShorttBreadcrump(
             title
-          )}`}</span>
-          <span className="news-res-m">{`${handleShorttMed(title)}`}</span>
+          )}`}</span> 
+           <span className="news-res-m">{`${handleShorttMed(title)}`}</span>
           {/*420px ile 768px arası için */}
-          <span className="news-res-s">{`${handleShorttSmall(title)}`}</span>
+           <span className="news-res-s">{`${handleShorttSmall(title)}`}</span> 
           {/*420px için */}
         </div>
         {/* <div className="disc"></div>  */}

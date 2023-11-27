@@ -1,11 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useParams } from "next/navigation";
 import CategorySkeleton from "./CategorySkeleton";
 import CategoryPagination from "./CategoryPagination";
 import CategoryItem from "./CategoryItem";
 import "./categoryPageNews.scss";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import {
   collection,
   getDocs,
@@ -15,6 +18,8 @@ import {
   startAfter,
 } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
+import Link from "next/link";
+import CategorySliderItem from "./CategorySliderItem";
 const CategoryPageNews = ({ category, totalPage }) => {
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
@@ -76,9 +81,55 @@ const CategoryPageNews = ({ category, totalPage }) => {
     });
   }, [page]);
 
+  const categorySliderRef = useRef();
+
+  const settings = {
+    infinite: true,
+    swipeToSlide: true,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    dots: true,
+    adaptiveHeight: false,
+    slidecount: null,
+    initialSlide: 0,
+    focusOnSelect: true,
+    slideToShow: 1,
+    slideToScroll: 1,
+    touchMove: true,
+    dotsClass: "categorySliderDots",
+    appendDots: (dots) => (
+      <>
+        <ul className="dots-ul">
+          {dots.map((dot, idx) => (
+            <li
+            className="dots-ul-li"
+              key={idx}
+              onMouseEnter={() => categorySliderRef.current.slickGoTo(idx)}
+            >
+              {dot}
+            </li>
+          ))}
+        </ul>
+      </>
+    ),
+  };
+
   if (pagList.length > 0) {
     return (
       <div className="categoryPageWrapper">
+        {/* <div className="categoryPageWrapper-Slider">
+        {pagList && !loading && (
+          <Slider
+            ref={categorySliderRef}
+            {...settings}
+            className="mainSlider-large-sliders"
+          >
+            {pagList?.slice(0, 20).map((item, idx) => {
+              return <CategorySliderItem item={item} key={idx} idx={idx} />;
+            })}
+          </Slider>
+        )}
+        </div> */}
         <div className="categoryPageWrapper_container">
           {pagList?.map((item, idx) => {
             return (

@@ -16,7 +16,7 @@ const CardItem = ({ item, modeStatus }) => {
   return (
     <Link
       href={`/${category}/${eng}-${id}`}
-      target="_blank"
+     // target="_blank"
       className={`card ${modeStatus ? "dark" : ""}`}
       onClick={() => handleReadIncrement(category, id)}
     >
@@ -44,7 +44,7 @@ const CardItem = ({ item, modeStatus }) => {
           </div>
         </div>
         <div className="content-bottom">
-          <p className={`title ${modeStatus ? "dark" : ""}`}>
+          <p className={`content-bottom-title ${modeStatus ? "dark" : ""}`}>
             {handleShort(title, 7)}
           </p>
         </div>

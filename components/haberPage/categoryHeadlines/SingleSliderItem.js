@@ -16,7 +16,8 @@ const SingleSliderItem = ({ category, image, title, eng, id, mode,datePublished 
     <Link
       href={`/${category}/${eng}-${id}`}
       className="category-headlines-slider-single"
-      target="_blank">
+      //target="_blank"
+      >
         <img src={image} alt={title} className="slider-single-img"/>
         <div className="slider-content-top">
           <div className="slider-content-top-left">

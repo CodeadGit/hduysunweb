@@ -1,27 +1,27 @@
 
-export const categories = [
-  "gundem",
-  "siyaset",
-  "ekonomi",
-  "dunya",
-  "magazin",
-  "egitim",
-  "asayis",
-  "saglik",
-  "yasam",
-  "spor",
-  "teknoloji",
-  "sonDakika",
-  "yazarlar",
-  "sinema",
-  "arastirma",
-  "gezi",
-  "kultursanat",
-  "inanc",
-  "emlak",
-  "astroloji",
-  "roportaj"
-];
+// export const categories = [
+//   "gundem",
+//   "siyaset",
+//   "ekonomi",
+//   "dunya",
+//   "magazin",
+//   "egitim",
+//   "asayis",
+//   "saglik",
+//   "yasam",
+//   "spor",
+//   "teknoloji",
+//   "sonDakika",
+//   "yazarlar",
+//   "sinema",
+//   "arastirma",
+//   "gezi",
+//   "kultursanat",
+//   "inanc",
+//   "emlak",
+//   "astroloji",
+//   "roportaj"
+// ];
 
 export const editLink = (collection) => {
   if (collection === "saglik") return "sağlık";
@@ -41,12 +41,15 @@ export const handleShort = (text, number) => {
 };
 export const handleShortBreadcrump = (text, number) => {
   const res = text?.split(" ");
-  if (res.length <= number) return res.join(" ");
-  return res.slice(0,number).join(" ").concat(" ...");
+  if (res?.length <= number) return res?.join(" ");
+  return res?.slice(0,number).join(" ").concat(" ...");
 };
 
 export const handleShortt = (text) => {
   return text?.substring(0,33).concat(" ...");
+};
+export const handleShorttSingleHaber = (text) => {
+  return text?.substring(0,40).concat(" ...");
 };
 export const handleShorttSonDakika = (text) => {
   return text?.substring(0,40).concat(" ...");
@@ -118,6 +121,10 @@ export const categoryConvertor = {
   emlak: "emlak",
   yazarlar: "yazarlar",
   astroloji: "astroloji",
+  bursa: "bursa",
+  gazze: "gazze",
+  otomobil: "otomobil",
+  secimozel: "Seçim Özel"
 };
 
 export const categoryConvertorFunc = (category) => {

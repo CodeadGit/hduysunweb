@@ -6,7 +6,14 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const CategoryPagination = ({ handleChange, page, totalPage }) => {
   return (
-    <div >
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        paddingTop: "1rem",
+      }}
+    >
       <Pagination
         count={Math.ceil(totalPage / 20)}
         page={page}

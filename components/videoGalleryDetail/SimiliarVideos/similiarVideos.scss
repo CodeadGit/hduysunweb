@@ -25,11 +25,6 @@
     border-radius: 10px;
     background-color: white;
 
-    @media screen and (max-width:1170px){
-      background-color: #f7f7f7;
-    }
-    @media screen and (max-width:768px){
-            gap:1rem;
-    }
+  
   }
 }

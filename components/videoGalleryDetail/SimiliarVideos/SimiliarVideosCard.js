@@ -15,7 +15,9 @@ const SimiliarVideosCard = ({ item }) => {
   const formattedDate = timePublished.toLocaleString("tr-TR", options);
 
   return (
-    <Link className="similiarVideosCard" target="_blank" href={`/video-galeri/${eng}-${id}`} onClick={()=>handleVideoGalleryReadInc(id)}>
+    <Link className="similiarVideosCard" 
+   // target="_blank" 
+    href={`/video-galeri/${eng}-${id}`} onClick={()=>handleVideoGalleryReadInc(id)}>
       <div className="similiarVideosCard-container">
         <div className="similiarVideosCard-container-left">
           <img

@@ -66,13 +66,15 @@ const SingleTag = ({ params }) => {
         return (
           <div className="tagCardContainer" key={idx}>
             <div className="tagCardContainer-top">
-              <Link target="_blank" href={`/${category}/${eng}-${id}`}>
+              <Link 
+             // target="_blank" 
+              href={`/${category}/${eng}-${id}`}>
                 <img src={image} className="tagCardContainer-top-img" />
               </Link>
             </div>
             <div className="tagCardContainer-bottom">
               <Link
-                target="_blank"
+               // target="_blank"
                 href={`/${category}/${eng}-${id}`}
                 className="tagCardContainer-bottom-title"
                 onClick={() => handleReadIncrement(category, id)}

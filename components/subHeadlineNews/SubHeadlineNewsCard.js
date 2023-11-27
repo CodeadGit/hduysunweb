@@ -24,7 +24,7 @@ const SubHeadlineNewsCard = ({ item }) => {
       <Link
         href={`/${category}/${eng}-${id}`}
         className="subHeadlineNewsCard-imageBox"
-        target="_blank"
+      //  target="_blank"
       >
         {
           <img
@@ -43,7 +43,7 @@ const SubHeadlineNewsCard = ({ item }) => {
         <div className="subHeadlineNewsCard-desBox-center">
           <Link
           href={`/${category}/${eng}-${id}`}
-          target="_blank"
+        //  target="_blank"
             className={`subHeadlineNewsCard-desBox-center-title ${
               modeStatus ? "dark" : ""
             }`}

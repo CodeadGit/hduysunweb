@@ -13,7 +13,9 @@ const CategoryItem = ({ item }) => {
   const formattedDate = timePublished.toLocaleString("tr-TR", options);
 
   return (
-    <Link href={`/${category}/${eng}-${id}`} target="_blank" className={`categoryItem ${modeStatus ? "dark" : ""}`} onClick={() => handleReadIncrement(category, id)}>
+    <Link href={`/${category}/${eng}-${id}`}
+     // target="_blank"
+      className={`categoryItem ${modeStatus ? "dark" : ""}`} onClick={() => handleReadIncrement(category, id)}>
       <div className="categoryItem-top">
         <div >
           <img src={image} className="categoryItem-top-img" />

@@ -30,7 +30,7 @@ const MenuUnderAds = () => {
     <Link
       className="ads-extended"
       href={url}
-      target="_blank"
+    //  target="_blank"
       onClick={() => handleReadIncrementAds(id)}
     >
       <img src={image} alt={url} width={width} height={height} style={style} />

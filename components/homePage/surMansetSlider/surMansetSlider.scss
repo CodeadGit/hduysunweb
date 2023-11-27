@@ -1,74 +1,115 @@
 .surMansetSlider {
-    box-sizing: border-box;
-    min-height: 0;
-    min-width: 0;
-    width: 100%;
-    padding: 0;
-    margin: 0;
+  box-sizing: border-box;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 
-    @media screen and (max-width:768px) {
-      display: none;
-    }
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 
-    &-sliders {
-        margin: 0 auto;
-          .surmanset-dots-ul {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
+  &-sliders {
+    margin: 0 auto;
+    .surmanset-dots-ul {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
 
-            li {
-              border: 1px solid #E8E8E8;
-              background-color: white;
-              position: relative;
-              display: flex;
-              width: 9.25%;
-              height: 27px;
-              margin: 0;
-              padding: 0;
-              cursor: pointer;
-
-              .surmanset-all-link {
-                display: block;
-                text-align: center;
-                margin: 0 auto;
-                color: black;
-                font-size: .8rem;
-
-                &:last-child {
-                  width: 100%;
-                  padding: 0.35rem 0;
-                }
-              }
-
-              button {
-                width: 100%;
-                background-color: white;
-                border: 0;
-                font-size: .8rem;
-                cursor: pointer;
-                color: #5c5c5d;
-              }
-              &:first-child {
-                border-bottom-left-radius: 40%;
-                button {
-                  border-bottom-left-radius: 40%;
-                }
-              }
-              &:last-child {
-                border-bottom-right-radius: 40%;
-                display: flex;
-                align-items: center;
-              }
-            }
-            .slick-active {
-              background-color: red;
-              button {
-                background-color: red;
-                cursor: pointer;
-                color: white;
-              }
-            }
+      .dots-ul-li {
+        &:first-child {
+          border-bottom-left-radius: 40%;
+          button {
+            border-bottom-left-radius: 40%;
           }
+          .slick-active {
+            border-bottom-left-radius: 40%;
+          }
+        }
+      }
+
+      li {
+        color: #5c5c5d;
+        width: 100%;
+        position: relative;
+        display: flex;
+        height: 27px;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+        border: 0;
+
+        button {
+          width: 100%;
+          border-radius: none;
+          background-color: white;
+          border: 1px solid #e8e8e8;
+          font-size: .8rem;
+          color: #5c5c5d;
+          cursor: pointer;
+        }
+        &:last-child {
+          border-bottom-right-radius: 40%;
+        }
+      }
+      .surmanset-all-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: 0 auto;
+        color: black;
+        width: 100%;
+        font-size: 0.8rem;
+        height: 27px;
+        background-color: white;
+        border: 1px solid #e8e8e8;
+
+        a {
+          margin: 0 auto;
+          text-align: center;
+        }
+        &:last-child {
+          border-bottom-right-radius: 40%;
+        }
+      }
+      .slick-active {
+        background-color: red;
+        button {
+          background-color: red;
+          cursor: pointer;
+          color: white;
+        }
+      }
+      //   button {
+      //     width: 100%;
+      //     background-color: white;
+      //     border: 0;
+      //     font-size: .8rem;
+      //     cursor: pointer;
+      //     color: #5c5c5d;
+      //   }
+      //   &:first-child {
+      //     border-bottom-left-radius: 40%;
+      //     button {
+      //       border-bottom-left-radius: 40%;
+      //     }
+      //   }
+      //   &:last-child {
+      //     border-bottom-right-radius: 40%;
+      //     display: flex;
+      //     align-items: center;
+      //   }
+      // }
+      // .slick-active {
+      //   background-color: red;
+      //   button {
+      //     background-color: red;
+      //     cursor: pointer;
+      //     color: white;
+      //   }
+      // }
     }
+  }
 }

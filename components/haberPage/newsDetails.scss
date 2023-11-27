@@ -14,8 +14,15 @@
     transition: var(--transition) !important;
     font-family: "Poppins", sans-serif !important;
 
+    span {
+      font-family: "Poppins", sans-serif !important;
+      font-size: inherit !important;
+    }
+
     & > p,
-    & > div {
+    & > div,
+    & > span {
+      font-size: inherit !important;
       background-color: inherit !important;
       color: inherit !important;
       font-family: "Poppins", sans-serif !important;
@@ -24,8 +31,14 @@
     &.dark {
       color: #fff !important;
 
+      span {
+        color: #fff !important;
+      }
+
       & > p,
-      & > div {
+      & > div,
+      & > span {
+        font-size: inherit !important;
         background-color: inherit !important;
         color: inherit !important;
         font-family: "Poppins", sans-serif !important;
@@ -33,14 +46,15 @@
     }
 
     & > p,
-    & > div {
+    & > div,
+    & > span {
       font-size: inherit !important;
       margin-bottom: 0.5rem !important;
       text-align: justify !important;
       font-family: "Poppins", sans-serif !important;
     }
 
-    img {
+    img,iframe {
       //border: 3px solid red !important;
       aspect-ratio: 3/2 !important;
       object-fit: cover !important;

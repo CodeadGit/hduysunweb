@@ -20,7 +20,7 @@ const Caption = ({ title, link }) => {
       <Link
         className={modeStatus ? "dark" : ""}
         href={`/${link}`}
-        target="_blank"
+      //  target="_blank"
       >
         Hepsini Gör
       </Link>

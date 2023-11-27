@@ -117,26 +117,23 @@ const Footer = () => {
                 </ul>
               </div>
               <div className="mid-cat">
-                <ul className="mid-cat-list">
-                  <li>Yaşam</li>
-                  <li>Siyaset</li>
-                  <li>Ekonomi</li>
-                  <li>Magazin</li>
-                  <li>Röportajlar</li>
-                  <li>Spor</li>
-                  <li>Eğitim</li>
+                {/* <ul className="mid-cat-list">
+                  <li>Son Dakika</li>
+                  <li>Bilim ve Teknoloji</li>
+                  <li>Sinema</li>
+                  <li>Araştırma</li>
                   <li>Kültür-Sanat</li>
-                  <li>Asayiş</li>
-                  <li>Yaşam</li>
-                </ul>
+                  <li>İnanç</li>
+                  <li>Emlak</li>
+                </ul> */}
               </div>
               <div className="right-cat">
-                <ul className="right-cat-list">
+                {/* <ul className="right-cat-list">
                   <li>Yaşam</li>
                   <li>Siyaset</li>
                   <li>Ekonomi</li>
                   <li>Magazin</li>
-                </ul>
+                </ul> */}
               </div>
             </div>
           </div>

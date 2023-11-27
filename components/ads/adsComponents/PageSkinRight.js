@@ -37,7 +37,9 @@ function SingleRightAds({item, handleReadIncrementAds}) {
   const { image, url, boy, en, id} = item;
 
   return (
-    <Link href={url || "/"} target="_blank"  onClick={() => handleReadIncrementAds(id)}>
+    <Link href={url || "/"} 
+   // target="_blank"  
+    onClick={() => handleReadIncrementAds(id)}>
       <img 
         src={image}
         alt=""

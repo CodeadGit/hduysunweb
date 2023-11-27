@@ -36,7 +36,7 @@ const BannerNext = () => {
     <div>
       <Link
         href={url || "/"}
-        target="_blank"
+       // target="_blank"
         onClick={() => handleReadIncrementAds(id)}
         style={containerStyle}
       >

@@ -41,7 +41,7 @@ function BreadcrumbItem({ title, link, modeStatus, breadcrumpTitle }) {
   // };
 
  // console.log(title.substring(0,13).concat("..."))
-  const titleSplitted = title.split("")
+  const titleSplitted = title?.split("")
 //  console.log(titleSplitted.slice(0,30).join("").concat("..."))
 
    return (
