@@ -39,7 +39,9 @@ const Masthead = () => {
   return (
     <>
     { relatedAds.length > 0 && (
-    <Link className="ads-extended" href={url} target="_blank" onClick={() => handleReadIncrementAds(id)} style={y}>
+    <Link className="ads-extended" href={url} 
+   // target="_blank" 
+    onClick={() => handleReadIncrementAds(id)} style={y}>
       <img
         src={image}
         alt={url}

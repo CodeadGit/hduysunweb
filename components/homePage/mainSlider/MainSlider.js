@@ -12,6 +12,7 @@ import { db } from "@/firebase/firebase.config";
 const MainSlider = () => {
   const { mode } = useThemeContext();
   const [loading, setLoading] = useState(true);
+  const [hoveredItem, setHoveredItem] = useState([]);
   const [list, setList] = useState([]);
 
   const modeStatus = mode === "dark";
@@ -65,19 +66,22 @@ const MainSlider = () => {
     slideToShow: 1,
     slideToScroll: 1,
     touchMove: true,
-    dotsClass: "slick-dots",
+    dotsClass: "mansetSliderDots",
     appendDots: (dots) => (
       <>
-        <ul 
-        
-        className="dots-ul">
-          {dots}
-          <li
-          >
-            <Link href="/mansetler" className="all-link">
-              T
-            </Link>
-          </li>
+        <ul className="dots-ul">
+          {dots.map((dot, idx) => (
+            <li
+            className="dots-ul-li"
+              key={idx}
+              onMouseEnter={() => sliderRef.current.slickGoTo(idx)}
+            >
+              {dot}
+            </li>
+          ))}
+          <Link href="/mansetler" className="all-link">
+            T
+          </Link>
         </ul>
       </>
     ),
@@ -87,7 +91,11 @@ const MainSlider = () => {
     <div className="mainSlider">
       <div className="mainSlider-large">
         {list && !loading && (
-          <Slider {...settings} className="mainSlider-large-sliders">
+          <Slider
+            ref={sliderRef}
+            {...settings}
+            className="mainSlider-large-sliders"
+          >
             {list?.slice(0, 20).map((item, idx) => {
               return <MainSliderItem item={item} key={idx} idx={idx} />;
             })}
@@ -98,7 +106,7 @@ const MainSlider = () => {
         {list && !loading && (
           <Slider {...settings} className="mainSlider-med-slidersRes">
             {list?.slice(0, 15).map((item, idx) => {
-              return <MainSliderItem item={item} key={idx} idx={idx}/>;
+              return <MainSliderItem item={item} key={idx} idx={idx} />;
             })}
           </Slider>
         )}

@@ -134,18 +134,18 @@
 
               &-info {
                 font-size: 0.875rem;
-                @media screen and (max-width: 790px) {
-                  display: none;
-                }
-                @media screen and ((min-width: 920px)and (max-width:1199px)) {
-                  display: none;
-                }
+                 @media screen and (max-width: 790px) {
+                   display: none;
+                 }
+                 @media screen and ((min-width: 920px)and (max-width:1199px)) {
+                   display: none;
+                 }
               }
               &-infoTall {
                 font-size: 0.875rem;
-                @media screen and (min-width: 1200px) {
-                  display: none;
-                }
+                 @media screen and (min-width: 1200px) {
+                   display: none;
+                 }
                 @media screen and (max-width: 919px) {
                   display: none;
                 }

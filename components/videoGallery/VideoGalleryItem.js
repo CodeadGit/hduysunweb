@@ -11,7 +11,7 @@ const VideoGalleryItem = ({ item }) => {
   return (
     <Link
       href={`video-galeri/${eng}-${id}`}
-      target="_blank"
+     // target="_blank"
       className="videoGalleryItem"
     >
       <img

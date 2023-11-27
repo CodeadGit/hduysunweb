@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./surMansetSlider.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -13,6 +13,7 @@ const SurMansetSlider = () => {
   const { mode } = useThemeContext();
   const [surMansetList, setSurmansetList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [hoveredIndex, setHoveredIndex] = useState(0);
 
   useEffect(() => {
     const fetchSurmanset = async () => {
@@ -47,6 +48,8 @@ const SurMansetSlider = () => {
     fetchSurmanset();
   }, []);
 
+  const surmansetSliderRef = useRef();
+
   const settings = {
     infinite: true,
     swipeToSlide: true,
@@ -55,7 +58,7 @@ const SurMansetSlider = () => {
     dots: true,
     adaptiveHeight: false,
     slidecount: null,
-    initialSlide: 0,
+    initialSlide: hoveredIndex,
     arrows: false,
     focusOnSelect: true,
     slideToShow: 1,
@@ -65,12 +68,18 @@ const SurMansetSlider = () => {
     appendDots: (dots) => (
       <>
         <ul className="surmanset-dots-ul">
-          {dots}
-          <li>
-            <Link href="/sur-mansetler" className="surmanset-all-link">
-              T
-            </Link>
-          </li>
+          {dots.map((dot, idx) => (
+            <li
+              className="dots-ul-li"
+              key={idx}
+              onMouseEnter={() => surmansetSliderRef.current.slickGoTo(idx)}
+            >
+              {dot}
+            </li>
+          ))}
+          <Link href="/sur-mansetler" className="surmanset-all-link">
+            T
+          </Link>
         </ul>
       </>
     ),
@@ -79,7 +88,11 @@ const SurMansetSlider = () => {
   return (
     <div className="surMansetSlider">
       {surMansetList && !loading && (
-        <Slider {...settings} className="surMansetSlider-sliders">
+        <Slider
+          ref={surmansetSliderRef}
+          {...settings}
+          className="surMansetSlider-sliders"
+        >
           {surMansetList?.slice(0, 10).map((item, idx) => {
             return (
               <SurMansetSliderItem

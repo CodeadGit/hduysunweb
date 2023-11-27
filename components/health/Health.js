@@ -36,7 +36,9 @@ const CategoryItem = ({ item, modeStatus }) => {
   const { title, image, category, eng, id } = item;
 
   return (
-    <Link href={`/${category}/${eng}-${id}`} target="_blank" className="itemm">
+    <Link href={`/${category}/${eng}-${id}`}
+    // target="_blank" 
+     className="itemm">
       <img className="img" src={image} alt={title} />
       <p className={`caption ${modeStatus ? "dark" : ""}`}>{title}</p>
     </Link>

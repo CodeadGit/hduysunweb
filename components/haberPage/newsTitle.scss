@@ -21,19 +21,20 @@
       }
     }
 
-    h1 {
+    .title {
       font-size: 2rem;
       font-weight: 600;
       color: #333333;
       //text-transform: capitalize;
       transition: var(--transition);
 
+      &.dark {
+        color: white;
+      }
+
       @media screen and (max-width: 768px) {
         font-size: 1.2rem;
       }
 
-      &.dark {
-        color: white;
-      }
     }
   }

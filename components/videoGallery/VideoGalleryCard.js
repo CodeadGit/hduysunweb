@@ -16,7 +16,9 @@ const VideoGalleryCard = ({ item }) => {
   const formattedDate = timePublished.toLocaleString("tr-TR", options);
 
   return (
-    <Link target="_blank" href={`/video-galeri/${eng}-${id}`} onClick={()=>handleVideoGalleryReadInc(id)} className={`videoGalleryCard ${modeStatus ? "dark" : ""}`}>
+    <Link 
+    //target="_blank"
+     href={`/video-galeri/${eng}-${id}`} onClick={()=>handleVideoGalleryReadInc(id)} className={`videoGalleryCard ${modeStatus ? "dark" : ""}`}>
       <div className="videoGalleryCard-top">
         <div >
           <img src={headImg} className="videoGalleryCard-top-img" />

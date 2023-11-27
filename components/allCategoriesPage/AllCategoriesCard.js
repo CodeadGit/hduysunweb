@@ -14,7 +14,7 @@ const AllCategoriesCard = ({ item }) => {
   return (
     <Link
       href={`/${category}/${eng}-${id}`}
-      target="_blank"
+     // target="_blank"
       className={`allCategoriesCard ${modeStatus ? "dark" : ""}`}
       onClick={() => handleReadIncrement(category, id)}
     >

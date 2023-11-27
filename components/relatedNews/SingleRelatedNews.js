@@ -20,7 +20,8 @@ const SingleRelatedNews = ({ item = {}, mode }) => {
       href={`/${category}/${eng}-${id}`}
       onClick={() => handleReadIncrement(category, id)}
       className="related-news-single"
-      target="_blank">
+    //  target="_blank"
+    >
       <img src={image} alt="asd" className="single-img-wrapper" />
         <div className={`related-news-single-comments ${mode ? "dark" : ""}`}>
           <p> {publishedTime} </p>

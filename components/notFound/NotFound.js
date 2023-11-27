@@ -5,18 +5,22 @@ import notFound from "../homePage/assets/notfound.png";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { categories, categoryConvertor } from "@/context/utils";
+import {  categoryConvertor } from "@/context/utils";
 import { useThemeContext } from "@/context/ThemeContext";
+import { useCategoriesContext } from "@/context/CategoriesContext";
 
 const NotFound = () => {
 
   const { hideAds } = useThemeContext();
+  const { categories} = useCategoriesContext();
 
   const pathname = usePathname();
 
+  const collectionCategories = categories.map((i) => i.collection );
+
   const category = pathname.substring(1).split("/")[0];
 
-  const isExisting = categories.includes(category);
+  const isExisting = collectionCategories.includes(category);
 
   const imageStyle = {
     margin: "3rem auto",

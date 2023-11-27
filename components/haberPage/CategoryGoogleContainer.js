@@ -17,7 +17,7 @@ const CategoryGoogleContainer = ({ modeStatus, category, existingCategory}) => {
         <Link
           href="https://news.google.com/publications/CAAqBwgKMP-czQswr7jkAw?hl=tr&gl=TR&ceid=TR%3Atr"
           className="icons"
-          target="_blank"
+         // target="_blank"
         >
           <p>Abone Ol</p>
           <img src={images[35]} alt="google-news" />

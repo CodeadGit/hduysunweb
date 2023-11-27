@@ -145,13 +145,15 @@ const SearchPage = () => {
                 return (
                   <div className="tagCardContainer" key={idx}>
                     <div className="tagCardContainer-top">
-                      <Link target="_blank" href={url}>
+                      <Link 
+                      //target="_blank" 
+                      href={url}>
                         <img src={image} className="tagCardContainer-top-img" />
                       </Link>
                     </div>
                     <div className="tagCardContainer-bottom">
                       <Link
-                        target="_blank"
+                       // target="_blank"
                         href={url}
                         className="tagCardContainer-bottom-title"
                       >

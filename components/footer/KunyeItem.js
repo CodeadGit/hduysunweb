@@ -6,7 +6,9 @@ const KunyeItem = ({item}) => {
 
 
   return (
-    <Link target="_blank" className="footer-link" href={url}>{caption}</Link>
+    <Link 
+   // target="_blank" 
+    className="footer-link" href={url}>{caption}</Link>
   )
 }
 

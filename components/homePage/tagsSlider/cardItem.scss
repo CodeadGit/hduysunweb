@@ -97,8 +97,9 @@
     &-bottom {
       width: 100%;
 
-      .title {
+      .content-bottom-title {
         font-size: 1rem;
+        text-align: start;
         font-weight: 500;
         transition: var(--transition);
 

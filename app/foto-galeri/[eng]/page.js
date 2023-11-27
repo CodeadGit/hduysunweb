@@ -11,13 +11,13 @@ import {
 } from "firebase/firestore";
 import { notFound } from "next/navigation";
 import PhotoGallerySlider from "@/components/photoGallerySlider/PhotoGallerySlider";
-
-const PhotoGalleryDetail = ({ params }) => {
+import PhotoGalleryDetail from "@/components/photoGallery/PhotoGalleryDetail";
+const PhotoGalleryDetailPage = ({ params }) => {
   const [thisPhotoGallery, setThisPhotoGallery] = useState([]);
   const [loading, setLoading] = useState(true);
   //const [pageArticle, setPageArticle] = useState({});
 
-  var idArray = String(params.eng).split("-");
+  var idArray = String(params?.eng).split("-");
   var idForThisPhotoGallery = idArray.at(-1);
   var titleArray = idArray.slice(0,-1).join(" ").toString();
 
@@ -43,9 +43,9 @@ const PhotoGalleryDetail = ({ params }) => {
 
   return (
     <div>
-      <PhotoGallerySlider titleArray={titleArray} thisPhotoGallery={thisPhotoGallery} gDoc={idForThisPhotoGallery} />
+      <PhotoGalleryDetail titleArray={titleArray} thisPhotoGallery={thisPhotoGallery} gDoc={idForThisPhotoGallery} />
     </div>
   );
 };
 
-export default PhotoGalleryDetail;
+export default PhotoGalleryDetailPage;

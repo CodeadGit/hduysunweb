@@ -20,13 +20,12 @@ const PhotoGalleryCard = ({ item }) => {
         href={`foto-galeri/${eng}-${id}`}
         onClick={() => handlePhotoGalleryReadInc(id)}
         className="photoGalleryCard-imageBox"
-        target="_blank"
+       // target="_blank"
       >
         <img
           src={headImg}
           alt="fotogaleri-image"
           className="photoGalleryCard-img"
-          style={{ objectFit: "cover", width: "100%", aspectRatio: "3.26/2" }}
         />
       </Link>
       <div className="photoGalleryCard-bottom">

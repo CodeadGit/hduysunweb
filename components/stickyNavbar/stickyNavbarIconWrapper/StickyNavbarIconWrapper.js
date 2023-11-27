@@ -11,7 +11,9 @@ const StickyNavbarIconWrapper = ({ item }) => {
   return (
     <>
       {kindOf === "link" ? (
-        <Link target="_blank" href={url} className={`iconWrapper ${color}`}>
+        <Link
+        // target="_blank" 
+         href={url} className={`iconWrapper ${color}`}>
           {/* <svg src={icon} /> */}
           <Image src={icon} className="iconWrapper-icon" />
         </Link>
