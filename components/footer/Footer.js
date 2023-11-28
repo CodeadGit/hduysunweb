@@ -12,6 +12,7 @@ import { useThemeContext } from "@/context/ThemeContext";
 import { useAdsContext } from "@/context/AdsContext";
 import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
 import Image from "next/image";
+import { useCategoriesContext } from "@/context/CategoriesContext";
 
 const kunyeArray = [
   {
@@ -53,9 +54,10 @@ const kunyeArray = [
 
 const Footer = () => {
   const { mode } = useThemeContext();
+  const { categories } = useCategoriesContext();
 
   const modeStatus = mode === "dark";
-  const {images} = useFetchAssetsContext();
+  const { images } = useFetchAssetsContext();
   const { storyModall } = useAdsContext();
 
   return (
@@ -77,63 +79,37 @@ const Footer = () => {
             </div>
             <div className="info-left-categories">
               <div className="left-cat">
-                <ul className="left-cat-list">
-                  <li>
-                    <Link href="/gundem">Gündem</Link>
-                  </li>
-                  <li>
-                    <Link href="/spor">Spor</Link>
-                  </li>
-                  <li>
-                    <Link href="/siyaset">Siyaset</Link>
-                  </li>
-                  <li>
-                    <Link href="/egitim">Eğitim</Link>
-                  </li>
-                  <li>
-                    <Link href="/ekonomi"> Ekonomi</Link>
-                  </li>
-                  <li>
-                    <Link href="/kultursanat"> Kültür-Sanat</Link>
-                  </li>
-                  <li>
-                    <Link href="/magazin"> Magazin</Link>
-                  </li>
-                  <li>
-                    <Link href="/asayis"> Asayiş</Link>
-                  </li>
-                  <li>
-                    <Link href="/roportaj">Röportajlar</Link>
-                  </li>
-                  <li>
-                    <Link href="/yasam">Yaşam</Link>
-                  </li>
-                  <li>
-                    <Link href="/resmi-ilanlar">Resmi İlanlar</Link>
-                  </li>
-                  <li>
-                    <Link href="/yazarlar">Yazarlar</Link>
-                  </li>
-                </ul>
+                {categories.slice(0, 6).map((item) => {
+                  return (
+                    <ul className="left-cat-list">
+                      <li>
+                        <Link href={`${item.collection}`}>{item.label}</Link>
+                      </li>
+                    </ul>
+                  );
+                })}
               </div>
               <div className="mid-cat">
-                {/* <ul className="mid-cat-list">
-                  <li>Son Dakika</li>
-                  <li>Bilim ve Teknoloji</li>
-                  <li>Sinema</li>
-                  <li>Araştırma</li>
-                  <li>Kültür-Sanat</li>
-                  <li>İnanç</li>
-                  <li>Emlak</li>
-                </ul> */}
+                {categories.slice(7, 13).map((item) => {
+                  return (
+                    <ul className="mid-cat-list">
+                      <li>
+                        <Link href={`${item.collection}`}>{item.label}</Link>
+                      </li>
+                    </ul>
+                  );
+                })}
               </div>
               <div className="right-cat">
-                {/* <ul className="right-cat-list">
-                  <li>Yaşam</li>
-                  <li>Siyaset</li>
-                  <li>Ekonomi</li>
-                  <li>Magazin</li>
-                </ul> */}
+                 {categories?.slice(13, 19)?.map((item) => {
+                  return (
+                    <ul className="right-cat-list">
+                      <li>
+                        <Link href={`${item.collection}`}>{item.label}</Link>
+                      </li>
+                    </ul>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -144,13 +120,22 @@ const Footer = () => {
                 <Link target="_blank" href="https://wa.me/905411604040">
                   <BsWhatsapp />
                 </Link>
-                <Link target="_blank" href="https://www.facebook.com/herkesduysun">
+                <Link
+                  target="_blank"
+                  href="https://www.facebook.com/herkesduysun"
+                >
                   <BsFacebook />
                 </Link>
-                <Link target="_blank" href="https://twitter.com/herkesduysuncom">
+                <Link
+                  target="_blank"
+                  href="https://twitter.com/herkesduysuncom"
+                >
                   <BsTwitter />
                 </Link>
-                <Link target="_blank" href="https://www.instagram.com/herkesduysuncom">
+                <Link
+                  target="_blank"
+                  href="https://www.instagram.com/herkesduysuncom"
+                >
                   <BsInstagram />
                 </Link>
               </div>

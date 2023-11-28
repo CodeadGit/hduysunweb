@@ -221,13 +221,13 @@ export const ThemeProvider = ({ children }) => {
   const fetchPoints = async () => {
     try {
       const res = await axios.get(
-        `https://payment.onlinekesif.com/puan-durumu`
+        `https://docapi.herkesduysun.com/puan-durumu`
       );
       const res1 = await axios.get(
-        `https://payment.onlinekesif.com/puan-durumu-1`
+        `https://docapi.herkesduysun.com/puan-durumu-1`
       );
       const res2 = await axios.get(
-        `https://payment.onlinekesif.com/puan-durumu-2`
+        `https://docapi.herkesduysun.com/puan-durumu-2`
       );
       setTotal({
         league: res.data.result,

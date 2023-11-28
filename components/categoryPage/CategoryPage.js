@@ -13,21 +13,21 @@ import { db } from "@/firebase/firebase.config";
 
 const CategoryPage= ({category}) => {
 
-  const [totalPage, setTotalPage] = useState(0);
+  //const [totalPage, setTotalPage] = useState(0);
  
-  useEffect(() => {
-    const fetchCategoryPage = async () => {
-      const qc = query(collection(db, category));
-      try {
-        const querySnapshot = await getDocs(qc);
-        setTotalPage(querySnapshot.size);
-      }
-      catch(error) {
-         console.log(error)
-      }
-    }
-     fetchCategoryPage();
-  },[]);
+  // useEffect(() => {
+  //   const fetchCategoryPage = async () => {
+  //     const qc = query(collection(db, category));
+  //     try {
+  //       const querySnapshot = await getDocs(qc);
+  //       setTotalPage(querySnapshot.size);
+  //     }
+  //     catch(error) {
+  //        console.log(error)
+  //     }
+  //   }
+  //    fetchCategoryPage();
+  // },[]);
 
   const links = [
     {
@@ -49,7 +49,7 @@ const CategoryPage= ({category}) => {
       {/* <Caption title={categoryConvertor[category]} link="spor" /> */}
       {/* <AllCategories /> */}
       {/* <Category category={category} /> */}
-      <CategoryPageNews category={category} totalPage={totalPage}/>
+      <CategoryPageNews category={category}/>
       {/* <SubCategory category={category}/> */}
       {/* <Register /> */}
     </div>

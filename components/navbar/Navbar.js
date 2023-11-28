@@ -17,6 +17,16 @@ const Navbar = () => {
   const modeStatus = mode === "dark";
   const { storyModall } = useAdsContext();
   const [showSearchBar, setShowSearchBar] = useState(false);
+  const [location ,setLocation] = useState({})
+
+  // if (navigator.geolocation) {
+  //   navigator.geolocation.getCurrentPosition(
+  //     (position) => {
+  //       setLocation(position.coords);
+  //     })
+  //   }
+
+    // console.log(location)
 
   return (
     <div className={`navbar ${storyModall ? "none" : ""}  ${modeStatus ? "dark" : ""}`}>
@@ -24,8 +34,8 @@ const Navbar = () => {
          <NavbarLogo wrapper="logo-wrapper"/>
         <div className="top-right-wrapper">
           <div className="info-section">
-            <Finance />
-            <Weather showSearchBar={showSearchBar} />
+           {/* <Finance /> */}
+           {/* {location!==null ? <Weather showSearchBar={showSearchBar}/> : ""} */}
             <Buttons wrapper="buttons" showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar} />
           </div>
           <Categories wrapper="categories" />

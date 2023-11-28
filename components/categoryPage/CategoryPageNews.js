@@ -32,7 +32,7 @@ const CategoryPageNews = ({ category, totalPage }) => {
   const [page, setPage] = useState(1);
   const [pagList, setPagList] = useState([]);
 
-  const handleChange = (event, value) => {
+  const handleChange = (event, value, e, p) => {
     setPage(value);
   };
 
@@ -85,6 +85,7 @@ const CategoryPageNews = ({ category, totalPage }) => {
 
   const settings = {
     infinite: true,
+    arrows:false,
     swipeToSlide: true,
     autoplay: true,
     autoplaySpeed: 5000,
@@ -102,7 +103,7 @@ const CategoryPageNews = ({ category, totalPage }) => {
         <ul className="dots-ul">
           {dots.map((dot, idx) => (
             <li
-            className="dots-ul-li"
+              className="dots-ul-li"
               key={idx}
               onMouseEnter={() => categorySliderRef.current.slickGoTo(idx)}
             >
@@ -117,19 +118,26 @@ const CategoryPageNews = ({ category, totalPage }) => {
   if (pagList.length > 0) {
     return (
       <div className="categoryPageWrapper">
-        {/* <div className="categoryPageWrapper-Slider">
-        {pagList && !loading && (
-          <Slider
-            ref={categorySliderRef}
-            {...settings}
-            className="mainSlider-large-sliders"
-          >
-            {pagList?.slice(0, 20).map((item, idx) => {
-              return <CategorySliderItem item={item} key={idx} idx={idx} />;
-            })}
-          </Slider>
-        )}
-        </div> */}
+        <div className="categoryPageWrapper-top">
+          <div className="categoryPageWrapper-top-slider">
+            {pagList && !loading && (
+              <Slider
+                ref={categorySliderRef}
+                {...settings}
+                className="categorySlider"
+              >
+                {pagList?.slice(0, 20).map((item, idx) => {
+                  return <CategorySliderItem item={item} key={idx} idx={idx} />;
+                })}
+              </Slider>
+            )}
+          </div>
+          <div className="categoryPageWrapper-top-ads">
+            <div className="categoryPageWrapper-top-ads-area">
+              <iframe src="https://www.bursa.bel.tr/reklam/?w=300"></iframe>
+            </div>
+          </div>
+        </div>
         <div className="categoryPageWrapper_container">
           {pagList?.map((item, idx) => {
             return (
@@ -139,6 +147,7 @@ const CategoryPageNews = ({ category, totalPage }) => {
         </div>
         <div>
           <CategoryPagination
+            pagList={pagList}
             totalPage={totalPage}
             handleChange={handleChange}
             page={page}

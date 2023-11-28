@@ -42,17 +42,20 @@ const NobetciEczaneComp = () => {
   };
 
   const fetchEczaneInfo = async () => {
+    
+    let config={
+      method:"post",
+      url:`https://docapi.herkesduysun.com/eczane`,
+      maxBodyLength:Infinity,
+      headers: {
+        "Content-Type": "application/json",
+        },
+      data:info,
+    }
     try {
-      const res = await axios.get(
-        `https://api.collectapi.com/health/dutyPharmacy?ilce=${info.region}&il=${info.city}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: API_KEY,
-          },
-        }
-      );
+      const res = await axios(config);
       const list = res.data.result;
+      console.log(res.data.result)
       setEczaneList(list);
       setLoading(false);
     } catch (error) {

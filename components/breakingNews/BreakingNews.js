@@ -92,7 +92,7 @@ const BreakingNews = () => {
         });
         setBreakingNews(breakingNewsList);
         setLoading(false);
-      } catch(error) {
+      } catch (error) {
         console.log(error);
       }
     };
@@ -110,8 +110,10 @@ const BreakingNews = () => {
   return (
     <div className={`navbar-sub-header ${modeStatus ? "dark" : ""}`}>
       <div className="sub-header-wrapper">
-        <Link href="/sonDakika" className="title" 
-        //target="_blank"
+        <Link
+          href="/sonDakika"
+          className="title"
+          //target="_blank"
         >
           SON DAKİKA
         </Link>
@@ -138,19 +140,26 @@ const SingleBreakingNews = ({ title, datePublished, eng, id }) => {
 
   return (
     <div>
-      <Link href={`/sonDakika/${eng}-${id}`} 
-     // target="_blank"
+      <Link
+        href={`/sonDakika/${eng}-${id}`}
+        // target="_blank"
       >
         <GoClock />
         <div className="news">
           <span className="news-time">{time}</span>
-          <span className="news-info">{`${handleShortt(title)}`}</span>
-           <span className="news-infoTall">{`${handleShorttBreadcrump(
-            title
-          )}`}</span> 
-           <span className="news-res-m">{`${handleShorttMed(title)}`}</span>
+          <span className="news-info">
+            {title.length > 33 ? `${handleShortt(title)}` : title}
+          </span>
+          <span className="news-infoTall">
+            {title.length > 40 ? `${handleShorttBreadcrump(title)}` : title}
+          </span>
+          <span className="news-res-m">
+            {title.length > 36 ? `${handleShorttMed(title)}` : title}
+          </span>
           {/*420px ile 768px arası için */}
-           <span className="news-res-s">{`${handleShorttSmall(title)}`}</span> 
+          <span className="news-res-s">
+            {title.length > 27 ? `${handleShorttSmall(title)}` : title}
+          </span>
           {/*420px için */}
         </div>
         {/* <div className="disc"></div>  */}

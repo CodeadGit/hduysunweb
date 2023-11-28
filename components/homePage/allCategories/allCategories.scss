@@ -53,12 +53,15 @@
       grid-template-columns: 22.5% 22.5% 22.5% 22.5%;
       column-gap: 1.5rem;
       margin-right: .5rem;
+      place-items: center;
     }
 
-    @media screen and (max-width: 576px) and (min-width: 420px) {
+    @media screen and (max-width: 575px) and (min-width: 420px) {
       display: grid;
       grid-template-columns: 30% 30% 30% !important;
       column-gap: 1.5rem;
+      place-items: center;
+      margin: 0 auto;
     }
 
 
@@ -66,6 +69,8 @@
       display: grid;
       grid-template-columns: 48% 48%;
       column-gap: 1rem;
+      place-items: center;
+      margin: 0 auto;
     }
   }
 }

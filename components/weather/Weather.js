@@ -31,6 +31,7 @@ const Weather = ({ showSearchBar }) => {
   const [countryName, setCountryName] = useState("");
   const [temperature, setTemperature] = useState("");
   const [weathercode, setweathercode] = useState("");
+  const [weather, setWeather] = useState({});
 
   // console.log(latitude, longitude);
   // console.log("temperature: ", temperature);
@@ -65,49 +66,15 @@ const Weather = ({ showSearchBar }) => {
       <WiNightAltHail />
     ) : null;
 
-  const successCallback = (position) => {
-    // console.log("position :", position);
-    const { latitude, longitude } = position.coords;
-    setLatitude(latitude);
-    setLongitude(longitude);
-  };
-
-  // const errorCallback = (error) => {
-  //   console.log(error);
-  // };
-
   const date = new Date();
-  // const clockTime = date.getHours();
-  const dayTime = date.toISOString().substring(0, 10);
-  // const dateTime2 = date.toISOString().split("T")[0];
 
-  const fakeFetch = async () => {
-    try {
-      const res = await axios.get(
-        `https://api.open-meteo.com/v1/dwd-icon?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weathercode&current_weather=true&timezone=auto&start_date=${dayTime}&end_date=${dayTime}&apikey=${API_KEY}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      // console.log(res.data);
-      // const temp = res.data.hourly.temperature_2m[clockTime];
-      const currentTemp = res.data.current_weather.temperature;
-      const code = res.data.current_weather.weathercode;
-      setweathercode(code);
-      setTemperature(currentTemp);
-      // setTemperature(temp);
-    } catch (error) {
-       console.log(error);
-    }
-  };
+  const dayTime = date.toISOString().substring(0, 10);
 
   const fetchCityName = async () => {
     const config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://localhost:3001/cityfinder",
+      url: "https://docapi.herkesduysun.com/cityfinder",
       data: {
         lat: latitude,
         long: longitude,
@@ -116,49 +83,53 @@ const Weather = ({ showSearchBar }) => {
 
     try {
       const res = await axios(config);
-      const fetchedCityName = res.data.result.results[0].name;
+      const fetchedCityName = res.data.result.results[0]?.name;
+      await fetchWeather(fetchedCityName)
       setCityName(fetchedCityName);
     } catch (error) {
-       console.log(error);
+      console.log(error);
     }
   };
 
-  const fetchCountryName = async () => {
+  const successCallback = (position) => {
+    setLatitude(position.coords.latitude);
+    setLongitude(position.coords.longitude);
+  };
+
+  const fetchWeather = async (fetchCityName) => {
     const config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://localhost:3001/countryfinder",
+      url: "https://docapi.herkesduysun.com/wf",
       data: {
-        lat: latitude,
-        long: longitude,
+        city: fetchCityName
       },
     };
 
     try {
       const res = await axios(config);
-      // console.log(res);
-      const addressComponents = res.data.result.results[0].address_components;
-      for (const component of addressComponents) {
-        if (component.types.includes("country")) {
-          setCountryName(component.long_name);
-        }
-      }
+      const fetchedCityName = res.data
+      setWeather(fetchedCityName);
     } catch (error) {
-       console.log(error);
+      console.log(error);
     }
   };
+  // console.log(weather)
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       navigator.geolocation.getCurrentPosition(successCallback);
     }
     if (latitude && longitude) {
-      fakeFetch();
+      //fakeFetch();
       fetchCityName();
-      fetchCountryName();
     }
   }, [latitude, longitude]);
 
+  // if (!window.Geolocation) {
+  //   return null;
+  //
+  // }
   return (
     <div
       className={`weather ${showSearchBar ? "none" : ""} ${
@@ -167,10 +138,8 @@ const Weather = ({ showSearchBar }) => {
     >
       {icon}
       <div className="weather-info">
-        <span>{Math.round(temperature)} °C</span>
-        <span>
-          {cityName} {countryName}
-        </span>
+        <span>{Math.round(weather?.result?.main?.temp)} °C</span>
+        <span>{cityName}</span>
       </div>
     </div>
   );

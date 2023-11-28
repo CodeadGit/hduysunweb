@@ -1,21 +1,31 @@
 .storiesContainer {
-    // border: 1px solid red;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: .5rem 0 1.25rem 0;
-    display: flex;
-    gap: 1.45rem;
-    overflow-x: hidden;
-    // flex-wrap: wrap;
-    // align-content: center;
+  // border: 1px solid red;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.5rem 0 1.25rem 0;
+  display: flex;
+  gap: 1.45rem;
+  overflow-x: hidden;
 
-    // @media screen and (max-width:768px) {
-    //     overflow-x: auto;
-    //     overflow-y: hidden;
+  @media screen and (max-width: 1199px) {
+    overflow-x: auto;
+    overflow-y: hidden;
 
-    //     &::-webkit-scrollbar {
-    //         display: none;
-    //       }
-    // }
+     &::-webkit-scrollbar {
+        display: none;
+   }
+  }
+
+  // flex-wrap: wrap;
+  // align-content: center;
+
+  // @media screen and (max-width:768px) {
+  //     overflow-x: auto;
+  //     overflow-y: hidden;
+
+  //     &::-webkit-scrollbar {
+  //         display: none;
+  //       }
+  // }
 }
