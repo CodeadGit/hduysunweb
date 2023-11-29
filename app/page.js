@@ -6,7 +6,6 @@ import "./page.scss";
 import { useAdsContext } from "@/context/AdsContext";
 
 export default function Home() {
-
   const { mode } = useThemeContext();
   const { storyModall } = useAdsContext();
   const modeStatus = mode === "dark";
@@ -16,8 +15,8 @@ export default function Home() {
       {!storyModall ? (
         <HomePage />
       ) : (
-        <NewsStories />
+          <NewsStories/>
       )}
     </div>
   );
-};
+}

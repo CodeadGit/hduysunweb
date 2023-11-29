@@ -76,19 +76,19 @@ const BreakingNews = () => {
         var breakingNewsList = [];
 
         querySnapshot.forEach((doc) => {
-          // var now = new Date();
-          // var nowHour = now.getHours();
-          // var docDate = new Date(doc.data().datePublished.seconds*1000);
-          // var docHour = docDate.getHours();
-          // var nowDay = now.getDate();
-          // var docDay = docDate.getDate();
-          // var nowMonth = now.getMonth();
-          // var docMonth = docDate.getMonth();
-          // var isSixHoursPassed = docMonth === nowMonth && nowDay === docDay && (nowHour-docHour <= 18);
+           var now = new Date();
+           var nowHour = now.getHours();
+           var docDate = new Date(doc.data().datePublished.seconds*1000);
+           var docHour = docDate.getHours();
+           var nowDay = now.getDate();
+           var docDay = docDate.getDate();
+           var nowMonth = now.getMonth();
+           var docMonth = docDate.getMonth();
+           var isSixHoursPassed = docMonth === nowMonth && nowDay === docDay && (nowHour-docHour <= 18);
           breakingNewsList.unshift(doc.data());
-          // if (isSixHoursPassed) {
-          //   breakingNewsList.unshift(doc.data());
-          // };
+           if (isSixHoursPassed) {
+             breakingNewsList.unshift(doc.data());
+           };
         });
         setBreakingNews(breakingNewsList);
         setLoading(false);

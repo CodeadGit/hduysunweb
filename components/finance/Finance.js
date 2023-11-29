@@ -14,7 +14,6 @@ const currencyLabel = {
 const currencyArray = ["US DOLLAR", "EURO"];
 
 const Finance = () => {
-
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
 
@@ -22,46 +21,53 @@ const Finance = () => {
 
   const [currencyInfo, setCurrencyInfo] = useState([]);
 
-    const fetchFinanceInfo = async () => {
-
-    const resCurrency = await axios.get("https://docapi.herkesduysun.com/money", {
-      headers: {
-        "Content-Type" : "application/json",
-        Authorization: API_KEY,
+  const fetchFinanceInfo = async () => {
+    const resCurrency = await axios.get(
+      "https://docapi.herkesduysun.com/money",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: API_KEY,
+        },
       }
-    });
+    );
 
-    const resGold = await axios.get("https://api.collectapi.com/economy/goldPrice", {
-      headers: {
-        "Content-Type" : "application/json",
-        Authorization: API_KEY,
-      }
-    });
-
-    // const resBitcoin = await axios.get("https://api.collectapi.com/economy/cripto", {
-    //   headers: {
-    //     "Content-Type" : "application/json",
-    //     Authorization: API_KEY,
+    // const resGold = await axios.get(
+    //   "https://api.collectapi.com/economy/goldPrice",
+    //   {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: API_KEY,
+    //     },
     //   }
-    // });
+    // );
+
+    //  const resBitcoin = await axios.get("https://api.collectapi.com/economy/cripto", {
+    //    headers: {
+    //      "Content-Type" : "application/json",
+    //      Authorization: API_KEY,
+    //    }
+    //   });
 
     const currencyData = resCurrency.data.result.Tarih_Date.Currency;
-    const resultCurrency = currencyData.filter((currency) => currencyArray.includes(currency.CurrencyName._text));
-    console.log(resultCurrency);
+    const resultCurrency = currencyData.filter((currency) =>
+      currencyArray.includes(currency.CurrencyName._text)
+    );
 
-    const goldData = resGold.data.result;
-    const resultGold = goldData.filter((gold) => gold.name === "Gram Altın");
-    console.log(resultGold);
+    // const goldData = resGold.data.result;
+    // const resultGold = goldData.filter((gold) => gold.name === "Gram Altın");
 
     // const bitcoinData = resBitcoin.data.result;
-    // const resultBitcoin = bitcoinData?.filter((item) => item.code === "BTC");
-    // console.log(resultBitcoin);
+    // const resultBitcoin = bitcoinData?.filter((item) => item.name === "Bitcoin");
+    // console.log(resBitcoin);
 
     // const resultArray = [...resultCurrency, ...resultGold];
+    const resultArray = [...resultCurrency];
+
+    //setCurrencyInfo(resultArray);
 
     setCurrencyInfo(resultArray);
   };
-
 
   // const currencyInfoArray = currencyInfo?.filter((item) =>
   //   necessaryCurrencyTypes.includes(item.type)
@@ -71,11 +77,11 @@ const Finance = () => {
     fetchFinanceInfo();
   }, []);
 
-  console.log(currencyInfo)
+  console.log(currencyInfo);
   return (
     <ul className="finance">
-      {currencyInfo?.map((item,idx) => {
-        return <Currency key={idx} item={item} modeStatus={modeStatus} />
+      {currencyInfo?.map((item, idx) => {
+        return <Currency key={idx} item={item} modeStatus={modeStatus} />;
       })}
     </ul>
   );
@@ -83,20 +89,28 @@ const Finance = () => {
 
 export default Finance;
 
-// const Currency = ({ modeStatus, item }) => {
+const Currency = ({ modeStatus, item }) => {
+  const { buying, name, price, code, BanknoteBuying, Isim } = item;
 
-//   const { buying, name, price, code } = item;
+  const isGold = name === "Gram Altın";
 
-//   const isGold = name === "Gram Altın";
+  console.log(buying, name, price, code, BanknoteBuying, Isim)
 
-//   return (
-//     <li className={`column ${modeStatus ? "dark" : ""}`}>
-//         <div className={isGold ? "arrow-down" : "arrow-up"}></div>
-//       <span className={`currency ${modeStatus ? "dark" : ""}`}>
-//      { isGold ? currencyLabel[name.substring(0,4)] : currencyLabel[code] }
-//         <span className={"green"}>{isGold ? buying.toFixed(3) * 1000 : buying ? buying?.toFixed(2) : price.toFixed(0)}</span>
-//       </span>
-//       <div className={`line ${modeStatus ? "dark" : ""}`}></div>
-//     </li>
-//   );
-// };
+  return (
+    <li className={`column ${modeStatus ? "dark" : ""}`}>
+      {BanknoteBuying} {Isim}
+      {/* <div className={isGold ? "arrow-down" : "arrow-up"}></div>
+      <span className={`currency ${modeStatus ? "dark" : ""}`}>
+        {isGold ? currencyLabel[name.substring(0, 4)] : currencyLabel[code]}
+        <span className={"green"}>
+          {isGold
+            ? buying.toFixed(3) * 1000
+            : buying
+            ? buying?.toFixed(2)
+            : price.toFixed(0)}
+        </span>
+      </span> */}
+      <div className={`line ${modeStatus ? "dark" : ""}`}></div>
+    </li>
+  );
+};

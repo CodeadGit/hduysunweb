@@ -43,7 +43,7 @@ const kunyeArray = [
   {
     id: 6,
     caption: "İletişim",
-    url: "/bize-ulasin",
+    url: "/iletisim",
   },
   {
     id: 7,
@@ -79,33 +79,33 @@ const Footer = () => {
             </div>
             <div className="info-left-categories">
               <div className="left-cat">
-                {categories.slice(0, 6).map((item) => {
+                {categories.slice(0, 6).map((item,idx) => {
                   return (
                     <ul className="left-cat-list">
                       <li>
-                        <Link href={`${item.collection}`}>{item.label}</Link>
+                        <Link key={idx} href={`${item.collection}`}>{item.label}</Link>
                       </li>
                     </ul>
                   );
                 })}
               </div>
               <div className="mid-cat">
-                {categories.slice(7, 13).map((item) => {
+                {categories.slice(7, 13).map((item,idx) => {
                   return (
                     <ul className="mid-cat-list">
                       <li>
-                        <Link href={`${item.collection}`}>{item.label}</Link>
+                        <Link key={idx} href={`${item.collection}`}>{item.label}</Link>
                       </li>
                     </ul>
                   );
                 })}
               </div>
               <div className="right-cat">
-                 {categories?.slice(13, 19)?.map((item) => {
+                 {categories?.slice(13, 19)?.map((item,idx) => {
                   return (
                     <ul className="right-cat-list">
                       <li>
-                        <Link href={`${item.collection}`}>{item.label}</Link>
+                        <Link key={idx} href={`${item.collection}`}>{item.label}</Link>
                       </li>
                     </ul>
                   );

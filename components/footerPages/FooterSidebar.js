@@ -36,9 +36,9 @@ const FooterSidebar = () => {
       </Link>
       <Link
         className={`text-a ${modeStatus ? "dark" : ""}`}
-        href="/bize-ulasin"
+        href="/iletisim"
       >
-        Bize Ulaşın
+       İletişim
       </Link>
       <Link className={`text-a ${modeStatus ? "dark" : ""}`} href="/kvkk">
         KVKK

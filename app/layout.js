@@ -12,6 +12,8 @@ import { CategoriesProvider } from "@/context/CategoriesContext";
 import { TagContextProvider } from "@/context/TagContext";
 import { FetchAssetsContextProvider } from "@/context/FetchAssetsContext";
 import Head from "next/head";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import HomePage from "@/components/homePage/HomePage";
 // import LogoNext from "@/components/ads/adsComponents/LogoNext";
 // import MiniNavbar from '@/components/miniNavbar/MiniNavbar';
 
@@ -22,8 +24,8 @@ const poppins = Poppins({
 
 export const metadata = {
   title: "Herkes Duysun",
-  description: "Türkiye'nin yeni medyası. Tüm haberler, en son haberler bu platformda. Tarafsız ve objektif haber kuruluşu.",
-
+  description:
+    "Türkiye'nin yeni medyası. Tüm haberler, en son haberler bu platformda. Tarafsız ve objektif haber kuruluşu.",
 };
 
 export default function RootLayout({ children }) {
@@ -31,15 +33,15 @@ export default function RootLayout({ children }) {
     <html lang="tr">
       <Head>
         <title>Herkes Duysun</title>
-        
+
         <meta
           name="description"
-          content="Türkiye'nin yeni medyası. Tüm haberler, en son haberler bu platformda. Tarafsız ve objektif haber kuruluşu."  
+          content="Türkiye'nin yeni medyası. Tüm haberler, en son haberler bu platformda. Tarafsız ve objektif haber kuruluşu."
         />
 
-        <meta name="datePublished" content="2019-09-27T11:55:00+0300"/>
-        <meta name="dateModified" content="2019-09-27T12:13:52+0300"/>
-        <meta name="articleSection" content="video"/>
+        <meta name="datePublished" content="2019-09-27T11:55:00+0300" />
+        <meta name="dateModified" content="2019-09-27T12:13:52+0300" />
+        <meta name="articleSection" content="video" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -81,7 +83,7 @@ export default function RootLayout({ children }) {
             src="https://www.googletagmanager.com/ns.html?id=UA-205477047-35"
             height="0"
             width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
+            style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
 
@@ -128,7 +130,7 @@ export default function RootLayout({ children }) {
           <div>
             <img
               src="https://mc.yandex.ru/watch/93595743"
-              style={{ position: 'absolute', left: '-9999px' }}
+              style={{ position: "absolute", left: "-9999px" }}
               alt=""
             />
           </div>
@@ -136,16 +138,14 @@ export default function RootLayout({ children }) {
 
         {/* Yandex.Metrika Verification Meta Tag */}
         <meta name="yandex-verification" content="47b73cadef9785d0" />
-      
       </Head>
       <body className={poppins.className} suppressHydrationWarning={true}>
-      
-      <noscript>
+        <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-KV964JN"
             height="0"
             width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
+            style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
 
@@ -166,23 +166,25 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
+        <ErrorBoundary>
         <AuthenticationProvider>
           <FetchAssetsContextProvider>
-            <CategoriesProvider>
-              <ThemeProvider>
-                <TagContextProvider>
-                  <AdsContextProvider>
-                    <Navbar />
-                    {/* <MiniNavbar /> */}
-                    {/* <LogoNext /> */}
-                    <BaseWrapper>{children}</BaseWrapper>
-                    <Footer />
-                  </AdsContextProvider>
-                </TagContextProvider>
-              </ThemeProvider>
-            </CategoriesProvider>
+              <CategoriesProvider>
+                <ThemeProvider>
+                  <TagContextProvider>
+                    <AdsContextProvider>
+                      <Navbar />
+                      {/* <MiniNavbar /> */}
+                      {/* <LogoNext /> */}
+                      <BaseWrapper>{children}</BaseWrapper>
+                      <Footer />
+                    </AdsContextProvider>
+                  </TagContextProvider>
+                </ThemeProvider>
+              </CategoriesProvider>
           </FetchAssetsContextProvider>
         </AuthenticationProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );

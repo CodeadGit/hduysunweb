@@ -100,10 +100,12 @@
       }
     }
     &-ads {
+      box-sizing: border-box;
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
 
       iframe {
         width: 300px;

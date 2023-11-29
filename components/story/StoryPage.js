@@ -1,8 +1,14 @@
 import Stories from "react-insta-stories";
 import "./story.scss";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { use } from "react";
 
-const StoryPage = ({ stories }) => {
+const StoryPage = ({ stories}) => {
+
+  const router = useRouter();
+
   const formatted = stories?.map((i, idx) => {
     return {
       url:
@@ -12,7 +18,9 @@ const StoryPage = ({ stories }) => {
       content: ({ action, isPaused }) => {
         return (
           <div className="img-wrapper" key={idx}>
-            {i.media && <img src={i.media} className="img-wrapper-img" alt="" />}
+            {i.media && (
+              <img src={i.media} className="img-wrapper-img" alt="" />
+            )}
             <div className="info-wrapper">
               <h4 className="info-wrapper-title">{i?.title || ""}</h4>
               <p className="info-wrapper-des">{i?.description || ""}</p>
@@ -71,3 +79,7 @@ const StoryPage = ({ stories }) => {
 };
 
 export default StoryPage;
+
+// function getDataFromType(type, hasError) {
+
+// }

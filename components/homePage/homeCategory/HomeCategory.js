@@ -36,7 +36,9 @@ const HomeCategory = ({ category, totalPage }) => {
         var breakingNewsList = [];
 
         querySnapshot.forEach((doc) => {
-          breakingNewsList.push(doc.data());
+          if (doc.data().active) {
+            breakingNewsList.push(doc.data());
+          }
         });
         setFilteredNews(breakingNewsList);
         setCategoryLoading(false);

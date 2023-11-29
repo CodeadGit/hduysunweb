@@ -21,7 +21,9 @@ const AllCategoriesPagesCards = ({ category }) => {
         var categoryNewsList = [];
 
         querySnapshot.forEach((doc) => {
-          categoryNewsList.push(doc.data());
+          if(doc.data().active) {
+            categoryNewsList.push(doc.data());
+          }
         });
         setCategoryCards(categoryNewsList);
         setCategoryLoading(false);

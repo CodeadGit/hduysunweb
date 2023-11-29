@@ -14,7 +14,7 @@ const BizeUlasin = () => {
         <FooterSidebar />
       </div>
       <div className={`text-part ${modeStatus ? "dark" : ""}`}>
-        <div className="header">Bize Ulaşın</div>
+        <div className="header">İletişim</div>
         <div className="line"></div>
 
         <div className="text">

@@ -4,7 +4,7 @@ import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-const CategoryPagination = ({ handleChange, page, totalPage,pagList }) => {
+const CategoryPagination = ({ handleChange, page, totalPage, pagList }) => {
   return (
     <div
       style={{
@@ -15,8 +15,8 @@ const CategoryPagination = ({ handleChange, page, totalPage,pagList }) => {
       }}
     >
       <Pagination
-         // count={Math.ceil(totalPage / 20)}
-       count={page+1}
+        // count={Math.ceil(totalPage / 20)}
+        count={page + 1}
         page={page}
         onChange={handleChange}
         variant="outlined"

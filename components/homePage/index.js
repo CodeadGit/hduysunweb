@@ -42,7 +42,7 @@ const Home = ({ pageTitle, pageDescription }) => {
       <Caption title="Sağlık" link="saglik" />
       <HomeCategory category="saglik" />
       {/* <Health /> */}
-      <WeatherInfo /> 
+      <WeatherInfo />  
       <TrialComp />
       <Video />
       <Register /> 

@@ -25,6 +25,7 @@ const CategoryPageNews = ({ category, totalPage }) => {
   const modeStatus = mode === "dark";
   const [filteredNews, setFilteredNews] = useState([]);
   const [categoryLoading, setCategoryLoading] = useState(true);
+  const [categoryNews, setCategoryNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const params = useParams();
   const newsNumber = Object.keys(params).length ? 20 : 9;
@@ -41,6 +42,28 @@ const CategoryPageNews = ({ category, totalPage }) => {
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const [lastData, setLastData] = useState({});
+
+  useEffect(() => {
+    const fetchThisCategoryNews = async () => {
+      const q = query(
+        collection(db, category),
+        orderBy("datePublished", "desc"),
+        limit(20)
+      );
+      try {
+        const queryCategorySnapshot = await getDocs(q);
+        var categoryNewsList = [];
+
+        queryCategorySnapshot.forEach((doc) => {
+          categoryNewsList.push({ ...doc.data(), doc: doc.id });
+        });
+        setCategoryNews(categoryNewsList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchThisCategoryNews();
+  }, []);
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -85,7 +108,7 @@ const CategoryPageNews = ({ category, totalPage }) => {
 
   const settings = {
     infinite: true,
-    arrows:false,
+    arrows: false,
     swipeToSlide: true,
     autoplay: true,
     autoplaySpeed: 5000,
@@ -118,26 +141,29 @@ const CategoryPageNews = ({ category, totalPage }) => {
   if (pagList.length > 0) {
     return (
       <div className="categoryPageWrapper">
-        <div className="categoryPageWrapper-top">
-          <div className="categoryPageWrapper-top-slider">
-            {pagList && !loading && (
-              <Slider
-                ref={categorySliderRef}
-                {...settings}
-                className="categorySlider"
-              >
-                {pagList?.slice(0, 20).map((item, idx) => {
-                  return <CategorySliderItem item={item} key={idx} idx={idx} />;
-                })}
-              </Slider>
-            )}
-          </div>
-          <div className="categoryPageWrapper-top-ads">
-            <div className="categoryPageWrapper-top-ads-area">
-              <iframe src="https://www.bursa.bel.tr/reklam/?w=300"></iframe>
+        {page === 1 ? (
+          <div className="categoryPageWrapper-top">
+            <div className="categoryPageWrapper-top-slider">
+              {categoryNews &&
+                !loading ? (
+                  <Slider
+                    ref={categorySliderRef}
+                    {...settings}
+                    className="categorySlider"
+                  >
+                    {categoryNews?.slice(0, 20).map((item, idx) => {
+                      return (
+                        <CategorySliderItem item={item} key={idx} idx={idx} />
+                      );
+                    })}
+                  </Slider>
+                ): null}
+            </div>
+            <div className="categoryPageWrapper-top-ads">
+                <iframe src="https://www.bursa.bel.tr/reklam/?w=300"></iframe>
             </div>
           </div>
-        </div>
+        ) : null}
         <div className="categoryPageWrapper_container">
           {pagList?.map((item, idx) => {
             return (
