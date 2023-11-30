@@ -191,7 +191,6 @@ const TagsSlider = () => {
         <div className="sliderContainer-top-left-ads">
           <iframe
             src="https://www.bursa.bel.tr/reklam/?w=728"
-            style={{ width: "728px", height: "90px", overflow: "hidden" }}
           />
         </div>
       </div>

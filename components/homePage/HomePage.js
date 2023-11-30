@@ -8,6 +8,7 @@ import BannerNext from "../ads/adsComponents/BannerNext";
 import HomePageSkeleton from "./HomePageSkeleton";
 import MainSlider from "./mainSlider/MainSlider";
 import SurMansetSlider from "./surMansetSlider/SurMansetSlider";
+import SurMansetSliderRes from "./surMansetSlider/SurMansetSliderRes";
 
 const HomePage = () => {
   const { mode, handleReadIncrement, newsLoading } =
@@ -37,6 +38,7 @@ const HomePage = () => {
       /> */}
       <div className="right">
          <SurMansetSlider/> 
+         <SurMansetSliderRes/>
          {/* <div className="right-top">
           {/* <SecondNews
             handleReadIncrement={handleReadIncrement}
