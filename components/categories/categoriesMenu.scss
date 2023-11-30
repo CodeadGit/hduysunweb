@@ -1,24 +1,13 @@
-.menu-item-link {
-  color: #333333;
-  text-decoration: none;
 
-  &:active,
-  &:visited,
-  &:hover,
-  &:active {
-    color: #333333;
-  }
-  &.dark {
-    color: white;
-    text-decoration: none;
-    &:active,
-    &:visited,
-    &:hover,
-    &:active {
-      color: white;
+  .close-icon {
+
+    svg {
+      &.dark {
+        color: white;
+      }
     }
   }
-}
+
 // .link:link,
 // .link:visited {
 //   //  border: 1px solid red;

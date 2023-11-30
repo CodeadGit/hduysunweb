@@ -397,4 +397,17 @@
       display: none;
     }
   }
+  .navmenu-icon {
+    color: #000;
+    cursor: pointer;
+    transition: var(--transition);
+
+    &.dark {
+      color: var(--whiteBgColor);
+    }
+
+    @media screen and (max-width: 769px) {
+      display: none;
+    }
+  }
 }

@@ -7,12 +7,15 @@ import { editLink } from "@/context/utils";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useCategoriesContext } from "@/context/CategoriesContext";
 import CategoriesMenu from "./CategoriesMenu";
+import { IconButton} from "@mui/material"
+import MenuIcon from '@mui/icons-material/Menu';
 import Link from "next/link";
 
 const Categories = ({ wrapper }) => {
   const pathname = usePathname();
   const { mode, closeStoryModal } = useThemeContext();
   const { categories } = useCategoriesContext();
+  const [isMenuDrawer, setIsMenuDrawer] = useState(false);
 
   const modeStatus = mode === "dark";
 
@@ -26,6 +29,14 @@ const Categories = ({ wrapper }) => {
   const sorttedCategories = categories
     .sort((a, b) => a.index - b.index)
     .slice(0, 8);
+
+    const toggleDrawer = (open) => (event) => {
+      if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
+        return;
+      }
+      setIsMenuDrawer(open);
+    };
+
 
   //const isActive = pathname.substring(1).startsWith(i);
 
@@ -65,48 +76,14 @@ const Categories = ({ wrapper }) => {
             </div>
           );
         })}
-        <CategoriesMenu/>
-        {/* <div className={`menu-navbar  ${modeStatus ? "dark" : ""}`}>
-          <Button
-            id="basic-button"
-            className={`menu-button  ${modeStatus ? "dark" : ""}`}
-            aria-controls={open ? "basic-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={handleClick}
-          >
-            Tümünü Gör
-          </Button>
-          <div >
-          <Menu
-            id="basic-menu"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose || handleScroll}
-            // onScroll={handleScroll}
-            className={`menu ${modeStatus ? "dark" : ""}`}
-            MenuListProps={{
-              "aria-labelledby": "basic-button",
-            }}
-          >
-            <div style={menuStyle} className={`menu-container ${modeStatus ? "dark" : ""}`}>
-              {categories?.slice(8, categories?.length).map((i, idx) => (
-                <div className="menu-container-items" key={idx}>
-                  <MenuItem
-                    className={`menu-item ${modeStatus ? "dark" : ""}`}
-                    sx={{ paddingLeft: "0.5rem", paddingRight: "1rem" }}
-                    onClick={handleClose}
-                  >
-                    <Link style={{color:"#333333"}} href={`/${i.collection}`} className={`menu-item-link ${modeStatus ? "dark" : ""}`}>
-                      {i.label}
-                    </Link>
-                  </MenuItem>
-                </div>
-              ))}
-            </div>
-          </Menu>
-          </div>
-        </div> */}
+         <IconButton
+          // className={`menu-icon ${modeStatus ? "dark" : ""}`}
+          size="large"
+          onClick={toggleDrawer(true)}
+        >
+         <MenuIcon className={`navmenu-icon ${modeStatus ? "dark" :  ""}`}></MenuIcon>
+        </IconButton>
+        <CategoriesMenu toggleDrawer={toggleDrawer} isMenuDrawer={isMenuDrawer}/>
       </div>
     </div>
   );

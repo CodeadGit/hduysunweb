@@ -63,6 +63,7 @@ const SurMansetSliderRes = () => {
     centerMode:true,
     slideToShow: 2,
     slideToScroll: 1,
+    centerPadding: "40px",
     touchMove: true,
    // dotsClass: "surmanset-slick-dots",
     // appendDots: (dots) => (

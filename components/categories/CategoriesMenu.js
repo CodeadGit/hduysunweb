@@ -1,121 +1,107 @@
 "use client";
-import { useEffect, useState } from "react";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import Box from "@mui/material/Box";
-import MenuItem from "@mui/material/MenuItem";
+import * as React from "react";
+import { useState } from "react";
 import Link from "next/link";
 import "./categoriesMenu.scss";
+import Drawer from "@mui/material/Drawer";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useCategoriesContext } from "@/context/CategoriesContext";
+import { ListItemButton, List, ListItem, IconButton,Box, ListItemText } from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
+import { Close } from "@mui/icons-material";
+import { BsMoonFill } from "react-icons/bs";
 
-const CategoriesMenu = () => {
-  const { mode } = useThemeContext();
+const CategoriesMenu = ({toggleDrawer, isMenuDrawer}) => {
+  const { mode, toggle } = useThemeContext();
   const { categories } = useCategoriesContext();
   const [anchorEl, setAnchorEl] = useState(null);
+
   const open = Boolean(anchorEl);
+
   const modeStatus = mode === "dark";
 
-  const darkBoxStyle = {
-    height: "auto",
-    backgroundColor: "#1f252b",
-    transition: "0.3s all ease-in-out",
-  };
+  const darkBoxStyle = { width: "200px", height: "auto", backgroundColor: "#3e474f", transition: "0.3s all ease-in-out" };
 
-  const lightBoxStyle = {
-    height: "100%",
-    backgroundColor: "#fff",
-    transition: "0.3s all ease-in-out"
-  };
+  const lightBoxStyle = {  width: "200px", height: "auto", backgroundColor: "#fff", transition: "0.3s all ease-in-out" };
 
-  const darkTitleStyle = {
-    color:"white",
-    textTransform:"capitalize",
-    fontFamily:"Poppins",
-    fontSize:"1rem"
-  }
+  const darkListItemStyle = { textTransform: "capitalize", color: "#fff",  transition: "0.3s all ease-in-out" };
 
-  const lightTitleStyle = {
-    color:"#333333",
-    textTransform:"capitalize",
-    fontFamily:"Poppins",
-    fontSize:"1rem"
-  }
+  const lightListItemStyle = { textTransform: "capitalize", color: "#000", transition: "0.3s all ease-in-out" };
 
-  const menuStyle = modeStatus ? darkBoxStyle : lightBoxStyle;
-  const linkStyle = modeStatus ? darkTitleStyle : lightTitleStyle;
+  const darkIconBoxStyle = { display: "flex", justifyContent: "space-between", backgroundColor: "#3e474f", transition: "0.3s all ease-in-out" };
 
-  const handleScroll = () => {
-    const scrollPosition = window.scrollY; // => scroll position
-    scrollPosition > 0 && setAnchorEl(null);
-  };
-  useEffect(() => {
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const lightIconBoxStyle = { display: "flex", justifyContent: "space-between",
+  backgroundColor: "#fff", transition: "0.3s all ease-in-out" };
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const boxStyle = modeStatus ? darkBoxStyle : lightBoxStyle;
+
+  const listItemStyle = modeStatus ? darkListItemStyle : lightListItemStyle;
+
+  const iconBoxStyle = modeStatus ? darkIconBoxStyle : lightIconBoxStyle;
+
+
+  // const handleScroll = () => {
+  //   const scrollPosition = window.scrollY; // => scroll position
+  //   scrollPosition > 0 && setAnchorEl(null);
+  // };
+  // useEffect(() => {
+  //   handleScroll();
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
+
+  // const handleClick = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  return (
-    <>
-      <Button
-        id="basic-button"
-        className={`menu-button  ${modeStatus ? "dark" : ""}`}
-        aria-controls={open ? "basic-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
-        style={linkStyle}
-      >
-        Tümünü Gör
-      </Button>
-      <Box
-        sx={{
-          background: "black",
-          flexGrow: 0,
-          display: { xs: "none", md: "flex" },
-        }}
-        role="presentation"
-      >
-        <Menu
-          sx={{
-            "& .MuiPaper-root": {
-              backgroundColor: modeStatus ? darkBoxStyle : lightBoxStyle
-            },
-          }}
-          id="basic-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose || handleScroll}
-          MenuListProps={{
-            "aria-labelledby": "basic-button",
-          }}
-        >
-          {categories?.slice(8, categories?.length).map((i, idx) => (
-            <MenuItem
-              sx={{ paddingLeft: "0.5rem", paddingRight: "1rem" }}
-              onClick={handleClose}
+  const menuList = () => (
+    <Box sx={boxStyle} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
+      <List sx={{ height: "auto",overflowY:"hidden" }}>
+        {categories?.slice(8, categories?.length).map((i, idx) => (
+          <Link
+            href={`/${i.collection}`}
+            key={i.index}
+          >
+            <ListItem
+             key={i.index}
+             disablePadding
             >
-              <Link
-                href={`/${i.collection}`}
-                className={`menu-item-link ${modeStatus ? "dark" : ""}`}
-                style={linkStyle}
-              >
-                {i.label}
-              </Link>
-            </MenuItem>
-          ))}
-        </Menu>
-      </Box>
-    </>
+              <ListItemButton>
+                <ListItemText sx={listItemStyle} primary={i.label} />
+              </ListItemButton>
+            </ListItem>
+          </Link>
+        ))}
+      </List>
+    </Box>
+  );
+
+  return (
+    <div>
+     <React.Fragment>
+        <Drawer
+          anchor="right"
+          open={isMenuDrawer}
+          onClose={toggleDrawer(false)}
+          sx={{height:"auto"}}
+        >
+          <div style={iconBoxStyle}>
+            <IconButton className={`close-icon ${modeStatus ? "dark" :  ""}`} onClick={toggleDrawer(false)}>
+              <Close className={`close-icon ${modeStatus ? "dark" :  ""}`} />
+            </IconButton>
+            {/* <IconButton className={`mode-icon ${modeStatus ? "dark" :  ""}`} onClick={toggle}>
+              <BsMoonFill style={{height: "20px"}} />
+            </IconButton> */}
+          </div>
+          {menuList()}
+        </Drawer>
+     </React.Fragment>
+    </div>
   );
 };
 

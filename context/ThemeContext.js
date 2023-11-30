@@ -312,7 +312,7 @@ export const ThemeProvider = ({ children }) => {
         const collectionRef = query(
           collection(db, category.collection),
           orderBy("datePublished", "desc"),
-          limit(5)
+          limit(6)
         );
         const snapshot = await getDocs(collectionRef);
         const categoryNews = snapshot.docs.map((doc) => ({

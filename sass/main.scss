@@ -20,6 +20,7 @@ body {
   line-height: 1.2;
   background-color: #f7f7f7;
   padding-right: 0 !important;
+  overflow-y: hidden;
 }
 
 :root {
@@ -102,24 +103,24 @@ a {
 }
 
 /* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
+  ::-webkit-scrollbar {
+   width: 10px;
+  }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
+// // /* Track */
+  ::-webkit-scrollbar-track {
+   background: #f1f1f1;
+  }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
+// // /* Handle */
+  ::-webkit-scrollbar-thumb {
+   background: #888;
+  }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
+ // /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+   background: #555;
+  }
 
 .ads-extended {
 

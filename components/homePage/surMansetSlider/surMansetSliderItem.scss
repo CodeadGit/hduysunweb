@@ -3,7 +3,7 @@
     object-fit: cover;
     width: 100%;
     height: 28.125rem;
-    aspect-ratio: .86/1;
+    aspect-ratio: 0.86/1;
   }
 
   .sondakika {
@@ -11,35 +11,84 @@
     &-img {
       width: 100%;
       height: 28.125rem;
-      aspect-ratio: .86/1;
+      aspect-ratio: 0.86/1;
       object-fit: cover;
     }
-   
+
     &-wrapper {
       width: 100%;
-     // height: 60px;
-     // background-color: rgba(0, 0, 0, 0.25);
+      // height: 60px;
+      // background-color: rgba(0, 0, 0, 0.25);
       position: fixed;
       bottom: 0;
-      padding: .2rem;
+      padding: 0.2rem;
       box-sizing: border-box;
       color: white;
       text-decoration: none;
       flex-wrap: wrap;
       text-overflow: ellipsis;
 
-      span{
+      span {
         display: inline-block;
         width: 400px;
-        padding: .5rem;
+        padding: 0.5rem;
         background-color: rgba(0, 0, 0, 0.25);
       }
     }
   }
 }
-.surMansetSliderRes-item-image {
-  object-fit: cover;
-  width: 100%;
-  //height: 28.125rem;
-  aspect-ratio: .86/1;
+.surMansetSliderRes-item {
+  &-image {
+    object-fit: cover;
+    width: 100%;
+    //height: 28.125rem;
+    aspect-ratio: 0.86/1;
+  }
+  a {
+    color: #333333;
+
+    &.active,
+    &.hover,
+    &.visited &.link {
+      color: #333333;
+    }
+    .slick-slide img {
+      padding: 0 1rem;
+    }
+  }
+
+  .title-wrapper {
+    width: 100%;
+    // height: 60px;
+    // background-color: rgba(0, 0, 0, 0.25);
+    position: fixed;
+    bottom: 0;
+    padding: 0.2rem;
+    box-sizing: border-box;
+    color: white;
+    text-decoration: none;
+    flex-wrap: wrap;
+    text-overflow: ellipsis;
+
+    span {
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      width: 232px;
+      font-size: .75rem;
+      margin-left: .5rem;
+      padding: 0.5rem 0;
+      background-color: rgba(0, 0, 0, 0.25);
+
+      .disc {
+        border: 4px solid #0A5E8D;
+        background-color: #0A5E8D;
+        width: 0.4rem;
+        height: 0.4rem;
+        margin-left: .5rem;
+        align-self: center;
+        transition: var(--transition);
+      }
+    }
+  }
 }

@@ -171,14 +171,16 @@
       }
 
       iframe {
-        width: 728px;
-        height: 90px;
+        width: 717px;
+        height: 96px;
         overflow: hidden;
+        border: none;
 
         @media screen and (max-width:768px) {
           width: 300px;
-          height: 73px;
+          height: 45px;
           overflow: hidden;
+          border: none;
         }
       }
     }

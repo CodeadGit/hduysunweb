@@ -31,6 +31,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="tr">
+      
+      <body className={poppins.className} suppressHydrationWarning={true}>
       <Head>
         <title>Herkes Duysun</title>
 
@@ -49,7 +51,7 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
-        {/*Basın İlan Head Koduna*/}
+      {/* Basın İlan Head Koduna */}
         <script dangerouslySetInnerHTML={{__html:`!function(){var t=document.createElement("script");t.setAttribute("src",'https://cdn.p.analitik.bik.gov.tr/tracker'+(typeof Intl!=="undefined"?(typeof (Intl||"").PluralRules!=="undefined"?'1':typeof Promise!=="undefined"?'2':typeof MutationObserver!=='undefined'?'3':'4'):'4')+'.js'),t.setAttribute("data-website-id","657f41c4-4e9d-405a-95e8-84eb9ec7719a"),t.setAttribute("data-host-url",'//657f41c4-4e9d-405a-95e8-84eb9ec7719a.collector.p.analitik.bik.gov.tr'),document.head.appendChild(t)}()`}}/>
 
         <script
@@ -142,7 +144,6 @@ export default function RootLayout({ children }) {
         {/* Yandex.Metrika Verification Meta Tag */}
         <meta name="yandex-verification" content="47b73cadef9785d0" />
       </Head>
-      <body className={poppins.className} suppressHydrationWarning={true}>
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-KV964JN"
@@ -170,8 +171,8 @@ export default function RootLayout({ children }) {
           }}
         />
         <ErrorBoundary>
-        <AuthenticationProvider>
-          <FetchAssetsContextProvider>
+          <AuthenticationProvider>
+            <FetchAssetsContextProvider>
               <CategoriesProvider>
                 <ThemeProvider>
                   <TagContextProvider>
@@ -185,8 +186,8 @@ export default function RootLayout({ children }) {
                   </TagContextProvider>
                 </ThemeProvider>
               </CategoriesProvider>
-          </FetchAssetsContextProvider>
-        </AuthenticationProvider>
+            </FetchAssetsContextProvider>
+          </AuthenticationProvider>
         </ErrorBoundary>
       </body>
     </html>

@@ -58,7 +58,7 @@ export const handleShorttSurmanset = (text) => {
   return text?.substring(0,80).concat(" ...");
 };
 export const handleShorttSurmansetRes = (text) => {
-  return text?.substring(0,60).concat(" ...");
+  return text?.substring(0,30).concat(" ...");
 };
 export const handleShorttLetter = (title,number) => {
   // const res = title?.split("");
