@@ -57,6 +57,9 @@ export const handleShorttSonDakika = (text) => {
 export const handleShorttSurmanset = (text) => {
   return text?.substring(0,80).concat(" ...");
 };
+export const handleShorttSurmansetRes = (text) => {
+  return text?.substring(0,60).concat(" ...");
+};
 export const handleShorttLetter = (title,number) => {
   // const res = title?.split("");
   // if (res.length <= number) return res.join("");

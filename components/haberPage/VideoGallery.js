@@ -40,7 +40,7 @@ const VideoGallery = ({ modeStatus, videoNewsList }) => {
                   options
                 )}
               </p>
-              <AiFillEye />
+              {/* <AiFillEye /> */}
               {/* <span>{item.read}</span> */}
             </div>
           </Link>
