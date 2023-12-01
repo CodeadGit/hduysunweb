@@ -13,7 +13,7 @@ const SingleWeather = ({ temperature, weatherCode, maxTemp, countryName, cityNam
         </p>
         <span className={`weatherIcon ${modeStatus ? "dark" : ""}`}>{getSuitableIcon(weatherCode)}</span>
       </div>
-      <span className={`country ${modeStatus ? "dark" : ""}`}>{countryName}</span>
+      {/* <span className={`country ${modeStatus ? "dark" : ""}`}>{countryName}</span> */}
     </div>
   );
 };

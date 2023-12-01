@@ -8,34 +8,29 @@ import { useThemeContext } from "@/context/ThemeContext";
 
 const citiesInfo = [
   {
-    cityName: "Londra",
-    countryName: "Birleşik Krallık",
-    latitude: 51.5085,
-    longitude: -0.1257,
+    cityName: "İstanbul",
+    latitude: 41.0082,
+    longitude: 28.9784,
   },
   {
-    cityName: "Paris",
-    countryName: "Fransa",
-    latitude: 48.8534,
-    longitude: 2.3488,
+    cityName: "Ankara",
+    latitude: 39.9334,
+    longitude: 32.8597,
   },
   {
-    cityName: "Berlin",
-    countryName: "Almanya",
-    latitude: 52.5244,
-    longitude: 13.4105,
+    cityName: "İzmir",
+    latitude: 38.4192,
+    longitude: 27.1287,
   },
   {
-    cityName: "Roma",
-    countryName: "İtalya",
-    latitude: 41.8919,
-    longitude: 12.5113,
+    cityName: "Bursa",
+    latitude: 40.1824,
+    longitude: 29.0671,
   },
   {
-    cityName: "Madrid",
-    countryName: "İspanya",
-    latitude: 40.4165,
-    longitude: -3.7026,
+    cityName: "Antalya",
+    latitude: 36.8969,
+    longitude: 30.7133,
   },
 ];
 

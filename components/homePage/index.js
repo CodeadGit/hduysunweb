@@ -37,7 +37,7 @@ const Home = ({ pageTitle, pageDescription }) => {
       {/* <Authors /> */}
       {/* <Arcelik /> */}
        <Masthead /> 
-      {/* <Currency />  */}
+       {/* <Currency />  */}
       <Pharmacy/>
       <Caption title="Sağlık" link="saglik" />
       <HomeCategory category="saglik" />

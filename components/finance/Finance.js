@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import "./finance.scss";
 import { useThemeContext } from "@/context/ThemeContext";
 import axios from "axios";
+import FinanceCurrency from "./FinanceCurrency";
+import dolar from "./dolar.svg";
+import euro from "./euro.svg";
 
 const currencyLabel = {
   USD: "DOLAR",
@@ -77,11 +80,15 @@ const Finance = () => {
     fetchFinanceInfo();
   }, []);
 
-  console.log(currencyInfo);
+  const svgObject = {dolar, euro}
+
+  const mergedObject = Object.entries(currencyInfo).map(([key, value]) => value)
+
+  console.log(mergedObject);
   return (
     <ul className="finance">
       {currencyInfo?.map((item, idx) => {
-        return <Currency key={idx} item={item} modeStatus={modeStatus} />;
+        return <FinanceCurrency key={idx} item={item} modeStatus={modeStatus} />;
       })}
     </ul>
   );
@@ -89,28 +96,3 @@ const Finance = () => {
 
 export default Finance;
 
-const Currency = ({ modeStatus, item }) => {
-  const { buying, name, price, code, BanknoteBuying, Isim } = item;
-
-  const isGold = name === "Gram Altın";
-
-  console.log(buying, name, price, code, BanknoteBuying, Isim)
-
-  return (
-    <li className={`column ${modeStatus ? "dark" : ""}`}>
-      {BanknoteBuying} {Isim}
-      {/* <div className={isGold ? "arrow-down" : "arrow-up"}></div>
-      <span className={`currency ${modeStatus ? "dark" : ""}`}>
-        {isGold ? currencyLabel[name.substring(0, 4)] : currencyLabel[code]}
-        <span className={"green"}>
-          {isGold
-            ? buying.toFixed(3) * 1000
-            : buying
-            ? buying?.toFixed(2)
-            : price.toFixed(0)}
-        </span>
-      </span> */}
-      <div className={`line ${modeStatus ? "dark" : ""}`}></div>
-    </li>
-  );
-};

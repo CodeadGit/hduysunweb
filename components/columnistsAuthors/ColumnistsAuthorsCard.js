@@ -36,7 +36,7 @@ const ColumnistsAuthorsCard = ({ item }) => {
             modeStatus ? "dark" : ""
           }`}
         >
-          <div>Yazdığı yazı sayısı</div>
+          <div className="columnistsAuthorsCard-bottom-number-title">Yazdığı yazı sayısı</div>
           <span
             className={`date ${modeStatus ? "dark" : ""}`}
           >
@@ -44,7 +44,7 @@ const ColumnistsAuthorsCard = ({ item }) => {
           </span>
         </div>
       </div>
-    </Link>
+ğı    </Link>
   );
 };
 

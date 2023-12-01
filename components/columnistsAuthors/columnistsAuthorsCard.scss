@@ -70,6 +70,17 @@
       flex-direction: row;
       justify-content: space-between;
 
+      &-title {
+        color: #333333;
+
+        &.active,
+        &.visited,
+        &.link,
+        &.hover {
+          color: #333333;
+        }
+      }
+
       .date {
         color: rgba(38, 38, 38, 0.56);
 

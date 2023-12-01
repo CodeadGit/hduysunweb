@@ -34,7 +34,7 @@ const Navbar = () => {
          <NavbarLogo wrapper="logo-wrapper"/>
         <div className="top-right-wrapper">
           <div className="info-section">
-          {/* <Finance /> */}
+         <Finance /> 
            {/* {location!==null ? <Weather showSearchBar={showSearchBar}/> : ""} */}
             <Buttons wrapper="buttons" showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar} />
           </div>
