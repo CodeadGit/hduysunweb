@@ -2,9 +2,8 @@ import "./categoryItem.scss";
 import Link from "next/link";
 import { useThemeContext } from "@/context/ThemeContext";
 const CategoryItem = ({ item }) => {
-
   const { title, image, category, eng, id, datePublished } = item;
-  const { handleReadIncrement, mode} = useThemeContext();
+  const { handleReadIncrement, mode } = useThemeContext();
 
   const modeStatus = mode === "dark";
 
@@ -13,11 +12,14 @@ const CategoryItem = ({ item }) => {
   const formattedDate = timePublished.toLocaleString("tr-TR", options);
 
   return (
-    <Link href={`/${category}/${eng}-${id}`}
-     // target="_blank"
-      className={`categoryItem ${modeStatus ? "dark" : ""}`} onClick={() => handleReadIncrement(category, id)}>
+    <Link
+      href={`/${category}/${eng}-${id}`}
+      // target="_blank"
+      className={`categoryItem ${modeStatus ? "dark" : ""}`}
+      onClick={() => handleReadIncrement(category, id)}
+    >
       <div className="categoryItem-top">
-        <div >
+        <div>
           <img src={image} className="categoryItem-top-img" />
         </div>
       </div>
@@ -25,14 +27,20 @@ const CategoryItem = ({ item }) => {
         <div
           className={`categoryItem-bottom-title ${modeStatus ? "dark" : ""}`}
         >
-          {String(title).length>51?`${String(title).substring(0,50)}...`:title}
+          {String(title).length > 51
+            ? `${String(title).substring(0, 50)}...`
+            : title}
         </div>
         <div
           className={`categoryItem-bottom-line ${modeStatus ? "dark" : ""}`}
         ></div>
         <div className="categoryItem-bottom-date">
-          <span className={`card-date-title ${modeStatus ? "dark" : ""}`}>Yayınlanma T.</span>
-          <span className={`card-date ${modeStatus ? "dark" : ""}`}>{formattedDate}</span>
+          <span className={`card-date-title ${modeStatus ? "dark" : ""}`}>
+            Yayınlanma T.
+          </span>
+          <span className={`card-date ${modeStatus ? "dark" : ""}`}>
+            {formattedDate}
+          </span>
         </div>
       </div>
     </Link>

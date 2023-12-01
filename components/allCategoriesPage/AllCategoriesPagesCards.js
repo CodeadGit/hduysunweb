@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import AllCategoriesCard from "./AllCategoriesCard";
 import "./allCategoriesPagesCards.scss";
-import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import { categoryConvertor } from "@/context/utils";
 
-const AllCategoriesPagesCards = ({ category }) => {
+const AllCategoriesPagesCards = ({ category, label }) => {
   const [categoryCards, setCategoryCards] = useState([]);
   const [categoryLoading, setCategoryLoading] = useState(true);
 
@@ -21,7 +21,7 @@ const AllCategoriesPagesCards = ({ category }) => {
         var categoryNewsList = [];
 
         querySnapshot.forEach((doc) => {
-          if(doc.data().active) {
+          if (doc.data().active ) {
             categoryNewsList.push(doc.data());
           }
         });
@@ -34,9 +34,13 @@ const AllCategoriesPagesCards = ({ category }) => {
     fetchCategory();
   }, []);
 
+  // console.log(categoryCards.values.length > 0);
+  // const myObject = { key1: "value1", key2: "value2", key3: "value3" };
+  // const entries = Object.entries(myObject);
+
   return (
     <div className="allCategoriesPagesCards">
-      <h2>{category}</h2>
+      <h3>{label}</h3>
       <div className="allCategoriesPagesCards-list">
         {categoryCards.map((item, idx) => {
           return <AllCategoriesCard key={idx} item={item} />;

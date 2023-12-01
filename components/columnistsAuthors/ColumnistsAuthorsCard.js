@@ -1,9 +1,51 @@
 import "./columnistsAuthorsCard.scss";
+import Link from "next/link";
+import { useThemeContext } from "@/context/ThemeContext";
 
-const ColumnistsAuthorsCard = () => {
+const ColumnistsAuthorsCard = ({ item }) => {
+  const { mode } = useThemeContext();
+  const { id, author, avatar, lastName, name, postCount } = item;
+
+  const modeStatus = mode === "dark";
+
   return (
-    <div>ColumnistsAuthorsCard</div>
-  )
-}
+    <Link
+      href={`yazarlar/${item?.urledTitle}-${item?.id}`}
+      className={`columnistsAuthorsCard ${modeStatus ? "dark" : ""}`}
+    >
+      <div className="columnistsAuthorsCard-top">
+        <img
+          className="columnistsAuthorsCard-top-img"
+          src={avatar}
+          alt={author}
+        ></img>
+      </div>
 
-export default ColumnistsAuthorsCard
+      <div className="columnistsAuthorsCard-bottom">
+        <div
+          className={`columnistsAuthorsCard-bottom-title ${
+            modeStatus ? "dark" : ""
+          }`}
+        >
+          {name + " " + lastName}
+        </div>
+        <div className="columnistsAuthorsCard-bottom-line"></div>
+
+        <div
+          className={`columnistsAuthorsCard-bottom-number ${
+            modeStatus ? "dark" : ""
+          }`}
+        >
+          <div>Yazdığı yazı sayısı</div>
+          <span
+            className={`date ${modeStatus ? "dark" : ""}`}
+          >
+            {postCount}
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+export default ColumnistsAuthorsCard;

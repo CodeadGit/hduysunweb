@@ -1,7 +1,8 @@
-"use client"
+"use client";
 import { useThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
 import "./columnistsAuthors.scss";
+import ColumnistsAuthorsCard from "./ColumnistsAuthorsCard";
 
 const ColumnistsAuthors = (item) => {
   const { eng, tittle } = item;
@@ -10,44 +11,10 @@ const ColumnistsAuthors = (item) => {
   const modeStatus = mode === "dark";
 
   return (
-    <div className="yazarcard">
-      <div className="yazarcard-card">
-        {autors.map((item,idx) => (
-          <Link
-            href={`yazarlar/${item?.urledTitle}-${item?.id}`}
-            className={`yazarcard-card-one ${modeStatus ? "dark" : ""}`}
-            key={idx}
-          >
-            <div className="yazarcard-card-one-top">
-              <img
-                className="yazarcard-card-one-top-img"
-                src={item.avatar}
-                alt={item.author}
-              ></img>
-            </div>
-
-            <div className="yazarcard-card-one-bottom">
-              <div
-                className={`yazarcard-card-one-bottom-header ${
-                  modeStatus ? "dark" : ""
-                }`}
-              >
-                {item.name + " " + item.lastName}
-              </div>
-              <div className="yazarcard-card-one-bottom-line"></div>
-
-              <div
-                className={`yazarcard-card-one-bottom-number ${
-                  modeStatus ? "dark" : ""
-                }`}
-              >
-                <div>Yazdığı yazı sayısı</div>
-                <div>{item.postCount}</div>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+    <div className="yazarlist">
+      {autors.map((item, idx) => (
+        <ColumnistsAuthorsCard item={item} key={idx}/>
+      ))}
     </div>
   );
 };

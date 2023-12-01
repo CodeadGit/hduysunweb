@@ -44,9 +44,6 @@ const SurMansetSliderRes = () => {
     };
     fetchSurmansetRes();
   }, []);
-
-  console.log(surMansetResList)
-
   //const surMansetSliderRes  = useRef();
 
   const settings = {
