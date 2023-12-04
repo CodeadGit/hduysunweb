@@ -71,7 +71,7 @@ const CategoryPageNews = ({ category, totalPage }) => {
         collection(db, category),
         orderBy("datePublished", "desc"),
         limit(20),
-        startAfter(page > 1 ? lastData.datePublished : new Date())
+        startAfter(page > 1 ? lastData?.datePublished : new Date())
       );
       try {
         var demopagList = [];

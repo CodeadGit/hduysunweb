@@ -68,8 +68,8 @@ const BreakingNews = () => {
     const fetchBreakingNews = async () => {
       const q = query(
         collection(db, "sonDakika"),
-        orderBy("datePublished", "asc")
-        // endBefore( "datePublished" > todayDated)
+        orderBy("datePublished", "asc"),
+        endBefore( "datePublished" > todayDated)
       );
       try {
         const querySnapshot = await getDocs(q);
@@ -98,6 +98,8 @@ const BreakingNews = () => {
     };
     fetchBreakingNews();
   }, []);
+
+  console.log(breakingNews)
 
   // if (loading) {
   //   return (

@@ -26,34 +26,35 @@ const Home = ({ pageTitle, pageDescription }) => {
       </Head>
       <Stories />
       <HomePage />
-      <TagsSlider/>
+      <TagsSlider />
       {/* <Tags /> */}
       {/* <CenterHomeAds /> */}
-       <MenuUnderAds />
+      <MenuUnderAds />
       <Caption title="Gündem" link="gundem" />
       <HomeCategory category="gundem" />
-      <Caption title="Tüm Kategori Haberleri" link="tumkategoriler" /> 
-      <AllCategories /> 
+      <Caption title="Tüm Kategori Haberleri" link="tumkategoriler" />
+      <AllCategories />
       {/* <Authors /> */}
       {/* <Arcelik /> */}
-       <Masthead /> 
-       {/* <Currency />  */}
-      <Pharmacy/>
+      <Masthead />
+      {/* <Currency />  */}
+      <Pharmacy />
       <Caption title="Sağlık" link="saglik" />
       <HomeCategory category="saglik" />
       {/* <Health /> */}
-      <WeatherInfo />  
-      <TrialComp />
+      <WeatherInfo />
+      {<TrialComp /> ? <TrialComp /> : null}
       <Video />
-      <Register /> 
-       {/* <Login/> */}
+      <Register />
+      {/* <Login/> */}
     </div>
   );
 };
 export async function getServerSideProps() {
   // Fetch dynamic data for the page
   const pageTitle = "Herkes Duysun";
-  const pageDescription = "Türkiye'nin yeni medyası. Tüm haberler, en son haberler bu platformda. Tarafsız ve objektif haber kuruluşu.";
+  const pageDescription =
+    "Türkiye'nin yeni medyası. Tüm haberler, en son haberler bu platformda. Tarafsız ve objektif haber kuruluşu.";
 
   return {
     props: {

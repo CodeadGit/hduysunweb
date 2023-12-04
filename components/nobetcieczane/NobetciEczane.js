@@ -55,7 +55,6 @@ const NobetciEczaneComp = () => {
     try {
       const res = await axios(config);
       const list = res.data.result;
-      console.log(res.data.result)
       setEczaneList(list);
       setLoading(false);
     } catch (error) {

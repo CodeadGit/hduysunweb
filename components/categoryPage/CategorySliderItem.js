@@ -1,9 +1,13 @@
 import Link from "next/link";
 import "./categorySliderItem.scss";
+import {
+  handleShorttCatSlider,
+  handleShorttCatSliderRes,
+} from "@/context/utils";
 
 const CategorySliderItem = ({ item }) => {
+  const { image, url, title, category, id, eng, isTitled } = item;
 
-  const {image, url, title, category, id, eng } = item;
 
   return (
     <div className="categorySliderItem">
@@ -13,6 +17,27 @@ const CategorySliderItem = ({ item }) => {
         onClick={() => handleReadIncrement(category, id)}
       >
         <img src={image} alt={title} className="image" />
+        {isTitled && (
+          <div className="title-wrapper">
+            {String(title.length) < 80 ? (
+              <>
+                <span className="title-large">{title}</span>
+                <span className="title-res">
+                  {handleShorttCatSliderRes(title)}
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="title-mid">
+                  {handleShorttCatSlider(title)}
+                </span>
+                <span className="title-res">
+                  {handleShorttCatSliderRes(title)}
+                </span>
+              </>
+            )}
+          </div>
+        )}
       </Link>
     </div>
   );

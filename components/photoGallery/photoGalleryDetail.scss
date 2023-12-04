@@ -3,10 +3,9 @@
   flex-direction: column;
   width: 100%;
   max-width: 1202px;
-  height: 47rem;
   margin: 1rem auto;
   padding: 0.5rem;
-  min-height: calc(100vh - 332px);
+  min-height: calc(100vh - 600px);
 
   @media screen and (max-width:768px) {
     height: 60rem;

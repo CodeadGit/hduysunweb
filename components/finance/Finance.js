@@ -84,7 +84,6 @@ const Finance = () => {
 
   const mergedObject = Object.entries(currencyInfo).map(([key, value]) => value)
 
-  console.log(mergedObject);
   return (
     <ul className="finance">
       {currencyInfo?.map((item, idx) => {
