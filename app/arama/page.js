@@ -130,7 +130,6 @@ const SearchPage = () => {
             <div className="search-wrapper-left">
               {wordNews?.map((item, idx) => {
                 const { id, eng, category, image, title, datePublished, url } = item;
-                console.log(url)
                 const timePublished = new Date(datePublished.seconds * 1000);
                 const options = {
                   year: "numeric",
@@ -148,7 +147,7 @@ const SearchPage = () => {
                       <Link 
                       //target="_blank" 
                       href={url}>
-                        <img src={image} className="tagCardContainer-top-img" />
+                        <img src={image} alt={title} className="tagCardContainer-top-img" />
                       </Link>
                     </div>
                     <div className="tagCardContainer-bottom">

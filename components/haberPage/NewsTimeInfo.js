@@ -21,11 +21,9 @@ const NewsTimeInfo = ({ dateModified, datePublished, modeStatus }) => {
        <span>
         <strong>Yayınlanma Tarihi: </strong> {publishedTime}
       </span>
-      {dateModified && (
         <span>
-          <strong>Güncellenme Tarihi: </strong> {modifiedTime}
+          <strong>Güncellenme Tarihi: </strong> {modifiedTime === "Invalid date" ? publishedTime : modifiedTime}
         </span>
-      )}
     </p>
   );
 };

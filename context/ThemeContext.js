@@ -81,13 +81,13 @@ export const ThemeProvider = ({ children }) => {
 
   const { categories } = useCategoriesContext();
 
-  const fontDecBtnClickHandler = () => {
-    setFontDec(fontDec + 1);
-  };
+  // const fontDecBtnClickHandler = () => {
+  //   setFontDec(fontDec + 1);
+  // };
 
-  const fontIncBtnClickHandler = () => {
-    setFontInc(fontInc - 1);
-  };
+  // const fontIncBtnClickHandler = () => {
+  //   setFontInc(fontInc - 1);
+  // };
 
   const handleSearchButton = () => setSearchButtonStatus((pre) => !pre);
 
@@ -395,21 +395,32 @@ export const ThemeProvider = ({ children }) => {
   //   }
   // }
 
+  // useEffect(() => {
+  //   // Check if dark mode is stored in localStorage
+  //   const storedDarkMode = localStorage.getItem('mode');
+  //   if (storedDarkMode !== null) {
+  //     setMode(JSON.parse(storedDarkMode));
+  //   }
+  // }, []);
+
   const toggle = () => {
-    setMode((prev) => (prev === "dark" ? "light" : "dark"));
+      setMode((prev) => (prev === "dark" ? "light" : "dark"));
+    // const newDarkMode = !mode;
+    // setMode(newDarkMode);
+    // // Store the dark mode state in localStorage
+    // localStorage.setItem('dark', JSON.stringify(newDarkMode));
   };
+
+
+  // const toggleDarkMode = () => {
+  //   const newDarkMode = !mode;
+  //   setMode(newDarkMode);
+  //   // Store the dark mode state in localStorage
+  //   localStorage.setItem('dark', JSON.stringify(newDarkMode));
+  // };
 
   const changeStoryModal = () => setStoryModal((prevState) => !prevState);
   const closeStoryModal = () => setStoryModal(false);
-
-  //const handleStories = (cat) => {
-  // const newList = storiesArray.filter((item) => item.category === cat);
-  //   const newCategory = storiesArray.find(
-  //     (item) => item.category === cat
-  //   ).category;
-  //   setCategory(newCategory);
-  //   setStories(newList);
-  // };
 
   const navigateStory = (cat) => {
     changeStoryModal();
@@ -454,8 +465,6 @@ export const ThemeProvider = ({ children }) => {
     photoGallery,
     videoGallery,
     formalAdv,
-    fontDecBtnClickHandler,
-    fontIncBtnClickHandler,
     columnists,
     searchWord,
     setSearchWord,

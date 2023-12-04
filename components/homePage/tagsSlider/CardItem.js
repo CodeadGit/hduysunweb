@@ -45,7 +45,7 @@ const CardItem = ({ item, modeStatus }) => {
         </div>
         <div className="content-bottom">
           <p className={`content-bottom-title ${modeStatus ? "dark" : ""}`}>
-            {handleShort(title, 7)}
+            {handleShort(title, 6)}
           </p>
         </div>
       </div>

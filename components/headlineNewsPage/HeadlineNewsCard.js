@@ -25,7 +25,7 @@ const HeadlineNewsCard = ({ item }) => {
           className="headlineNewsCard-left-imgBox"
           //target="_blank"
         >
-          <img src={image} className="headline-img" />
+          <img src={image} alt={title} className="headline-img" />
         </Link>
       </div>
       <div className="headlineNewsCard-right">

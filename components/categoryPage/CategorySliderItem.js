@@ -8,7 +8,6 @@ import {
 const CategorySliderItem = ({ item }) => {
   const { image, url, title, category, id, eng, isTitled } = item;
 
-
   return (
     <div className="categorySliderItem">
       <Link
@@ -17,16 +16,9 @@ const CategorySliderItem = ({ item }) => {
         onClick={() => handleReadIncrement(category, id)}
       >
         <img src={image} alt={title} className="image" />
-        {isTitled && (
-          <div className="title-wrapper">
-            {String(title.length) < 80 ? (
-              <>
-                <span className="title-large">{title}</span>
-                <span className="title-res">
-                  {handleShorttCatSliderRes(title)}
-                </span>
-              </>
-            ) : (
+        {isTitled ? (
+          <div className="catSlide-title-wrapper">
+            {String(title.length) < 80 && (
               <>
                 <span className="title-mid">
                   {handleShorttCatSlider(title)}
@@ -37,6 +29,19 @@ const CategorySliderItem = ({ item }) => {
               </>
             )}
           </div>
+        ) : (
+          <div className="catSlide-title-wrapper">
+          {String(title.length) < 80 && (
+            <>
+              <span className="title-mid">
+                {handleShorttCatSlider(title)}
+              </span>
+              <span className="title-res">
+                {handleShorttCatSliderRes(title)}
+              </span>
+            </>
+          )}
+        </div>
         )}
       </Link>
     </div>

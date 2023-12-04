@@ -11,6 +11,8 @@ import { useState, useEffect } from "react";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import Link from "next/link";
+import PrevArrow from "./CustomArrows/PrevArrow";
+import NextArrow from "./CustomArrows/NextArrow";
 
 const TagsSlider = () => {
   const { mode, news, newsLoading } = useThemeContext();
@@ -87,9 +89,11 @@ const TagsSlider = () => {
     transtion: true,
     slidesToScroll: 1,
     autoplay: true,
-    arrows: false,
+    arrows: true,
     infinite: true,
     slidesToShow: 5,
+    nextArrow: <NextArrow/>,
+    prevArrow: <PrevArrow/>,
     centerMode: false,
     draggable: true, // Enable dragging
     swipeToSlide: true, // Scroll to the closest slide when dragging
@@ -136,6 +140,10 @@ const TagsSlider = () => {
 
   // const lowerTags = tagsList.map((str) => String(str.tag).toLowerCase().trim());
 
+  const filteredTags = tagsList
+    .sort((a, b) => b.related.length - a.related.length)
+    .slice(0, 7);
+
   if (newsLoading) {
     return (
       <div style={skeletonStyle}>
@@ -156,7 +164,7 @@ const TagsSlider = () => {
             Popüler Etiketler
           </span>
           <div className="sliderContainer-top-right-tags">
-            {tagsList.slice(0, 7).map((i, idx) => (
+            {filteredTags.slice(0, 7).map((i, idx) => (
               <Link
                 key={idx}
                 onClick={() => tagButtonClickHandler(i)}
@@ -189,9 +197,7 @@ const TagsSlider = () => {
           </div>
         </div>
         <div className="sliderContainer-top-left-ads">
-          <iframe
-            src="https://www.bursa.bel.tr/reklam/?w=728"
-          />
+          <iframe src="https://www.bursa.bel.tr/reklam/?w=728" />
         </div>
       </div>
       <Slider {...settings} className="sliderContainer-slides">

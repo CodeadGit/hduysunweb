@@ -17,7 +17,7 @@ const FinanceCurrency = ({ modeStatus, item }) => {
         {/* <Image src={BanknoteBuying._text==="EURO" ? euro : dolar}/> */}
         <p className={`type ${modeStatus ? "dark" : ""}`}>{Isim._text}</p>
         <p 
-        className="buying"
+        className={`buying ${modeStatus ? "dark" : ""}`}
         >
           {" "+BanknoteBuying._text}
         </p>

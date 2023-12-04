@@ -99,8 +99,6 @@ const BreakingNews = () => {
     fetchBreakingNews();
   }, []);
 
-  console.log(breakingNews)
-
   // if (loading) {
   //   return (
   //     <div className={`navbar-sub-header ${modeStatus ? "dark" : ""}`}>

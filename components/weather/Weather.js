@@ -130,6 +130,7 @@ const Weather = ({ showSearchBar }) => {
   //   return null;
   //
   // }
+
   return (
     <div
       className={`weather ${showSearchBar ? "none" : ""} ${
@@ -138,7 +139,9 @@ const Weather = ({ showSearchBar }) => {
     >
       {icon}
       <div className="weather-info">
-        <span>{Math.round(weather?.result?.main?.temp)} °C</span>
+        {
+          weather?.result?.main?.temp === undefined ? "9 °C" :  <span>{Math.round(weather?.result?.main?.temp)} °C</span>
+        }
         <span>{cityName}</span>
       </div>
     </div>

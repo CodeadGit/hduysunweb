@@ -81,7 +81,7 @@ const Footer = () => {
               <div className="left-cat">
                 {categories.slice(0, 6).map((item,idx) => {
                   return (
-                    <ul className="left-cat-list">
+                    <ul className="left-cat-list" key={idx}>
                       <li>
                         <Link key={idx} href={`${item.collection}`}>{item.label}</Link>
                       </li>
@@ -92,7 +92,7 @@ const Footer = () => {
               <div className="mid-cat">
                 {categories.slice(7, 13).map((item,idx) => {
                   return (
-                    <ul className="mid-cat-list">
+                    <ul className="mid-cat-list" key={idx}> 
                       <li>
                         <Link key={idx} href={`${item.collection}`}>{item.label}</Link>
                       </li>
@@ -103,7 +103,7 @@ const Footer = () => {
               <div className="right-cat">
                  {categories?.slice(13, 19)?.map((item,idx) => {
                   return (
-                    <ul className="right-cat-list">
+                    <ul className="right-cat-list" key={idx}>
                       <li>
                         <Link key={idx} href={`${item.collection}`}>{item.label}</Link>
                       </li>
