@@ -11,6 +11,10 @@
     font-size: 1.25rem;
     color: #333333;
 
+    &.dark {
+      color: white;
+    }
+
     @media screen and (min-width:700px) and (max-width:769px) {
       padding-left: 2rem;
     }

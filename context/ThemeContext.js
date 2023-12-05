@@ -41,7 +41,9 @@ export const categoryList = [
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [mode, setMode] = useState("light");
+ // const savedTheme = typeof window !== "undefined" ? localStorage.getItem("themeMode") || "light" : false;
+
+ const [mode, setMode] = useState("light");
   const [storyModal, setStoryModal] = useState(false);
   const [stories, setStories] = useState([]);
   const [mansetNewsList, setMansetNewsList] = useState([]);
@@ -80,6 +82,29 @@ export const ThemeProvider = ({ children }) => {
   const hideAds = () => setShowAds(false);
 
   const { categories } = useCategoriesContext();
+
+//   const toggle = () => {
+//     //setMode((prev) => (prev === "dark" ? "light" : "dark"));
+//     try {
+//      // const newDarkMode = theme === 'dark' ? 'light' : 'dark';
+//       setMode((prev) => (prev === "dark" ? "light" : "dark"));
+//       // Store the dark mode state in localStorage
+//      localStorage.setItem('themeMode', JSON.stringify(mode));
+//     }
+//     catch(error) {
+//       console.error('Error toggling dark mode:', error);
+//     }
+// };
+
+//   useEffect(() => {
+//     // Check if dark mode is stored in localStorage
+//     localStorage.setItem('themeMode', mode);
+//   }, [mode]);
+
+const toggle = () => {
+  setMode((prev) => (prev === "dark" ? "light" : "dark"));
+};
+
 
   // const fontDecBtnClickHandler = () => {
   //   setFontDec(fontDec + 1);
@@ -394,23 +419,6 @@ export const ThemeProvider = ({ children }) => {
   //        .replace()
   //   }
   // }
-
-  // useEffect(() => {
-  //   // Check if dark mode is stored in localStorage
-  //   const storedDarkMode = localStorage.getItem('mode');
-  //   if (storedDarkMode !== null) {
-  //     setMode(JSON.parse(storedDarkMode));
-  //   }
-  // }, []);
-
-  const toggle = () => {
-      setMode((prev) => (prev === "dark" ? "light" : "dark"));
-    // const newDarkMode = !mode;
-    // setMode(newDarkMode);
-    // // Store the dark mode state in localStorage
-    // localStorage.setItem('dark', JSON.stringify(newDarkMode));
-  };
-
 
   // const toggleDarkMode = () => {
   //   const newDarkMode = !mode;

@@ -28,22 +28,22 @@ const TrialComp = () => {
   const { images } = useFetchAssetsContext();
 
   const handleLeague1 = () => {
-    setTeams([...total.league]);
+    setTeams([...total?.league]);
     setNumber(0);
   };
 
   const handleLeague2 = () => {
-    setTeams([...total.league1]);
+    setTeams([...total?.league1]);
     setNumber(1);
   };
 
   const handleLeague3 = () => {
-    setTeams([...total.league2]);
+    setTeams([...total?.league2]);
     setNumber(2);
   };
 
   useEffect(() => {
-    setTeams([...total.league]);
+    setTeams([...total?.league]);
   }, [total]);
 
   return (

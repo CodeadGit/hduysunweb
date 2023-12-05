@@ -1,6 +1,11 @@
 .videoDetail {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 1202px;
+    margin: .5rem auto;
+    padding: 0.5rem;
+    //min-height: calc(100vh - 600px);
     // border: 1px solid red;
     @media screen and (max-width:1170px ) {
       margin-left: 0.5rem;
@@ -12,6 +17,10 @@
       font-size: 22px;
       font-weight: 600;
       padding-top: 2rem;
+
+      &.dark {
+        color: white;
+      }
     }
     
   &-container {
@@ -19,7 +28,7 @@
     display: grid;
     grid-template-columns: 69% 29%;
     gap: 1rem;
-    padding-top: 1rem;
+    padding-top: 0.5rem;
 
     @media screen and (max-width:1170px ) {
       grid-template-columns: 100%;

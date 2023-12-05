@@ -1,23 +1,32 @@
-.yazarlist {
-  padding-top: 1rem;
-  display: grid;
-  grid-template-columns: 24% 24% 24% 24%;
-  place-items: center;
-  //place-content: center;
-  gap: 1rem;
+.yazarlar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 
-  @media screen and (min-width: 900px) and (max-width: 1199px) {
-    grid-template-columns: 32% 32% 32%;
-  }
+  &-list {
+    padding-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    //place-content: center;
+    gap: 1rem;
 
-  @media screen and (min-width: 600px) and (max-width: 899px) {
-    grid-template-columns: 49% 49%;
-  }
-  @media screen and (max-width: 599px) {
-    grid-template-columns: 100%;
-  }
+    @media screen and (min-width: 900px) and (max-width: 1199px) {
+      grid-template-columns: repeat(3,1fr);
+      gap: 1rem;
+    }
 
-  .dark {
-    background-color: #1f252b;
+    @media screen and (min-width: 600px) and (max-width: 899px) {
+      grid-template-columns: repeat(2,1fr);
+      gap: 1rem;
+    }
+    @media screen and (max-width: 599px) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .dark {
+      background-color: #1f252b;
+    }
   }
 }

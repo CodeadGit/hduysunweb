@@ -4,13 +4,15 @@ import "./videoGalleryDetail.scss";
 import ReactPlayer from "react-player";
 import SimiliarVideos from "./SimiliarVideos/SimiliarVideos";
 import VideoGalleryDetailVideo from "./VideoGalleryDetailVideo/VideoGalleryDetailVideo";
-
+import { useThemeContext } from "@/context/ThemeContext";
 const VideoGalleryDetail = ({ filteredVideo, titleArray }) => {
+
+  const { mode } = useThemeContext();
 
   const videoInfo = filteredVideo.map((item,idx) => {
     return (
       <>
-        <VideoGalleryDetailVideo key={idx} item={item} />
+        <VideoGalleryDetailVideo mode={mode} key={idx} item={item} />
       </>
     );
   });
@@ -23,7 +25,7 @@ const VideoGalleryDetail = ({ filteredVideo, titleArray }) => {
   return (
     <div className="videoDetail">
       <Breadcrumb links={links} />
-      <span className="title">VİDEO GALERİ</span>
+      <span className={`title ${mode}`}>VİDEO GALERİ</span>
       <div className="videoDetail-container">
         <div className="videoDetail-container-video">
           <div className="videoDetail-container-items-video">{videoInfo}</div>

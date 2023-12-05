@@ -21,7 +21,7 @@
 
     & > p,
     & > div,
-    & > span{
+    & > span {
       font-size: inherit !important;
       background-color: inherit !important;
       color: inherit !important;
@@ -37,7 +37,7 @@
 
       & > p,
       & > div,
-      & > span {
+      & > span, & > strong {
         font-size: inherit !important;
         background-color: inherit !important;
         color: inherit !important;

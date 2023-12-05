@@ -1,17 +1,47 @@
 "use client";
 import "./headlineNews.scss";
-
+import { useState, useEffect } from "react";
 import HeadlineNewsCard from "./HeadlineNewsCard";
 import Breadcrumb from "../breadcrumb/Breadcrumb";
 import { useThemeContext } from "@/context/ThemeContext";
+import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
+import { db } from "@/firebase/firebase.config";
 
 const HeadlineNewsPage = () => {
-  const { mansetNewsList, mode } = useThemeContext();
+  const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
+  const [mansetList, setMansetList] = useState([]);
+  const [loading, setLoading] = useState(true)
 
   const links = [{ id: 1, title: "Manşetler", link: "/mansetler" }];
 
-  const mansetNews = mansetNewsList.map((item,idx) => {
+  useEffect(() => {
+    const fetchMansets = async () => {
+      const q = query(
+        collection(db, "isManset"),
+        orderBy("datePublished", "desc"),
+        limit(20)
+      );
+      try {
+        const querySnapshot = await getDocs(q);
+        var mansetsList = [];
+
+        querySnapshot.forEach((doc) => {
+          //header true olanlar geliyor
+          if (doc.data()) {
+            mansetsList.push({ ...doc.data(), doc: doc.id });
+          }
+        });
+        setMansetList(mansetsList);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchMansets();
+  }, []);
+
+  const mansetNews = mansetList.map((item,idx) => {
     return (
       <HeadlineNewsCard
         key={idx}

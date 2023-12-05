@@ -5,7 +5,7 @@
   max-width: 1202px;
   margin: .5rem auto;
   padding: 0.5rem;
-  min-height: calc(100vh - 600px);
+  //min-height: calc(100vh - 600px);
 
   @media screen and (max-width:768px) {
     height: 60rem;
@@ -29,7 +29,7 @@
       }
     }
     &-similiarPhotos {
-      width: 32%;
+      width: 34%;
      // height: 37rem;
 
       @media screen and (max-width:1000px){
@@ -37,7 +37,7 @@
       }
 
       &-title {
-        font-size: 19px;
+        font-size: 14px;
         font-weight: 600;
         padding-bottom: 1rem;
 
@@ -47,7 +47,7 @@
       }
 
       &-list {
-        margin-top: 1rem;
+       // margin-top: 1rem;
         display: grid;
         grid-template-rows: 33%;
         height: 100%;

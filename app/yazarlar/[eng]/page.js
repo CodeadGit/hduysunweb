@@ -29,7 +29,7 @@ const YazarDetayPage = ({ params }) => {
         .then((data) => setAuthor(data.data()))
         .then(() => setAuthorLoading(false));
       try {
-        const querySnapshot = await getDocs(q);
+        const querySnapshot = await getDocs(qp);
         var columnistsData = [];
         if (!querySnapshot.empty) {
           querySnapshot.forEach((doc) => {

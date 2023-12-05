@@ -12,10 +12,10 @@ const HeadlineNewsCard = ({ item }) => {
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
 
-  const authorArr = author.split(" ");
+  // const authorArr = author.split(" ");
 
-  const newAuthor =
-    authorArr[0].slice(0, 1) + "." + authorArr[authorArr.length - 1];
+  // const newAuthor =
+  //   authorArr[0].slice(0, 1) + "." + authorArr[authorArr.length - 1];
 
   return (
     <div className={`headlineNewsCard ${modeStatus ? "dark" : ""}`}>
@@ -43,19 +43,19 @@ const HeadlineNewsCard = ({ item }) => {
         ></div>
         <div className="headlineNewsCard-right-bottom">
           <div className="headlineNewsCard-right-bottom-info">
-            <div className="headlineNewsCard-right-bottom-info-author">
+            {/* <div className="headlineNewsCard-right-bottom-info-author">
               <span
                 className={`headline-author-title ${modeStatus ? "dark" : ""}`}
               >
                 Haber Kaynağı
               </span>
-              {/* <div
+               <div
                 className={`headline-author-who ${modeStatus ? "dark" : ""}`}
               >
                 <span className={`blue-box ${modeStatus ? "dark" : ""}`}></span>
                 {newAuthor}
-              </div> */}
-            </div>
+              </div> 
+            </div> */}
             <div className="headlineNewsCard-right-bottom-info-publishedDate">
               <span
                 className={`headline-published-title ${

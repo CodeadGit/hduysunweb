@@ -11,10 +11,12 @@ const ColumnistsAuthors = (item) => {
   const modeStatus = mode === "dark";
 
   return (
-    <div className="yazarlist">
+    <div className="yazarlar">
+      <div className="yazarlar-list">
       {autors.map((item, idx) => (
         <ColumnistsAuthorsCard item={item} key={idx}/>
       ))}
+      </div>
     </div>
   );
 };

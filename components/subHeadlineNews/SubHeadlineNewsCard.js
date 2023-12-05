@@ -14,10 +14,10 @@ const SubHeadlineNewsCard = ({ item }) => {
   const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
 
-  const authorArr = author?.split(" ");
+  // const authorArr = author?.split(" ");
 
-  const newAuthor =
-    authorArr[0].slice(0, 1) + "." + authorArr[authorArr.length - 1];
+  // const newAuthor =
+  //   authorArr[0].slice(0, 1) + "." + authorArr[authorArr.length - 1];
 
   return (
     <div className={`subHeadlineNewsCard ${modeStatus ? "dark" : ""}`}>
@@ -58,15 +58,15 @@ const SubHeadlineNewsCard = ({ item }) => {
         ></div>
         <div className="subHeadlineNewsCard-desBox-bottom">
           <div className="subHeadlineNewsCard-desBox-bottom-info">
-            <div className="subHeadlineNewsCard-desBox-bottom-info-author">
+            {/* <div className="subHeadlineNewsCard-desBox-bottom-info-author">
               <span className={`author-title ${modeStatus ? "dark" : ""}`}>
                 Haber Kaynağı
-              </span>
-              {/* <div className={`author-who ${modeStatus ? "dark" : ""}`}>
+              </span> 
+              <div className={`author-who ${modeStatus ? "dark" : ""}`}>
                 <span className={`blue-box ${modeStatus ? "dark" : ""}`}></span>
                 {newAuthor}
-              </div> */}
-            </div>
+              </div> 
+            </div>*/}
             <div className="subHeadlineNewsCard-desBox-bottom-info-publishedDate">
               <span className={`published-title ${modeStatus ? "dark" : ""}`}>
                 Yayınlanma T.

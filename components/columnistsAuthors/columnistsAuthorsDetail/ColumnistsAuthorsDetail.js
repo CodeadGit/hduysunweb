@@ -8,7 +8,7 @@ const ColumnistsAuthorsDetail = ({
   author,
   formattedDate,
 }) => {
-  const { mode, autors, columnists } = useThemeContext();
+  const { mode } = useThemeContext();
   const modeStatus = mode === "dark";
 
   return (
@@ -16,7 +16,6 @@ const ColumnistsAuthorsDetail = ({
       <div className="yazarpage-top">
         <div className="yazarpage-top-img">
           <img
-            //   src={post.image}
             src={author.avatar}
             alt="123"
             className="yazarpage-top-img"
@@ -48,7 +47,13 @@ const ColumnistsAuthorsDetail = ({
       {posts.map((post, index) => (
         <div className="yazarpage-bottom">
           <div className={`yazarpage-bottom-box ${modeStatus ? "dark" : ""}`}>
-            <h1 className="yazarpage-bottom-box-header">{post.title}</h1>
+            <div
+              className={`yazarpage-bottom-box-header  ${
+                modeStatus ? "dark" : ""
+              }`}
+            >
+              {post.title}
+            </div>
 
             <div
               key={index}

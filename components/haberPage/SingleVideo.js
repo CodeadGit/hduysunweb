@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useThemeContext } from "@/context/ThemeContext";
 
 const SingleVideo = ({ mode, item = {} }) => {
-  const { headImg, description, author, eng, id,title } = item;
+  const { headImg, description, author, eng, id,title, category } = item;
   const { handleReadIncrement} = useThemeContext();
 
   return (

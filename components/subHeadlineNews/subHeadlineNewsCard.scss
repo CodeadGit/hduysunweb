@@ -1,6 +1,6 @@
 .subHeadlineNewsCard {
   width: 17.5rem;
-  height: 20rem;
+ // height: 20rem;
   border: 1px solid white;
   border-radius: 1rem;
   box-shadow: 0, 0, 0, 0.3;
@@ -12,8 +12,9 @@
   }
 
   &-imageBox {
-    height: 11rem;
+   // height: 11rem;
     .subHeadlineCard-img {
+      aspect-ratio: 1.76/1;
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
     }
@@ -77,53 +78,53 @@
         flex-direction: row;
         width: 100%;
 
-        &-author {
-          display: flex;
-          flex-direction: column;
-          width: 50%;
+        // &-author {
+        //   display: flex;
+        //   flex-direction: column;
+        //   width: 50%;
 
-          .author-title {
-            color: rgba(38, 38, 38, 0.56);
-            font-size: 12px;
-            align-self: flex-start;
+        //   .author-title {
+        //     color: rgba(38, 38, 38, 0.56);
+        //     font-size: 12px;
+        //     align-self: flex-start;
 
-            &.dark {
-              color: white;
-            }
-          }
+        //     &.dark {
+        //       color: white;
+        //     }
+        //   }
 
-          .author-who {
-            font-size: 12px;
-            font-weight: 600;
-            color: #262626;
-            display: flex;
-            align-items: flex-start;
-            justify-content: flex-start;
-            padding: 0.5rem 0;
-            gap: 0.5rem;
+        //   .author-who {
+        //     font-size: 12px;
+        //     font-weight: 600;
+        //     color: #262626;
+        //     display: flex;
+        //     align-items: flex-start;
+        //     justify-content: flex-start;
+        //     padding: 0.5rem 0;
+        //     gap: 0.5rem;
 
-            .blue-box {
-              background-color: #0a5e8d;
-              height: 0.75rem;
-              width: 1rem;
-              border: 1px solid #0a5e8d;
+        //     .blue-box {
+        //       background-color: #0a5e8d;
+        //       height: 0.75rem;
+        //       width: 1rem;
+        //       border: 1px solid #0a5e8d;
 
-              &.dark {
-                background-color: #df060f;
-                border-color: #df060f;
-              }
-            }
-            &.dark {
-              color: white;
-            }
-          }
-        }
+        //       &.dark {
+        //         background-color: #df060f;
+        //         border-color: #df060f;
+        //       }
+        //     }
+        //     &.dark {
+        //       color: white;
+        //     }
+        //   }
+        // }
         &-publishedDate {
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          width: 50%;
+          width: 100%;
 
           .published-title {
             color: rgba(38, 38, 38, 0.56);

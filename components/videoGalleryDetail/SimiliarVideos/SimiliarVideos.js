@@ -4,7 +4,7 @@ import { useThemeContext } from "@/context/ThemeContext";
 import SimiliarVideosCard from "./SimiliarVideosCard";
 const SimilarVideos = () => {
 
-  const { videoGallery } = useThemeContext();
+  const { videoGallery, mode } = useThemeContext();
 
   const similiarVideos = videoGallery.slice(0,3).map((item,idx) => {
     return (
@@ -14,8 +14,8 @@ const SimilarVideos = () => {
 
   return (
     <div className="similiarVideos">
-      <span className="similiarVideos-title">Benzer Videolar</span>
-       <div className="similiarVideos-list">{similiarVideos}</div>
+      {/* <span className="similiarVideos-title">Benzer Videolar</span> */}
+       <div className={`similiarVideos-list ${mode}`}>{similiarVideos}</div>
     </div>
   )
 }

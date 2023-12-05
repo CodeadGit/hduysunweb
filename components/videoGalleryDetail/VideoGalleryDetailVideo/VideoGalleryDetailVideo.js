@@ -3,7 +3,7 @@ import "./videoGalleryDetailVideo.scss";
 import eyeIcon from "./videogallerydetailIcon/eyeIcon.svg"
 import { BsEye } from "react-icons/bs";
 
-const VideoGalleryDetailVideo = ({ item }) => {
+const VideoGalleryDetailVideo = ({ item, mode }) => {
   const { datePublished, dateModified, embed, read, title, description } = item;
 
   const timePublished = new Date(datePublished.seconds * 1000);
@@ -26,12 +26,12 @@ const VideoGalleryDetailVideo = ({ item }) => {
       <div className="videoGalleryDetailVideo-info">
         <div className="videoGalleryDetailVideo-info__top">
           <div className="videoGalleryDetailVideo-info__top-published">
-            <span>Yayınlanma T.</span>
-            <span>{formattedDate}</span>
+            <span className={`${mode}`}>Yayınlanma T.</span>
+            <span className={`${mode}`}>{formattedDate}</span>
           </div>
           <div className="videoGalleryDetailVideo-info__top-modified">
-            <span>Güncellenme T.</span>
-            <span>{formattedModifiedDate}</span>
+            <span className={`${mode}`}>Güncellenme T.</span>
+            <span className={`${mode}`}>{formattedModifiedDate}</span>
           </div>
           {/* <div className="videoGalleryDetailVideo-info__top-read"> */}
             {/* <span>
@@ -42,10 +42,10 @@ const VideoGalleryDetailVideo = ({ item }) => {
           {/* </div> */}
         </div>
         <div className="videoGalleryDetailVideo-info__bottom">
-          <span className="videoGalleryDetailVideo-info__bottom-title">
+          <span className={`videoGalleryDetailVideo-info__bottom-title ${mode}`}>
             {title}
           </span>
-          <div className="videoGalleryDetailVideo-info__bottom-des">
+          <div className={`videoGalleryDetailVideo-info__bottom-des ${mode}`}>
             {description}
           </div>
         </div>

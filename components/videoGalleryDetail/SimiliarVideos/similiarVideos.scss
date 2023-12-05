@@ -23,8 +23,11 @@
     height: 100%;
     border-color: #707070;
     border-radius: 10px;
-    background-color: white;
+   // background-color: white;
 
+    &.dark {
+      background-color: #1f252b;
+    }
   
   }
 }

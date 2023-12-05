@@ -12,7 +12,7 @@ const AllCategoriesPage = () => {
 
   return (
     <div className="allCategoriesPage">
-      <h2>Tüm Kategori Haberleri</h2>
+      <h2 className={`${modeStatus ? "dark" :  ""}`}>Tüm Kategori Haberleri</h2>
       <div className="allCategoriesPage-list">
       {categories.map((item,idx) => <AllCategoriesPagesCards label={item.label} category={item.collection}  key={idx}/>)}
       </div>

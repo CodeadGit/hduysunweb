@@ -1,5 +1,5 @@
 .photoGallerySlider-item {
-  
+   min-width: (100vh - 300);
   &-img {
     object-fit: cover;
     width: 100%;
@@ -26,8 +26,10 @@
         }
       }
       &-des {
+        box-sizing: border-box;
         font-size: 1rem;
         font-family: "Poppins", sans-serif; 
+        overflow: hidden;
 
         &.dark {
           color: white;

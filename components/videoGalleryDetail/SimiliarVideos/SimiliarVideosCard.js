@@ -15,10 +15,10 @@ const SimiliarVideosCard = ({ item }) => {
   const formattedDate = timePublished.toLocaleString("tr-TR", options);
 
   return (
-    <Link className="similiarVideosCard" 
+    <Link className={`similiarVideosCard ${modeStatus ? "dark" : ""}`}
    // target="_blank" 
     href={`/video-galeri/${eng}-${id}`} onClick={()=>handleVideoGalleryReadInc(id)}>
-      <div className="similiarVideosCard-container">
+      <div className={`similiarVideosCard-container ${modeStatus ? "dark" : ""}`}>
         <div className="similiarVideosCard-container-left">
           <img
             className="similiarVideosCard-container-left-img"
@@ -26,17 +26,14 @@ const SimiliarVideosCard = ({ item }) => {
           />
         </div>
         <div className="similiarVideosCard-container-right">
-          <div className="similiarVideosCard-container-right-title">
-            {handleShort(title, 8)}
+          <div className={`similiarVideosCard-container-right-title ${modeStatus ? "dark" : ""}`}>
+            {handleShort(title, 7)}
           </div>
           <div
-            className={`similiarVideosCard-container-right-line ${
-              modeStatus ? "dark" : ""
-            }`}
-          ></div>
+            className={`similiarVideosCard-container-right-line ${modeStatus ? "dark" : ""}`} ></div>
           <div className="similiarVideosCard-container-right-date">
-            <span>Yayınlanma T.</span>
-            <span>{formattedDate}</span>
+            <span className={`${modeStatus ? "dark" : ""}`}>Yayınlanma T.</span>
+            <span className={`${modeStatus ? "dark" : ""}`}>{formattedDate}</span>
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ const CategorySliderItem = ({ item }) => {
             {String(title.length) < 80 && (
               <>
                 <span className="title-mid">
-                  {handleShorttCatSlider(title)}
+                  {title}
                 </span>
                 <span className="title-res">
                   {handleShorttCatSliderRes(title)}
@@ -34,7 +34,7 @@ const CategorySliderItem = ({ item }) => {
           {String(title.length) < 80 && (
             <>
               <span className="title-mid">
-                {handleShorttCatSlider(title)}
+                {title}
               </span>
               <span className="title-res">
                 {handleShorttCatSliderRes(title)}

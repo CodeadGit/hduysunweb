@@ -9,13 +9,12 @@
       flex-direction: row;
       justify-content: space-between;
 
-      @media screen and (max-width:520px) {
+      @media screen and (max-width: 520px) {
         flex-direction: column;
-        gap:0.5rem;
+        gap: 0.5rem;
         justify-content: flex-start;
         align-items: flex-start;
       }
-
 
       &-published {
         display: flex;
@@ -24,8 +23,12 @@
         span {
           font-size: 13px;
           color: rgba(38, 38, 38, 0.56);
+
+          &.dark {
+            color: white;
+          }
         }
-        @media screen and (max-width:520px) {
+        @media screen and (max-width: 520px) {
           width: 100%;
         }
       }
@@ -37,8 +40,12 @@
         span {
           font-size: 13px;
           color: rgba(38, 38, 38, 0.56);
+
+          &.dark {
+            color: white;
+          }
         }
-        @media screen and (max-width:520px) {
+        @media screen and (max-width: 520px) {
           width: 100%;
         }
       }
@@ -48,7 +55,7 @@
         display: flex;
         gap: 1rem;
         align-self: center;
-        @media screen and (max-width:520px) {
+        @media screen and (max-width: 520px) {
           align-self: flex-start;
         }
 
@@ -58,14 +65,22 @@
       }
     }
     &__bottom {
-        padding-top: 1rem;
+      padding-top: 1rem;
       &-title {
         font-size: 22px;
         font-weight: 600;
+
+        &.dark {
+          color: white;
+        }
       }
       &-des {
         font-size: 1rem;
         padding-top: 0.5rem;
+
+        &.dark {
+          color: white;
+        }
       }
     }
   }

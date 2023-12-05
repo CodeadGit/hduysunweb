@@ -4,10 +4,14 @@ import "./allCategoriesPagesCards.scss";
 import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import { categoryConvertor } from "@/context/utils";
+import { useThemeContext } from "@/context/ThemeContext";
 
 const AllCategoriesPagesCards = ({ category, label }) => {
   const [categoryCards, setCategoryCards] = useState([]);
   const [categoryLoading, setCategoryLoading] = useState(true);
+
+  const { mode} = useThemeContext();
+  const modeStatus = mode === "dark";
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -40,7 +44,7 @@ const AllCategoriesPagesCards = ({ category, label }) => {
 
   return (
     <div className="allCategoriesPagesCards">
-      <h3>{label}</h3>
+      <h3 className={`${modeStatus ? "dark" :  ""}`}>{label}</h3>
       <div className="allCategoriesPagesCards-list">
         {categoryCards.map((item, idx) => {
           return <AllCategoriesCard key={idx} item={item} />;

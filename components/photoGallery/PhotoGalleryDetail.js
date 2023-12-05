@@ -26,7 +26,7 @@ const PhotoGalleryDetail = ({ thisPhotoGallery, titleArray, gDoc }) => {
         />
       </div>
       <div className="photoGalleryDetail-container-similiarPhotos">
-        <span className={`photoGalleryDetail-container-similiarPhotos-title ${modeStatus ? "dark" : ""}`}>Benzer Fotoğraflar</span>
+        {/* <span className={`photoGalleryDetail-container-similiarPhotos-title ${modeStatus ? "dark" : ""}`}>Benzer Fotoğraflar</span> */}
         <div className={`photoGalleryDetail-container-similiarPhotos-list  ${modeStatus ? "dark" : ""}`}>
         {photoGallery.slice(0, 3).map((item) => {
           return <PhotoGalleryDetailCard item={item}/>;
