@@ -14,6 +14,8 @@ import { FetchAssetsContextProvider } from "@/context/FetchAssetsContext";
 import Head from "next/head";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import HomePage from "@/components/homePage/HomePage";
+import Script from "next/script";
+
 // import LogoNext from "@/components/ads/adsComponents/LogoNext";
 // import MiniNavbar from '@/components/miniNavbar/MiniNavbar';
 
@@ -44,13 +46,13 @@ export default function RootLayout({ children }) {
         <meta name="datePublished" content="2019-09-27T11:55:00+0300" />
         <meta name="dateModified" content="2019-09-27T12:13:52+0300" />
         <meta name="articleSection" content="video" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+        <Script
+          id="bik"
+        >
+            {`
               !function(){var t=document.createElement("script");t.setAttribute("src",'https://cdn.p.analitik.bik.gov.tr/tracker'+(typeof Intl!=="undefined"?(typeof (Intl||"").PluralRules!=="undefined"?'1':typeof Promise!=="undefined"?'2':typeof MutationObserver!=='undefined'?'3':'4'):'4')+'.js'),t.setAttribute("data-website-id","657f41c4-4e9d-405a-95e8-84eb9ec7719a"),t.setAttribute("data-host-url",'//657f41c4-4e9d-405a-95e8-84eb9ec7719a.collector.p.analitik.bik.gov.tr'),document.head.appendChild(t)}();
-            `,
-          }}
-        />
+            `}
+        </Script>
       {/* Basın İlan Head Koduna */}
         <script dangerouslySetInnerHTML={{__html:`!function(){var t=document.createElement("script");t.setAttribute("src",'https://cdn.p.analitik.bik.gov.tr/tracker'+(typeof Intl!=="undefined"?(typeof (Intl||"").PluralRules!=="undefined"?'1':typeof Promise!=="undefined"?'2':typeof MutationObserver!=='undefined'?'3':'4'):'4')+'.js'),t.setAttribute("data-website-id","657f41c4-4e9d-405a-95e8-84eb9ec7719a"),t.setAttribute("data-host-url",'//657f41c4-4e9d-405a-95e8-84eb9ec7719a.collector.p.analitik.bik.gov.tr'),document.head.appendChild(t)}()`}}/>
 
