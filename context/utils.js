@@ -133,7 +133,8 @@ export const categoryConvertor = {
   bursa: "bursa",
   gazze: "gazze",
   otomobil: "otomobil",
-  secimozel: "Seçim Özel"
+  secimozel: "Seçim Özel",
+  
 };
 
 export const categoryConvertorFunc = (category) => {

@@ -21,6 +21,7 @@ const YazarDetayPage = ({ params }) => {
   var idForThisAuthor = idArray.at(-1);
   var titleArray = idArray.slice(0, -1).join(" ").toString();
 
+
   useEffect(() => {
     const fetchAuthors = async () => {
       const qp = query(collection(db, "koseyazilari"));

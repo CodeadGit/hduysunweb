@@ -34,7 +34,7 @@ const PhotoGalleryDetailPage = ({ params }) => {
         setThisPhotoGallery(photosList);
       }
       catch (error) {
-        console.error("Error fetching comments:", error);
+        console.error("Error fetching fotogaleri:", error);
       }
     }
        fetchGallery();

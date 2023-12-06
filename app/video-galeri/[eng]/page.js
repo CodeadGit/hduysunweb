@@ -1,8 +1,8 @@
 "use client";
 import VideoGalleryDetail from "@/components/videoGalleryDetail/VideoGalleryDetail";
-import { useThemeContext } from "@/context/ThemeContext";
+import { useGalleryContext } from "@/context/GalleryContext";
 const VideoGalleryDetailPage = ({ params }) => {
-  const { videoGallery } = useThemeContext();
+  const { videoGallery } = useGalleryContext();
 
   var idArray = String(params.eng).split("-");
   var idForThisVideoGallery = idArray.at(-1);

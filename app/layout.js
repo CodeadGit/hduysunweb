@@ -9,11 +9,13 @@ import { AdsContextProvider } from "@/context/AdsContext";
 import BaseWrapper from "@/components/BaseWrapper";
 import { AuthenticationProvider } from "@/context/AuthenticationContext";
 import { CategoriesProvider } from "@/context/CategoriesContext";
-import { TagContextProvider } from "@/context/TagContext";
+import { TagProvider } from "@/context/TagContext";
 import { FetchAssetsContextProvider } from "@/context/FetchAssetsContext";
+import { GalleryProvider } from "@/context/GalleryContext";
 import Head from "next/head";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import HomePage from "@/components/homePage/HomePage";
+
 // import LogoNext from "@/components/ads/adsComponents/LogoNext";
 // import MiniNavbar from '@/components/miniNavbar/MiniNavbar';
 
@@ -175,7 +177,8 @@ export default function RootLayout({ children }) {
             <FetchAssetsContextProvider>
               <CategoriesProvider>
                 <ThemeProvider>
-                  <TagContextProvider>
+                  <GalleryProvider>
+                  <TagProvider>
                     <AdsContextProvider>
                       <Navbar />
                       {/* <MiniNavbar /> */}
@@ -183,7 +186,8 @@ export default function RootLayout({ children }) {
                       <BaseWrapper>{children}</BaseWrapper>
                       <Footer />
                     </AdsContextProvider>
-                  </TagContextProvider>
+                  </TagProvider>
+                  </GalleryProvider>
                 </ThemeProvider>
               </CategoriesProvider>
             </FetchAssetsContextProvider>

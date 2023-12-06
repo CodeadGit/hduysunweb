@@ -3,11 +3,12 @@ import PhotoGallerySliderItem from "./PhotoGallerySliderItem";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useThemeContext } from "@/context/ThemeContext";
 import { useState } from "react";
-const PhotoGallerySlider = ({ thisPhotoGallery, titleArray, gDoc }) => {
-  const { handlePhotoGallerySliderReadInc } = useThemeContext();
+import { useGalleryContext } from "@/context/GalleryContext";
 
+const PhotoGallerySlider = ({ thisPhotoGallery, titleArray, gDoc }) => {
+  const { handlePhotoGallerySliderReadInc } = useGalleryContext();
+  
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {

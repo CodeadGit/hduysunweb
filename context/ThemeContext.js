@@ -54,17 +54,10 @@ export const ThemeProvider = ({ children }) => {
   const [category, setCategory] = useState("dünya");
   const [fetching, setFetching] = useState(true);
   const [showAds, setShowAds] = useState(true);
-  const [photoGallery, setPhotoGallery] = useState([]);
-  const [videoGallery, setVideoGallery] = useState([]);
   const [formalAdv, setFormalAdv] = useState([]);
-  const [fontInc, setFontInc] = useState(50);
-  const [fontDec, setFontDec] = useState(50);
   const [autors, setAutors] = useState([]);
-  const [columnists, setColumnists] = useState([]);
   const [searchWord, setSearchWord] = useState("");
   const [wordNews, setWordNews] = useState([]);
-  const [tagsListLoading, setTagsListLoading] = useState(true);
-  const [tagsList, setTagsList] = useState([]);
   const [pinnedMansetData, setPinnedMansetData] = useState([]);
   const [pinnedSurmansetData, setPinnedSurMansetData] = useState([]);
   const [searchButtonStatus, setSearchButtonStatus] = useState(true);
@@ -206,43 +199,6 @@ const toggle = () => {
     }
   };
 
-  const handlePhotoGallerySliderReadInc = async (gDoc, fDoc) => {
-    var referance = doc(db, "PhotoGallery", gDoc, "Photos", fDoc);
-    var referanceUp = doc(db, "PhotoGallery", gDoc);
-    try {
-      await updateDoc(referanceUp, {
-        read: increment(1),
-      });
-      await updateDoc(referance, {
-        read: increment(1),
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handlePhotoGalleryReadInc = async (id) => {
-    var referance = doc(db, "PhotoGallery", id);
-    try {
-      await updateDoc(referance, {
-        read: increment(1),
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleVideoGalleryReadInc = async (id) => {
-    var reference = doc(db, "VideoGallery", id);
-    try {
-      await updateDoc(reference, {
-        read: increment(1),
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const fetchPoints = async () => {
     try {
       const res = await axios.get(
@@ -266,46 +222,7 @@ const toggle = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchPhotoGallery = async () => {
-      const q = query(
-        collection(db, "PhotoGallery"),
-        orderBy("datePublished", "desc")
-      );
-      try {
-        const querySnapshot = await getDocs(q);
-        var photoGalleryList = [];
-
-        querySnapshot.forEach((doc) => {
-          photoGalleryList.push({ ...doc.data(), doc: doc.id });
-        });
-        setPhotoGallery(photoGalleryList);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchPhotoGallery();
-  }, []);
-
-  useEffect(() => {
-    const fetchVideoGallery = async () => {
-      const q = query(
-        collection(db, "VideoGallery"),
-        orderBy("datePublished", "desc")
-      );
-      try {
-        var videoGalleryList = [];
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-          videoGalleryList.push({ ...doc.data(), doc: doc.id });
-        });
-        setVideoGallery(videoGalleryList);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchVideoGallery();
-  }, []);
+ 
 
   useEffect(() => {
     const fetchFormalAdvert = async () => {
@@ -390,24 +307,6 @@ const toggle = () => {
   }, []);
 
   useEffect(() => {
-    const fetchTags = async () => {
-      const q = query(collection(db, "TagsList"));
-      try {
-        const tagsArray = [];
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-          tagsArray.push({...doc.data(), tag:doc.id});
-        });
-        setTagsList(tagsArray);
-        setTagsListLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchTags();
-  }, []);
-
-  useEffect(() => {
     const mostReadNews = news?.sort((a, b) => b.read - a.read).slice(0, 6);
     setMostReadNewsList(mostReadNews);
     // const videoNews = videoGallery.filter((i) => i.category === "gundem");
@@ -440,20 +339,16 @@ const toggle = () => {
     mode,
     storyModal,
     changeStoryModal,
-    handlePhotoGalleryReadInc,
     navigateStory,
     pinnedSurmansetData,
     stories,
     category,
-    fontDec,
-    fontInc,
     surMansetNewsList,
     //handleStories,
     closeStoryModal,
     news,
     loading,
     handleReadIncrement,
-    tagsListLoading,
     total,
     fetching,
     handleSearchButton,
@@ -462,23 +357,18 @@ const toggle = () => {
     newsLoading,
     mostReadNewsList,
     categoryHeadlines,
-    handlePhotoGallerySliderReadInc,
-    handleVideoGalleryReadInc,
     hideAds,
     pinnedMansetData,
     showAds,
     // videoNewsList,
     //tagsTitles,
     autors,
-    photoGallery,
-    videoGallery,
     formalAdv,
-    columnists,
+   // columnists,
     searchWord,
     setSearchWord,
     wordNews,
     setWordNews,
-    tagsList,
     surMansetNewsList,
   };
 

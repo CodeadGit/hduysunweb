@@ -65,9 +65,8 @@ const ColumnistsAuthorsDetail = ({
             <p className={`yazarpage-bottom-box-p ${modeStatus ? "dark" : ""}`}>
               {post.description}
             </p>
-
             <Link
-              href={`/${post.path}`}
+              href={`koseyazilari/${post.eng}-${post.id}`}
               className="yazarpage-bottom-box-button"
             >
               Yazının Devamı

@@ -1,14 +1,14 @@
 "use client"
+import { useGalleryContext } from "@/context/GalleryContext";
 import Breadcrumb from "../breadcrumb/Breadcrumb";
 import "./photoGallery.scss";
 import "./PhotoGalleryCard";
 import PhotoGalleryCard from "./PhotoGalleryCard";
-import { useThemeContext } from "@/context/ThemeContext";
 
 const PhotoGallery = () => {
   const links = [{ id: 1, title: "Foto Galeri", link: "/foto-galeri" }];
 
-  const { photoGallery } = useThemeContext();
+  const { photoGallery } = useGalleryContext();
 
   const photoGalleryList = photoGallery.sort((a,b) => b.index - a.index).map((item,idx) => {
     return <PhotoGalleryCard key={idx} item={item} />;

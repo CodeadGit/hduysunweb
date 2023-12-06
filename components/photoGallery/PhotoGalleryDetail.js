@@ -4,9 +4,11 @@ import Breadcrumb from "../breadcrumb/Breadcrumb";
 import { useState } from "react";
 import "./photoGalleryDetail.scss";
 import PhotoGalleryDetailCard from "./PhotoGalleryDetailCard";
+import { useGalleryContext } from "@/context/GalleryContext";
 
 const PhotoGalleryDetail = ({ thisPhotoGallery, titleArray, gDoc }) => {
-  const { photoGallery, mode } = useThemeContext();
+  const { mode } = useThemeContext();
+  const { photoGallery } = useGalleryContext();
   const modeStatus = mode === "dark";
 
   const links = [

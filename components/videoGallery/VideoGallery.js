@@ -7,10 +7,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import VideoGalleryItem from "./VideoGalleryItem";
 import VideoGalleryCard from "./VideoGalleryCard";
+import { useGalleryContext } from "@/context/GalleryContext";
 
 const VideoGallery = () => {
-  const { videoGallery, mode } = useThemeContext();
-
+  const { mode } = useThemeContext();
+  const { videoGallery } = useGalleryContext();
   const links = [{ id: 1, title: "Video Galeri", link: "/video-galeri" }];
 
   const modeStatus = mode === "dark";
@@ -41,20 +42,22 @@ const VideoGallery = () => {
     <div className="videoGallerySlider">
       <Breadcrumb links={links} />
       {/* <div>{videoGalleryList}</div> */}
-      <span className={`page-title ${modeStatus ? "dark" : ""}`}>Video Galeri</span>
+      <span className={`page-title ${modeStatus ? "dark" : ""}`}>
+        Video Galeri
+      </span>
       <div className="videoGallerySlider-slideWrapper">
         <Slider
           {...settings}
           className="videoGallerySlider-slideWrapper-slides"
         >
-          {videoGallery.map((item,idx) => {
-            return <VideoGalleryItem item={item} key={idx}/>;
+          {videoGallery.map((item, idx) => {
+            return <VideoGalleryItem item={item} key={idx} />;
           })}
         </Slider>
       </div>
       <span className={`list-all ${modeStatus ? "dark" : ""}`}>Tümü</span>
       <div className="videoGallerySlider-list">
-        {videoGallery.map((item,idx) => {
+        {videoGallery.map((item, idx) => {
           return <VideoGalleryCard key={idx} item={item} />;
         })}
       </div>
