@@ -3,10 +3,12 @@ import React from "react";
 import "./health.scss";
 import { useThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
+import { useModeContext } from "@/context/ModeContext";
 
 const Health = () => {
 
-  const { mode, news } = useThemeContext();
+  const { news } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   const filteredNews = news.filter((item) => item.category === "saglik");

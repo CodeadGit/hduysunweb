@@ -2,12 +2,12 @@
 import React from "react";
 // import { useRouter } from "next/navigation";
 import "./caption.scss";
-import { useThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
+import { useModeContext } from "@/context/ModeContext";
 
 const Caption = ({ title, link }) => {
   // const router = useRouter();
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   return (

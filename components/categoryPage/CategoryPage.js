@@ -10,6 +10,7 @@ import { categories } from "@/context/utils";
 import { notFound } from "next/navigation";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
+import { useModeContext } from '@/context/ModeContext';
 
 const CategoryPage= ({category}) => {
 
@@ -37,7 +38,7 @@ const CategoryPage= ({category}) => {
     },
   ]; 
 
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   return (

@@ -1,7 +1,7 @@
 import "./headlineNewsCard.scss";
 import { handleShort } from "@/context/utils";
-import { useThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
+import { useModeContext } from "@/context/ModeContext";
 
 const HeadlineNewsCard = ({ item }) => {
   const { image, url, author, title, category, id, eng, datePublished } = item;
@@ -9,7 +9,7 @@ const HeadlineNewsCard = ({ item }) => {
   const options = { year: "numeric", month: "long", day: "2-digit" };
   const formattedDate = timePublished.toLocaleString("tr-TR", options);
 
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   // const authorArr = author.split(" ");

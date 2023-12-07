@@ -4,11 +4,11 @@ import "./breadcrumb.scss";
 import Link from "next/link";
 import { AiFillHome } from "react-icons/ai";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { useThemeContext } from "@/context/ThemeContext";
 import { handleShort,handleShortBreadcrump} from "@/context/utils";
 import { handleShortt,handleShorttLetter } from "@/context/utils";
+import { useModeContext } from "@/context/ModeContext";
 const Breadcrumb = ({ links }) => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   return (

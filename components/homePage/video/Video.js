@@ -3,6 +3,7 @@ import React from "react";
 import "./video.scss";
 import SingleVideo from "./SingleVideo";
 import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const videosArray = [
     {
@@ -39,7 +40,7 @@ const videosArray = [
 
 const Video = () => {
 
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   return (

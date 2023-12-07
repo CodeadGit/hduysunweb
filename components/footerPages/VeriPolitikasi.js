@@ -1,9 +1,10 @@
 "use client";
+import { useModeContext } from "@/context/ModeContext";
 import FooterSidebar from "./FooterSidebar";
 import "./veriPolitikasi.scss";
-import { useThemeContext } from "@/context/ThemeContext";
+
 const VeriPolitikasi = () => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   return (

@@ -43,13 +43,12 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
  // const savedTheme = typeof window !== "undefined" ? localStorage.getItem("themeMode") || "light" : false;
 
- const [mode, setMode] = useState("light");
   const [storyModal, setStoryModal] = useState(false);
   const [stories, setStories] = useState([]);
   const [mansetNewsList, setMansetNewsList] = useState([]);
   const [surMansetNewsList, setSurMansetNewsList] = useState([]);
   const [mostReadNewsList, setMostReadNewsList] = useState([]);
-  const [videoNewsList, setVideoNewsList] = useState([]);
+
   const [categoryHeadlines, setCategoryHeadlines] = useState([]);
   const [category, setCategory] = useState("dünya");
   const [fetching, setFetching] = useState(true);
@@ -76,28 +75,9 @@ export const ThemeProvider = ({ children }) => {
 
   const { categories } = useCategoriesContext();
 
-//   const toggle = () => {
-//     //setMode((prev) => (prev === "dark" ? "light" : "dark"));
-//     try {
-//      // const newDarkMode = theme === 'dark' ? 'light' : 'dark';
-//       setMode((prev) => (prev === "dark" ? "light" : "dark"));
-//       // Store the dark mode state in localStorage
-//      localStorage.setItem('themeMode', JSON.stringify(mode));
-//     }
-//     catch(error) {
-//       console.error('Error toggling dark mode:', error);
-//     }
+// const toggle = () => {
+//   setMode((prev) => (prev === "dark" ? "light" : "dark"));
 // };
-
-//   useEffect(() => {
-//     // Check if dark mode is stored in localStorage
-//     localStorage.setItem('themeMode', mode);
-//   }, [mode]);
-
-const toggle = () => {
-  setMode((prev) => (prev === "dark" ? "light" : "dark"));
-};
-
 
   // const fontDecBtnClickHandler = () => {
   //   setFontDec(fontDec + 1);
@@ -335,8 +315,6 @@ const toggle = () => {
   };
 
   const values = {
-    toggle,
-    mode,
     storyModal,
     changeStoryModal,
     navigateStory,

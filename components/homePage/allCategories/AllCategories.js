@@ -3,13 +3,13 @@ import React from "react";
 import "./allCategories.scss";
 import CategoryItem from "./CategoryItem";
 import SmallCatItem from "./SmallCatItem";
-import { useThemeContext } from "@/context/ThemeContext";
 import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
+import { useModeContext } from "@/context/ModeContext";
 
 
 const AllCategories = () => {
 
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
   const {images} = useFetchAssetsContext();
 

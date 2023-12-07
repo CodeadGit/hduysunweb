@@ -3,10 +3,10 @@ import React from "react";
 import "./allCategoriesPage.scss";
 import AllCategoriesPagesCards from "./AllCategoriesPagesCards";
 import { useCategoriesContext } from "@/context/CategoriesContext";
-import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const AllCategoriesPage = () => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
   const { categories } = useCategoriesContext();
 

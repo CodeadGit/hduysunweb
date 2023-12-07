@@ -1,13 +1,15 @@
 import "./videoGalleryCard.scss";
 import Link from "next/link";
-import { useThemeContext } from "@/context/ThemeContext";
 import { handleShort } from "@/context/utils";
 import { PiPlayCircleLight } from "react-icons/pi";
+import { useModeContext } from "@/context/ModeContext";
+import { useGalleryContext } from "@/context/GalleryContext";
 
 const VideoGalleryCard = ({ item }) => {
   const { title, datePublished, headImg, eng, id } = item;
 
-  const { mode, handleVideoGalleryReadInc } = useThemeContext();
+  const { handleVideoGalleryReadInc } = useGalleryContext();
+  const { mode } = useModeContext();
 
   const modeStatus = mode === "dark";
 

@@ -2,15 +2,15 @@ import "./mainSlider.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useThemeContext } from "@/context/ThemeContext";
 import MainSliderItem from "./MainSliderItem";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
+import { useModeContext } from "@/context/ModeContext";
 
 const MainSlider = () => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const [loading, setLoading] = useState(true);
   const [hoveredItem, setHoveredItem] = useState([]);
   const [list, setList] = useState([]);

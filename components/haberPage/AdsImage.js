@@ -44,7 +44,6 @@ const AdsImage = () => {
       ))} */}
       <iframe
         src="https://www.bursa.bel.tr/reklam/?w=300"
-        scrolling="no"
       ></iframe>
     </div>
   );

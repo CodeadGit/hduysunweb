@@ -8,11 +8,12 @@ import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
 import CategoryNewsTitle from "@/components/haberPage/CategoryNewsTitle";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
+import { useModeContext } from "@/context/ModeContext";
 
 const TagsPage = () => {
 
-  const { mode, mostReadNewsList, tagsList, tagsListLoading } = useThemeContext();
-
+  const {  mostReadNewsList, tagsList, tagsListLoading } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   // const res = news.reduce((acc, item) => {

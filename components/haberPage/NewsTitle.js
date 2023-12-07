@@ -1,10 +1,12 @@
 import React from "react";
 import "./newsTitle.scss";
 import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const NewsTitle = ({ title, modeStatus }) => {
 
-  const { fontDec, fontInc,mode } = useThemeContext;
+  const { fontDec, fontInc } = useThemeContext;
+  const { mode } = useModeContext();
 
   return (
     <div className={`newss-container-content-title ${modeStatus ? "dark" : ""}`}>

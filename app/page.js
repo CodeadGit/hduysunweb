@@ -1,12 +1,12 @@
 "use client";
-import { useThemeContext } from "@/context/ThemeContext";
 import HomePage from "../components/homePage";
 import NewsStories from "@/components/newsStories/NewsStories";
 import "./page.scss";
 import { useAdsContext } from "@/context/AdsContext";
+import { useModeContext } from "@/context/ModeContext";
 
 export default function Home() {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const { storyModall } = useAdsContext();
   const modeStatus = mode === "dark";
 

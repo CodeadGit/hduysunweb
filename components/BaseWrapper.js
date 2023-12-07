@@ -4,10 +4,12 @@ import PageSkinRight from "./ads/adsComponents/PageSkinRight";
 import PageSkinLeft from "./ads/adsComponents/PageSkinLeft";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useAdsContext } from "@/context/AdsContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const BaseWrapper = ({ children, params }) => {
 
-  const { mode, showAds } = useThemeContext();
+  const { showAds } = useThemeContext();
+  const { mode } = useModeContext();
   const { storyModall, advertPage } = useAdsContext();
   const modeStatus = mode === "dark";
 

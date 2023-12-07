@@ -7,6 +7,7 @@ import { BsMoonFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useAuthenticationContext } from "@/context/AuthenticationContext";
+import { useModeContext } from "@/context/ModeContext";
 // import Search from "../search/Search";
 
 const Buttons = ({
@@ -15,7 +16,7 @@ const Buttons = ({
 }) => {
   const router = useRouter();
 
-  const { mode, toggle } = useThemeContext();
+  const { mode, toggle  } = useModeContext();
   const [isClicked, setIsClicked] = useState("close");
   const { reader, readerData, logout } = useAuthenticationContext();
 

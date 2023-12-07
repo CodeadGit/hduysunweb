@@ -35,10 +35,15 @@ import CategoryNewsTitle from "./CategoryNewsTitle";
 import MostReadNews from "./MostReadNews";
 import VideoGallery from "./VideoGallery";
 import StickyNavbar from "../stickyNavbar/StickyNavbar";
+import { useModeContext } from "@/context/ModeContext";
+import { useGalleryContext } from "@/context/GalleryContext";
 
 const Haber = ({ thisPageArticle, thisPage }) => {
 
-  const { mode, mostReadNewsList, videoNewsList } = useThemeContext();
+  const { mostReadNewsList } = useThemeContext();
+  const {videoGallery } = useGalleryContext;
+  const { mode } = useModeContext();
+
   const modeStatus = mode === "dark";
   const [loading, setLoading] = useState(true);
   const [comments, setComments] = useState([]);
@@ -209,7 +214,7 @@ const Haber = ({ thisPageArticle, thisPage }) => {
             category={category}
             id={id}
           />
-          <VideoGallery modeStatus={modeStatus} videoNewsList={videoNewsList} />
+          <VideoGallery modeStatus={modeStatus} videoGallery={videoGallery}/>
         </div>
       </div>
     </div>

@@ -1,12 +1,9 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
 import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { IconButton } from "@mui/material";
 import { Close, MenuBook } from "@mui/icons-material";
@@ -14,7 +11,6 @@ import { editLink } from "@/context/utils";
 import { BsMoonFill } from "react-icons/bs";
 import Link from "next/link";
 import "./drawerMenu.scss";
-import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useCategoriesContext } from "@/context/CategoriesContext";
 export default function DrawerMenu({ toggle, modeStatus }) {

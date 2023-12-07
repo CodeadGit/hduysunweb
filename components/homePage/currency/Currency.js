@@ -4,11 +4,11 @@ import "./currency.scss";
 import Link from "next/link";
 import CurrencyItem from "./CurrencyItem";
 import axios from "axios";
-import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const Currency = () => {
 
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   const [currencyInfo, setCurrencyInfo] = useState([]);

@@ -17,10 +17,10 @@ import {
 } from "react-icons/wi";
 import { BsCloudDrizzleFill } from "react-icons/bs";
 import { LuCloudDrizzle } from "react-icons/lu";
-import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const Weather = ({ showSearchBar }) => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   const API_KEY = process.env.NEXT_PUBLIC_OPEN_METEO_API_KEY;
@@ -140,7 +140,7 @@ const Weather = ({ showSearchBar }) => {
       {icon}
       <div className="weather-info">
         {
-          weather?.result?.main?.temp === undefined ? "9 °C" :  <span>{Math.round(weather?.result?.main?.temp)} °C</span>
+          weather?.result?.main?.temp === undefined ? "9 °C Bursa" :  <span>{Math.round(weather?.result?.main?.temp)} °C</span>
         }
         <span>{cityName}</span>
       </div>

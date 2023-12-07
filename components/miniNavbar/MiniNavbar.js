@@ -4,11 +4,11 @@ import "./miniNavbar.scss";
 import NavbarLogo from "../navbarLogo/NavbarLogo";
 import Categories from "../categories/Categories";
 import Buttons from "../buttons/Buttons";
-import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const MiniNavbar = () => {
 
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   return (

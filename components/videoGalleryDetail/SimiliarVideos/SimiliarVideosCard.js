@@ -1,12 +1,14 @@
-import { useThemeContext } from "@/context/ThemeContext";
 import "./similiarVideosCard.scss";
 import { handleShort } from "@/context/utils";
 import Link from "next/link";
+import { useModeContext } from "@/context/ModeContext";
+import { useGalleryContext } from "@/context/GalleryContext";
 
 const SimiliarVideosCard = ({ item }) => {
   const { headImg, title, id, eng, url, datePublished } = item;
 
-  const { mode, handleVideoGalleryReadInc } = useThemeContext();
+  const { handleVideoGalleryReadInc } = useGalleryContext();
+  const { mode } = useModeContext();
 
   const modeStatus = mode === "dark";
 

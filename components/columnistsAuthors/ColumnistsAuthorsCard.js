@@ -1,9 +1,10 @@
 import "./columnistsAuthorsCard.scss";
 import Link from "next/link";
 import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const ColumnistsAuthorsCard = ({ item }) => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const { id, author, avatar, lastName, name, postCount } = item;
 
   const modeStatus = mode === "dark";

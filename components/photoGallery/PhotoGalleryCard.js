@@ -3,8 +3,9 @@ import "./PhotoGalleryCard.scss";
 import { useThemeContext } from "@/context/ThemeContext";
 import { handleShort } from "@/context/utils";
 import { useGalleryContext } from "@/context/GalleryContext";
+import { useModeContext } from "@/context/ModeContext";
 const PhotoGalleryCard = ({ item }) => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const { handlePhotoGalleryReadInc } = useGalleryContext();
 
   const modeStatus = mode === "dark";

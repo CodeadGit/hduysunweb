@@ -4,11 +4,11 @@ import "./tags.scss";
 import Image from "next/image";
 import Link from "next/link";
 import watsapp from "../assets/watsapp.png";
-import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const Tags = () => {
 
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   return (

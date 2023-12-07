@@ -6,9 +6,11 @@ import "./subHeadlineNews.scss";
 import { useState, useEffect } from "react";
 import { useThemeContext } from "@/context/ThemeContext";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
+import { useModeContext } from "@/context/ModeContext";
 
 const SubHeadlineNews = () => {
-  const { surMansetNewsList, mode } = useThemeContext();
+  const { surMansetNewsList } = useThemeContext();
+  const {mode } = useModeContext();
   const [surMansets, setSurmansets] = useState([]);
   const [loading, setLoading] = useState(true);
   const modeStatus = mode === "dark";

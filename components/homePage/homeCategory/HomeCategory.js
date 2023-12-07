@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import "./homeCategory.scss";
 import HomeCategoryItem from "./HomeCategoryItem";
-import { useThemeContext } from "@/context/ThemeContext";
 import { useParams } from "next/navigation";
 import CategorySkeleton from "../../categoryPage/CategorySkeleton";
 import CategoryPagination from "./HomeCategoryPagination";
@@ -16,8 +15,9 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
+import { useModeContext } from "@/context/ModeContext";
 const HomeCategory = ({ category, totalPage }) => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
   const [filteredNews, setFilteredNews] = useState([]);
   const [categoryLoading, setCategoryLoading] = useState(true);

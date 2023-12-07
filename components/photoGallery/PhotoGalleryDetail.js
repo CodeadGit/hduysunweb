@@ -1,13 +1,13 @@
 import PhotoGallerySlider from "../photoGallerySlider/PhotoGallerySlider";
-import { useThemeContext } from "@/context/ThemeContext";
 import Breadcrumb from "../breadcrumb/Breadcrumb";
 import { useState } from "react";
 import "./photoGalleryDetail.scss";
 import PhotoGalleryDetailCard from "./PhotoGalleryDetailCard";
 import { useGalleryContext } from "@/context/GalleryContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const PhotoGalleryDetail = ({ thisPhotoGallery, titleArray, gDoc }) => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const { photoGallery } = useGalleryContext();
   const modeStatus = mode === "dark";
 

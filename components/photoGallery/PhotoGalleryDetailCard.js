@@ -3,12 +3,15 @@ import { useThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
 import "./photoGalleryDetailCard.scss";
 import { handleShort } from "@/context/utils";
+import { useModeContext } from "@/context/ModeContext";
+import { useGalleryContext } from "@/context/GalleryContext";
 
 const PhotoGalleryDetailCard = ({item}) => {
 
   const {eng, id, title,headImg, datePublished} = item;
 
-  const {mode, handlePhotoGalleryReadInc} = useThemeContext();
+  const { handlePhotoGalleryReadInc} = useGalleryContext();
+  const { mode } = useModeContext();
 
   const modeStatus = mode === "dark";
 

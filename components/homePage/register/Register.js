@@ -1,10 +1,10 @@
 "use client";
 import "./register.scss";
 import mobile from "../assets/mobile.png";
-import { useThemeContext } from "@/context/ThemeContext";
 import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
+import { useModeContext } from "@/context/ModeContext";
 const Register = () => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
   const { images } = useFetchAssetsContext();
 

@@ -7,8 +7,8 @@ import { useThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
 
 // haber içi video galeri ilk büyük video galeri componenti
-const VideoGallery = ({ modeStatus, videoNewsList }) => {
-  const { videoGallery, handleReadIncrement } = useThemeContext();
+const VideoGallery = ({ modeStatus, videoGallery }) => {
+ // const {  handleReadIncrement } = useThemeContext();
 
   const options = { year: "numeric", month: "numeric", day: "2-digit" };
 
@@ -21,7 +21,7 @@ const VideoGallery = ({ modeStatus, videoNewsList }) => {
         return (
           <Link key={idx}
           // target="_blank" 
-           href={`/video-galeri/${item.eng}-${item.id}`} onClick={() => handleReadIncrement(category, id)}>
+           href={`/video-galeri/${item.eng}-${item.id}`} >
             <div className="video-live">
               <Image src={item.headImg} alt="google-news" fill />
             </div>

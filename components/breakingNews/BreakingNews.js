@@ -3,7 +3,6 @@ import "./breakingNews.scss";
 import Slider from "react-slick";
 import Link from "next/link";
 import { GoClock } from "react-icons/go";
-import { useThemeContext } from "@/context/ThemeContext";
 import {
   collection,
   endBefore,
@@ -21,9 +20,10 @@ import {
   handleShorttSmall,
   handleShorttMed,
 } from "@/context/utils";
+import { useModeContext } from "@/context/ModeContext";
 
 const BreakingNews = () => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
   const [breakingNews, setBreakingNews] = useState([]);
   const [loading, setLoading] = useState(true);

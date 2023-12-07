@@ -1,8 +1,8 @@
 import { useGalleryContext } from "@/context/GalleryContext";
 import "./photoGallerySliderItem.scss";
-import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 const PhotoGallerySliderItem = ({ item }) => {
-  const {  mode } = useThemeContext();
+  const {  mode } = useModeContext();
   const { handlePhotoGallerySliderReadInc } = useGalleryContext()
 
   const { url, doc, id, title, description, datePublished } = item;

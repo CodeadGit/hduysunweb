@@ -8,12 +8,14 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const CategoryHeadlines = () => {
 
     const [sliderRef, setSliderRef] = useState(null);
     
-    const { mode, categoryHeadlines } = useThemeContext();
+    const { categoryHeadlines } = useThemeContext();
+    const { mode } = useModeContext();
     const modeStatus = mode === "dark";
 
     const settings = {

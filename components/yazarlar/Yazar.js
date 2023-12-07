@@ -2,11 +2,11 @@
 import React from "react";
 import "./yazar.scss";
 import YazarData from "../yazarlar/YazarData.json";
-import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const Yazar = () => {
 
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   return (

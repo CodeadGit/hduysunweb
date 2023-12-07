@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import "./relatedNews.scss";
 import SingleRelatedNews from "./SingleRelatedNews";
 import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const RelatedNews = ({ subCategories, id, category }) => {
-  const { mode, news, loading } = useThemeContext();
+  const { news, loading } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
   const [relatedNews, setRelatedNews] = useState([]);
 

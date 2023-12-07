@@ -3,9 +3,13 @@ import React, { useEffect } from "react";
 import DOMPurify from "dompurify";
 import "./newsDetails.scss";
 import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 
-const NewsDetails = ({ modeStatus, source, body }) => {
+const NewsDetails = ({ source, body }) => {
   const newsSource = source ? source : "Haber Merkezi";
+
+  const { mode } = useModeContext();
+  const modeStatus = mode === "dark";
 
   return (
     <div className="news-details">

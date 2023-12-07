@@ -10,9 +10,11 @@ import { ListItemButton, List, ListItem, IconButton,Box, ListItemText } from "@m
 import MenuIcon from '@mui/icons-material/Menu';
 import { Close } from "@mui/icons-material";
 import { BsMoonFill } from "react-icons/bs";
+import { useModeContext } from "@/context/ModeContext";
 
 const CategoriesMenu = ({toggleDrawer, isMenuDrawer}) => {
-  const { mode, toggle } = useThemeContext();
+  const { toggle } = useThemeContext();
+  const { mode } = useModeContext();
   const { categories } = useCategoriesContext();
   const [anchorEl, setAnchorEl] = useState(null);
 

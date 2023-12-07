@@ -9,16 +9,17 @@ import Image from "next/image";
 import { CircularProgress } from "@mui/material";
 import TrialCardItem from "./TrialCardItem";
 import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const TrialComp = () => {
   const {
-    mode,
     news,
     fetching,
     total = {},
     handleReadIncrement,
     datePublished
   } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   const [number, setNumber] = useState(0);

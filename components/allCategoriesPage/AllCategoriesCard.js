@@ -1,10 +1,12 @@
 import { useThemeContext } from "@/context/ThemeContext";
 import "./allCategoriesCard.scss";
 import Link from "next/link";
+import { useModeContext } from "@/context/ModeContext";
 
 const AllCategoriesCard = ({ item }) => {
   const { category, eng, id, title, image, datePublished } = item;
-  const { mode, handleReadIncrement } = useThemeContext();
+  const { handleReadIncrement } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   const timePublished = new Date(datePublished.seconds * 1000);

@@ -1,9 +1,9 @@
 "use client";
 import FooterSidebar from "./FooterSidebar";
-import { useThemeContext } from "@/context/ThemeContext";
 import "./kunye.scss";
+import { useModeContext } from "@/context/ModeContext";
 const Kunye = () => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   return (

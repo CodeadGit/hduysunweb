@@ -1,19 +1,16 @@
 .singleFinanceCurrency {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    width: 11rem;
-    height: 3rem;
-    // padding-inline: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  // padding-inline: 0.5rem;
 
-    .topFinanceCurrency {
-    //   border: 1px solid red;
-      height: 1.5rem;
-      padding-inline: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+  .topFinanceCurrency {
+    height: 1.5rem;
+    padding-inline: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     //   .arrow-up {
     //     width: 0;
@@ -22,7 +19,7 @@
     //     border-right: 6px solid transparent;
     //     border-bottom: 11px solid #26c463;
     //   }
-        
+
     //   .arrow-down {
     //     width: 0;
     //     height: 0;
@@ -39,82 +36,88 @@
     //     border-left: 11px solid #bcbcbc;
     //   }
 
-      
-       .type {
-        font-size: 12px;
-        font-weight: 600;
-        color: #333333;
-        transition: var(--transition);
+    .type {
+      font-size: 12px;
+      font-weight: 600;
+      color: #333333;
+      transition: var(--transition);
 
-        &.dark {
-            color: var(--whiteBgColor);
-       }
+      &.dark {
+        color: var(--whiteBgColor);
       }
-      .buying {
+      .icon {
+        font-size: 16px;
         color: #333333;
-        font-size: 12px;
-        padding-left: 1rem;
 
         &.dark {
-            color: white;
+          color: white;
         }
       }
-       
-        // .greenValue {
-        //     font-weight: 600;
-        //     font-size: 1rem;
-        //     color: #26c463;
-        // }
+    }
+    .buying {
+      color: #333333;
+      font-size: 12px;
+      padding-left: 0.5rem;
 
-        // .redValue {
-        //     font-weight: 600;
-        //     font-size: 1rem;
-        //     color: #e40e20;
-        // }
-
-        // .grayValue {
-        //     font-weight: 600;
-        //     font-size: 1rem;
-        //     color: black;
-        // }
-     
+      &.dark {
+        color: white;
+      }
     }
 
-    .bottomFinanceCurrency {
-        margin-left: 2rem;
-        display: flex;
-        font-size: 0.75rem;
+    // .greenValue {
+    //     font-weight: 600;
+    //     font-size: 1rem;
+    //     color: #26c463;
+    // }
 
-        .percentage {
-            display: block;
-            padding: 0.2rem 0.4rem;      
-            border-radius: 4px;
-            font-weight: 600;
-            
-            &.increase {
-                color:#26c463;
-                background-color: #26c46321;  
-            }
+    // .redValue {
+    //     font-weight: 600;
+    //     font-size: 1rem;
+    //     color: #e40e20;
+    // }
 
-            &.decrease {
-                color: #e40e20;
-                background-color: #e40e204b;
-            }
+    // .grayValue {
+    //     font-weight: 600;
+    //     font-size: 1rem;
+    //     color: black;
+    // }
+  }
 
-            &.stable {
-                color: #000;
-                background-color: rgba(128, 128, 128, 0.308);
-            }
-        }
+  .bottomFinanceCurrency {
+    margin-left: 2rem;
+    display: flex;
+    font-size: 0.75rem;
 
-        .change {
-            margin-left: 0.5rem;
-            align-self: center;
-            transition: var(--transition);
+    .percentage {
+      display: block;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 600;
 
-            &.dark {
-                color: var(--whiteBgColor);
-            }
-        }
+      &.increase {
+        color: #26c463;
+        background-color: #26c46321;
+      }
+
+      &.decrease {
+        color: #e40e20;
+        background-color: #e40e204b;
+      }
+
+      &.stable {
+        color: #000;
+        background-color: rgba(128, 128, 128, 0.308);
+      }
+    }
+
+    .change {
+      margin-left: 0.5rem;
+      align-self: center;
+      transition: var(--transition);
+
+      &.dark {
+        color: var(--whiteBgColor);
+      }
     }
   }
+}

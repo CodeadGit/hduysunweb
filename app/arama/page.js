@@ -9,6 +9,7 @@ import CategoryNewsTitle from "@/components/haberPage/CategoryNewsTitle";
 import MostReadNews from "@/components/haberPage/MostReadNews";
 import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
 import { BiSearch } from "react-icons/bi";
+import { useModeContext } from "@/context/ModeContext";
 
 function replaceTurkishCharacters(inputString) {
   const turkishToEnglishMap = {
@@ -39,11 +40,12 @@ const SearchPage = () => {
     setSearchWord,
     wordNews,
     setWordNews,
-    mode,
     mostReadNewsList,
     handleSearchButton,
     searchButtonStatus,
   } = useThemeContext();
+
+  const { mode } = useModeContext();
 
   const modeStatus = mode === "dark";
 

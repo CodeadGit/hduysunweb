@@ -6,11 +6,13 @@ import { useThemeContext } from "@/context/ThemeContext";
 import SingleStory from "./SingleStory";
 import { useAdsContext } from "@/context/AdsContext";
 import StoriesSkeleton from "./StoriesSkeleton";
+import { useModeContext } from "@/context/ModeContext";
 // import { categories } from "@/context/utils";
 
 const Stories = () => {
 
-  const { navigateStory, mode } = useThemeContext();
+  const { navigateStory } = useThemeContext();
+  const { mode } = useModeContext();
 
   const { storiesList, storiesLoading, combineStories, handleStories } = useAdsContext();
 

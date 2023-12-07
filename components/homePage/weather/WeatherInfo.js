@@ -5,6 +5,7 @@ import Link from "next/link";
 import axios from "axios";
 import SingleWeather from "./SingleWeather";
 import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const citiesInfo = [
   {
@@ -36,7 +37,7 @@ const citiesInfo = [
 
 const WeatherInfo = () => {
 
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   const date = new Date();

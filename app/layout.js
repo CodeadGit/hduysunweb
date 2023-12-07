@@ -12,6 +12,7 @@ import { CategoriesProvider } from "@/context/CategoriesContext";
 import { TagProvider } from "@/context/TagContext";
 import { FetchAssetsContextProvider } from "@/context/FetchAssetsContext";
 import { GalleryProvider } from "@/context/GalleryContext";
+import { ModeProvider } from "@/context/ModeContext";
 import Head from "next/head";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import HomePage from "@/components/homePage/HomePage";
@@ -173,10 +174,11 @@ export default function RootLayout({ children }) {
           }}
         />
         <ErrorBoundary>
+          <ModeProvider>
           <AuthenticationProvider>
             <FetchAssetsContextProvider>
               <CategoriesProvider>
-                <ThemeProvider>
+              <ThemeProvider>
                   <GalleryProvider>
                   <TagProvider>
                     <AdsContextProvider>
@@ -192,6 +194,7 @@ export default function RootLayout({ children }) {
               </CategoriesProvider>
             </FetchAssetsContextProvider>
           </AuthenticationProvider>
+          </ModeProvider>
         </ErrorBoundary>
       </body>
     </html>

@@ -1,10 +1,11 @@
+import { useModeContext } from "@/context/ModeContext";
 import Breadcrumb from "../breadcrumb/Breadcrumb";
 import "./FormalAdvert.scss";
 import { useThemeContext } from "@/context/ThemeContext";
 import DOMPurify from "dompurify";
 
 const FormalAdvert = ({ titleArray, filterFormalAdv }) => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   const links = [

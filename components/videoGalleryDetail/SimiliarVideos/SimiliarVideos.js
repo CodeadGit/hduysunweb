@@ -1,10 +1,13 @@
 "use client"
 import "./similiarVideos.scss";
-import { useThemeContext } from "@/context/ThemeContext";
 import SimiliarVideosCard from "./SimiliarVideosCard";
+import { useModeContext } from "@/context/ModeContext";
+import { useGalleryContext } from "@/context/GalleryContext";
+
 const SimilarVideos = () => {
 
-  const { videoGallery, mode } = useThemeContext();
+  const { videoGallery } = useGalleryContext();
+  const { mode } = useModeContext();
 
   const similiarVideos = videoGallery.slice(0,3).map((item,idx) => {
     return (

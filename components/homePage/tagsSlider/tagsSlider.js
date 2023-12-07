@@ -13,9 +13,11 @@ import { db } from "@/firebase/firebase.config";
 import Link from "next/link";
 import PrevArrow from "./CustomArrows/PrevArrow";
 import NextArrow from "./CustomArrows/NextArrow";
+import { useModeContext } from "@/context/ModeContext";
 
 const TagsSlider = () => {
-  const { mode, news, newsLoading } = useThemeContext();
+  const { news, newsLoading } = useThemeContext();
+  const { mode } = useModeContext()
   const [tagClicked, setTagClicked] = useState("");
   const [loading, setLoading] = useState(true);
   const [filteredNewsbyTag, setFilteredNewsbyTag] = useState([]);

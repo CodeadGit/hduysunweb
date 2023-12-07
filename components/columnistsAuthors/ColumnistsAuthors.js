@@ -3,10 +3,12 @@ import { useThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
 import "./columnistsAuthors.scss";
 import ColumnistsAuthorsCard from "./ColumnistsAuthorsCard";
+import { useModeContext } from "@/context/ModeContext";
 
 const ColumnistsAuthors = (item) => {
   const { eng, tittle } = item;
-  const { mode, autors } = useThemeContext();
+  const { autors } = useThemeContext();
+  const { mode } = useModeContext();
 
   const modeStatus = mode === "dark";
 

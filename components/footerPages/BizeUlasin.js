@@ -1,11 +1,11 @@
 "use client";
+import { useModeContext } from "@/context/ModeContext";
 import "./bizeUlasin.scss";
 import FooterSidebar from "./FooterSidebar";
-import { useThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
 
 const BizeUlasin = () => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   return (

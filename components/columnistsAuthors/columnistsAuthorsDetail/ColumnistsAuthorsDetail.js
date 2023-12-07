@@ -2,13 +2,14 @@
 import "./columnistsAuthorDetail.scss";
 import Link from "next/link";
 import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 const ColumnistsAuthorsDetail = ({
   posts,
   idForThisAuthor,
   author,
   formattedDate,
 }) => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   return (

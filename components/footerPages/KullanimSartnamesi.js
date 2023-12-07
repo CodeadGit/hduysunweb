@@ -1,9 +1,9 @@
 "use client";
 import "./kullanimSartnamesi.scss";
 import FooterSidebar from "./FooterSidebar";
-import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 const KullanimSartnamesi = () => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   return (

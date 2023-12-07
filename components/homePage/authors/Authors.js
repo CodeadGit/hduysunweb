@@ -17,7 +17,7 @@ import person5 from "../assets/person5.png";
 import person6 from "../assets/person6.png";
 import person7 from "../assets/person7.png";
 
-import { useThemeContext } from '@/context/ThemeContext';
+import { useModeContext } from '@/context/ModeContext';
 
 const newsArray=[
     { 
@@ -59,7 +59,7 @@ const newsArray=[
 
 const Authors = () => {
 
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
     const settings = {

@@ -13,6 +13,7 @@ import { useAdsContext } from "@/context/AdsContext";
 import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
 import Image from "next/image";
 import { useCategoriesContext } from "@/context/CategoriesContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const kunyeArray = [
   {
@@ -53,7 +54,7 @@ const kunyeArray = [
 ];
 
 const Footer = () => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const { categories } = useCategoriesContext();
 
   const modeStatus = mode === "dark";

@@ -1,9 +1,10 @@
 "use client"
+import { useModeContext } from "@/context/ModeContext";
 import "./cerezPolitikasi.scss";
 import FooterSidebar from "./FooterSidebar";
-import { useThemeContext } from "@/context/ThemeContext";
+
 const CerezPolitikasi = () => {
-    const { mode } = useThemeContext();
+    const { mode } = useModeContext();
     const modeStatus = mode === "dark";
   
     return (

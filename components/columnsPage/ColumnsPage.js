@@ -7,9 +7,10 @@ import { db } from "@/firebase/firebase.config";
 import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import SingleColumns from "./SingleColumns";
+import { useModeContext } from "@/context/ModeContext";
 
 const ColumnsPage = ({ koseYazisi, koseYazisiArticle }) => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   const body = koseYazisiArticle?.body;
@@ -60,6 +61,7 @@ const ColumnsPage = ({ koseYazisi, koseYazisiArticle }) => {
       titleContent: true,
     },
   ];
+
 
   return (
     <div className={`columnsPage ${modeStatus ? "dark" : ""}`}>

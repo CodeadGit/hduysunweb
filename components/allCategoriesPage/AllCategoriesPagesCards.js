@@ -4,13 +4,13 @@ import "./allCategoriesPagesCards.scss";
 import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import { categoryConvertor } from "@/context/utils";
-import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const AllCategoriesPagesCards = ({ category, label }) => {
   const [categoryCards, setCategoryCards] = useState([]);
   const [categoryLoading, setCategoryLoading] = useState(true);
 
-  const { mode} = useThemeContext();
+  const { mode} = useModeContext();
   const modeStatus = mode === "dark";
 
   useEffect(() => {

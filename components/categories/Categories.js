@@ -10,10 +10,12 @@ import CategoriesMenu from "./CategoriesMenu";
 import { IconButton} from "@mui/material"
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from "next/link";
+import { useModeContext } from "@/context/ModeContext";
 
 const Categories = ({ wrapper }) => {
   const pathname = usePathname();
-  const { mode, closeStoryModal } = useThemeContext();
+  const { closeStoryModal } = useThemeContext();
+  const { mode } = useModeContext();
   const { categories } = useCategoriesContext();
   const [isMenuDrawer, setIsMenuDrawer] = useState(false);
 

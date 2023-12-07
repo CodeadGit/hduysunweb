@@ -11,9 +11,11 @@ import BreakingNews from "../breakingNews/BreakingNews";
 import { useThemeContext } from "@/context/ThemeContext";
 import DrawerMenu from "./DrawerMenu";
 import { useAdsContext } from "@/context/AdsContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const Navbar = () => {
-  const { mode, toggle, setSearchWord } = useThemeContext();
+  const { setSearchWord } = useThemeContext();
+  const { mode, toggle } = useModeContext();
   const modeStatus = mode === "dark";
   const { storyModall } = useAdsContext();
   const [showSearchBar, setShowSearchBar] = useState(false);

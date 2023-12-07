@@ -1,9 +1,11 @@
 import "./categoryItem.scss";
 import Link from "next/link";
 import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 const CategoryItem = ({ item }) => {
   const { title, image, category, eng, id, datePublished } = item;
-  const { handleReadIncrement, mode } = useThemeContext();
+  const { handleReadIncrement } = useThemeContext();
+  const { mode } = useModeContext();
 
   const modeStatus = mode === "dark";
 

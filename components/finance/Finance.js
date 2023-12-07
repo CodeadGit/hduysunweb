@@ -6,6 +6,7 @@ import axios from "axios";
 import FinanceCurrency from "./FinanceCurrency";
 import dolar from "./dolar.svg";
 import euro from "./euro.svg";
+import { useModeContext } from "@/context/ModeContext";
 
 const currencyLabel = {
   USD: "DOLAR",
@@ -17,7 +18,7 @@ const currencyLabel = {
 const currencyArray = ["US DOLLAR", "EURO"];
 
 const Finance = () => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   const API_KEY = process.env.NEXT_PUBLIC_GENERAL_API_KEY;
@@ -85,11 +86,12 @@ const Finance = () => {
   const mergedObject = Object.entries(currencyInfo).map(([key, value]) => value)
 
   return (
-    <ul className="finance">
-      {currencyInfo?.map((item, idx) => {
+    <div className="finance">
+      {/* {currencyInfo?.map((item, idx) => {
         return <FinanceCurrency key={idx} item={item} modeStatus={modeStatus} />;
-      })}
-    </ul>
+      })} */}
+      <FinanceCurrency mergedObject={mergedObject}/>
+    </div>
   );
 };
 

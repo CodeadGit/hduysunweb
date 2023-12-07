@@ -1,9 +1,9 @@
 "use client";
 import "./kvkk.scss";
 import FooterSidebar from "./FooterSidebar";
-import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 const Kvkk = () => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   return (

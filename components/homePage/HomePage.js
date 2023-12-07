@@ -9,10 +9,11 @@ import HomePageSkeleton from "./HomePageSkeleton";
 import MainSlider from "./mainSlider/MainSlider";
 import SurMansetSlider from "./surMansetSlider/SurMansetSlider";
 import SurMansetSliderRes from "./surMansetSlider/SurMansetSliderRes";
+import { useModeContext } from "@/context/ModeContext";
 
 const HomePage = () => {
-  const { mode, handleReadIncrement, newsLoading } =
-    useThemeContext();
+  const { handleReadIncrement, newsLoading } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   // const mainNews = mansetNewsList[0];
@@ -20,35 +21,35 @@ const HomePage = () => {
 
   const skeletonStyle = { display: "flex", justifyContent: "center" };
 
- if (newsLoading) {
-     return (
-       <div style={skeletonStyle}>
-         <HomePageSkeleton />
-       </div>
-     );
-   }
+  if (newsLoading) {
+    return (
+      <div style={skeletonStyle}>
+        <HomePageSkeleton />
+      </div>
+    );
+  }
 
   return (
     <div className={`homeContainer ${modeStatus ? "dark" : ""}`}>
-      <MainSlider/>
+      <MainSlider />
       {/* <MainNewsComponent
         handleReadIncrement={handleReadIncrement}
         mainNews={mainNews}
         modeStatus={modeStatus}
       /> */}
       <div className="right">
-         <SurMansetSlider/> 
-         <SurMansetSliderRes/>
-         {/* <div className="right-top">
+        <SurMansetSlider />
+        <SurMansetSliderRes />
+        {/* <div className="right-top">
           {/* <SecondNews
             handleReadIncrement={handleReadIncrement}
             secondNews={secondNews}
             modeStatus={modeStatus}
           /> */}
-          {/* <AdsComponent /> */}
-          {/* <BannerNext /> */}
-       {/*</div>*/} 
-      {/* <div className="right-bottom">
+        {/* <AdsComponent /> */}
+        {/* <BannerNext /> */}
+        {/*</div>*/}
+        {/* <div className="right-bottom">
           {mansetNewsList.slice(2, 5).map((news) => {
             return (
               <SingleNewsComponent
@@ -79,7 +80,7 @@ const MainNewsComponent = ({
       onClick={() => handleReadIncrement(category, id)}
       className="left"
       href={`/${category}/${eng}-${id}`}
-     // target="_blank"
+      // target="_blank"
     >
       <div className="left-image">
         <img src={image} alt="news" />
@@ -90,7 +91,6 @@ const MainNewsComponent = ({
 };
 
 const SecondNews = ({ secondNews = {}, handleReadIncrement, modeStatus }) => {
-
   const { category, eng, id, image, title = "" } = secondNews;
 
   return (
@@ -98,8 +98,8 @@ const SecondNews = ({ secondNews = {}, handleReadIncrement, modeStatus }) => {
       onClick={() => handleReadIncrement(category, id)}
       className="right-top-left-pic"
       href={`/${category}/${eng}-${id}`}
-     // target="_blank"
-     >
+      // target="_blank"
+    >
       <div className="right-top-left-pic-wrapper">
         <img src={image} alt="news" />
       </div>
@@ -109,19 +109,17 @@ const SecondNews = ({ secondNews = {}, handleReadIncrement, modeStatus }) => {
 };
 
 const SingleNewsComponent = ({ news, handleReadIncrement, modeStatus }) => {
-
   const { category, id, eng, image, title = "" } = news;
-  
+
   return (
     <Link
       onClick={() => handleReadIncrement(category, id)}
       href={`/${category}/${eng}-${id}`}
       className="news-pic"
-     // target="_blank"
+      // target="_blank"
     >
       <img src={image} alt="news" className="img" />
       <p className={modeStatus ? "dark" : ""}>{`${handleShort(title, 6)}`}</p>
     </Link>
   );
 };
-

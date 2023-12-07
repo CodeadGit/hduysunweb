@@ -4,10 +4,10 @@ import "./videoGalleryDetail.scss";
 import ReactPlayer from "react-player";
 import SimiliarVideos from "./SimiliarVideos/SimiliarVideos";
 import VideoGalleryDetailVideo from "./VideoGalleryDetailVideo/VideoGalleryDetailVideo";
-import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
 const VideoGalleryDetail = ({ filteredVideo, titleArray }) => {
 
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
 
   const videoInfo = filteredVideo.map((item,idx) => {
     return (

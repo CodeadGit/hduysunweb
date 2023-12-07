@@ -1,5 +1,4 @@
 "use client";
-import { useThemeContext } from "@/context/ThemeContext";
 import Breadcrumb from "../breadcrumb/Breadcrumb";
 import "./videoGallery.scss";
 import Slider from "react-slick";
@@ -8,9 +7,10 @@ import "slick-carousel/slick/slick-theme.css";
 import VideoGalleryItem from "./VideoGalleryItem";
 import VideoGalleryCard from "./VideoGalleryCard";
 import { useGalleryContext } from "@/context/GalleryContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const VideoGallery = () => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const { videoGallery } = useGalleryContext();
   const links = [{ id: 1, title: "Video Galeri", link: "/video-galeri" }];
 

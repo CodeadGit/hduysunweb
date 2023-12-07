@@ -1,12 +1,12 @@
 import "./formalAdvertsCard.scss";
 import Link from "next/link";
-import { useThemeContext } from "@/context/ThemeContext";
 import { handleShort } from "@/context/utils";
+import { useModeContext } from "@/context/ModeContext";
 
 const FormalAdvertsCard = ({ item,content }) => {
 
   const {eng, category, id, title, datePublished} = item;
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
   const timePublished = new Date(datePublished.seconds * 1000);

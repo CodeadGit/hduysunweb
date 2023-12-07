@@ -3,14 +3,14 @@ import "./surMansetSlider.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useThemeContext } from "@/context/ThemeContext";
 import SurMansetSliderItem from "./SurMansetSliderItem";
 import Link from "next/link";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
+import { useModeContext } from "@/context/ModeContext";
 
 const SurMansetSlider = () => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const [surMansetList, setSurmansetList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hoveredIndex, setHoveredIndex] = useState(0);

@@ -4,9 +4,11 @@ import {
   handleShorttCatSlider,
   handleShorttCatSliderRes,
 } from "@/context/utils";
+import { useThemeContext } from "@/context/ThemeContext";
 
 const CategorySliderItem = ({ item }) => {
   const { image, url, title, category, id, eng, isTitled } = item;
+  const { handleReadIncrement } = useThemeContext();
 
   return (
     <div className="categorySliderItem">

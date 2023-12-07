@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { useThemeContext } from "@/context/ThemeContext";
 import { useParams } from "next/navigation";
 import CategorySkeleton from "./CategorySkeleton";
 import CategoryPagination from "./CategoryPagination";
@@ -20,8 +19,9 @@ import {
 import { db } from "@/firebase/firebase.config";
 import Link from "next/link";
 import CategorySliderItem from "./CategorySliderItem";
+import { useModeContext } from "@/context/ModeContext";
 const CategoryPageNews = ({ category, totalPage }) => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
   const [filteredNews, setFilteredNews] = useState([]);
   const [categoryLoading, setCategoryLoading] = useState(true);

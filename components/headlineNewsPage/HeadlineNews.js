@@ -3,12 +3,12 @@ import "./headlineNews.scss";
 import { useState, useEffect } from "react";
 import HeadlineNewsCard from "./HeadlineNewsCard";
 import Breadcrumb from "../breadcrumb/Breadcrumb";
-import { useThemeContext } from "@/context/ThemeContext";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
+import { useModeContext } from "@/context/ModeContext";
 
 const HeadlineNewsPage = () => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const modeStatus = mode === "dark";
   const [mansetList, setMansetList] = useState([]);
   const [loading, setLoading] = useState(true)

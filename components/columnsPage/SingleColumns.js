@@ -3,8 +3,12 @@ import { categoryUpperConvertor } from "@/context/utils";
 import Link from "next/link";
 import { handleShort,handleShorttSingleHaber,handleShortt } from "@/context/utils";
 import "./singleColumns.scss";
+import { useThemeContext } from "@/context/ThemeContext";
 
 const SingleColumns = ({ image, category, eng, id, title, mode }) => {
+ 
+  const { handleReadIncrement} = useThemeContext();
+
   return (
     <Link
       href={`/${category}/${eng}-${id}`}

@@ -10,9 +10,10 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 import NewsStoriesItem from "./NewsStoriesItem";
 import { useAdsContext } from "@/context/AdsContext";
+import { useModeContext } from "@/context/ModeContext";
 
 const NewsStories = () => {
-  const { mode } = useThemeContext();
+  const { mode } = useModeContext();
   const { storyList, combineStories, changeStoryModall, singleStories } =
     useAdsContext();
   const modeStatus = mode === "dark";
