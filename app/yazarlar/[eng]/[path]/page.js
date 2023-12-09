@@ -11,30 +11,33 @@ const KoseYazisiDetayPage = ({ params }) => {
   var idArray = String(params.path).split("-").at(-1);
 
   useEffect(() => {
+    idArray;
+  }, [idArray]);
+
+  useEffect(() => {
     let controller = new AbortController();
 
-     (async () => {
+    (async () => {
       const q = doc(db, "koseyazilari", idArray);
-      const qarticle = doc(
-        db,
-        "koseyazilari",
-        idArray,
-        "article",
-        idArray
-      )
+      const qarticle = doc(db, "koseyazilari", idArray, "article", idArray);
 
-        await getDoc(q).then((doc) => setKoseYazisi(doc.data()));
-        await getDoc(qarticle)
-        .then((doc) => {
-           if(doc.exists) {
-            setKoseYazisiArticle(doc.data())
-           }
-        })
+      await getDoc(q).then((doc) => setKoseYazisi(doc.data()));
+      await getDoc(qarticle).then((doc) => {
+        if (doc.exists) {
+          setKoseYazisiArticle(doc.data());
+        }
+      });
     })();
-     return () => controller?.abort();
+    return () => controller?.abort();
   }, []);
 
-  return <ColumnsPage koseYazisiArticle={koseYazisiArticle} koseYazisi={koseYazisi} idArray={idArray} />;
+  return (
+    <ColumnsPage
+      koseYazisiArticle={koseYazisiArticle}
+      koseYazisi={koseYazisi}
+      idArray={idArray}
+    />
+  );
 };
 
 export default KoseYazisiDetayPage;

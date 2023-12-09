@@ -61,6 +61,7 @@ const SurMansetSlider = () => {
     initialSlide: hoveredIndex,
     arrows: false,
     focusOnSelect: true,
+    cssEase: "linear",
     slideToShow: 1,
     slideToScroll: 1,
     touchMove: true,

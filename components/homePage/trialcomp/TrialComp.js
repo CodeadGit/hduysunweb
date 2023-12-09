@@ -50,7 +50,7 @@ const TrialComp = () => {
   return (
     <div className="all">
       <div className="points">
-        <div className="points-left-section">
+        {/* <div className="points-left-section">
           <div className="points-left-section-logos">
             <img
               src={images[28]}
@@ -120,7 +120,7 @@ const TrialComp = () => {
               </tbody>
             </table>
           </div>
-        </div>
+        </div> */}
         <div className="points-right-section">
           {filteredNews?.slice(0, 6).map((item, idx) => {
             return (

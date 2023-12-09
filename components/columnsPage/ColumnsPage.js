@@ -4,7 +4,14 @@ import StickyNavbar from "../stickyNavbar/StickyNavbar";
 import { useThemeContext } from "@/context/ThemeContext";
 import AdsImage from "../haberPage/AdsImage";
 import { db } from "@/firebase/firebase.config";
-import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { useState, useEffect } from "react";
 import SingleColumns from "./SingleColumns";
 import { useModeContext } from "@/context/ModeContext";
@@ -19,33 +26,32 @@ const ColumnsPage = ({ koseYazisi, koseYazisiArticle }) => {
   const [author, setAuthor] = useState({});
   const [columnsLoading, setColumnsLoading] = useState(true);
 
-  const yazarId = String(koseYazisi?.authorid)
+  const yazarId = String(koseYazisi?.authorid);
 
   useEffect(() => {
-    const fetchAuthors = async () => {
-      const qp = query(collection(db, "koseyazilari"));
-      const qa = doc(db, "Columnists", "777319");
-      getDoc(qa)
-        .then((data) => setAuthor(data.data()))
-        .then(() => setColumnsLoading(false));
+    const fetchColumns = async () => {
+      const qp = query(
+        collection(db, "koseyazilari"),
+        orderBy("datePublished", "desc")
+      );
       try {
         const querySnapshot = await getDocs(qp);
         var columnsData = [];
-        if (!querySnapshot.empty) {
-          querySnapshot.forEach((doc) => {
-            if (doc.data().authorid === yazarId && doc.data().active) {
-              columnsData.push({ ...doc.data(), doc: doc.id });
-            }
-          });
-        }
+        querySnapshot.forEach((doc) => {
+          //if (doc.data().authorid === String(yazarId) && doc.data().active) {
+          columnsData.push({ ...doc.data(), doc: doc.id });
+          //}
+        });
         setColumns(columnsData);
         setColumnsLoading(false);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchAuthors();
+    fetchColumns();
   }, []);
+
+  const filteredColumns = columns?.filter((i) => i.authorid === yazarId && i.id !== koseYazisi.id);
 
   const links = [
     {
@@ -61,7 +67,6 @@ const ColumnsPage = ({ koseYazisi, koseYazisiArticle }) => {
       titleContent: true,
     },
   ];
-
 
   return (
     <div className={`columnsPage ${modeStatus ? "dark" : ""}`}>
@@ -95,10 +100,14 @@ const ColumnsPage = ({ koseYazisi, koseYazisiArticle }) => {
           {" "}
           {/* SAYFANIN SAĞ TARAFI */}
           <AdsImage />
+          <span className={`des-title ${modeStatus ? "dark" : ""}`}>
+            Köşe Yazıları
+          </span>
           <div className="other-articles">
-             {
-                columns.map((item, idx) => <SingleColumns item={item} key={idx}/>)
-             }
+            {filteredColumns.length <= 5 &&
+              filteredColumns.map((item, idx) => (
+                <SingleColumns item={item} key={idx} />
+              ))}
           </div>
         </div>
       </div>

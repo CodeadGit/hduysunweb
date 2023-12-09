@@ -38,12 +38,12 @@ const Home = ({ pageTitle, pageDescription }) => {
       {/* <Arcelik /> */}
       <Masthead />
       {/* <Currency />  */}
-      <Pharmacy />
+      {/* {<Pharmacy /> ? <Pharmacy/> : null} */}
       <Caption title="Sağlık" link="saglik" />
       <HomeCategory category="saglik" />
       {/* <Health /> */}
-      <WeatherInfo />
-      {<TrialComp /> ? <TrialComp /> : null}
+      {/* {<WeatherInfo /> ? <WeatherInfo/> : null} */}
+       {/* <TrialComp />  */}
       <Video />
       <Register />
       {/* <Login/> */}

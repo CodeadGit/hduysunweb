@@ -9,7 +9,7 @@ import { useModeContext } from "@/context/ModeContext";
 const NavbarLogo = ({wrapper}) => {
 
   const { mode } = useModeContext();
-  const modeStatus = mode === 'light';
+  const modeStatus = mode === '';
   const logo = modeStatus ? darkLogo : navLogo;
   
   return (

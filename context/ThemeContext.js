@@ -61,6 +61,7 @@ export const ThemeProvider = ({ children }) => {
   const [pinnedSurmansetData, setPinnedSurMansetData] = useState([]);
   const [searchButtonStatus, setSearchButtonStatus] = useState(true);
   const [newsLoading , setNewsLoading] = useState(true);
+  const [videoGallery, setVideoGallery] = useState([]);
 
   const [total, setTotal] = useState({
     league: [],
@@ -108,55 +109,6 @@ export const ThemeProvider = ({ children }) => {
     fetchAuthors();
   }, []);
 
-  useEffect(() => {
-    const fetchMansetPinned = async () => {
-      const q = query(collection(db, "MansetPinned"));
-      try {
-        const querySnapshot = await getDocs(q);
-        var pinnedMansetDataList = [];
-        querySnapshot.forEach((doc) => {
-          if (doc.data().insistent === false) {
-            pinnedMansetDataList.push({ ...doc.data(), doc: doc.id });
-          }
-        });
-        setPinnedMansetData(pinnedMansetDataList);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchMansetPinned();
-  }, []);
-
-  useEffect(() => {
-    const fetchSurmansetPinned = async () => {
-      const q = query(collection(db, "SurMansetPinned"));
-      try {
-        const querySnapshot = await getDocs(q);
-        var pinnedSurMansetDataList = [];
-
-        querySnapshot.forEach((doc) => {
-          if (doc.data().insistent === true) {
-            pinnedSurMansetDataList.push({ ...doc.data(), doc: doc.id });
-          }
-        });
-        setPinnedSurMansetData(pinnedSurMansetDataList);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchSurmansetPinned();
-  }, []);
-
-  // useEffect(() => {
-  //   let tagsContainer = [];
-  //   news.forEach((item) => {
-  //     const newsTags = [...item.tags];
-  //     tagsContainer.push(...newsTags);
-  //   });
-  //   setTagsList(tagsContainer);
-  // }, [news]);
-
-  // const uniqueTags = [...new Set(tagsList)];
 
   useEffect(() => {
     const categories = [...new Set(news.map((item) => item.category))];
@@ -191,9 +143,9 @@ export const ThemeProvider = ({ children }) => {
         `https://docapi.herkesduysun.com/puan-durumu-2`
       );
       setTotal({
-        league: res.data.result,
-        league1: res1.data.result,
-        league2: res2.data.result,
+        league: res?.data?.result,
+        league1: res1?.data?.result,
+        league2: res2?.data?.result,
       });
       setFetching(false);
     } catch (error) {
@@ -203,7 +155,6 @@ export const ThemeProvider = ({ children }) => {
   };
 
  
-
   useEffect(() => {
     const fetchFormalAdvert = async () => {
       const q = query(
@@ -276,7 +227,9 @@ export const ThemeProvider = ({ children }) => {
         var autorsList = [];
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-          autorsList.push({ ...doc.data(), doc: doc.id });
+          if(doc.data().active) {
+            autorsList.push({ ...doc.data(), doc: doc.id });
+          }
         });
         setAutors(autorsList);
       } catch (error) {
@@ -289,30 +242,34 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     const mostReadNews = news?.sort((a, b) => b.read - a.read).slice(0, 6);
     setMostReadNewsList(mostReadNews);
-    // const videoNews = videoGallery.filter((i) => i.category === "gundem");
-    // setVideoNewsList(videoNews);
   }, [news]);
-
-  // const handleChangeTitle = (title) => {
-  //   for(let s=1;s<=title.length;s++){
-  //        .replace()
-  //   }
-  // }
-
-  // const toggleDarkMode = () => {
-  //   const newDarkMode = !mode;
-  //   setMode(newDarkMode);
-  //   // Store the dark mode state in localStorage
-  //   localStorage.setItem('dark', JSON.stringify(newDarkMode));
-  // };
 
   const changeStoryModal = () => setStoryModal((prevState) => !prevState);
   const closeStoryModal = () => setStoryModal(false);
 
   const navigateStory = (cat) => {
     changeStoryModal();
-    // handleStories(cat);
   };
+
+  useEffect(() => {
+    const fetchVideoGallery = async () => {
+      const q = query(
+        collection(db, "VideoGallery"),
+        orderBy("datePublished", "desc")
+      );
+      try {
+        var videoGalleryList = [];
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          videoGalleryList.push({ ...doc.data(), doc: doc.id });
+        });
+        setVideoGallery(videoGalleryList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchVideoGallery();
+  }, []);
 
   const values = {
     storyModal,
@@ -327,6 +284,7 @@ export const ThemeProvider = ({ children }) => {
     news,
     loading,
     handleReadIncrement,
+    videoGallery,
     total,
     fetching,
     handleSearchButton,
@@ -338,11 +296,8 @@ export const ThemeProvider = ({ children }) => {
     hideAds,
     pinnedMansetData,
     showAds,
-    // videoNewsList,
-    //tagsTitles,
     autors,
     formalAdv,
-   // columnists,
     searchWord,
     setSearchWord,
     wordNews,

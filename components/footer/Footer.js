@@ -63,9 +63,7 @@ const Footer = () => {
 
   return (
     <div
-      className={`footer ${storyModall ? "none" : ""} ${
-        modeStatus ? "dark" : ""
-      }`}
+      className={`footer ${storyModall ? "none" : ""} ${mode}`}
     >
       <div className="footer-fluid">
         <div className="footer-fluid-logo">
@@ -73,7 +71,7 @@ const Footer = () => {
         </div>
         <div className="footer-fluid-info">
           <div className="info-left">
-            <div className={`info-left-caption ${modeStatus ? "dark" : ""}`}>
+            <div className={`info-left-caption ${mode}`}>
               <h4>Haberler</h4>
               <Link href="/foto-galeri">Foto Galeri</Link>
               <Link href="/video-galeri">Video Galeri</Link>
@@ -163,7 +161,7 @@ const Footer = () => {
         </ul>
       </div>
 
-      <div className={`footer-bottom ${modeStatus ? "dark" : ""}`}>
+      <div className={`footer-bottom ${mode}`}>
         <h6>© 2023 ADİN GRUP MEDYA REKLAM. Tüm Hakları Saklıdır</h6>
       </div>
     </div>

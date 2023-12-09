@@ -24,7 +24,7 @@ const BaseWrapper = ({ children, params }) => {
   const notShowAds = !advertPage || storyModall || !showAds;
 
   return (
-    <div className={`wholePageWrapper ${modeStatus ? "dark" : ""}`}>
+    <div className={`wholePageWrapper ${mode}`}>
       <div className={`leftPageWrapper ${notShowAds ? "none" : ""}`}>
         <PageSkinLeft />
       </div>

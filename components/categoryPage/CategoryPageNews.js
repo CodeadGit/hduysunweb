@@ -144,23 +144,22 @@ const CategoryPageNews = ({ category, totalPage }) => {
         {page === 1 ? (
           <div className="categoryPageWrapper-top">
             <div className="categoryPageWrapper-top-slider">
-              {categoryNews &&
-                !loading ? (
-                  <Slider
-                    ref={categorySliderRef}
-                    {...settings}
-                    className="categorySlider"
-                  >
-                    {categoryNews?.slice(0, 20).map((item, idx) => {
-                      return (
-                        <CategorySliderItem item={item} key={idx} idx={idx} />
-                      );
-                    })}
-                  </Slider>
-                ): null}
+              {categoryNews && !loading ? (
+                <Slider
+                  ref={categorySliderRef}
+                  {...settings}
+                  className="categorySlider"
+                >
+                  {categoryNews?.slice(0, 20).map((item, idx) => {
+                    return (
+                      <CategorySliderItem item={item} key={idx} idx={idx} />
+                    );
+                  })}
+                </Slider>
+              ) : null}
             </div>
             <div className="categoryPageWrapper-top-ads">
-                <iframe src="https://www.bursa.bel.tr/reklam/?w=300"></iframe>
+              <iframe src="https://www.bursa.bel.tr/reklam/?w=300"></iframe>
             </div>
           </div>
         ) : null}
@@ -171,14 +170,18 @@ const CategoryPageNews = ({ category, totalPage }) => {
             );
           })}
         </div>
-        <div>
-          <CategoryPagination
-            pagList={pagList}
-            totalPage={totalPage}
-            handleChange={handleChange}
-            page={page}
-          />
-        </div>
+        {params.category === "sonDakika" ? (
+          null
+        ) : (
+          <div>
+            <CategoryPagination
+              pagList={pagList}
+              totalPage={""}
+              handleChange={handleChange}
+              page={page}
+            />
+          </div>
+        )}
       </div>
     );
   }

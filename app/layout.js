@@ -34,32 +34,35 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="tr">
-      
       <body className={poppins.className} suppressHydrationWarning={true}>
-      <Head>
-        <title>Herkes Duysun</title>
+        <Head>
+          <title>Herkes Duysun</title>
 
-        <meta
-          name="description"
-          content="Türkiye'nin yeni medyası. Tüm haberler, en son haberler bu platformda. Tarafsız ve objektif haber kuruluşu."
-        />
+          <meta
+            name="description"
+            content="Türkiye'nin yeni medyası. Tüm haberler, en son haberler bu platformda. Tarafsız ve objektif haber kuruluşu."
+          />
 
-        <meta name="datePublished" content="2019-09-27T11:55:00+0300" />
-        <meta name="dateModified" content="2019-09-27T12:13:52+0300" />
-        <meta name="articleSection" content="video" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+          <meta name="datePublished" content="2019-09-27T11:55:00+0300" />
+          <meta name="dateModified" content="2019-09-27T12:13:52+0300" />
+          <meta name="articleSection" content="video" />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
               !function(){var t=document.createElement("script");t.setAttribute("src",'https://cdn.p.analitik.bik.gov.tr/tracker'+(typeof Intl!=="undefined"?(typeof (Intl||"").PluralRules!=="undefined"?'1':typeof Promise!=="undefined"?'2':typeof MutationObserver!=='undefined'?'3':'4'):'4')+'.js'),t.setAttribute("data-website-id","657f41c4-4e9d-405a-95e8-84eb9ec7719a"),t.setAttribute("data-host-url",'//657f41c4-4e9d-405a-95e8-84eb9ec7719a.collector.p.analitik.bik.gov.tr'),document.head.appendChild(t)}();
             `,
-          }}
-        />
-      {/* Basın İlan Head Koduna */}
-        <script dangerouslySetInnerHTML={{__html:`!function(){var t=document.createElement("script");t.setAttribute("src",'https://cdn.p.analitik.bik.gov.tr/tracker'+(typeof Intl!=="undefined"?(typeof (Intl||"").PluralRules!=="undefined"?'1':typeof Promise!=="undefined"?'2':typeof MutationObserver!=='undefined'?'3':'4'):'4')+'.js'),t.setAttribute("data-website-id","657f41c4-4e9d-405a-95e8-84eb9ec7719a"),t.setAttribute("data-host-url",'//657f41c4-4e9d-405a-95e8-84eb9ec7719a.collector.p.analitik.bik.gov.tr'),document.head.appendChild(t)}()`}}/>
+            }}
+          />
+          {/* Basın İlan Head Koduna */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `!function(){var t=document.createElement("script");t.setAttribute("src",'https://cdn.p.analitik.bik.gov.tr/tracker'+(typeof Intl!=="undefined"?(typeof (Intl||"").PluralRules!=="undefined"?'1':typeof Promise!=="undefined"?'2':typeof MutationObserver!=='undefined'?'3':'4'):'4')+'.js'),t.setAttribute("data-website-id","657f41c4-4e9d-405a-95e8-84eb9ec7719a"),t.setAttribute("data-host-url",'//657f41c4-4e9d-405a-95e8-84eb9ec7719a.collector.p.analitik.bik.gov.tr'),document.head.appendChild(t)}()`,
+            }}
+          />
 
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
               !function(f,b,e,v,n,t,s)
               {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
               n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -71,52 +74,52 @@ export default function RootLayout({ children }) {
               fbq('init', '875651633516102'); 
               fbq('track', 'PageView');
             `,
-          }}
-        />
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            src="https://www.facebook.com/tr?id=875651633516102&ev=PageView&noscript=1"
+            }}
           />
-        </noscript>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=UA-205477047-35"
-        />
+          <noscript>
+            <img
+              height="1"
+              width="1"
+              src="https://www.facebook.com/tr?id=875651633516102&ev=PageView&noscript=1"
+            />
+          </noscript>
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-205477047-35"
+          />
 
-        {/* Google Tag Manager noscript */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=UA-205477047-35"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          ></iframe>
-        </noscript>
+          {/* Google Tag Manager noscript */}
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=UA-205477047-35"
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            ></iframe>
+          </noscript>
 
-        {/* Google Analytics (gtag.js) Script */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-1VGJWF7CKL"
-        />
+          {/* Google Analytics (gtag.js) Script */}
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-1VGJWF7CKL"
+          />
 
-        {/* Google Analytics (gtag.js) Config */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+          {/* Google Analytics (gtag.js) Config */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'UA-205477047-35');
               gtag('config', 'G-1VGJWF7CKL');
             `,
-          }}
-        />
-        <script
-          type="text/javascript"
-          dangerouslySetInnerHTML={{
-            __html: `
+            }}
+          />
+          <script
+            type="text/javascript"
+            dangerouslySetInnerHTML={{
+              __html: `
               (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
               m[i].l=1*new Date();
               for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
@@ -130,23 +133,23 @@ export default function RootLayout({ children }) {
                   webvisor:true
               });
             `,
-          }}
-        />
+            }}
+          />
 
-        {/* Yandex.Metrika noscript */}
-        <noscript>
-          <div>
-            <img
-              src="https://mc.yandex.ru/watch/93595743"
-              style={{ position: "absolute", left: "-9999px" }}
-              alt=""
-            />
-          </div>
-        </noscript>
+          {/* Yandex.Metrika noscript */}
+          <noscript>
+            <div>
+              <img
+                src="https://mc.yandex.ru/watch/93595743"
+                style={{ position: "absolute", left: "-9999px" }}
+                alt=""
+              />
+            </div>
+          </noscript>
 
-        {/* Yandex.Metrika Verification Meta Tag */}
-        <meta name="yandex-verification" content="47b73cadef9785d0" />
-      </Head>
+          {/* Yandex.Metrika Verification Meta Tag */}
+          <meta name="yandex-verification" content="47b73cadef9785d0" />
+        </Head>
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-KV964JN"
@@ -175,25 +178,25 @@ export default function RootLayout({ children }) {
         />
         <ErrorBoundary>
           <ModeProvider>
-          <AuthenticationProvider>
-            <FetchAssetsContextProvider>
-              <CategoriesProvider>
-              <ThemeProvider>
-                  <GalleryProvider>
-                  <TagProvider>
-                    <AdsContextProvider>
-                      <Navbar />
-                      {/* <MiniNavbar /> */}
-                      {/* <LogoNext /> */}
-                      <BaseWrapper>{children}</BaseWrapper>
-                      <Footer />
-                    </AdsContextProvider>
-                  </TagProvider>
-                  </GalleryProvider>
-                </ThemeProvider>
-              </CategoriesProvider>
-            </FetchAssetsContextProvider>
-          </AuthenticationProvider>
+            <AuthenticationProvider>
+            <GalleryProvider>
+              <FetchAssetsContextProvider>
+                  <CategoriesProvider>
+                    <ThemeProvider>
+                      <TagProvider>
+                        <AdsContextProvider>
+                          <Navbar />
+                          {/* <MiniNavbar /> */}
+                          {/* <LogoNext /> */}
+                          <BaseWrapper>{children}</BaseWrapper>
+                          <Footer />
+                        </AdsContextProvider>
+                      </TagProvider>
+                    </ThemeProvider>
+                  </CategoriesProvider>
+              </FetchAssetsContextProvider>
+              </GalleryProvider>
+            </AuthenticationProvider>
           </ModeProvider>
         </ErrorBoundary>
       </body>

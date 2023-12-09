@@ -86,7 +86,7 @@ const BreakingNews = () => {
            var docMonth = docDate.getMonth();
            var isSixHoursPassed = docMonth === nowMonth && nowDay === docDay && (nowHour-docHour <= 18);
           breakingNewsList.unshift(doc.data());
-           if (isSixHoursPassed) {
+           if (isSixHoursPassed && doc.data().active) {
              breakingNewsList.unshift(doc.data());
            };
         });

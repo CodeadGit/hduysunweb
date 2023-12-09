@@ -11,7 +11,7 @@ export default function Home() {
   const modeStatus = mode === "dark";
 
   return (
-    <div className={`wrapper ${modeStatus ? "dark" : "light"}`}>
+    <div className={`wrapper ${mode}`}>
       {!storyModall ? (
         <HomePage />
       ) : (

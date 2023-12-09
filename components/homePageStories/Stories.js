@@ -16,11 +16,11 @@ const Stories = () => {
 
   const { storiesList, storiesLoading, combineStories, handleStories } = useAdsContext();
 
-  const uniqueCategories = [...new Set(storiesList.map((i) => i.category))];
+  const uniqueCategories = [...new Set(storiesList?.map((i) => i.category))];
 
-  const singleStories = storiesList.filter((i) => {
+  const singleStories = storiesList?.filter((i) => {
     
-    if (uniqueCategories.includes(i.category)) {
+    if (uniqueCategories?.includes(i.category)) {
       const idx = uniqueCategories.indexOf(i.category);
       uniqueCategories.splice(idx,1);
       return i;

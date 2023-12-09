@@ -40,8 +40,8 @@ import { useGalleryContext } from "@/context/GalleryContext";
 
 const Haber = ({ thisPageArticle, thisPage }) => {
 
-  const { mostReadNewsList } = useThemeContext();
-  const {videoGallery } = useGalleryContext;
+  const { mostReadNewsList, videoGallery } = useThemeContext();
+  //const {videoGallery } = useGalleryContext;
   const { mode } = useModeContext();
 
   const modeStatus = mode === "dark";

@@ -16,10 +16,10 @@ import { useModeContext } from "@/context/ModeContext";
 const Navbar = () => {
   const { setSearchWord } = useThemeContext();
   const { mode, toggle } = useModeContext();
-  const modeStatus = mode === "dark";
   const { storyModall } = useAdsContext();
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [location ,setLocation] = useState({})
+  const modeStatus = mode === "dark";
 
   // if (navigator.geolocation) {
   //   navigator.geolocation.getCurrentPosition(
@@ -28,21 +28,21 @@ const Navbar = () => {
   //     })
   //   }
 
-    // console.log(location)
-
   return (
-    <div className={`navbar ${storyModall ? "none" : ""}  ${modeStatus ? "dark" : ""}`}>
+    <div className={`navbar ${mode} ${storyModall ? "none" : ""}`} 
+    style={{backgroundColor:mode&&"#3e474f"}}
+    >
       <div className="navbar-top-header">
          <NavbarLogo wrapper="logo-wrapper"/>
         <div className="top-right-wrapper">
           <div className="info-section">
-         <Finance /> 
-          <Weather showSearchBar={showSearchBar}/>
+         {/* <Finance />  */}
+          {/* <Weather showSearchBar={showSearchBar}/> */}
             <Buttons wrapper="buttons" showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar} />
           </div>
           <Categories wrapper="categories" />
         </div>
-        <DrawerMenu toggle={toggle} modeStatus={modeStatus} />
+        <DrawerMenu toggle={toggle} modeStatus={mode} />
       </div>
       <BreakingNews />
     </div>

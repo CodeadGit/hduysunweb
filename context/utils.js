@@ -186,8 +186,6 @@ export const categoryUpperConvertor = {
   astroloji: "ASTROLOJİ",
 };
 
-
-
 export const handleScroll = (e) => {
   e.preventDefault();
   const href = e.currentTarget.href;

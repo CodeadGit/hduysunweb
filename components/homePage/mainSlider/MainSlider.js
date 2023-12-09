@@ -57,6 +57,7 @@ const MainSlider = () => {
     swipeToSlide: true,
     autoplay: true,
     autoplaySpeed: 5000,
+    cssEase: "linear",
     dots: true,
     adaptiveHeight: false,
     slidecount: null,
@@ -72,7 +73,7 @@ const MainSlider = () => {
         <ul className="dots-ul">
           {dots.map((dot, idx) => (
             <li
-            className="dots-ul-li"
+              className="dots-ul-li"
               key={idx}
               onMouseEnter={() => sliderRef.current.slickGoTo(idx)}
             >

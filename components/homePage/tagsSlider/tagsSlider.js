@@ -166,7 +166,7 @@ const TagsSlider = () => {
             Popüler Etiketler
           </span>
           <div className="sliderContainer-top-right-tags">
-            {filteredTags.slice(0, 7).map((i, idx) => (
+            {filteredTags?.slice(0, 7).map((i, idx) => (
               <Link
                 key={idx}
                 onClick={() => tagButtonClickHandler(i)}
@@ -182,7 +182,7 @@ const TagsSlider = () => {
             ))}
           </div>
           <div className="sliderContainer-top-right-tagsRes">
-            {tagsList.slice(0, 6).map((i, idx) => (
+            {tagsList?.slice(0, 6).map((i, idx) => (
               <Link
                 key={idx}
                 onClick={() => tagButtonClickHandler(i)}
@@ -203,7 +203,7 @@ const TagsSlider = () => {
         </div>
       </div>
       <Slider {...settings} className="sliderContainer-slides">
-        {sliderNews.slice(0, 10).map((item, idx) => {
+        {sliderNews?.slice(0, 10).map((item, idx) => {
           return (
             <CardItem
               item={item}

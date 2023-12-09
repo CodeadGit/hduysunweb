@@ -26,8 +26,8 @@ const CategoryPage= ({category}) => {
   //     catch(error) {
   //        console.log(error)
   //     }
-  //   }
-  //    fetchCategoryPage();
+    // }
+     // fetchCategoryPage();
   // },[]);
 
   const links = [

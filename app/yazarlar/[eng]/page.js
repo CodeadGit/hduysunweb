@@ -34,7 +34,7 @@ const YazarDetayPage = ({ params }) => {
         var columnistsData = [];
         if (!querySnapshot.empty) {
           querySnapshot.forEach((doc) => {
-            if (doc.data().authorid === idForThisAuthor && doc.data().active) {
+            if (doc.data().authorid === idForThisAuthor && doc.data().active && doc.data().isNow) {
               columnistsData.push({ ...doc.data(), doc: doc.id });
             }
           });

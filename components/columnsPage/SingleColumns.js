@@ -1,29 +1,38 @@
 import React from "react";
 import { categoryUpperConvertor } from "@/context/utils";
 import Link from "next/link";
-import { handleShort,handleShorttSingleHaber,handleShortt } from "@/context/utils";
+import {
+  handleShort,
+  handleShorttSingleHaber,
+  handleShortt,
+} from "@/context/utils";
 import "./singleColumns.scss";
 import { useThemeContext } from "@/context/ThemeContext";
+import { useModeContext } from "@/context/ModeContext";
+const SingleColumns = ({ item }) => {
+  const { id, title, eng } = item;
 
-const SingleColumns = ({ image, category, eng, id, title, mode }) => {
- 
-  const { handleReadIncrement} = useThemeContext();
+  // const { handleReadIncrement} = useThemeContext();
+  const { mode } = useModeContext();
 
   return (
     <Link
-      href={`/${category}/${eng}-${id}`}
-      className="most-reads-single"
+      href={`yazarlar/koseyazilari/${eng}-${id}`}
+      className={`single-columns ${mode ? "dark" : ""}`}
       //target="_blank"
-      onClick={() => handleReadIncrement(category, id)}
+      // onClick={() => handleReadIncrement(category, id)}
     >
-      <div className="most-reads-single-pic">
+      {/* <div className="most-reads-single-pic">
         <img src={image} alt={title} />
-      </div>
-      <div className="most-reads-single-content">
-        <p className={`content-title ${mode ? "dark" : ""}`}>
+      </div> */}
+      <div className="single-columns-content">
+        {/* <p className={`content-title ${mode ? "dark" : ""}`}>
           {categoryUpperConvertor[category]}
+        </p> */}
+        <p className={`single-columns-content-title ${mode ? "dark" : ""}`}>
+          {title}
         </p>
-         <p className={`content-itself ${mode ? "dark" : ""}`}>
+        {/* <p className={`content-itself ${mode ? "dark" : ""}`}>
          {handleShorttSingleHaber(title)} 
         </p>
         <p className={`content-med ${mode ? "dark" : ""}`}>
@@ -31,7 +40,7 @@ const SingleColumns = ({ image, category, eng, id, title, mode }) => {
         </p> 
         <p className={`content-res ${mode ? "dark" : ""}`}>
           {handleShort(title, 5)}
-        </p>
+        </p> */}
       </div>
     </Link>
   );

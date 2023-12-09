@@ -19,7 +19,7 @@ const Pharmacy = () => {
   const fetchEczaneInfo = async () => {
     try {
       const res = await axios.get(
-        `https://api.collectapi.com/health/dutyPharmacy?ilce=${info.region}&il=${info.city}`,
+        `https://api.collectapi.com/health/dutyPharmacy?ilce=${info?.region}&il=${info?.city}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -28,7 +28,7 @@ const Pharmacy = () => {
           },
         }
       );
-      const list = res.data.result;
+      const list = res?.data?.result;
       setEczaneList(list);
     } catch (error) {
       console.log(error);
@@ -53,7 +53,7 @@ const Pharmacy = () => {
       </div>
       <div className="pharmacy-list">
         <div className="pharmacy-list-cities">
-          {eczaneList.slice(0, 5).map((item,idx) => {
+          {eczaneList?.slice(0, 5)?.map((item,idx) => {
             const { name, dist, phone } = item;
             return (
               <div key={name} className="pharmacy-single">
