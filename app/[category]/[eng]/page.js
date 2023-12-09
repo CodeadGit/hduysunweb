@@ -5,6 +5,7 @@ import { doc, getDoc } from "firebase/firestore";
 import Haber from "@/components/haberPage/Haber";
 import DetailsPageSkeleton from "@/components/detailsPageSkeleton/DetailsPageSkeleton";
 import { notFound } from "next/navigation";
+import BikHeader from "@/components/BikHeader";
 
 const DetailsPage = ({ params }) => {
 
@@ -56,7 +57,10 @@ const DetailsPage = ({ params }) => {
   if (!thisPage) return notFound();
   
   return (
-      <Haber thisPageArticle={thisPageArticle} thisPage={thisPage} />
+      <>
+        <BikHeader/>
+        <Haber thisPageArticle={thisPageArticle} thisPage={thisPage} />
+      </>
   );
 };
 
