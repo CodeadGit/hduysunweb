@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Category from "../../components/categoryPage/CategoryPage";
 import { useCategoriesContext } from "@/context/CategoriesContext";
 import { notFound } from "next/navigation";
+import BikHeader from "@/components/BikHeader";
 
 const CategoryPage = ({ params }) => {
   const { category } = params;
@@ -12,7 +13,10 @@ const CategoryPage = ({ params }) => {
   //   return notFound();
   // }
 
-  return <Category category={category} />;
+  return (<>
+  <BikHeader/>
+  <Category totalPage={totalPage} category={category} />
+  </>);
 };
 
 export default CategoryPage;
