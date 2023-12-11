@@ -1,7 +1,7 @@
 "use client";
 import { useThemeContext } from "@/context/ThemeContext";
 import React, { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import Link from "next/link";
 import "./format.scss";
@@ -16,35 +16,46 @@ const SingleTag = ({ params }) => {
 
   etiket = decodeURIComponent(etiket);
 
+
   useEffect(() => {
-    const tagNews = tagsList
-      .filter((tag) => tag.tag === etiket)
-      .map((item) => [...item.related])
-      .map((news) => {
-        const [category, id] = news.join("").split("/");
-        return [category, id];
-      });
-    setRelatedTagsNews(tagNews);
-  }, [tagsList]);
+    const fetchData = async () => {
+      try {
+        const qa = query(doc(db, "TagsList",etiket));
+        const querySnapshot = await getDoc(qa);
+        setRelatedTagsNews(querySnapshot.data().related)
+      } catch (error) {
+        console.error("Etiketler yüklenirken hata:", error);
+      }
+    };
+
+      fetchData();
+    
+  }, [etiket]);
+
 
   useEffect(() => {
     const fetchTagNews = async () => {
-      for (const [category, id] of relatedTagsNews) {
+      let newsArray=[]
+      for (const related of relatedTagsNews) {
+        var splitted=String(related).split("/")
         try {
-          const docRef = doc(db, category, id);
+          const docRef = doc(db, splitted[0], splitted[1]);
           const result = await getDoc(docRef);
-          setShownNews((pre) => ([...pre, result.data()]));
+          newsArray.push(result.data());
           setShownNewsLoading(false);
         } catch (error) {
           console.log(error);
         }
       }
+      setShownNews(newsArray)
+      setShownNewsLoading(false)
     };
     fetchTagNews();
   }, [relatedTagsNews]);
 
-  if (shownNewsLoading) return <h4>YÜKLENİYOR...</h4>
 
+  if (shownNewsLoading) return <h4>yükleniyor...</h4>
+console.log(shownNews)
   return (
     <div className="tagsListWrapper">
       {shownNews.map((item, idx) => {

@@ -34,7 +34,7 @@ const TagsPage = () => {
     },
   ];
 
-  if (tagsListLoading) return <h2>YÜKLENİYOR...</h2>;
+  if (tagsListLoading) return <h2>yükleniyor...</h2>;
 
   return (
     <div className="whole-tags-page">
