@@ -16,6 +16,7 @@ import { ModeProvider } from "@/context/ModeContext";
 import Head from "next/head";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import HomePage from "@/components/homePage/HomePage";
+import BikHeader from "@/components/BikHeader";
 
 // import LogoNext from "@/components/ads/adsComponents/LogoNext";
 // import MiniNavbar from '@/components/miniNavbar/MiniNavbar';
@@ -149,6 +150,8 @@ export default function RootLayout({ children }) {
 
           {/* Yandex.Metrika Verification Meta Tag */}
           <meta name="yandex-verification" content="47b73cadef9785d0" />
+          <BikHeader/>
+
         </Head>
         <noscript>
           <iframe
@@ -199,6 +202,7 @@ export default function RootLayout({ children }) {
             </AuthenticationProvider>
           </ModeProvider>
         </ErrorBoundary>
+        <BikHeader/>
       </body>
     </html>
   );
