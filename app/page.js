@@ -4,6 +4,8 @@ import HomePage from "../components/homePage";
 import NewsStories from "@/components/newsStories/NewsStories";
 import "./page.scss";
 import { useAdsContext } from "@/context/AdsContext";
+import Script from "next/script";
+import BikHeader from "@/components/BikHeader";
 
 export default function Home() {
 
@@ -13,6 +15,7 @@ export default function Home() {
 
   return (
     <div className={`wrapper ${modeStatus ? "dark" : "light"}`}>
+      <BikHeader/>
       {!storyModall ? (
         <HomePage />
       ) : (

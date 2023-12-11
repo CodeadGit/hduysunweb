@@ -5,6 +5,7 @@ import { categories } from "@/context/utils";
 import { notFound } from "next/navigation";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
+import BikHeader from "@/components/BikHeader";
 
 const CategoryPage = ({ params }) => {
   
@@ -30,7 +31,10 @@ useEffect(() => {
    fetchCategoryPage();
 },[]);
 
-  return <Category totalPage={totalPage} category={category} />;
+  return (<>
+  <BikHeader/>
+  <Category totalPage={totalPage} category={category} />
+  </>);
 };
 
 export default CategoryPage;

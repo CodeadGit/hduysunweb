@@ -12,6 +12,8 @@ import { CategoriesProvider } from "@/context/CategoriesContext";
 import { TagContextProvider } from "@/context/TagContext";
 import { FetchAssetsContextProvider } from "@/context/FetchAssetsContext";
 import Head from "next/head";
+import Script from "next/script";
+import BikHeader from "@/components/BikHeader";
 // import LogoNext from "@/components/ads/adsComponents/LogoNext";
 // import MiniNavbar from '@/components/miniNavbar/MiniNavbar';
 
@@ -25,6 +27,7 @@ export const metadata = {
   description: "Türkiye'nin yeni medyası. Tüm haberler, en son haberler bu platformda. Tarafsız ve objektif haber kuruluşu.",
 
 };
+
 
 export default function RootLayout({ children }) {
   return (
@@ -40,13 +43,8 @@ export default function RootLayout({ children }) {
         <meta name="datePublished" content="2019-09-27T11:55:00+0300"/>
         <meta name="dateModified" content="2019-09-27T12:13:52+0300"/>
         <meta name="articleSection" content="video"/>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(){var t=document.createElement("script");t.setAttribute("src",'https://cdn.p.analitik.bik.gov.tr/tracker'+(typeof Intl!=="undefined"?(typeof (Intl||"").PluralRules!=="undefined"?'1':typeof Promise!=="undefined"?'2':typeof MutationObserver!=='undefined'?'3':'4'):'4')+'.js'),t.setAttribute("data-website-id","657f41c4-4e9d-405a-95e8-84eb9ec7719a"),t.setAttribute("data-host-url",'//657f41c4-4e9d-405a-95e8-84eb9ec7719a.collector.p.analitik.bik.gov.tr'),document.head.appendChild(t)}();
-            `,
-          }}
-        />
+
+        
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -70,7 +68,7 @@ export default function RootLayout({ children }) {
             src="https://www.facebook.com/tr?id=875651633516102&ev=PageView&noscript=1"
           />
         </noscript>
-        <script
+        <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=UA-205477047-35"
         />
@@ -86,10 +84,6 @@ export default function RootLayout({ children }) {
         </noscript>
 
         {/* Google Analytics (gtag.js) Script */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-1VGJWF7CKL"
-        />
 
         {/* Google Analytics (gtag.js) Config */}
         <script
@@ -136,7 +130,16 @@ export default function RootLayout({ children }) {
 
         {/* Yandex.Metrika Verification Meta Tag */}
         <meta name="yandex-verification" content="47b73cadef9785d0" />
-      
+        
+       
+        <Script
+          language="javascript"
+          type="text/javascript"
+          src={`https://cdn.p.analitik.bik.gov.tr/tracker`}
+          data-website-id="657f41c4-4e9d-405a-95e8-84eb9ec7719a"
+          data-host-url='//657f41c4-4e9d-405a-95e8-84eb9ec7719a.collector.p.analitik.bik.gov.tr'
+        />
+        
       </Head>
       <body className={poppins.className} suppressHydrationWarning={true}>
       
@@ -183,7 +186,8 @@ export default function RootLayout({ children }) {
             </CategoriesProvider>
           </FetchAssetsContextProvider>
         </AuthenticationProvider>
-      </body>
+        
+    </body>
     </html>
   );
 }
