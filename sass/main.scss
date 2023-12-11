@@ -18,7 +18,7 @@ html {
 
 body {
   line-height: 1.2;
-  background-color: #f7f7f7;
+ // background-color: #f7f7f7;
   padding-right: 0 !important;
   overflow-y: hidden;
 }
@@ -57,9 +57,9 @@ body {
      justify-content: center;
   } 
 
-  &.dark {
-    background-color: var(--darkBgColor);
-  }
+  // &.dark {
+  //   background-color: var(--darkBgColor);
+  // }
 
   .leftPageWrapper {
     // border: 2px solid red;

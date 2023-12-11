@@ -7,7 +7,7 @@ const KunyeItem = ({item}) => {
 
   return (
     <Link 
-   // target="_blank" 
+    target="_blank" 
     className="footer-link" href={url}>{caption}</Link>
   )
 }

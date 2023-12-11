@@ -57,7 +57,7 @@ const Categories = ({ wrapper }) => {
                 }`}
                 onClick={closeStoryModal}
               >
-                <span className={`link-label ${modeStatus ? "dark" : ""} `}>
+                <span className={`link-label ${mode} `}>
                   {i.label}
                 </span>
                 {isActive && (
@@ -69,7 +69,7 @@ const Categories = ({ wrapper }) => {
               {idx === 7 && (
                 <Link
                   href={`/foto-galeri`}
-                  className={`link-fotoGaleri ${modeStatus ? "dark" : ""}`}
+                  className={`link-fotoGaleri ${mode}`}
                   onClick={closeStoryModal}
                 >
                   Foto Galeri
@@ -83,7 +83,7 @@ const Categories = ({ wrapper }) => {
           size="large"
           onClick={toggleDrawer(true)}
         >
-         <MenuIcon className={`navmenu-icon ${modeStatus ? "dark" :  ""}`}></MenuIcon>
+         <MenuIcon className={`navmenu-icon ${mode}`}></MenuIcon>
         </IconButton>
         <CategoriesMenu toggleDrawer={toggleDrawer} isMenuDrawer={isMenuDrawer}/>
       </div>

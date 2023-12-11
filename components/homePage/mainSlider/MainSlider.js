@@ -80,7 +80,7 @@ const MainSlider = () => {
               {dot}
             </li>
           ))}
-          <Link href="/mansetler" className="all-link">
+          <Link href="/mansetler" target="_blank" className="all-link">
             T
           </Link>
         </ul>

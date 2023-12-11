@@ -13,7 +13,7 @@ const HomeCategoryItem = ({ item, modeStatus }) => {
 
   return (
     <Link href={`/${category}/${eng}-${id}`} 
-   // target="_blank" 
+    target="_blank" 
     className={`homeCategoryCard ${modeStatus ? "dark" : ""}`} onClick={() => handleReadIncrement(category, id)}>
       <div className="homeCategoryCard-top">
         <div >

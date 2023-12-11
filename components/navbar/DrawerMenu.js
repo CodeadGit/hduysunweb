@@ -53,7 +53,7 @@ export default function DrawerMenu({ toggle, modeStatus }) {
     >
       <List sx={{height:"auto"}}>
         {categories.map((i, index) => (
-          <Link href={`/${i.collection}`} key={i.index}>
+          <Link href={`/${i.collection}`} key={i.index}  target="_blank">
             <ListItem key={i.index} disablePadding>
               <ListItemButton>
                 <ListItemText

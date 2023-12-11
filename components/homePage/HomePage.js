@@ -30,7 +30,7 @@ const HomePage = () => {
   }
 
   return (
-    <div className={`homeContainer ${modeStatus ? "dark" : ""}`}>
+    <div className={`homeContainer ${mode}`}  style={{backgroundColor:mode&&"inherit"}}>
       <MainSlider />
       {/* <MainNewsComponent
         handleReadIncrement={handleReadIncrement}

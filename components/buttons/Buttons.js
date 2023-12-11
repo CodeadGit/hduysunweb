@@ -38,14 +38,14 @@ const Buttons = ({
       /> */}
       <button
         type="button"
-        className={`search ${modeStatus ? "dark" : ""}`}
+        className={`search ${mode}`}
         onClick={() => router.push("/arama")}
       >
         <BiSearch />
       </button>
       <button
         type="button"
-        className={`switch ${modeStatus ? "dark" : ""}`}
+        className={`switch ${mode}`}
         onClick={toggle}
       >
         <BsMoonFill />

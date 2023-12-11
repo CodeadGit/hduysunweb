@@ -11,16 +11,16 @@ const Caption = ({ title, link }) => {
   const modeStatus = mode === "dark";
 
   return (
-    <div className={`categoryCaption ${modeStatus ? "dark" : ""}`}>
-      <h3 className={`${modeStatus ? "dark" : ""}`} style={{ fontSize: "1.25rem", fontWeight: "600" }}>
+    <div className={`categoryCaption ${mode}`}>
+      <h3 className={`${mode}`} style={{ fontSize: "1.25rem", fontWeight: "600" }}>
         {title}
       </h3>
-      <div className={`line ${modeStatus ? "dark" : ""}`}></div>
+      <div className={`line ${mode}`}></div>
       {/* <p className={modeStatus ? "dark" : ""} onClick={() => router.push(`/${link}`)}>Hepsini Gör</p>  */}
       <Link
         className={modeStatus ? "dark" : ""}
         href={`/${link}`}
-      //  target="_blank"
+        target="_blank"
       >
         Hepsini Gör
       </Link>

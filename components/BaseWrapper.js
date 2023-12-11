@@ -7,11 +7,9 @@ import { useAdsContext } from "@/context/AdsContext";
 import { useModeContext } from "@/context/ModeContext";
 
 const BaseWrapper = ({ children, params }) => {
-
   const { showAds } = useThemeContext();
   const { mode } = useModeContext();
   const { storyModall, advertPage } = useAdsContext();
-  const modeStatus = mode === "dark";
 
   const plainStyle = {
     maxWidth: "1200px",
@@ -24,11 +22,20 @@ const BaseWrapper = ({ children, params }) => {
   const notShowAds = !advertPage || storyModall || !showAds;
 
   return (
-    <div className={`wholePageWrapper ${mode}`}>
+    <div
+      className={`wholePageWrapper ${mode}`}
+      style={{ backgroundColor: mode && "#3e474f" }}
+    >
       <div className={`leftPageWrapper ${notShowAds ? "none" : ""}`}>
         <PageSkinLeft />
       </div>
-      <div className="centerPageWrapper" style={storyModall ? storyStyle : plainStyle}> {children} </div>
+      <div
+        className="centerPageWrapper"
+        style={storyModall ? storyStyle : plainStyle}
+      >
+        {" "}
+        {children}{" "}
+      </div>
       <div className={`rightPageWrapper ${notShowAds ? "none" : ""}`}>
         <PageSkinRight />
       </div>

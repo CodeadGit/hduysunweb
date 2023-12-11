@@ -62,9 +62,7 @@ const Footer = () => {
   const { storyModall } = useAdsContext();
 
   return (
-    <div
-      className={`footer ${storyModall ? "none" : ""} ${mode}`}
-    >
+    <div className={`footer ${storyModall ? "none" : ""} ${mode}`}>
       <div className="footer-fluid">
         <div className="footer-fluid-logo">
           <Image width={234} src={darkLogo} alt="navbarLogo" priority />
@@ -73,38 +71,60 @@ const Footer = () => {
           <div className="info-left">
             <div className={`info-left-caption ${mode}`}>
               <h4>Haberler</h4>
-              <Link href="/foto-galeri">Foto Galeri</Link>
-              <Link href="/video-galeri">Video Galeri</Link>
+              <Link href="/foto-galeri" target="_blank">
+                Foto Galeri
+              </Link>
+              <Link href="/video-galeri" target="_blank">
+                Video Galeri
+              </Link>
             </div>
             <div className="info-left-categories">
               <div className="left-cat">
-                {categories.slice(0, 6).map((item,idx) => {
+                {categories.slice(0, 6).map((item, idx) => {
                   return (
                     <ul className="left-cat-list" key={idx}>
                       <li>
-                        <Link key={idx} href={`${item.collection}`}>{item.label}</Link>
+                        <Link
+                          target="_blank"
+                          key={idx}
+                          href={`${item.collection}`}
+                        >
+                          {item.label}
+                        </Link>
                       </li>
                     </ul>
                   );
                 })}
               </div>
               <div className="mid-cat">
-                {categories.slice(7, 13).map((item,idx) => {
+                {categories.slice(7, 13).map((item, idx) => {
                   return (
-                    <ul className="mid-cat-list" key={idx}> 
+                    <ul className="mid-cat-list" key={idx}>
                       <li>
-                        <Link key={idx} href={`${item.collection}`}>{item.label}</Link>
+                        <Link
+                          target="_blank"
+                          key={idx}
+                          href={`${item.collection}`}
+                        >
+                          {item.label}
+                        </Link>
                       </li>
                     </ul>
                   );
                 })}
               </div>
               <div className="right-cat">
-                 {categories?.slice(13, 19)?.map((item,idx) => {
+                {categories?.slice(13, 19)?.map((item, idx) => {
                   return (
                     <ul className="right-cat-list" key={idx}>
                       <li>
-                        <Link key={idx} href={`${item.collection}`}>{item.label}</Link>
+                        <Link
+                          target="_blank"
+                          key={idx}
+                          href={`${item.collection}`}
+                        >
+                          {item.label}
+                        </Link>
                       </li>
                     </ul>
                   );

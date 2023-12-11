@@ -1,3 +1,4 @@
+
 import { Poppins } from "next/font/google";
 import "../sass/main.scss";
 import { ThemeProvider } from "@/context/ThemeContext";
@@ -13,6 +14,7 @@ import { TagProvider } from "@/context/TagContext";
 import { FetchAssetsContextProvider } from "@/context/FetchAssetsContext";
 import { GalleryProvider } from "@/context/GalleryContext";
 import { ModeProvider } from "@/context/ModeContext";
+import { useModeContext } from "@/context/ModeContext";
 import Head from "next/head";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import HomePage from "@/components/homePage/HomePage";
@@ -32,9 +34,15 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
+  const savedTheme =
+  (typeof window !== "undefined" && localStorage?.getItem("themeMode")) || "";
+
+  const mode = "dark"
+
   return (
     <html lang="tr">
-      <body className={poppins.className} suppressHydrationWarning={true}>
+      <body style={{backgroundColor:savedTheme ? "#3e474f" : "f7f7f7"}} className={poppins.className} suppressHydrationWarning={true}>
         <Head>
           <title>Herkes Duysun</title>
 

@@ -172,6 +172,7 @@ const TagsSlider = () => {
                 onClick={() => tagButtonClickHandler(i)}
                 className="tag-btn"
                 href={`/etiketler/${i.tag}`}
+                target="_blank"
               >
                 {idx === 6 ? (
                   <span onClick={() => tagButtonClickHandler(i)}>#Bursa</span>
