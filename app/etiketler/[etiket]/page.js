@@ -14,14 +14,15 @@ const SingleTag = ({ params }) => {
   const [shownNewsLoading, setShownNewsLoading] = useState(true);
   let { etiket } = params;
 
-  etiket = decodeURIComponent(etiket);
+  //etiket = decodeURIComponent(etiket);
+  console.log(etiket)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const qa = query(doc(db, "TagsList",etiket));
         const querySnapshot = await getDoc(qa);
-        setRelatedTagsNews(querySnapshot.data().related)
+        setRelatedTagsNews(querySnapshot.data()?.related)
       } catch (error) {
         console.error("Etiketler yüklenirken hata:", error);
       }
@@ -34,18 +35,23 @@ const SingleTag = ({ params }) => {
   useEffect(() => {
     const fetchTagNews = async () => {
       let newsArray=[]
-      for (const related of relatedTagsNews) {
-        var splitted=String(related).split("/")
+      var sliced=relatedTagsNews.slice(0,19)
+      for (const related of sliced) {
+        var splitted=String(related)?.split("/")
         try {
           const docRef = doc(db, splitted[0], splitted[1]);
           const result = await getDoc(docRef);
-          newsArray.push(result.data());
-          setShownNewsLoading(false);
-        } catch (error) {
+          if(result.exists){
+            newsArray.push(result.data());
+          }
+           } catch (error) {
           console.log(error);
         }
+        //newsArray.push({coll:splitted[0],id:splitted[1]})
+
       }
-      setShownNews(newsArray)
+      var filtered=newsArray.filter(Boolean)
+      setShownNews(filtered)
       setShownNewsLoading(false)
     };
     fetchTagNews();
