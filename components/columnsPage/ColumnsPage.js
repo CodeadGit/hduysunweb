@@ -4,6 +4,7 @@ import StickyNavbar from "../stickyNavbar/StickyNavbar";
 import { useThemeContext } from "@/context/ThemeContext";
 import AdsImage from "../haberPage/AdsImage";
 import { db } from "@/firebase/firebase.config";
+import DOMPurify from 'dompurify'
 import {
   collection,
   doc,
@@ -19,6 +20,7 @@ import { useModeContext } from "@/context/ModeContext";
 const ColumnsPage = ({ koseYazisi, koseYazisiArticle }) => {
   const { mode } = useModeContext();
   const modeStatus = mode === "dark";
+  console.log(koseYazisi)
 
   const body = koseYazisiArticle?.body;
 
@@ -39,10 +41,13 @@ const ColumnsPage = ({ koseYazisi, koseYazisiArticle }) => {
         var columnsData = [];
         querySnapshot.forEach((doc) => {
           //if (doc.data().authorid === String(yazarId) && doc.data().active) {
-          columnsData.push({ ...doc.data(), doc: doc.id });
+            if(doc.exists) {
+              columnsData.push({ ...doc.data(), doc: doc.id });
+            }
           //}
         });
-        setColumns(columnsData);
+        var filtered = columnsData.filter(Boolean)
+        setColumns(filtered);
         setColumnsLoading(false);
       } catch (error) {
         console.log(error);
@@ -90,8 +95,8 @@ const ColumnsPage = ({ koseYazisi, koseYazisiArticle }) => {
               className={`content ${modeStatus ? "dark" : ""}`}
               //style={{fontSize: `${fontDec}rem !important`}}
               dangerouslySetInnerHTML={{
-                // __html: DOMPurify.sanitize(body),
-                __html: body,
+              // __html: DOMPurify.sanitize(koseYazisi.article),
+               __html: koseYazisiArticle.body,
               }}
             ></p>
           </div>
