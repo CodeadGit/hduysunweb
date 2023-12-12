@@ -17,6 +17,7 @@ import Head from "next/head";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import HomePage from "@/components/homePage/HomePage";
 import BikHeader from "@/components/BikHeader";
+import FacebookPixel from "@/components/FacebookPixel";
 
 // import LogoNext from "@/components/ads/adsComponents/LogoNext";
 // import MiniNavbar from '@/components/miniNavbar/MiniNavbar';
@@ -203,6 +204,7 @@ export default function RootLayout({ children }) {
           </ModeProvider>
         </ErrorBoundary>
         <BikHeader/>
+        <FacebookPixel/>
       </body>
     </html>
   );
