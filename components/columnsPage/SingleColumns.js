@@ -8,16 +8,17 @@ import {
 } from "@/context/utils";
 import "./singleColumns.scss";
 import { useThemeContext } from "@/context/ThemeContext";
+import { useParams } from "next/navigation";
 import { useModeContext } from "@/context/ModeContext";
 const SingleColumns = ({ item }) => {
   const { id, title, eng } = item;
+  const params  = useParams();
 
-  // const { handleReadIncrement} = useThemeContext();
   const { mode } = useModeContext();
 
   return (
     <Link
-      href={`yazarlar/koseyazilari/${eng}-${id}`}
+      href={`${item.eng}-${item.id}`}
       className={`single-columns ${mode ? "dark" : ""}`}
       //target="_blank"
       // onClick={() => handleReadIncrement(category, id)}

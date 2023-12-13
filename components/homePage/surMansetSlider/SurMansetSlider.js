@@ -78,7 +78,7 @@ const SurMansetSlider = () => {
               {dot}
             </li>
           ))}
-          <Link href="/sur-mansetler" className="surmanset-all-link">
+          <Link href="/sur-mansetler" target="_blank" className="surmanset-all-link">
             T
           </Link>
         </ul>

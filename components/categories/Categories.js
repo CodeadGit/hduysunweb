@@ -56,6 +56,7 @@ const Categories = ({ wrapper }) => {
                   modeStatus ? "dark" : ""
                 }`}
                 onClick={closeStoryModal}
+                target="_blank"
               >
                 <span className={`link-label ${modeStatus ? "dark" : ""} `}>
                   {i.label}
@@ -71,6 +72,7 @@ const Categories = ({ wrapper }) => {
                   href={`/foto-galeri`}
                   className={`link-fotoGaleri ${modeStatus ? "dark" : ""}`}
                   onClick={closeStoryModal}
+                  target="_blank"
                 >
                   Foto Galeri
                 </Link>

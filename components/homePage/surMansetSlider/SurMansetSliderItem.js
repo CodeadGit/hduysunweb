@@ -21,7 +21,7 @@ const SurMansetSliderItem = ({ item }) => {
     <div className="surMansetSlider-item">
       <Link
         href={`/${category}/${eng}-${id}`}
-       // target="_blank"
+        target="_blank"
         onClick={() => handleReadIncrement(category, id)}
       >
         <img src={image} alt={title} className="surMansetSlider-item-image" />

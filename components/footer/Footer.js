@@ -73,8 +73,8 @@ const Footer = () => {
           <div className="info-left">
             <div className={`info-left-caption ${mode}`}>
               <h4>Haberler</h4>
-              <Link href="/foto-galeri">Foto Galeri</Link>
-              <Link href="/video-galeri">Video Galeri</Link>
+              <Link href="/foto-galeri" target="_blank">Foto Galeri</Link>
+              <Link href="/video-galeri" target="_blank">Video Galeri</Link>
             </div>
             <div className="info-left-categories">
               <div className="left-cat">
@@ -82,7 +82,7 @@ const Footer = () => {
                   return (
                     <ul className="left-cat-list" key={idx}>
                       <li>
-                        <Link key={idx} href={`${item.collection}`}>{item.label}</Link>
+                        <Link target="_blank" key={idx} href={`/${item.collection}`}>{item.label}</Link>
                       </li>
                     </ul>
                   );
@@ -93,7 +93,7 @@ const Footer = () => {
                   return (
                     <ul className="mid-cat-list" key={idx}> 
                       <li>
-                        <Link key={idx} href={`${item.collection}`}>{item.label}</Link>
+                        <Link target="_blank" key={idx} href={`/${item.collection}`}>{item.label}</Link>
                       </li>
                     </ul>
                   );
@@ -104,7 +104,7 @@ const Footer = () => {
                   return (
                     <ul className="right-cat-list" key={idx}>
                       <li>
-                        <Link key={idx} href={`${item.collection}`}>{item.label}</Link>
+                        <Link target="_blank" key={idx} href={`/${item.collection}`}>{item.label}</Link>
                       </li>
                     </ul>
                   );

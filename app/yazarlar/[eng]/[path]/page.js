@@ -8,7 +8,7 @@ const KoseYazisiDetayPage = ({ params }) => {
   const [koseYazisi, setKoseYazisi] = useState([]);
   const [koseYazisiArticle, setKoseYazisiArticle] = useState([]);
 
-  var idArray = String(params.path).split("-").at(-1);
+  const idArray = String(params.path).split("-").at(-1);
 
   useEffect(() => {
     idArray;

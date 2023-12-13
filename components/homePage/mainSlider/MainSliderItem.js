@@ -40,7 +40,7 @@ const MainSliderItem = ({ item, idx, pinArray }) => {
       // : */}
       <Link
         href={`/${category}/${eng}-${id}`}
-      //  target="_blank"
+        target="_blank"
         onClick={() => handleReadIncrement(category, id)}
       >
         <img src={image} alt={title} className="image" />

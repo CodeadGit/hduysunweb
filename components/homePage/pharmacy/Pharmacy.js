@@ -46,7 +46,7 @@ const Pharmacy = () => {
         <Link
           className={`pharmacy-info-link ${modeStatus ? "dark" : ""}`}
           href="/nobetci-eczane"
-         // target="_blank"
+          target="_blank"
         >
           Tümünü Gör
         </Link>

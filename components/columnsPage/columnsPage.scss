@@ -78,9 +78,74 @@
           }
         }
       }
+      &-info {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+
+        @media screen and (max-width:768px) {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+       &-authorInfo {
+         display: flex;
+         flex-direction: row;
+         align-items: center;
+         
+         .author-name {
+          padding-left: 1rem;
+
+          &.dark {
+           color: white;
+          }
+         }
+       }
+
+        &-timeInfo {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          padding: .5rem 0;
+          text-align: justify;
+          font-size: 0.8rem;
+          transition: var(--transition);
+      
+          @media screen and (max-width:768px) {
+            display: flex;
+            flex-direction: column;
+          }
+      
+          span { 
+            font-size: 0.8rem;
+            strong {
+              // border: 1px solid red;
+              margin-right: .25rem;
+      
+              @media screen and (max-width:768px) {
+               color: #9a9a9a;
+               font-size: .75rem;
+              }   
+            }
+          }
+          @media screen and (max-width:768px) {
+            font-size: .9rem;
+          }
+      
+          &.dark {
+            color: #fff;
+          }
+      
+          &:last-child {
+            font-size: 10px;
+          }
+        }
+      }
+   
       &-des {
         //border: 1px solid green;
-        margin-top: 1.5rem;
+        margin-top: .5rem;
         margin-bottom: 1.5rem;
         text-align: justify;
         line-height: 1.5;

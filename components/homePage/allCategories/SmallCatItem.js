@@ -8,7 +8,7 @@ const SmallCatItem = ({ image, category, modeStatus,title }) => {
 
   return (
     <div className="box">
-      <Link href={`/${category}`}>
+      <Link href={`/${category}`} target="_blank">
         <img src={image} alt={category} />
       </Link>
       <div className="info">

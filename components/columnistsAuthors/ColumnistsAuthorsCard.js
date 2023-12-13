@@ -32,7 +32,7 @@ const ColumnistsAuthorsCard = ({ item }) => {
         </div>
         <div className="columnistsAuthorsCard-bottom-line"></div>
 
-        <div
+        {/* <div
           className={`columnistsAuthorsCard-bottom-number ${
             modeStatus ? "dark" : ""
           }`}
@@ -45,7 +45,7 @@ const ColumnistsAuthorsCard = ({ item }) => {
           >
             {postCount}
           </span>
-        </div>
+        </div> */}
       </div>
     </Link>
   );

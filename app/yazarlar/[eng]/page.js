@@ -7,6 +7,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  orderBy,
   query,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
@@ -15,6 +16,7 @@ const YazarDetayPage = ({ params }) => {
   const [posts, setPosts] = useState([]);
   const [author, setAuthor] = useState({});
   const [loading, setLoading] = useState(true);
+  const [oldColumns, setOldColumns] = useState([])
   const [authorLoading, setAuthorLoading] = useState(true);
 
   var idArray = String(params.eng).split("-");
@@ -46,6 +48,31 @@ const YazarDetayPage = ({ params }) => {
       }
     };
     fetchAuthors();
+  }, []);
+
+  useEffect(() => {
+    const fetchColumns = async () => {
+      const qp = query(
+        collection(db, "koseyazilari"),
+        orderBy("datePublished", "desc")
+      );
+      try {
+        const querySnapshot = await getDocs(qp);
+        var columnsData = [];
+        querySnapshot.forEach((doc) => {
+          //if (doc.data().authorid === String(yazarId) && doc.data().active) {
+          if (doc.exists) {
+            columnsData.push({ ...doc.data(), doc: doc.id });
+          }
+          //}
+        });
+        var filtered = columnsData.filter(Boolean);
+        setOldColumns(filtered);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchColumns();
   }, []);
 
   {
@@ -82,15 +109,22 @@ const YazarDetayPage = ({ params }) => {
   // var options = { year: "numeric", month: "numeric", day: "2-digit" };
   // var formattedDate = timePublished.toLocaleString("tr-TR", options);
 
+  // farklı id lere sahip yeni eklenen köşe yazarları için eski id ye göre yazılar filtrelendi
+  const rustemColumns = oldColumns.filter((i) => i.authorid === 95)
+  const omerColumns = oldColumns.filter((i) => i.authorid === 102)
+
   if (loading || authorLoading) {
     return <CircularProgress />;
   }
+
   return (
     <div>
       <ColumnistsAuthorsDetail
         posts={posts}
         author={author}
         idForThisAuthor={idForThisAuthor}
+        rustemColumns={rustemColumns}
+        omerColumns={omerColumns}
         // formattedDate={formattedDate}
       />
     </div>

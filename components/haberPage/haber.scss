@@ -11,9 +11,9 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    gap: 2%;
+    gap: 1.5%;
     display: grid;
-    grid-template-columns: 3% 67% 28%;
+    grid-template-columns: 3% 67% 29%;
 
     @media screen and (max-width:1200px) {
       padding: 0 1rem;
@@ -194,7 +194,7 @@
       background-color: inherit;
       width: 100%;
       padding: 1rem;
-      padding-left: 1rem;
+    //  padding-left: 1rem;
 
       @media screen and (max-width: 768px) {
         display: flex;

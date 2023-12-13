@@ -171,6 +171,7 @@ const TagsSlider = () => {
                 key={idx}
                 onClick={() => tagButtonClickHandler(i)}
                 className="tag-btn"
+                target="_blank"
                 href={`/etiketler/${i.tag}`}
               >
                 {idx === 6 ? (
