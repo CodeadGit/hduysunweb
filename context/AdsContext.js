@@ -8,6 +8,7 @@ import {
   updateDoc,
   doc,
   getDocs,
+  limit,
 } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 
@@ -57,8 +58,11 @@ export const AdsContextProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-     const fetchStories = async () => {
-      const q = query(collection(db, "Stories"),  orderBy("datePublished", "asc"))
+    const fetchStories = async () => {
+      const q = query(
+        collection(db, "Stories"),
+        orderBy("datePublished", "desc")
+      );
       try {
         const querySnapshot = await getDocs(q);
         var storiesList = [];
@@ -66,18 +70,16 @@ export const AdsContextProvider = ({ children }) => {
         querySnapshot.forEach((doc) => {
           if (doc.data().isNow && doc.data().active) {
             storiesList.push(doc.data());
-        }});
+          }
+        });
         setStoriesList(storiesList);
         setStoriesLoading(false);
-      }catch(error) {
-        console.log(error)
+      } catch (error) {
+        console.log(error);
       }
-      }
-      fetchStories();
-     
-  },[]);
-
-
+    };
+    fetchStories();
+  }, []);
 
   storiesList.sort((a, b) => b.datePublished.seconds - a.datePublished.seconds);
   // console.log(storiesList)

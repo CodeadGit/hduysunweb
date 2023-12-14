@@ -17,7 +17,7 @@ const NewsStories = () => {
   const { storyList, combineStories, changeStoryModall, singleStories } =
     useAdsContext();
   const modeStatus = mode === "dark";
-
+ 
   return (
     <div className="main-fluid">
       <div className="cont">
@@ -39,12 +39,14 @@ const NewsStories = () => {
           <div className="close" onClick={changeStoryModall}>
             <CloseIcon className="icon-close" />
           </div>
+          {/* <div className="icon-wrapper">
           <div className="icon prev" style={{ cursor: "pointer !important" }}>
             <KeyboardArrowLeftIcon className="icon-direction" />
           </div>
-          <div className="icon next">
+           <div className="icon next">
             <KeyboardArrowRightIcon className="icon-direction" />
-          </div>
+          </div> 
+          </div> */}
           <StoryPage stories={storyList} />
         </div>
       </div>

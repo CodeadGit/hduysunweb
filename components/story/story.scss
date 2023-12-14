@@ -10,18 +10,21 @@
 
   @media screen and (max-width: 768px) {
     width: 100%;
+    height: 100vh;
   }
 
   &-img {
     width: 100%;
     height: 100% !important;
     margin: 0 auto;
+    opacity: 0.45;
     padding: 0;
     align-self: center;
     z-index: 1;
     position: relative;
     aspect-ratio: 9 / 16;
     object-fit: contain;
+   
   }
 
   .info-wrapper {
@@ -34,30 +37,38 @@
     top: 60%;
     gap: 1rem;
 
+
     &-title {
+      padding-inline: 1rem;
       z-index: 1000;
      // position: absolute;
       width: 100%;
-      color: #3333;
+      color: #FFFFFF;
       margin-top: 1rem;
-      font-size: 1.125rem;
-      font-weight: 500;
+      font-size: 22px;
+      font-weight: bold;
     }
 
     &-des {
+      padding-inline: 1rem;
       z-index: 1000;
       width: 100%;
+      font-size: 18px;
+      font-weight: normal;
       white-space: wrap;
       color: white;
       padding-top: 0.5rem;
     }
 
     &-link {
+      font-size: 18px;
+      font-weight: bold;
       z-index: 1000;
-      color: white;
-     // position: absolute;
-      margin-top: 4rem;
-      text-decoration: underline;
+      color: #FFFFFF;
+      margin-left: 1rem;
+      //padding-inline: 1rem;
+      border-bottom: 2px solid white;
+     // text-decoration: underline;
     }
   }
 }

@@ -4,9 +4,17 @@
   // height: calc(100vh - 9.5rem);
   //overflow: hidden;
 
+  @media screen and (max-width:768px) {
+    height: auto;
+  }
+
   .cont {
     display: flex;
     height: 100vh;
+
+    @media screen and (max-width:768px) {
+      height: auto;
+    }
     // gap: 0.5rem;
 
     .cats {
@@ -23,6 +31,7 @@
       //gap: 0.5rem;
       // background-color: rgba(72, 50, 133, 0);
       background-color: rgb(9, 89, 133);
+   
 
       &-background {
         width: 100%;
@@ -37,6 +46,7 @@
         &::-webkit-scrollbar {
           width: 0 !important;
         }
+
       }
 
       @media screen and (max-width: 768px) {
@@ -55,6 +65,7 @@
       width: 81.5%; // GEREKLİ
 
       @media screen and (max-width: 768px) {
+        height: auto;
         width: 100%;
         // height: calc(100vh - 104px);
       }
@@ -85,34 +96,37 @@
         }
       }
 
-      .icon {
-        position: absolute;
-        top: 20rem;
-        z-index: 3000;
-        width: 65px;
-        height: 65px;
-        // background-color: white;
-        border-radius: 50%;
-        border-color: transparent;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-
-        .icon-direction {
-          color: white;
-        }
-
-        @media screen and (max-width: 768px) {
-          display: none;
-        }
-
-        &.prev {
-          left: 5rem;
-        }
-
-        &.next {
-          right: 5rem;
+      .icon-wrapper {
+    
+        .icon {
+          position: absolute;
+          top: 50%;
+          z-index: 3000;
+          width: 65px;
+          height: 65px;
+          // background-color: white;
+          border-radius: 50%;
+          border-color: transparent;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+  
+          .icon-direction {
+            color: white;
+          }
+  
+          @media screen and (max-width: 768px) {
+            display: none;
+          }
+  
+          &.prev {
+            left: 5rem;
+          }
+  
+          &.next {
+            right: 5rem;
+          }
         }
       }
 
@@ -124,6 +138,13 @@
         img {
           height: 100% !important;
           object-fit: contain;
+
+          @media screen and (max-width:768px) {
+            height: 100vh !important;
+            aspect-ratio: none;
+            
+          }
+
         }
         video {
           @media screen and (max-width: 768px) {

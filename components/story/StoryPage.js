@@ -2,14 +2,11 @@ import Stories from "react-insta-stories";
 import "./story.scss";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { use } from "react";
+import { handleShortStoryDes } from "@/context/utils";
 
 const StoryPage = ({ stories}) => {
 
-  const router = useRouter();
-
-  const formatted = stories?.map((i, idx) => {
+  const formatted = stories?.slice(0,5).map((i, idx) => {
     return {
       url:
         i?.media ||
@@ -18,15 +15,15 @@ const StoryPage = ({ stories}) => {
       content: ({ action, isPaused }) => {
         return (
           <div className="img-wrapper" key={idx}>
-            {i.media && (
-              <img src={i.media} className="img-wrapper-img" alt="" />
+            {i?.media && (
+              <img src={i?.media} className="img-wrapper-img" alt="" />
             )}
             <div className="info-wrapper">
               <h4 className="info-wrapper-title">{i?.title || ""}</h4>
               <p className="info-wrapper-des">{i?.description || ""}</p>
               {i?.url && (
                 <Link href={i.url} className="info-wrapper-link">
-                  Habere gitmek için tıklayın
+                  Haberi gör
                 </Link>
               )}
             </div>
@@ -35,6 +32,8 @@ const StoryPage = ({ stories}) => {
       },
     };
   });
+
+  console.log(formatted)
 
   const storyContent = {
     //maxWidth: "1200px",
@@ -80,6 +79,3 @@ const StoryPage = ({ stories}) => {
 
 export default StoryPage;
 
-// function getDataFromType(type, hasError) {
-
-// }

@@ -1,4 +1,4 @@
-const PIXEL_ID = document.currentScript.getAttribute('data-pixel-id')
+const PIXEL_ID = "875651633516102"
 
 function initializeFacebookPixel(f, b, e, v, n, t, s) {
   if (f.fbq) return

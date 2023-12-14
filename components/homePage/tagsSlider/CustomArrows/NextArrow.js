@@ -1,9 +1,10 @@
 import { FaArrowRight } from "react-icons/fa";
-
+import "./customArrows.scss";
 function NextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <FaArrowRight
+    <div className="slider-arrow">
+      <FaArrowRight
       className={className}
       style={{
         ...style,
@@ -13,6 +14,7 @@ function NextArrow(props) {
       }}
       onClick={onClick}
     />
+    </div>
   );
 }
 export default NextArrow;
