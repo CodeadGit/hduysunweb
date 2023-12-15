@@ -15,22 +15,14 @@ export default function Home() {
   const modeStatus = mode === "dark";
 
   return (
-    <>
-      <Script
-        src="https://cdn.p.analitik.bik.gov.tr/tracker.js"
-        strategy="lazyOnload"
-        data-website-id="657f41c4-4e9d-405a-95e8-84eb9ec7719a"
-        data-host-url="//657f41c4-4e9d-405a-95e8-84eb9ec7719a.collector.p.analitik.bik.gov.tr"
-      />
+    
     <div className={`wrapper ${mode}`}>
-      <BikHeader/>
-      <FacebookPixel/>
       {!storyModall ? (
         <HomePage />
       ) : (
           <NewsStories/>
       )}
     </div>
-    </>
+    
   );
 }

@@ -18,6 +18,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import HomePage from "@/components/homePage/HomePage";
 import BikHeader from "@/components/BikHeader";
 import FacebookPixel from "@/components/FacebookPixel";
+import Script from "next/script";
 
 // import LogoNext from "@/components/ads/adsComponents/LogoNext";
 // import MiniNavbar from '@/components/miniNavbar/MiniNavbar';
@@ -36,6 +37,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="tr">
+      <head>
+      <Script
+        src="https://cdn.p.analitik.bik.gov.tr/tracker.js"
+        strategy="lazyOnload"
+        data-website-id="657f41c4-4e9d-405a-95e8-84eb9ec7719a"
+        data-host-url="//657f41c4-4e9d-405a-95e8-84eb9ec7719a.collector.p.analitik.bik.gov.tr"
+      />
+      <FacebookPixel/>
+      </head>
       <body className={poppins.className} suppressHydrationWarning={true}>
         <Head>
           <title>Herkes Duysun</title>
@@ -82,6 +92,8 @@ export default function RootLayout({ children }) {
             </AuthenticationProvider>
           </ModeProvider>
         </ErrorBoundary>
+        <BikHeader/>
+        <FacebookPixel/>
       </body>
     </html>
   );
