@@ -82,8 +82,6 @@ export default function RootLayout({ children }) {
             </AuthenticationProvider>
           </ModeProvider>
         </ErrorBoundary>
-        <BikHeader/>
-        <FacebookPixel/>
       </body>
     </html>
   );
