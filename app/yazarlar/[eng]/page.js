@@ -36,12 +36,13 @@ const YazarDetayPage = ({ params }) => {
         var columnistsData = [];
         if (!querySnapshot.empty) {
           querySnapshot.forEach((doc) => {
-            if (doc.data().authorid === idForThisAuthor && doc.data().active && doc.data().isNow) {
+            if (doc.data().authorid === idForThisAuthor && doc.data().active && doc.data().isNow && doc.exists) {
               columnistsData.push({ ...doc.data(), doc: doc.id });
             }
           });
         }
-        setPosts(columnistsData);
+        var filtered = columnistsData.filter(Boolean);
+        setPosts(filtered);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -110,8 +111,8 @@ const YazarDetayPage = ({ params }) => {
   // var formattedDate = timePublished.toLocaleString("tr-TR", options);
 
   // farklı id lere sahip yeni eklenen köşe yazarları için eski id ye göre yazılar filtrelendi
-  const rustemColumns = oldColumns.filter((i) => i.authorid === 95)
-  const omerColumns = oldColumns.filter((i) => i.authorid === 102)
+  const rustemColumns = oldColumns.filter((i) => i.authorid === 95 && i.title != undefined)
+  const omerColumns = oldColumns.filter((i) => i.authorid === 102 && i.title != undefined)
 
   if (loading || authorLoading) {
     return <CircularProgress />;

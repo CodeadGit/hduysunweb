@@ -97,11 +97,12 @@ export const ThemeProvider = ({ children }) => {
         var autorsList = [];
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-          if (doc.data().active) {
+          if (doc.data().active && doc.exists) {
             autorsList.push({ ...doc.data(), doc: doc.id });
           }
         });
-        setAutors(autorsList);
+        var filtered = autorsList.filter(Boolean);
+        setAutors(filtered);
       } catch (error) {
         console.log(error);
       }
@@ -220,24 +221,24 @@ export const ThemeProvider = ({ children }) => {
     fetchPoints();
   }, []);
 
-  useEffect(() => {
-    const fetchColumnists = async () => {
-      const q = query(collection(db, "Columnists"));
-      try {
-        var autorsList = [];
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-          if(doc.data().active) {
-            autorsList.push({ ...doc.data(), doc: doc.id });
-          }
-        });
-        setAutors(autorsList);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchColumnists();
-  }, []);
+  // useEffect(() => {
+  //   const fetchColumnists = async () => {
+  //     const q = query(collection(db, "Columnists"));
+  //     try {
+  //       var autorsList = [];
+  //       const querySnapshot = await getDocs(q);
+  //       querySnapshot.forEach((doc) => {
+  //         if(doc.data().active) {
+  //           autorsList.push({ ...doc.data(), doc: doc.id });
+  //         }
+  //       });
+  //       setAutors(autorsList);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchColumnists();
+  // }, []);
 
   useEffect(() => {
     const mostReadNews = news?.sort((a, b) => b.read - a.read).slice(0, 6);

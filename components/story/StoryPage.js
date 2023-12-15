@@ -22,7 +22,7 @@ const StoryPage = ({ stories}) => {
               <h4 className="info-wrapper-title">{i?.title || ""}</h4>
               <p className="info-wrapper-des">{i?.description || ""}</p>
               {i?.url && (
-                <Link href={i.url} className="info-wrapper-link">
+                <Link target="_blank" href={i.url} className="info-wrapper-link">
                   Haberi gör
                 </Link>
               )}
