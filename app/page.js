@@ -24,7 +24,7 @@ export default function Home() {
       />
     <div className={`wrapper ${mode}`}>
       <BikHeader/>
-      <FacebookPixel/>
+      {/* <FacebookPixel/> */}
       {!storyModall ? (
         <HomePage />
       ) : (
