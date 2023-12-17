@@ -34,7 +34,7 @@ export default function Home() {
           }}
         />
         <BikHeader/>
-        {/* <FacebookPixel/> */}
+        <FacebookPixel/>
       </Head>
       <Script
         strategy="afterInteractive"
