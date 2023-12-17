@@ -33,6 +33,8 @@ export default function Home() {
             `,
           }}
         />
+        <BikHeader/>
+        {/* <FacebookPixel/> */}
       </Head>
       <Script
         strategy="afterInteractive"
@@ -46,8 +48,7 @@ export default function Home() {
       />
       
     <div className={`wrapper ${mode}`}>
-      <BikHeader/>
-      <FacebookPixel/>
+      
       {!storyModall ? (
         <HomePage />
       ) : (
