@@ -19,7 +19,6 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../../firebase/firebase.config";
-import { categoryConvertor } from "@/context/utils";
 import RelatedNews from "../relatedNews/RelatedNews";
 import CategoryGoogleContainer from "./CategoryGoogleContainer";
 import NewsTitle from "./NewsTitle";
@@ -37,12 +36,14 @@ import VideoGallery from "./VideoGallery";
 import StickyNavbar from "../stickyNavbar/StickyNavbar";
 import { useModeContext } from "@/context/ModeContext";
 import { useGalleryContext } from "@/context/GalleryContext";
+import { useCategoriesContext } from "@/context/CategoriesContext";
 
 const Haber = ({ thisPageArticle, thisPage }) => {
 
   const { mostReadNewsList, videoGallery } = useThemeContext();
   //const {videoGallery } = useGalleryContext;
   const { mode } = useModeContext();
+  const { categoryConvertor} = useCategoriesContext()
 
   const modeStatus = mode === "dark";
   const [loading, setLoading] = useState(true);

@@ -8,9 +8,11 @@ const CategoryPage = ({ params }) => {
   const { category } = params;
   const { categories, collectionCategories, labelCategories } = useCategoriesContext();
 
-  // if (collectionCategories && !collectionCategories.includes(category)) {
-  //   return notFound();
-  // }
+  // useEffect(() => {
+  //   if (collectionCategories && !collectionCategories.includes(category)) {
+  //     return notFound();
+  //   }
+  // },[])
 
   return <Category category={category} />;
 };

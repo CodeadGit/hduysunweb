@@ -151,8 +151,7 @@ export default function RootLayout({ children }) {
 
           {/* Yandex.Metrika Verification Meta Tag */}
           <meta name="yandex-verification" content="47b73cadef9785d0" />
-          <BikHeader/>
-
+          <BikHeader />
         </Head>
         <noscript>
           <iframe
@@ -182,10 +181,10 @@ export default function RootLayout({ children }) {
         />
         <ErrorBoundary>
           <ModeProvider>
-            <AuthenticationProvider>
-            <GalleryProvider>
-              <FetchAssetsContextProvider>
-                  <CategoriesProvider>
+            <CategoriesProvider>
+              <AuthenticationProvider>
+                <GalleryProvider>
+                  <FetchAssetsContextProvider>
                     <ThemeProvider>
                       <TagProvider>
                         <AdsContextProvider>
@@ -197,14 +196,14 @@ export default function RootLayout({ children }) {
                         </AdsContextProvider>
                       </TagProvider>
                     </ThemeProvider>
-                  </CategoriesProvider>
-              </FetchAssetsContextProvider>
-              </GalleryProvider>
-            </AuthenticationProvider>
+                  </FetchAssetsContextProvider>
+                </GalleryProvider>
+              </AuthenticationProvider>
+            </CategoriesProvider>
           </ModeProvider>
         </ErrorBoundary>
-        <BikHeader/>
-        <FacebookPixel/>
+        <BikHeader />
+        <FacebookPixel />
       </body>
     </html>
   );

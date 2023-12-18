@@ -1,5 +1,4 @@
 import React from "react";
-import { categoryUpperConvertor } from "@/context/utils";
 import Link from "next/link";
 import {
   handleShort,

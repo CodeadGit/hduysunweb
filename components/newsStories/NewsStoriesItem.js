@@ -1,12 +1,13 @@
 import React from "react";
 import "./newsStoriesItem.scss";
 import { useAdsContext } from "@/context/AdsContext";
-import { categoryConvertor } from "@/context/utils";
 import { PlayArrow } from "@mui/icons-material";
+import { useCategoriesContext } from "@/context/CategoriesContext";
 
 const NewsStoriesItem = ({ combineStories, modeStatus, item }) => {
 
   const { category: cat } = useAdsContext();
+  const { categoryConvertor} = useCategoriesContext()
 
   const { category, time, media, image } = item;
 

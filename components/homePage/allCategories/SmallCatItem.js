@@ -2,18 +2,24 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import "./smallCatItem.scss";
-import { navigateCategory, transformCategory } from "@/context/utils";
+import { useCategoriesContext } from "@/context/CategoriesContext";
 
-const SmallCatItem = ({ image, category, modeStatus,title }) => {
+const SmallCatItem = ({ image, category, modeStatus, title }) => {
+  const { categoryConvertor } = useCategoriesContext();
 
   return (
     <div className="box">
-      <Link href={`/${category}`} target="_blank">
+      <Link
+        href={category === "videogaleri" ? "video-galeri" : `/${category}`}
+        target="_blank"
+      >
         <img src={image} alt={category} />
       </Link>
       <div className="info">
         <div className={`disc ${modeStatus ? "dark" : ""}`}></div>
-        <p className={`title ${modeStatus ? "dark" : ""}`}>{transformCategory(title)}</p>
+        <p className={`title ${modeStatus ? "dark" : ""}`}>
+          {categoryConvertor[category]}
+        </p>
       </div>
     </div>
   );

@@ -5,8 +5,6 @@ import "./newsStories.scss";
 import StoryPage from "../story/StoryPage";
 
 import CloseIcon from "@mui/icons-material/Close";
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 import NewsStoriesItem from "./NewsStoriesItem";
 import { useAdsContext } from "@/context/AdsContext";

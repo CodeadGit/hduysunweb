@@ -36,13 +36,27 @@ export const CategoriesProvider = ({ children }) => {
     fetchCategories();
   }, []);
 
-  const collectionCategories = categories.map((i) => i.collection );
-  const labelCategories = categories.map((i) => i.label)
+  const collectionCategories = categories.map((i) => i.collection); //key
+  const labelCategories = categories.map((i) => i.label); //value
+
+  const arraysToObject = (collectionCategories, labelCategories) => {
+    const categoryConvertor = collectionCategories.reduce((obj, key, index) => {
+      obj[key] = labelCategories[index];
+      return obj;
+    }, {});
+    return categoryConvertor;
+  };
+
+  const categoryConvertor = arraysToObject(
+    collectionCategories,
+    labelCategories
+  );
 
   const values = {
     categories,
     collectionCategories,
-    labelCategories
+    labelCategories,
+    categoryConvertor,
   };
 
   return (

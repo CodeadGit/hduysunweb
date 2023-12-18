@@ -2,9 +2,8 @@ import React from "react";
 import Link from "next/link";
 import "./cardItem.scss";
 import { handleShort } from "@/context/utils";
-import moment from "moment";
-import { categoryConvertorFunc } from "@/context/utils";
 import { useThemeContext } from "@/context/ThemeContext";
+import { useCategoriesContext } from "@/context/CategoriesContext";
 const CardItem = ({ item, modeStatus }) => {
   const { image, title, eng, id, category, datePublished, tags } = item;
   const { handleReadIncrement } = useThemeContext();
@@ -12,6 +11,8 @@ const CardItem = ({ item, modeStatus }) => {
   const timePublished = new Date(datePublished.seconds * 1000);
   const options = { year: "numeric", month: "long", day: "2-digit" };
   const formattedDate = timePublished.toLocaleString("tr-TR", options);
+  const { categoryConvertor} = useCategoriesContext()
+
 
   return (
     <Link
@@ -32,7 +33,7 @@ const CardItem = ({ item, modeStatus }) => {
                 modeStatus ? "dark" : ""
               }`}
             >
-              {categoryConvertorFunc(category)}
+              {categoryConvertor[category]}
             </span>
           </div>
           <div className="content-top-right">
