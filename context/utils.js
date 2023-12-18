@@ -111,83 +111,83 @@ export const transformCategory = (category) => {
   return category.toUpperCase();
 };
 
-export const categoryConvertor = {
-  asayis: "asayiş",
-  gundem: "gündem",
-  dunya: "dünya",
-  yasam: "yaşam",
-  saglik: "sağlık",
-  sonDakika: "son dakika",
-  arastirma: "araştırma",
-  egitim: "eğitim",
-  kultursanat: "kültür sanat",
-  inanc: "İnanç",
-  roportaj: "röportaj",
-  ekonomi: "ekonomi",
-  spor: "spor",
-  siyaset: "siyaset",
-  magazin: "magazin",
-  teknoloji: "teknoloji",
-  gezi: "gezi",
-  sinema: "sinema",
-  emlak: "emlak",
-  yazarlar: "yazarlar",
-  astroloji: "astroloji",
-  bursa: "bursa",
-  gazze: "gazze",
-  otomobil: "otomobil",
-  secimozel: "Seçim Özel",
+// export const categoryConvertor = {
+//   asayis: "asayiş",
+//   gundem: "gündem",
+//   dunya: "dünya",
+//   yasam: "yaşam",
+//   saglik: "sağlık",
+//   sonDakika: "son dakika",
+//   arastirma: "araştırma",
+//   egitim: "eğitim",
+//   kultursanat: "kültür sanat",
+//   inanc: "İnanç",
+//   roportaj: "röportaj",
+//   ekonomi: "ekonomi",
+//   spor: "spor",
+//   siyaset: "siyaset",
+//   magazin: "magazin",
+//   teknoloji: "teknoloji",
+//   gezi: "gezi",
+//   sinema: "sinema",
+//   emlak: "emlak",
+//   yazarlar: "yazarlar",
+//   astroloji: "astroloji",
+//   bursa: "bursa",
+//   gazze: "gazze",
+//   otomobil: "otomobil",
+//   secimozel: "Seçim Özel",
   
-};
+// };
 
-export const categoryConvertorFunc = (category) => {
-  if (category === "asayis") return "asayiş";
-  if (category === "gundem") return "gündem";
-  if (category === "dunya") return "dünya";
-  if (category === "yasam") return "yaşam";
-  if (category === "dunya") return "dünya";
-  if (category === "saglik") return "sağlık";
-  if (category === "sonDakika") return  "son dakika";
-  if (category === "arastirma") return  "araştırma";
-  if (category === "egitim") return  "eğitim";
-  if (category === "kultursanat") return  "kültür sanat";
-  if (category === "inanc") return  "İnanç";
-  if (category === "roportaj") return  "röportaj";
-  if (category === "ekonomi") return  "ekonomi";
-  if (category === "siyaset") return  "siyaset";
-  if (category === "magazin") return  "magazin";
-  if (category === "teknoloji") return  "teknoloji";
-  if (category === "gezi") return  "gezi";
-  if (category === "sinema") return  "sinema";
-  if (category === "emlak") return  "emlak";
-  if (category === "yazarlar") return  "yazarlar";
-  if (category === "astroloji") return  "astroloji";
-  return category;
-};
+// export const categoryConvertorFunc = (category) => {
+//   if (category === "asayis") return "asayiş";
+//   if (category === "gundem") return "gündem";
+//   if (category === "dunya") return "dünya";
+//   if (category === "yasam") return "yaşam";
+//   if (category === "dunya") return "dünya";
+//   if (category === "saglik") return "sağlık";
+//   if (category === "sonDakika") return  "son dakika";
+//   if (category === "arastirma") return  "araştırma";
+//   if (category === "egitim") return  "eğitim";
+//   if (category === "kultursanat") return  "kültür sanat";
+//   if (category === "inanc") return  "İnanç";
+//   if (category === "roportaj") return  "röportaj";
+//   if (category === "ekonomi") return  "ekonomi";
+//   if (category === "siyaset") return  "siyaset";
+//   if (category === "magazin") return  "magazin";
+//   if (category === "teknoloji") return  "teknoloji";
+//   if (category === "gezi") return  "gezi";
+//   if (category === "sinema") return  "sinema";
+//   if (category === "emlak") return  "emlak";
+//   if (category === "yazarlar") return  "yazarlar";
+//   if (category === "astroloji") return  "astroloji";
+//   return category;
+// };
 
-export const categoryUpperConvertor = {
-  asayis: "ASAYİŞ",
-  gundem: "GÜNDEM",
-  dunya: "DÜNYA",
-  yasam: "YAŞAM",
-  saglik: "SAĞLIK",
-  sonDakika: "SON DAKİKA",
-  arastirma: "ARAŞTIRMA",
-  egitim: "EĞİTİM",
-  kultursanat: "KÜLTÜR SANAT",
-  inanc: "İNANÇ",
-  roportaj: "RÖPORTAJ",
-  ekonomi: "EKONOMİ",
-  spor: "SPOR",
-  siyaset: "SİYASET",
-  magazin: "MAGAZİN",
-  teknoloji: "TEKNOLOJİ",
-  gezi: "GEZİ",
-  sinema: "SİNEMA",
-  emlak: "EMLAK",
-  yazarlar: "YAZARLAR",
-  astroloji: "ASTROLOJİ",
-};
+// export const categoryUpperConvertor = {
+//   asayis: "ASAYİŞ",
+//   gundem: "GÜNDEM",
+//   dunya: "DÜNYA",
+//   yasam: "YAŞAM",
+//   saglik: "SAĞLIK",
+//   sonDakika: "SON DAKİKA",
+//   arastirma: "ARAŞTIRMA",
+//   egitim: "EĞİTİM",
+//   kultursanat: "KÜLTÜR SANAT",
+//   inanc: "İNANÇ",
+//   roportaj: "RÖPORTAJ",
+//   ekonomi: "EKONOMİ",
+//   spor: "SPOR",
+//   siyaset: "SİYASET",
+//   magazin: "MAGAZİN",
+//   teknoloji: "TEKNOLOJİ",
+//   gezi: "GEZİ",
+//   sinema: "SİNEMA",
+//   emlak: "EMLAK",
+//   yazarlar: "YAZARLAR",
+//   astroloji: "ASTROLOJİ",
+// };
 
 export const handleScroll = (e) => {
   e.preventDefault();

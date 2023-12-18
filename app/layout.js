@@ -92,10 +92,10 @@ export default function RootLayout({ children }) {
        
         <ErrorBoundary>
           <ModeProvider>
-            <AuthenticationProvider>
-            <GalleryProvider>
-              <FetchAssetsContextProvider>
-                  <CategoriesProvider>
+            <CategoriesProvider>
+              <AuthenticationProvider>
+                <GalleryProvider>
+                  <FetchAssetsContextProvider>
                     <ThemeProvider>
                       <TagProvider>
                         <AdsContextProvider>
@@ -107,14 +107,13 @@ export default function RootLayout({ children }) {
                         </AdsContextProvider>
                       </TagProvider>
                     </ThemeProvider>
-                  </CategoriesProvider>
-              </FetchAssetsContextProvider>
-              </GalleryProvider>
-            </AuthenticationProvider>
+                  </FetchAssetsContextProvider>
+                </GalleryProvider>
+              </AuthenticationProvider>
+            </CategoriesProvider>
           </ModeProvider>
         </ErrorBoundary>
         <FacebookPixel/>
-
       </body>
     </html>
   );

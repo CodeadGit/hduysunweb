@@ -6,13 +6,19 @@ import "./categoriesMenu.scss";
 import Drawer from "@mui/material/Drawer";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useCategoriesContext } from "@/context/CategoriesContext";
-import { ListItemButton, List, ListItem, IconButton,Box, ListItemText } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
+import {
+  ListItemButton,
+  List,
+  ListItem,
+  IconButton,
+  Box,
+  ListItemText,
+} from "@mui/material";
 import { Close } from "@mui/icons-material";
 import { BsMoonFill } from "react-icons/bs";
 import { useModeContext } from "@/context/ModeContext";
 
-const CategoriesMenu = ({toggleDrawer, isMenuDrawer}) => {
+const CategoriesMenu = ({ toggleDrawer, isMenuDrawer }) => {
   const { toggle } = useThemeContext();
   const { mode } = useModeContext();
   const { categories } = useCategoriesContext();
@@ -22,25 +28,51 @@ const CategoriesMenu = ({toggleDrawer, isMenuDrawer}) => {
 
   const modeStatus = mode === "dark";
 
-  const darkBoxStyle = { width: "200px", height: "auto", backgroundColor: "#3e474f", transition: "0.3s all ease-in-out" };
+  const darkBoxStyle = {
+    width: "200px",
+    height: "auto",
+    backgroundColor: "#3e474f",
+    transition: "0.3s all ease-in-out",
+  };
 
-  const lightBoxStyle = {  width: "200px", height: "auto", backgroundColor: "#fff", transition: "0.3s all ease-in-out" };
+  const lightBoxStyle = {
+    width: "200px",
+    height: "auto",
+    backgroundColor: "#fff",
+    transition: "0.3s all ease-in-out",
+  };
 
-  const darkListItemStyle = { textTransform: "capitalize", color: "#fff",  transition: "0.3s all ease-in-out" };
+  const darkListItemStyle = {
+    textTransform: "capitalize",
+    color: "#fff",
+    transition: "0.3s all ease-in-out",
+  };
 
-  const lightListItemStyle = { textTransform: "capitalize", color: "#000", transition: "0.3s all ease-in-out" };
+  const lightListItemStyle = {
+    textTransform: "capitalize",
+    color: "#000",
+    transition: "0.3s all ease-in-out",
+  };
 
-  const darkIconBoxStyle = { display: "flex", justifyContent: "space-between", backgroundColor: "#3e474f", transition: "0.3s all ease-in-out" };
+  const darkIconBoxStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    backgroundColor: "#3e474f",
+    transition: "0.3s all ease-in-out",
+  };
 
-  const lightIconBoxStyle = { display: "flex", justifyContent: "space-between",
-  backgroundColor: "#fff", transition: "0.3s all ease-in-out" };
+  const lightIconBoxStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    backgroundColor: "#fff",
+    transition: "0.3s all ease-in-out",
+  };
 
   const boxStyle = modeStatus ? darkBoxStyle : lightBoxStyle;
 
   const listItemStyle = modeStatus ? darkListItemStyle : lightListItemStyle;
 
   const iconBoxStyle = modeStatus ? darkIconBoxStyle : lightIconBoxStyle;
-
 
   // const handleScroll = () => {
   //   const scrollPosition = window.scrollY; // => scroll position
@@ -62,19 +94,27 @@ const CategoriesMenu = ({toggleDrawer, isMenuDrawer}) => {
   };
 
   const menuList = () => (
-    <Box sx={boxStyle} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
-      <List sx={{ height: "auto",overflowY:"hidden" }}>
-        {categories?.slice(8, categories?.length).map((i, idx) => (
+    <Box
+      sx={boxStyle}
+      role="presentation"
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
+      <List sx={{ height: "auto", overflowY: "hidden" }}>
+        {categories?.slice(11, categories?.length).map((i, idx) => (
           <Link
-            href={`/${i.collection}`}
-            key={i.index}
+            href={
+              i.collection === "videogaleri"
+                ? "video-galeri"
+                : i.collection === "fotogaleri"
+                ? "foto-galeri"
+                : `/${i.collection}`
+            }
+            key={i?.index}
           >
-            <ListItem
-             key={i.index}
-             disablePadding
-            >
+            <ListItem key={i?.index} disablePadding>
               <ListItemButton>
-                <ListItemText sx={listItemStyle} primary={i.label} />
+                <ListItemText sx={listItemStyle} primary={i?.label} />
               </ListItemButton>
             </ListItem>
           </Link>
@@ -85,16 +125,19 @@ const CategoriesMenu = ({toggleDrawer, isMenuDrawer}) => {
 
   return (
     <div>
-     <React.Fragment>
+      <React.Fragment>
         <Drawer
           anchor="right"
           open={isMenuDrawer}
           onClose={toggleDrawer(false)}
-          sx={{height:"auto"}}
+          sx={{ height: "auto" }}
         >
           <div style={iconBoxStyle}>
-            <IconButton className={`close-icon ${modeStatus ? "dark" :  ""}`} onClick={toggleDrawer(false)}>
-              <Close className={`close-icon ${modeStatus ? "dark" :  ""}`} />
+            <IconButton
+              className={`close-icon ${modeStatus ? "dark" : ""}`}
+              onClick={toggleDrawer(false)}
+            >
+              <Close className={`close-icon ${modeStatus ? "dark" : ""}`} />
             </IconButton>
             {/* <IconButton className={`mode-icon ${modeStatus ? "dark" :  ""}`} onClick={toggle}>
               <BsMoonFill style={{height: "20px"}} />
@@ -102,7 +145,7 @@ const CategoriesMenu = ({toggleDrawer, isMenuDrawer}) => {
           </div>
           {menuList()}
         </Drawer>
-     </React.Fragment>
+      </React.Fragment>
     </div>
   );
 };

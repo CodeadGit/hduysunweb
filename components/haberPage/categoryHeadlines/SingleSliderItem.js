@@ -1,8 +1,9 @@
 import React from "react";
 import "./singleSliderItem.scss";
-import { categoryConvertor, handleShort } from "@/context/utils";
+import {  handleShort } from "@/context/utils";
 import Link from "next/link";
 import { useThemeContext } from "@/context/ThemeContext";
+import { useCategoriesContext } from "@/context/CategoriesContext";
 
 const SingleSliderItem = ({ category, image, title, eng, id, mode,datePublished }) => {
 
@@ -11,6 +12,8 @@ const SingleSliderItem = ({ category, image, title, eng, id, mode,datePublished 
   const timePublished = new Date(datePublished.seconds * 1000);
   const options = { year: "numeric", month: "long", day: "2-digit" };
   const formattedDate = timePublished.toLocaleString("tr-TR", options);
+  const { categoryConvertor} = useCategoriesContext()
+
 
   return (
     <Link

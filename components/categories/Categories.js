@@ -7,8 +7,8 @@ import { editLink } from "@/context/utils";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useCategoriesContext } from "@/context/CategoriesContext";
 import CategoriesMenu from "./CategoriesMenu";
-import { IconButton} from "@mui/material"
-import MenuIcon from '@mui/icons-material/Menu';
+import { IconButton } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import { useModeContext } from "@/context/ModeContext";
 
@@ -21,24 +21,33 @@ const Categories = ({ wrapper }) => {
 
   const modeStatus = mode === "dark";
 
-  const darkBoxStyle = {  height: "auto", backgroundColor: "#1f252b", transition: "0.3s all ease-in-out" };
+  const darkBoxStyle = {
+    height: "auto",
+    backgroundColor: "#1f252b",
+    transition: "0.3s all ease-in-out",
+  };
 
-  const lightBoxStyle = {  height: "auto", backgroundColor: "#fff", transition: "0.3s all ease-in-out" };
+  const lightBoxStyle = {
+    height: "auto",
+    backgroundColor: "#fff",
+    transition: "0.3s all ease-in-out",
+  };
 
   const menuStyle = modeStatus ? darkBoxStyle : lightBoxStyle;
 
-
   const sorttedCategories = categories
     .sort((a, b) => a.index - b.index)
-    .slice(0, 8);
+    .slice(0, 11);
 
-    const toggleDrawer = (open) => (event) => {
-      if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
-        return;
-      }
-      setIsMenuDrawer(open);
-    };
-
+  const toggleDrawer = (open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+    setIsMenuDrawer(open);
+  };
 
   //const isActive = pathname.substring(1).startsWith(i);
 
@@ -48,9 +57,15 @@ const Categories = ({ wrapper }) => {
         {sorttedCategories?.map((i, idx) => {
           const isActive = pathname.substring(1).startsWith(i);
           return (
-            <div  key={idx}>
+            <div key={i.index}>
               <Link
-                href={`/${i.collection}`}
+                href={
+                  i.collection === "videogaleri"
+                    ? "video-galeri"
+                    : i.collection === "fotogaleri"
+                    ? "foto-galeri"
+                    : `/${i.collection}`
+                }
                 key={i.index}
                 className={`link ${isActive ? "active" : ""} ${
                   modeStatus ? "dark" : ""
@@ -67,7 +82,7 @@ const Categories = ({ wrapper }) => {
                   ></div>
                 )}
               </Link>
-              {idx === 7 && (
+              {/* {idx === 7 && (
                 <Link
                   href={`/foto-galeri`}
                   className={`link-fotoGaleri ${modeStatus ? "dark" : ""}`}
@@ -76,18 +91,23 @@ const Categories = ({ wrapper }) => {
                 >
                   Foto Galeri
                 </Link>
-              )}
+              )} */}
             </div>
           );
         })}
-         <IconButton
+        <IconButton
           // className={`menu-icon ${modeStatus ? "dark" : ""}`}
           size="large"
           onClick={toggleDrawer(true)}
         >
-         <MenuIcon className={`navmenu-icon ${modeStatus ? "dark" :  ""}`}></MenuIcon>
+          <MenuIcon
+            className={`navmenu-icon ${modeStatus ? "dark" : ""}`}
+          ></MenuIcon>
         </IconButton>
-        <CategoriesMenu toggleDrawer={toggleDrawer} isMenuDrawer={isMenuDrawer}/>
+        <CategoriesMenu
+          toggleDrawer={toggleDrawer}
+          isMenuDrawer={isMenuDrawer}
+        />
       </div>
     </div>
   );

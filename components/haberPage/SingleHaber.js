@@ -1,13 +1,14 @@
 import React from "react";
 import "./singleHaber.scss";
-import { categoryUpperConvertor } from "@/context/utils";
 import Link from "next/link";
 import { handleShort,handleShorttSingleHaber,handleShortt } from "@/context/utils";
 import { useThemeContext } from "@/context/ThemeContext";
+import { useCategoriesContext } from "@/context/CategoriesContext";
 const SingleHaber = ({ image, category, eng, id, title, mode }) => {
   
   const { handleReadIncrement } = useThemeContext()
-  
+  const { categoryConvertor} = useCategoriesContext()
+
   return (
     <Link
       href={`/${category}/${eng}-${id}`}
@@ -20,7 +21,7 @@ const SingleHaber = ({ image, category, eng, id, title, mode }) => {
       </div>
       <div className="most-reads-single-content">
         <p className={`content-title ${mode ? "dark" : ""}`}>
-          {categoryUpperConvertor[category]}
+          {categoryConvertor[category]}
         </p>
          <p className={`content-itself ${mode ? "dark" : ""}`}>
          {handleShorttSingleHaber(title)} 

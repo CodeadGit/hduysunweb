@@ -3,8 +3,8 @@ import AllCategoriesCard from "./AllCategoriesCard";
 import "./allCategoriesPagesCards.scss";
 import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
-import { categoryConvertor } from "@/context/utils";
 import { useModeContext } from "@/context/ModeContext";
+
 
 const AllCategoriesPagesCards = ({ category, label }) => {
   const [categoryCards, setCategoryCards] = useState([]);

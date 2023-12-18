@@ -33,8 +33,6 @@ const StoryPage = ({ stories}) => {
     };
   });
 
-  console.log(formatted)
-
   const storyContent = {
     //maxWidth: "1200px",
     width: "100%",

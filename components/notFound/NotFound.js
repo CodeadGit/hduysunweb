@@ -5,14 +5,13 @@ import notFound from "../homePage/assets/notfound.png";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {  categoryConvertor } from "@/context/utils";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useCategoriesContext } from "@/context/CategoriesContext";
 
 const NotFound = () => {
 
   const { hideAds } = useThemeContext();
-  const { categories} = useCategoriesContext();
+  const { categories, categoryConvertor} = useCategoriesContext();
 
   const pathname = usePathname();
 

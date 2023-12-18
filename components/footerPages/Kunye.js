@@ -13,7 +13,6 @@ const Kunye = () => {
       </div>
 
       <div className={`text-part ${modeStatus ? "dark" : ""}`}>
-
         <div className="kunye-table">
           <table>
             <tr>
@@ -38,7 +37,7 @@ const Kunye = () => {
             </tr>
             <tr>
               <td>Sorumlu Yazı İşleri Müdürü</td>
-              <td>MUSA YEŞİLDAĞ</td>
+              <td>ERDAL TOPRAK DOĞAN</td>
             </tr>
             <tr>
               <td>Yönetim Yeri</td>
@@ -65,15 +64,12 @@ const Kunye = () => {
 
             <tr>
               <td>Yer Sağlayıcı Ticaret Unvanı</td>
-              <td>TURKTİCARET.NET YAZILIM HİZMETLERİ SANAYİ VE TİCARET.A.Ş.</td>
+              <td>CODEAD YAZILIM VE REKLAM HİZMETLERİ LTD. ŞTİ.</td>
             </tr>
 
             <tr>
               <td>Yer Sağlayıcı Adresi</td>
-              <td>
-                Uludağ Üniversitesi Görükle Kampüsü Ar/Ge Binası Yanı Ek Bina
-                Nilüfer - BURSA
-              </td>
+              <td>Üçevler mh. Esra sk. No:6/15 Nilüfer/Bursa</td>
             </tr>
           </table>
         </div>
@@ -117,13 +113,24 @@ const Kunye = () => {
             <strong> SORUMLU YAZI İŞLERİ MÜDÜRÜ:</strong>
           </p>
           <p></p>
+          ERDAL TOPRAK DOĞAN
+          <p></p>
+          <strong>YAZI İŞLERİ MÜDÜRÜ:</strong>
+          <p></p>
+          ASLI YEŞİLYURT
+          <p></p>
+          <strong>YURT HABERLER MÜDÜRÜ:</strong>
+          <p></p>
+          VAZİF İHTİYAR -----------------------------
+          <strong>HABER MERKEZİ MÜDÜRÜ:</strong>
+          <p></p>
+          RÜSTEM PEHLİVANLAR
+          <strong>HABER MÜDÜRÜ:</strong>
+          <p></p>
+          ESMANUR GÜLBAHAR
+          <strong>TV YAYIN YÖNETMENİ:</strong>
+          <p></p>
           MUSA YEŞİLDAĞ
-          <p></p>
-          YAZI İŞLERİ MÜDÜRÜ:
-          <p></p>
-          VAZİF İHTİYAR
-          <p></p>
-          -----------------------------
           <p>
             <strong> MUHABİRLER:</strong>
           </p>
@@ -134,11 +141,11 @@ const Kunye = () => {
           <p></p>
           AHMET GÜNAY
           <p></p>
+          SERGEN DURAK
+          <p></p>
+          EMİRHAN AKGÜL
+          <p></p>
           CÜNEYT YAMAN
-          <p></p>
-          EMİNE PINAR TURAN KAHRAMAN
-          <p></p>
-          ASLI YEŞİLYURT
           <p></p>
           ARDA ŞARU
           <p>
@@ -147,17 +154,17 @@ const Kunye = () => {
           <p></p>
           GÜLSÜM YILDIRIM
           <p></p>
-          ESMANUR GÜLBAHAR
-          <p></p>
           OĞUZHAN OSMAN BİLGİN
           <p></p>
           ZÜBEYDE ÖZLÜ
           <p></p>
-          SEVDE NUR EROL
-          <p></p>
           MELİH KAYACI
           <p></p>
+          SEVDE NUR EROL
+          <p></p>
           DUYGU TAŞKIRAN
+          <p></p>
+          EMİNE PINAR TURAN KAHRAMAN
           <p></p>
           RABİA ÖZKAN
           <p></p>
@@ -166,13 +173,9 @@ const Kunye = () => {
             <strong> SOSYAL MEDYA EDİTÖRLERİ</strong>
           </p>
           <p></p>
-          ERDAL TOPRAK DOĞAN
-          <p></p>
           REYHAN ÖZBAKIR
           <p></p>
           MEHMET CAN USLU
-          <p></p>
-          SERGEN DURAK
           <p></p>
           HATİCE ÇAPAR DEMİR
           <p></p>
@@ -205,7 +208,7 @@ const Kunye = () => {
           <p></p>
           ALİ GÜL
           <p></p>
-          RÜSTEM PEHLİVANLAR
+          ERDAL TOPRAK DOĞAN
           <p></p>
           VAZİF İHTİYAR
           <p></p>
@@ -214,17 +217,15 @@ const Kunye = () => {
             <strong> YAZILIM VE SUNUCU HİZMETLERİ:</strong>
           </p>
           <p></p>
-          TURKTİCARET.NET YAZILIM HİZMETLERİ SANAYİ VE TİCARET.A.Ş.
+          CODEAD YAZILIM VE REKLAM HİZMETLERİ LTD. ŞTİ.
           <p></p>
-          Uludağ Üniversitesi Görükle Kampüsü Ar/Ge Binası Yanı
-          <p></p>
-          Ek Bina Posta Kodu : 16120
+          Üçevler mh. Esra sk. No:6/15
           <p></p>
           Nilüfer - BURSA
           <p></p>
-          Yetkili İletişim: 0224 224 86 40
+          Yetkili İletişim: Faruk Keskinsoy 0 (538) 085 33 23
           <p></p>
-          destek@haberyazilimi.com
+          info@codead.com.tr
           <p></p>
           -----------------------------
           <p>

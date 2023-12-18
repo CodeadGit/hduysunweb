@@ -3,16 +3,16 @@ import React from 'react';
 import "./categoryPage.scss";
 import { useState, useEffect } from 'react';
 import Breadcrumb from '../breadcrumb/Breadcrumb';
-import { categoryConvertor } from '@/context/utils';
 import { useThemeContext } from '@/context/ThemeContext';
 import CategoryPageNews from './CategoryPageNews';
-import { categories } from "@/context/utils";
 import { notFound } from "next/navigation";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import { useModeContext } from '@/context/ModeContext';
+import { useCategoriesContext } from '@/context/CategoriesContext';
 
 const CategoryPage= ({category}) => {
+  const { categoryConvertor} = useCategoriesContext()
 
   //const [totalPage, setTotalPage] = useState(0);
  

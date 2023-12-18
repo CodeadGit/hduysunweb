@@ -1,15 +1,14 @@
 import React from "react";
 import "./singleStory.scss";
-import { categoryConvertor } from "@/context/utils";
-
+import { useCategoriesContext } from "@/context/CategoriesContext";
 const SingleStory = ({ mode, item, handleStories }) => {
-
   const modeStatus = mode === "dark";
   const { image, category, media } = item;
+  const { categoryConvertor} = useCategoriesContext()
 
   return (
     <div className="singleStory" onClick={() => handleStories(category)}>
-            {image ? (
+      {image ? (
         <div className={`img ${modeStatus ? "dark" : ""}`}>
           {media && <img src={media || ""} alt={category} />}
         </div>
@@ -18,11 +17,9 @@ const SingleStory = ({ mode, item, handleStories }) => {
           <video src={media} alt={category} />
         </div>
       )}
-      <p className={`title ${modeStatus ? "dark" : ""}`}>{categoryConvertor[category]}</p>   
-   
+      <p className={`title ${modeStatus ? "dark" : ""}`}>{categoryConvertor[category]}</p>
     </div>
   );
 };
-
 
 export default SingleStory;
