@@ -133,27 +133,30 @@ export const ThemeProvider = ({ children }) => {
   };
 
   const fetchPoints = async () => {
-    try {
-      const res = await axios.get(
-        `https://docapi.herkesduysun.com/puan-durumu`
-      );
-      const res1 = await axios.get(
-        `https://docapi.herkesduysun.com/puan-durumu-1`
-      );
-      const res2 = await axios.get(
-        `https://docapi.herkesduysun.com/puan-durumu-2`
-      );
-      setTotal({
-        league: res?.data?.result,
-        league1: res1?.data?.result,
-        league2: res2?.data?.result,
-      });
-      setFetching(false);
-    } catch (error) {
-      setFetching(false);
-      console.log(error);
-    }
+    console.log("puan durumu geliştirilmektedir")
   };
+  // const fetchPoints = async () => {
+  //   try {
+  //     const res = await axios.get(
+  //       `https://docapi.herkesduysun.com/puan-durumu`
+  //     );
+  //     const res1 = await axios.get(
+  //       `https://docapi.herkesduysun.com/puan-durumu-1`
+  //     );
+  //     const res2 = await axios.get(
+  //       `https://docapi.herkesduysun.com/puan-durumu-2`
+  //     );
+  //     setTotal({
+  //       league: res?.data?.result,
+  //       league1: res1?.data?.result,
+  //       league2: res2?.data?.result,
+  //     });
+  //     setFetching(false);
+  //   } catch (error) {
+  //     setFetching(false);
+  //     console.log(error);
+  //   }
+  // };
 
  
   useEffect(() => {
