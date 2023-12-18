@@ -37,6 +37,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="tr">
+      {/* <FacebookPixel/> */}
       <body className={poppins.className} suppressHydrationWarning={true}>
         <Head>
           <title>Herkes Duysun</title>
@@ -56,7 +57,6 @@ export default function RootLayout({ children }) {
 
           {/* Yandex.Metrika Verification Meta Tag */}
           <meta name="yandex-verification" content="47b73cadef9785d0" />
-          
 
         </Head>
        
@@ -83,6 +83,7 @@ export default function RootLayout({ children }) {
             </AuthenticationProvider>
           </ModeProvider>
         </ErrorBoundary>
+        <FacebookPixel/>
 
       </body>
     </html>
