@@ -54,7 +54,37 @@ export default function RootLayout({ children }) {
           
           
 
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6386087293593832"
+     crossorigin="anonymous"></script>
 
+      {/* Google Tag Manager noscript */}
+        <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=UA-205477047-35"
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            ></iframe>
+          </noscript>
+
+          {/* Google Analytics (gtag.js) Script */}
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-1VGJWF7CKL"
+          />
+
+          {/* Google Analytics (gtag.js) Config */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'UA-205477047-35');
+              gtag('config', 'G-1VGJWF7CKL');
+            `,
+            }}
+          />
           {/* Yandex.Metrika Verification Meta Tag */}
           <meta name="yandex-verification" content="47b73cadef9785d0" />
 
