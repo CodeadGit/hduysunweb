@@ -1,6 +1,6 @@
 import Link from "next/link";
 import "./surMansetSliderItem.scss";
-import { handleShorttSurmanset } from "@/context/utils";
+import { handleShorttSurmanset, handleShorttSurmansetMed } from "@/context/utils";
 import { useThemeContext } from "@/context/ThemeContext";
 
 const SurMansetSliderItem = ({ item }) => {
@@ -26,13 +26,24 @@ const SurMansetSliderItem = ({ item }) => {
       >
         <img src={image} alt={title} className="surMansetSlider-item-image" />
         {item.isSurmanset && (
+          <>
           <div className="sondakika-wrapper">
             {String(title.length) < 80 ? (
               <span >{title}</span>
             ) : (
               <span>{handleShorttSurmanset(title)}</span>
             )}
+            
           </div>
+          <div className="sondakika-wrappermed">
+          {String(title.length) < 50 ? (
+            <span >{title}</span>
+          ) : (
+            <span>{handleShorttSurmansetMed(title)}</span>
+          )}
+          
+        </div>
+        </>
         )}
       </Link>
     </div>

@@ -23,7 +23,7 @@ const VideoGallery = ({ modeStatus, videoGallery }) => {
           // target="_blank" 
            href={`/video-galeri/${item.eng}-${item.id}`} >
             <div className="video-live">
-              <Image src={item.headImg} alt="google-news" fill />
+              <Image src={item.headImg} alt="google-news" fill className="video-live-img"/>
             </div>
             <h4
               className={`video-gallery-news-header ${

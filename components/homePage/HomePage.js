@@ -10,6 +10,7 @@ import MainSlider from "./mainSlider/MainSlider";
 import SurMansetSlider from "./surMansetSlider/SurMansetSlider";
 import SurMansetSliderRes from "./surMansetSlider/SurMansetSliderRes";
 import { useModeContext } from "@/context/ModeContext";
+import MainSwiperSlider from "./mainSlider/MainSwiperSlider";
 
 const HomePage = () => {
   const { handleReadIncrement, newsLoading } = useThemeContext();
@@ -31,7 +32,8 @@ const HomePage = () => {
 
   return (
     <div className={`homeContainer ${modeStatus ? "dark" : ""}`}>
-      <MainSlider />
+      {/* <MainSwiperSlider />  */}
+     <MainSlider/> 
       {/* <MainNewsComponent
         handleReadIncrement={handleReadIncrement}
         mainNews={mainNews}
