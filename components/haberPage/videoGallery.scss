@@ -28,6 +28,13 @@
     position: relative;
     margin-top: 1.5rem;
     height: 12.5rem;
+
+    &-img {
+      object-fit: cover;
+      aspect-ratio: 1.76/1;
+      width: 100%;
+      border-radius: 10px;
+    }
   }
 
   &-news-header {

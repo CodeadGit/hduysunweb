@@ -4,14 +4,16 @@
     .single-img-wrapper {
       // border: 1px solid red;
       width: 100%;
-      aspect-ratio: 3/2;
+      aspect-ratio: 1.76/1;
       object-fit: cover;
+      border-radius: 10px;
     }
 
     &-comments {
       //  border: 1px solid red;
       margin-top: .2rem;
       display: flex;
+      justify-content: space-between;
       align-items: center;
       color: var(--blueBgColor);
       height: 1.2rem;

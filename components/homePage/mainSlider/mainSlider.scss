@@ -89,6 +89,29 @@
         }
       }
     }
+    .swiper-pagination , .swiper-pagination-bullets , .swiper-pagination-horizontal {
+     position: static;
+     border: 1px solid red;
+
+     .swiper-pagination-bullet {
+      display: inline-block;
+        border-radius: 0;
+        color: #5c5c5d;
+        //border: 1px solid #E8E8E8;
+        // background-color: white;
+        height: 27px;
+        width: 30px;
+        cursor: pointer;
+        background-color: white;
+        border: 1px solid #e8e8e8;
+        font-size: 1rem;
+     }
+    }
+    //  .swiper-pagination {
+    //    position: static;
+    //    width: 100%;
+    //    border: 1px solid red;
+    //  }
   }
 
   &-med {

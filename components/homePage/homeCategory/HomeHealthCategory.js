@@ -16,7 +16,7 @@ import {
 } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import { useModeContext } from "@/context/ModeContext";
-const HomeCategory = ({ category, totalPage }) => {
+const HomeHealthCategory = ({ category, totalPage }) => {
   const { mode } = useModeContext();
   const modeStatus = mode === "dark";
   const [filteredNews, setFilteredNews] = useState([]);
@@ -73,4 +73,4 @@ const HomeCategory = ({ category, totalPage }) => {
   }
 };
 
-export default HomeCategory;
+export default HomeHealthCategory;

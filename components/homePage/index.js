@@ -16,6 +16,7 @@ import HomeCategory from "./homeCategory/HomeCategory";
 import TagsSlider from "./tagsSlider/tagsSlider";
 import Pharmacy from "./pharmacy/Pharmacy";
 import Head from "next/head";
+import HomeHealthCategory from "./homeCategory/HomeHealthCategory";
 
 const Home = ({ pageTitle, pageDescription }) => {
   return (
@@ -40,7 +41,7 @@ const Home = ({ pageTitle, pageDescription }) => {
       {/* <Currency />  */}
       {/* {<Pharmacy /> ? <Pharmacy/> : null} */}
       <Caption title="Sağlık" link="saglik" />
-      <HomeCategory category="saglik" />
+      <HomeHealthCategory category="saglik" />
       {/* <Health /> */}
       {/* {<WeatherInfo /> ? <WeatherInfo/> : null} */}
        {/* <TrialComp />  */}

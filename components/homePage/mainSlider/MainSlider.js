@@ -14,6 +14,7 @@ const MainSlider = () => {
   const [loading, setLoading] = useState(true);
   const [hoveredItem, setHoveredItem] = useState([]);
   const [list, setList] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(0); // Set the initial active index
 
   const modeStatus = mode === "dark";
 
@@ -56,7 +57,8 @@ const MainSlider = () => {
     infinite: true,
     swipeToSlide: true,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 8000,
+    fade: true,
     cssEase: "linear",
     dots: true,
     adaptiveHeight: false,
@@ -73,9 +75,12 @@ const MainSlider = () => {
         <ul className="dots-ul">
           {dots.map((dot, idx) => (
             <li
-              className="dots-ul-li"
+              className={`dots-ul-li ${idx === activeIndex ? "active" : ""}`}
               key={idx}
-              onMouseEnter={() => sliderRef.current.slickGoTo(idx)}
+              onMouseEnter={() => {
+                sliderRef.current.slickGoTo(idx);
+                setActiveIndex(idx);
+              }}
             >
               {dot}
             </li>

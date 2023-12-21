@@ -60,6 +60,9 @@ export const handleShorttSurmanset = (text) => {
 export const handleShorttSurmansetRes = (text) => {
   return text?.substring(0,30).concat(" ...");
 };
+export const handleShorttSurmansetMed = (text) => {
+  return text?.substring(0,50).concat(" ...");
+};
 export const handleShorttCatSliderRes = (text) => {
   return text?.substring(0,45).concat(" ...");
 };

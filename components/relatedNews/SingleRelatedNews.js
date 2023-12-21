@@ -5,8 +5,11 @@ import { AiFillEye } from "react-icons/ai";
 import Link from "next/link";
 import { handleShort } from "@/context/utils";
 import { useThemeContext } from "@/context/ThemeContext";
-
+import { useCategoriesContext } from "@/context/CategoriesContext";
 const SingleRelatedNews = ({ item = {}, mode }) => {
+  
+  const { categoryConvertor } = useCategoriesContext();
+
   const { image, title, read, datePublished, category, eng, id } = item;
   const publishedTime = moment(datePublished?.seconds * 1000).format(
     "DD.MM.YYYY"
@@ -25,6 +28,7 @@ const SingleRelatedNews = ({ item = {}, mode }) => {
       <img src={image} alt="asd" className="single-img-wrapper" />
         <div className={`related-news-single-comments ${mode ? "dark" : ""}`}>
           <p> {publishedTime} </p>
+          {/* <p>{categoryConvertor[category]}</p> */}
           {/* <div className="view-number">
             <AiFillEye />
             <span>{read}</span>

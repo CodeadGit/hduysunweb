@@ -70,6 +70,10 @@
       width: 100%;
       // gap: 1rem;
 
+      @media screen and (min-width:769px) and (max-width:1199px) {
+        width: 70%;
+      }
+
       .info-section {
         display: flex;
         height: 2.5rem;
@@ -109,6 +113,15 @@
           width: 100%;
         }
 
+        @media screen and (min-width:769px) and (max-width:1199px) {
+          overflow-x: auto;
+          overflow-y: hidden;
+
+           &::-webkit-scrollbar {
+             display: none;
+           }
+        }
+
         .link:link,
         .link:visited {
           color: #3e3e3e;
@@ -123,9 +136,9 @@
           // overflow-y: hidden;
           // cursor: pointer;
 
-          // &::-webkit-scrollbar {
-          //   display: none;
-          // }
+          @media screen and (min-width:769px) and (max-width:1199px) {
+             width: 95%;
+           }
 
           .link {
             color: var(--textColor);

@@ -121,13 +121,16 @@ const Kunye = () => {
           <p></p>
           <strong>YURT HABERLER MÜDÜRÜ:</strong>
           <p></p>
-          VAZİF İHTİYAR -----------------------------
+          VAZİF İHTİYAR 
+          <p></p>
           <strong>HABER MERKEZİ MÜDÜRÜ:</strong>
           <p></p>
           RÜSTEM PEHLİVANLAR
+          <p></p>
           <strong>HABER MÜDÜRÜ:</strong>
           <p></p>
           ESMANUR GÜLBAHAR
+          <p></p>
           <strong>TV YAYIN YÖNETMENİ:</strong>
           <p></p>
           MUSA YEŞİLDAĞ
