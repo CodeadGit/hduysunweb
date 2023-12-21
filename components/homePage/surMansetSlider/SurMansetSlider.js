@@ -14,7 +14,6 @@ const SurMansetSlider = () => {
   const [surMansetList, setSurmansetList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hoveredIndex, setHoveredIndex] = useState(0);
-  const [activeIndex, setActiveIndex] = useState(0); // Set the initial active index
 
   useEffect(() => {
     const fetchSurmanset = async () => {
@@ -61,9 +60,8 @@ const SurMansetSlider = () => {
     slidecount: null,
     initialSlide: hoveredIndex,
     arrows: false,
-    fade: true,
-    cssEase: "linear",
     focusOnSelect: true,
+    cssEase: "linear",
     slideToShow: 1,
     slideToScroll: 1,
     touchMove: true,
@@ -73,21 +71,14 @@ const SurMansetSlider = () => {
         <ul className="surmanset-dots-ul">
           {dots.map((dot, idx) => (
             <li
-              className={`dots-ul-li ${idx === activeIndex ? "active" : ""}`}
+              className="dots-ul-li"
               key={idx}
-              onMouseEnter={() => {
-                surmansetSliderRef.current.slickGoTo(idx);
-                setActiveIndex(idx);
-              }}
+              onMouseEnter={() => surmansetSliderRef.current.slickGoTo(idx)}
             >
               {dot}
             </li>
           ))}
-          <Link
-            href="/sur-mansetler"
-            target="_blank"
-            className="surmanset-all-link"
-          >
+          <Link href="/sur-mansetler" target="_blank" className="surmanset-all-link">
             T
           </Link>
         </ul>
