@@ -1,9 +1,15 @@
 "use client"
+import dynamic from "next/dynamic";
 import { useGalleryContext } from "@/context/GalleryContext";
-import Breadcrumb from "../breadcrumb/Breadcrumb";
+//import Breadcrumb from "../breadcrumb/Breadcrumb";
 import "./photoGallery.scss";
 import "./PhotoGalleryCard";
-import PhotoGalleryCard from "./PhotoGalleryCard";
+//import PhotoGalleryCard from "./PhotoGalleryCard";
+
+const PhotoGalleryCard = dynamic(
+  () => import("./PhotoGalleryCard"),
+  { ssr: false }
+);
 
 const PhotoGallery = () => {
   const links = [{ id: 1, title: "Foto Galeri", link: "/foto-galeri" }];

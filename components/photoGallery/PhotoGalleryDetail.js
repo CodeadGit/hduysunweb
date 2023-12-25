@@ -1,10 +1,24 @@
-import PhotoGallerySlider from "../photoGallerySlider/PhotoGallerySlider";
-import Breadcrumb from "../breadcrumb/Breadcrumb";
+//import PhotoGallerySlider from "../photoGallerySlider/PhotoGallerySlider";
+//import Breadcrumb from "../breadcrumb/Breadcrumb";
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import "./photoGalleryDetail.scss";
-import PhotoGalleryDetailCard from "./PhotoGalleryDetailCard";
+//import PhotoGalleryDetailCard from "./PhotoGalleryDetailCard";
 import { useGalleryContext } from "@/context/GalleryContext";
 import { useModeContext } from "@/context/ModeContext";
+
+const Breadcrumb = dynamic(
+  () => import("../breadcrumb/Breadcrumb"),
+  { ssr: false }
+);
+const PhotoGallerySlider = dynamic(
+  () => import("../photoGallerySlider/PhotoGallerySlider"),
+  { ssr: false }
+);
+const PhotoGalleryDetailCard = dynamic(
+  () => import("./PhotoGalleryDetailCard"),
+  { ssr: false }
+);
 
 const PhotoGalleryDetail = ({ thisPhotoGallery, titleArray, gDoc }) => {
   const { mode } = useModeContext();

@@ -1,13 +1,17 @@
 "use client";
 import React, { useEffect } from "react";
-import Breadcrumb from "../breadcrumb/Breadcrumb";
-import notFound from "../homePage/assets/notfound.png";
+import dynamic from "next/dynamic";
+//import Breadcrumb from "../breadcrumb/Breadcrumb";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useCategoriesContext } from "@/context/CategoriesContext";
 
+const Breadcrumb = dynamic(
+  () => import("../breadcrumb/Breadcrumb"),
+  { ssr: false }
+);
 const NotFound = () => {
 
   const { hideAds } = useThemeContext();

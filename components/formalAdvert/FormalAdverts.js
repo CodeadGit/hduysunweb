@@ -1,8 +1,13 @@
 "use client";
 import "./formalAdverts.scss";
 import { formalAdv, useThemeContext } from "../../context/ThemeContext";
-import FormalAdvertCard from "./FormalAdvertsCard";
+//import FormalAdvertCard from "./FormalAdvertsCard";
+import dynamic from "next/dynamic";
 
+const FormalAdvertCard = dynamic(
+  () => import("./FormalAdvertsCard"),
+  { ssr: false }
+);
 const FormalAdverts = () => {
   const { formalAdv } = useThemeContext();
 

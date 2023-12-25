@@ -1,12 +1,21 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 import "./nobetci.scss";
 import axios from "axios";
 import { cities, regions } from "../../context/districts";
-import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
-import NobetciEczaneSkeleton from "./NobetciEczaneSkeleton";
+//import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
+//import NobetciEczaneSkeleton from "./NobetciEczaneSkeleton";
 import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
 
+const FmdGoodOutlinedIcon = dynamic(
+  () => import("@mui/icons-material/FmdGoodOutlined"),
+  { ssr: false }
+);
+const NobetciEczaneSkeleton = dynamic(
+  () => import("./NobetciEczaneSkeleton"),
+  { ssr: false }
+);
 const NobetciEczaneComp = () => {
 
   const {images} = useFetchAssetsContext();

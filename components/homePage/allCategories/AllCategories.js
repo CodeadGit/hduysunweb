@@ -1,11 +1,20 @@
 "use client";
 import React from "react";
+import dynamic from "next/dynamic";
 import "./allCategories.scss";
-import CategoryItem from "./CategoryItem";
-import SmallCatItem from "./SmallCatItem";
+//import CategoryItem from "./CategoryItem";
+//import SmallCatItem from "./SmallCatItem";
 import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
 import { useModeContext } from "@/context/ModeContext";
 
+const CategoryItem = dynamic(
+  () => import("./CategoryItem"),
+  { ssr: false }
+);
+const SmallCatItem = dynamic(
+  () => import("./SmallCatItem"),
+  { ssr: false }
+);
 const AllCategories = () => {
   const { mode } = useModeContext();
   const modeStatus = mode === "dark";

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./breakingNews.scss";
-import Slider from "react-slick";
+//import Slider from "react-slick";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { GoClock } from "react-icons/go";
 import {
@@ -21,6 +22,11 @@ import {
   handleShorttMed,
 } from "@/context/utils";
 import { useModeContext } from "@/context/ModeContext";
+
+const Slider = dynamic(
+  () => import("react-slick"),
+  { ssr: false }
+);
 
 const BreakingNews = () => {
   const { mode } = useModeContext();

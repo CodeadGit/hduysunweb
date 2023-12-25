@@ -1,4 +1,3 @@
-import React from "react";
 import "./newsFirstDescription.scss";
 
 const NewsFirstDescription = ({description, modeStatus}) => {

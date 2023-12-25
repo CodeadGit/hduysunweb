@@ -1,12 +1,21 @@
 "use client";
 import "./headlineNews.scss";
+import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
-import HeadlineNewsCard from "./HeadlineNewsCard";
-import Breadcrumb from "../breadcrumb/Breadcrumb";
+//import HeadlineNewsCard from "./HeadlineNewsCard";
+//import Breadcrumb from "../breadcrumb/Breadcrumb";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import { useModeContext } from "@/context/ModeContext";
 
+const HeadlineNewsCard = dynamic(
+  () => import("./HeadlineNewsCard"),
+  { ssr: false }
+);
+const Breadcrumb = dynamic(
+  () => import("../breadcrumb/Breadcrumb"),
+  { ssr: false }
+);
 const HeadlineNewsPage = () => {
   const { mode } = useModeContext();
   const modeStatus = mode === "dark";

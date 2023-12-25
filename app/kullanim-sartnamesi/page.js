@@ -1,9 +1,11 @@
-import KullanimSartnamesi from "@/components/footerPages/KullanimSartnamesi";
-
+//import KullanimSartnamesi from "@/components/footerPages/KullanimSartnamesi";
+import dynamic from "next/dynamic";
+const KullanimSartnamesi = dynamic(
+  () => import("@/components/footerPages/KullanimSartnamesi"),
+  { ssr: false }
+);
 const KullanimSartnamesiPage = () => {
-  return (
-    <KullanimSartnamesi/>
-  )
-}
+  return <KullanimSartnamesi />;
+};
 
-export default KullanimSartnamesiPage
+export default KullanimSartnamesiPage;

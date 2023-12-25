@@ -4,6 +4,7 @@ import {  handleShort } from "@/context/utils";
 import Link from "next/link";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useCategoriesContext } from "@/context/CategoriesContext";
+import Image from "next/image";
 
 const SingleSliderItem = ({ category, image, title, eng, id, mode,datePublished }) => {
 
@@ -21,7 +22,7 @@ const SingleSliderItem = ({ category, image, title, eng, id, mode,datePublished 
       className="category-headlines-slider-single"
       //target="_blank"
       >
-        <img src={image} alt={title} className="slider-single-img"/>
+        <Image width="0" height="0" sizes="100vw" src={image} alt={title} className="slider-single-img"/>
         <div className="slider-content-top">
           <div className="slider-content-top-left">
           <span className={`disc ${modeStatus ? "dark" : ""}`}></span>

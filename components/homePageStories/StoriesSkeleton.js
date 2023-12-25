@@ -1,5 +1,10 @@
-import Skeleton from "@mui/material/Skeleton";
+//import Skeleton from "@mui/material/Skeleton";
+import dynamic from "next/dynamic";
 import "./storiesSkeleton.scss";
+const Skeleton = dynamic(
+  () => import("@mui/material/Skeleton"),
+  { ssr: false }
+);
 
 const StoriesSkeleton = () => {
 

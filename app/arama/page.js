@@ -5,11 +5,25 @@ import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import Link from "next/link";
 import "./search.scss";
-import CategoryNewsTitle from "@/components/haberPage/CategoryNewsTitle";
-import MostReadNews from "@/components/haberPage/MostReadNews";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
+import dynamic from "next/dynamic";
+//import CategoryNewsTitle from "@/components/haberPage/CategoryNewsTitle";
+//import MostReadNews from "@/components/haberPage/MostReadNews";
+//import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
 import { BiSearch } from "react-icons/bi";
 import { useModeContext } from "@/context/ModeContext";
+import Image from "next/image";
+
+const CategoryNewsTitle = dynamic(
+  () => import("@/components/haberPage/CategoryNewsTitle"),
+  { ssr: false }
+);
+const MostReadNews = dynamic(
+  () => import("@/components/haberPage/MostReadNews"),
+  { ssr: false }
+);
+const Breadcrumb = dynamic(() => import("@/components/breadcrumb/Breadcrumb"), {
+  ssr: false,
+});
 
 function replaceTurkishCharacters(inputString) {
   const turkishToEnglishMap = {
@@ -131,7 +145,8 @@ const SearchPage = () => {
           ) : (
             <div className="search-wrapper-left">
               {wordNews?.map((item, idx) => {
-                const { id, eng, category, image, title, datePublished, url } = item;
+                const { id, eng, category, image, title, datePublished, url } =
+                  item;
                 const timePublished = new Date(datePublished.seconds * 1000);
                 const options = {
                   year: "numeric",
@@ -146,15 +161,21 @@ const SearchPage = () => {
                 return (
                   <div className="tagCardContainer" key={idx}>
                     <div className="tagCardContainer-top">
-                      <Link 
-                      //target="_blank" 
-                      href={url}>
-                        <img src={image} alt={title} className="tagCardContainer-top-img" />
+                      <Link
+                        //target="_blank"
+                        href={url}
+                      >
+                        <Image
+                          width="0" height="0" sizes="100vw"
+                          src={image}
+                          alt={title}
+                          className="tagCardContainer-top-img"
+                        />
                       </Link>
                     </div>
                     <div className="tagCardContainer-bottom">
                       <Link
-                       // target="_blank"
+                        // target="_blank"
                         href={url}
                         className="tagCardContainer-bottom-title"
                       >

@@ -1,18 +1,48 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
+//import Box from "@mui/material/Box";
+//import Drawer from "@mui/material/Drawer";
+//import List from "@mui/material/List";
+//import ListItem from "@mui/material/ListItem";
+//import ListItemButton from "@mui/material/ListItemButton";
+//import ListItemText from "@mui/material/ListItemText";
 import { IconButton } from "@mui/material";
 import { Close, MenuBook } from "@mui/icons-material";
 import { editLink } from "@/context/utils";
 import { BsMoonFill } from "react-icons/bs";
 import Link from "next/link";
 import "./drawerMenu.scss";
-import MenuIcon from '@mui/icons-material/Menu';
+//import MenuIcon from '@mui/icons-material/Menu';
 import { useCategoriesContext } from "@/context/CategoriesContext";
+import dynamic from "next/dynamic";
+
+const Box = dynamic(
+  () => import("@mui/material/Box"),
+  { ssr: false }
+);
+const Drawer = dynamic(
+  () => import("@mui/material/Drawer"),
+  { ssr: false }
+);
+const List = dynamic(
+  () => import("@mui/material/List"),
+  { ssr: false }
+);
+const ListItem = dynamic(
+  () => import("@mui/material/ListItem"),
+  { ssr: false }
+);
+const ListItemButton = dynamic(
+  () => import("@mui/material/ListItemButton"),
+  { ssr: false }
+);
+const MenuIcon = dynamic(
+  () => import("@mui/icons-material/Menu"),
+  { ssr: false }
+);
+const ListItemText = dynamic(
+  () => import("@mui/material/ListItemText"),
+  { ssr: false }
+);
 export default function DrawerMenu({ toggle, modeStatus }) {
   const { categories } = useCategoriesContext();
   const [isMenuDrawer, setIsMenuDrawer] = React.useState(false);

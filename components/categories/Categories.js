@@ -1,16 +1,25 @@
 "use client";
 import { useEffect, useState } from "react";
-import React from "react";
 import { usePathname } from "next/navigation";
 import "../navbar/navbar.scss";
 import { editLink } from "@/context/utils";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useCategoriesContext } from "@/context/CategoriesContext";
-import CategoriesMenu from "./CategoriesMenu";
+//import CategoriesMenu from "./CategoriesMenu";
 import { IconButton } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+//import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import { useModeContext } from "@/context/ModeContext";
+import dynamic from "next/dynamic";
+
+const CategoriesMenu = dynamic(
+  () => import("./CategoriesMenu"),
+  { ssr: false }
+);
+const MenuIcon = dynamic(
+  () => import("@mui/icons-material/Menu"),
+  { ssr: false }
+);
 
 const Categories = ({ wrapper }) => {
   const pathname = usePathname();

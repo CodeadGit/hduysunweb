@@ -5,6 +5,7 @@ import {
   handleShorttCatSliderRes,
 } from "@/context/utils";
 import { useThemeContext } from "@/context/ThemeContext";
+import Image from "next/image";
 
 const CategorySliderItem = ({ item }) => {
   const { image, url, title, category, id, eng, isTitled } = item;
@@ -17,7 +18,7 @@ const CategorySliderItem = ({ item }) => {
         //  target="_blank"
         onClick={() => handleReadIncrement(category, id)}
       >
-        <img src={image} alt={title} className="image" />
+        <Image height="0" width="0" sizes="100vw" src={image} alt={title} className="image" />
         {isTitled ? (
           <div className="catSlide-title-wrapper">
             {String(title.length) < 80 && (

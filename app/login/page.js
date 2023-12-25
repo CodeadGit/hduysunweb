@@ -1,10 +1,8 @@
-import Login from '@/components/login/Login';
-import React from 'react';
-
+//import Login from '@/components/login/Login';
+import dynamic from "next/dynamic";
+const Login = dynamic(() => import("@/components/login/Login"), { ssr: false });
 const LoginPage = () => {
-  return (
-   <Login />
-  )
+  return <Login />;
 };
 
 export default LoginPage;

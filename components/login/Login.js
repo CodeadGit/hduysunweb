@@ -1,15 +1,25 @@
 "use client";
 import { useState } from "react";
 import "./login.scss";
+import dynamic from "next/dynamic";
 import darkLogo from "../navbarLogo/darkLogo.svg";
 import Image from "next/image";
 import { FaGooglePlusG } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
-import LoginRegisterContainer from "./LoginRegisterContainer";
-import LoginContainer from "./LoginContainer";
+//import LoginRegisterContainer from "./LoginRegisterContainer";
+//import LoginContainer from "./LoginContainer";
 import { useAuthenticationContext } from "@/context/AuthenticationContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+
+const LoginRegisterContainer = dynamic(
+  () => import("./LoginRegisterContainer"),
+  { ssr: false }
+);
+const LoginContainer = dynamic(
+  () => import("./LoginContainer"),
+  { ssr: false }
+);
 
 const Login = () => {
   const [loginClicked, setLoginClicked] = useState(true);

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import DOMPurify from "dompurify";
 import "./newsDetails.scss";
 import { useThemeContext } from "@/context/ThemeContext";

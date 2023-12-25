@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import AllCategoriesCard from "./AllCategoriesCard";
+//import AllCategoriesCard from "./AllCategoriesCard";
 import "./allCategoriesPagesCards.scss";
 import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import { useModeContext } from "@/context/ModeContext";
+import dynamic from "next/dynamic";
 
-
+const AllCategoriesCard = dynamic(
+  () => import("./AllCategoriesCard"),
+  { ssr: false }
+);
 const AllCategoriesPagesCards = ({ category, label }) => {
   const [categoryCards, setCategoryCards] = useState([]);
   const [categoryLoading, setCategoryLoading] = useState(true);

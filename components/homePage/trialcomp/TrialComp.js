@@ -2,9 +2,6 @@
 import React, { useEffect, useState } from "react";
 import "./tiral.scss";
 import { useThemeContext } from "@/context/ThemeContext";
-import football1 from "../assets/football1.png";
-import football2 from "../assets/football2.png";
-import football3 from "../assets/football3.png";
 import Image from "next/image";
 import { CircularProgress } from "@mui/material";
 import TrialCardItem from "./TrialCardItem";

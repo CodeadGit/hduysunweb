@@ -1,10 +1,20 @@
 "use client";
 import React from "react";
-import PageSkinRight from "./ads/adsComponents/PageSkinRight";
-import PageSkinLeft from "./ads/adsComponents/PageSkinLeft";
+import dynamic from "next/dynamic";
+//import PageSkinRight from "./ads/adsComponents/PageSkinRight";
+//import PageSkinLeft from "./ads/adsComponents/PageSkinLeft";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useAdsContext } from "@/context/AdsContext";
 import { useModeContext } from "@/context/ModeContext";
+
+const PageSkinRight = dynamic(
+  () => import("./ads/adsComponents/PageSkinRight"),
+  { ssr: false }
+);
+const PageSkinLeft = dynamic(
+  () => import("./ads/adsComponents/PageSkinLeft"),
+  { ssr: false }
+);
 
 const BaseWrapper = ({ children, params }) => {
 

@@ -1,8 +1,14 @@
 "use client"
 import "./similiarVideos.scss";
-import SimiliarVideosCard from "./SimiliarVideosCard";
+import dynamic from "next/dynamic";
+//import SimiliarVideosCard from "./SimiliarVideosCard";
 import { useModeContext } from "@/context/ModeContext";
 import { useGalleryContext } from "@/context/GalleryContext";
+
+const SimiliarVideosCard = dynamic(
+  () => import("./SimiliarVideosCard"),
+  { ssr: false }
+);
 
 const SimilarVideos = () => {
 

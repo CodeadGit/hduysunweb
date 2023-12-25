@@ -9,9 +9,15 @@ import {
   orderBy,
   query,
 } from "firebase/firestore";
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import PhotoGallerySlider from "@/components/photoGallerySlider/PhotoGallerySlider";
-import PhotoGalleryDetail from "@/components/photoGallery/PhotoGalleryDetail";
+//import PhotoGalleryDetail from "@/components/photoGallery/PhotoGalleryDetail";
+
+const PhotoGalleryDetail = dynamic(
+  () => import("@/components/photoGallery/PhotoGalleryDetail"),
+  { ssr: false }
+);
 const PhotoGalleryDetailPage = ({ params }) => {
   const [thisPhotoGallery, setThisPhotoGallery] = useState([]);
   const [loading, setLoading] = useState(true);

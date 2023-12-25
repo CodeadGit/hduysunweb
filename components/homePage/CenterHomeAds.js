@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import center from "./assets/center.png";
 import "./center.scss";
 
 const CenterHomeAds = () => {

@@ -1,10 +1,15 @@
 "use client";
 import React from "react";
 import "./allCategoriesPage.scss";
-import AllCategoriesPagesCards from "./AllCategoriesPagesCards";
+//import AllCategoriesPagesCards from "./AllCategoriesPagesCards";
 import { useCategoriesContext } from "@/context/CategoriesContext";
 import { useModeContext } from "@/context/ModeContext";
+import dynamic from "next/dynamic";
 
+const AllCategoriesPagesCards = dynamic(
+  () => import("./AllCategoriesPagesCards"),
+  { ssr: false }
+);
 const AllCategoriesPage = () => {
   const { mode } = useModeContext();
   const modeStatus = mode === "dark";

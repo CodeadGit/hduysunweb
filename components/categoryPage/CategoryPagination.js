@@ -1,8 +1,25 @@
 "use client";
-import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import dynamic from "next/dynamic";
+const Pagination = dynamic(
+  () => import("@mui/material/Pagination"),
+  { ssr: false }
+);
+const PaginationItem = dynamic(
+  () => import("@mui/material/PaginationItem"),
+  { ssr: false }
+);
+const ArrowBackIcon = dynamic(
+  () => import("@mui/icons-material/ArrowBack"),
+  { ssr: false }
+);
+const ArrowForwardIcon = dynamic(
+  () => import("@mui/icons-material/ArrowForward"),
+  { ssr: false }
+);
+//import Pagination from "@mui/material/Pagination";
+//import PaginationItem from "@mui/material/PaginationItem";
+//import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+//import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const CategoryPagination = ({ handleChange, page, totalPage, pagList }) => {
   return (

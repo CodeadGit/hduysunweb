@@ -4,6 +4,7 @@ import Link from "next/link";
 import { handleShort,handleShorttSingleHaber,handleShortt } from "@/context/utils";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useCategoriesContext } from "@/context/CategoriesContext";
+import Image from "next/image";
 const SingleHaber = ({ image, category, eng, id, title, mode }) => {
   
   const { handleReadIncrement } = useThemeContext()
@@ -17,7 +18,7 @@ const SingleHaber = ({ image, category, eng, id, title, mode }) => {
       onClick={() => handleReadIncrement(category, id)}
     >
       <div className="most-reads-single-pic">
-        <img src={image} alt={title} />
+        <Image width="0" height="0" sizes="100vw" src={image} alt={title} />
       </div>
       <div className="most-reads-single-content">
         <p className={`content-title ${mode ? "dark" : ""}`}>

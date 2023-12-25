@@ -1,9 +1,10 @@
 "use client";
 import * as React from "react";
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import "./categoriesMenu.scss";
-import Drawer from "@mui/material/Drawer";
+//import Drawer from "@mui/material/Drawer";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useCategoriesContext } from "@/context/CategoriesContext";
 import {
@@ -18,6 +19,10 @@ import { Close } from "@mui/icons-material";
 import { BsMoonFill } from "react-icons/bs";
 import { useModeContext } from "@/context/ModeContext";
 
+const Drawer = dynamic(
+  () => import("@mui/material/Drawer"),
+  { ssr: false }
+);
 const CategoriesMenu = ({ toggleDrawer, isMenuDrawer }) => {
   const { toggle } = useThemeContext();
   const { mode } = useModeContext();

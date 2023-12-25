@@ -1,7 +1,12 @@
 "use client";
-import FooterSidebar from "./FooterSidebar";
+//import FooterSidebar from "./FooterSidebar";
 import "./kunye.scss";
+import dynamic from "next/dynamic";
 import { useModeContext } from "@/context/ModeContext";
+const FooterSidebar = dynamic(
+  () => import("./FooterSidebar"),
+  { ssr: false }
+);
 const Kunye = () => {
   const { mode } = useModeContext();
   const modeStatus = mode === "dark";

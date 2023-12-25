@@ -1,11 +1,13 @@
 import React from "react";
 import "./singleRelated.scss";
+import dynamic from "next/dynamic";
 import moment from "moment";
 import { AiFillEye } from "react-icons/ai";
 import Link from "next/link";
 import { handleShort } from "@/context/utils";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useCategoriesContext } from "@/context/CategoriesContext";
+import Image from "next/image";
 const SingleRelatedNews = ({ item = {}, mode }) => {
   
   const { categoryConvertor } = useCategoriesContext();
@@ -25,7 +27,7 @@ const SingleRelatedNews = ({ item = {}, mode }) => {
       className="related-news-single"
     //  target="_blank"
     >
-      <img src={image} alt="asd" className="single-img-wrapper" />
+      <Image width="0" height="0" sizes="100vw" src={image} alt="asd" className="single-img-wrapper" />
         <div className={`related-news-single-comments ${mode ? "dark" : ""}`}>
           <p> {publishedTime} </p>
           {/* <p>{categoryConvertor[category]}</p> */}

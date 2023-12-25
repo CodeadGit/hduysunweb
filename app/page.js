@@ -1,6 +1,6 @@
 "use client";
-import HomePage from "../components/homePage";
-import NewsStories from "@/components/newsStories/NewsStories";
+//import HomePage from "../components/homePage";
+//import NewsStories from "@/components/newsStories/NewsStories";
 import "./page.scss";
 import { useAdsContext } from "@/context/AdsContext";
 import { useModeContext } from "@/context/ModeContext";
@@ -11,6 +11,17 @@ import Script from "next/script";
 import * as gtag from '../lib/gtag'
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const HomePage = dynamic(
+  () => import("../components/homePage"),
+  { ssr: false }
+);
+const NewsStories = dynamic(
+  () => import("@/components/newsStories/NewsStories"),
+  { ssr: false }
+);
+
 
 export default function Home() {
 

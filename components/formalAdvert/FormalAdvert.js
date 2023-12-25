@@ -1,8 +1,13 @@
 import { useModeContext } from "@/context/ModeContext";
-import Breadcrumb from "../breadcrumb/Breadcrumb";
+//import Breadcrumb from "../breadcrumb/Breadcrumb";
 import "./FormalAdvert.scss";
 import { useThemeContext } from "@/context/ThemeContext";
 import DOMPurify from "dompurify";
+import dynamic from "next/dynamic";
+const Breadcrumb = dynamic(
+  () => import("../breadcrumb/Breadcrumb"),
+  { ssr: false }
+);
 
 const FormalAdvert = ({ titleArray, filterFormalAdv }) => {
   const { mode } = useModeContext();

@@ -1,13 +1,22 @@
 "use client";
 import { db } from "@/firebase/firebase.config";
-import Breadcrumb from "../breadcrumb/Breadcrumb";
-import SubHeadlineNewsCard from "./SubHeadlineNewsCard";
+//import Breadcrumb from "../breadcrumb/Breadcrumb";
+//import SubHeadlineNewsCard from "./SubHeadlineNewsCard";
 import "./subHeadlineNews.scss";
 import { useState, useEffect } from "react";
 import { useThemeContext } from "@/context/ThemeContext";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { useModeContext } from "@/context/ModeContext";
+import dynamic from "next/dynamic";
 
+const Breadcrumb = dynamic(
+  () => import("../breadcrumb/Breadcrumb"),
+  { ssr: false }
+);
+const SubHeadlineNewsCard = dynamic(
+  () => import("./SubHeadlineNewsCard"),
+  { ssr: false }
+);
 const SubHeadlineNews = () => {
   const { surMansetNewsList } = useThemeContext();
   const {mode } = useModeContext();

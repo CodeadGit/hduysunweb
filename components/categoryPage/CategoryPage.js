@@ -1,16 +1,24 @@
 "use client"
-import React from 'react';
+import dynamic from "next/dynamic";
 import "./categoryPage.scss";
 import { useState, useEffect } from 'react';
-import Breadcrumb from '../breadcrumb/Breadcrumb';
+//import Breadcrumb from '../breadcrumb/Breadcrumb';
 import { useThemeContext } from '@/context/ThemeContext';
-import CategoryPageNews from './CategoryPageNews';
+//import CategoryPageNews from './CategoryPageNews';
 import { notFound } from "next/navigation";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import { useModeContext } from '@/context/ModeContext';
 import { useCategoriesContext } from '@/context/CategoriesContext';
 
+const Breadcrumb = dynamic(
+  () => import("../breadcrumb/Breadcrumb"),
+  { ssr: false }
+);
+const CategoryPageNews = dynamic(
+  () => import("./CategoryPageNews"),
+  { ssr: false }
+);
 const CategoryPage= ({category}) => {
   const { categoryConvertor} = useCategoriesContext()
 

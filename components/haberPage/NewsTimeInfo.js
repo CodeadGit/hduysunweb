@@ -1,5 +1,5 @@
-import React from "react";
 import "./newsTimeInfo.scss";
+import dynamic from "next/dynamic";
 import moment from "moment";
 
 const NewsTimeInfo = ({ dateModified, datePublished, modeStatus }) => {

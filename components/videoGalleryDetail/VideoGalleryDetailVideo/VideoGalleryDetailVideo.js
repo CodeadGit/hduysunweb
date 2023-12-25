@@ -1,7 +1,13 @@
-import ReactPlayer from "react-player";
+//import ReactPlayer from "react-player";
+import dynamic from "next/dynamic";
 import "./videoGalleryDetailVideo.scss";
 import eyeIcon from "./videogallerydetailIcon/eyeIcon.svg"
 import { BsEye } from "react-icons/bs";
+
+const ReactPlayer = dynamic(
+  () => import("react-player"),
+  { ssr: false }
+);
 
 const VideoGalleryDetailVideo = ({ item, mode }) => {
   const { datePublished, dateModified, embed, read, title, description } = item;

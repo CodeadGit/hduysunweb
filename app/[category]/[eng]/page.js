@@ -2,12 +2,23 @@
 import React, { useEffect, useState } from "react";
 import { db } from "@/firebase/firebase.config";
 import { doc, getDoc } from "firebase/firestore";
-import Haber from "@/components/haberPage/Haber";
-import DetailsPageSkeleton from "@/components/detailsPageSkeleton/DetailsPageSkeleton";
+import dynamic from "next/dynamic";
+
+//import Haber from "@/components/haberPage/Haber";
+//import DetailsPageSkeleton from "@/components/detailsPageSkeleton/DetailsPageSkeleton";
 import { notFound } from "next/navigation";
 
-const DetailsPage = ({ params }) => {
+const Haber = dynamic(() => import("@/components/haberPage/Haber"), {
+  ssr: false,
+});
+const DetailsPageSkeleton = dynamic(
+  () => import("@/components/detailsPageSkeleton/DetailsPageSkeleton"),
+  {
+    ssr: false,
+  }
+);
 
+const DetailsPage = ({ params }) => {
   const [thisPage, setThisPage] = useState({});
   const [loadingThisPage, setLoadingThisPage] = useState(true);
   const [thisPageArticle, setThisPageArticle] = useState({});
@@ -16,9 +27,7 @@ const DetailsPage = ({ params }) => {
   var idArray = String(params.eng).split("-");
   var idForThisNews = idArray.at(-1);
 
-
   useEffect(() => {
-    
     let controller = new AbortController();
 
     (async () => {
@@ -36,8 +45,9 @@ const DetailsPage = ({ params }) => {
       await getDoc(qarticle)
         .then((doc) => {
           if (doc.exists) {
-            setThisPageArticle(doc.data())
-          }})
+            setThisPageArticle(doc.data());
+          }
+        })
         .finally(() => setLoadingThisArticle(false));
     })();
 
@@ -45,19 +55,16 @@ const DetailsPage = ({ params }) => {
   }, []);
 
   if (loadingThisPage) {
-
     return (
-      <div style={{display: "flex", justifyContent:"center"}}>
-        <DetailsPageSkeleton style={{marginTop: "30%"}}/>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <DetailsPageSkeleton style={{ marginTop: "30%" }} />
       </div>
-    )
-  };
+    );
+  }
 
   if (!thisPage) return notFound();
-  
-  return (
-      <Haber thisPageArticle={thisPageArticle} thisPage={thisPage} />
-  );
+
+  return <Haber thisPageArticle={thisPageArticle} thisPage={thisPage} />;
 };
 
 export default DetailsPage;

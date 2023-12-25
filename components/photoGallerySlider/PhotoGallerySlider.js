@@ -1,10 +1,20 @@
 import "./photoGallerySlider.scss";
-import PhotoGallerySliderItem from "./PhotoGallerySliderItem";
-import Slider from "react-slick";
+import dynamic from "next/dynamic";
+//import PhotoGallerySliderItem from "./PhotoGallerySliderItem";
+//import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState } from "react";
 import { useGalleryContext } from "@/context/GalleryContext";
+
+const PhotoGallerySliderItem = dynamic(
+  () => import("./PhotoGallerySliderItem"),
+  { ssr: false }
+);
+const Slider = dynamic(
+  () => import("react-slick"),
+  { ssr: false }
+);
 
 const PhotoGallerySlider = ({ thisPhotoGallery, titleArray, gDoc }) => {
   const { handlePhotoGallerySliderReadInc } = useGalleryContext();

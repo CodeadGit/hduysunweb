@@ -1,11 +1,18 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import "./relatedNews.scss";
-import SingleRelatedNews from "./SingleRelatedNews";
+import dynamic from "next/dynamic";
+//import SingleRelatedNews from "./SingleRelatedNews";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useModeContext } from "@/context/ModeContext";
 
+const SingleRelatedNews = dynamic(
+  () => import("./SingleRelatedNews"),
+  { ssr: false }
+);
+
 const RelatedNews = ({ subCategories, id, category }) => {
+
   const { news, loading } = useThemeContext();
   const { mode } = useModeContext();
   const modeStatus = mode === "dark";
@@ -13,7 +20,7 @@ const RelatedNews = ({ subCategories, id, category }) => {
 
   const relatedCategoryNews = news //Kategoriye göre ilgili haberler
     ?.filter((item) => item?.category === category && item.id !== id)
-    .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds)
+    .sort((a, b) => b.datePublished?.seconds - a.datePublished?.seconds)
     .slice(0, 3);
 
   useEffect(() => {
@@ -33,7 +40,7 @@ const RelatedNews = ({ subCategories, id, category }) => {
          if (idx === 0) {
            const subCategoryNews = news
              .filter((item) => item.category === cat && item.id !== id)
-             .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds)
+             .sort((a, b) => b?.datePublished?.seconds - a?.datePublished?.seconds)
              .slice(0, 2);
            arr.push(...subCategoryNews);
          } else {
@@ -58,7 +65,7 @@ const RelatedNews = ({ subCategories, id, category }) => {
        const [cat] = subCategories;
        const subCategoryNews = news
          .filter((item) => item.category === cat && item.id !== id)
-         .sort((a, b) => b.datePublished.seconds - a.datePublished.seconds)
+         .sort((a, b) => b?.datePublished?.seconds - a?.datePublished?.seconds)
          .slice(0, 3);
        arr.push(...subCategoryNews);
        setRelatedNews(arr);
@@ -67,14 +74,12 @@ const RelatedNews = ({ subCategories, id, category }) => {
      }
    }, []);
 
-   console.log(relatedNews)
-
   return (
     <div className="related-news">
       <div className="related-news-container">
         {relatedCategoryNews &&
           relatedCategoryNews
-            ?.sort((a, b) => b.datePublished.seconds - a.datePublished.seconds)
+            ?.sort((a, b) => b?.datePublished?.seconds - a?.datePublished?.seconds)
             .slice(0, 3)
             .map((item, idx) => {
               return (

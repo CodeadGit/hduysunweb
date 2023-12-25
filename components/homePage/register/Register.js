@@ -1,6 +1,5 @@
 "use client";
 import "./register.scss";
-import mobile from "../assets/mobile.png";
 import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
 import { useModeContext } from "@/context/ModeContext";
 const Register = () => {

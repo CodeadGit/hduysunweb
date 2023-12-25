@@ -1,17 +1,34 @@
 "use client";
 import React from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import "./homePage.scss";
 import { useThemeContext } from "@/context/ThemeContext";
 import { handleShort } from "@/context/utils";
 import BannerNext from "../ads/adsComponents/BannerNext";
-import HomePageSkeleton from "./HomePageSkeleton";
-import MainSlider from "./mainSlider/MainSlider";
-import SurMansetSlider from "./surMansetSlider/SurMansetSlider";
-import SurMansetSliderRes from "./surMansetSlider/SurMansetSliderRes";
+//import HomePageSkeleton from "./HomePageSkeleton";
+//import MainSlider from "./mainSlider/MainSlider";
+//import SurMansetSlider from "./surMansetSlider/SurMansetSlider";
+//import SurMansetSliderRes from "./surMansetSlider/SurMansetSliderRes";
 import { useModeContext } from "@/context/ModeContext";
 import MainSwiperSlider from "./mainSlider/MainSwiperSlider";
 
+const HomePageSkeleton = dynamic(
+  () => import("./HomePageSkeleton"),
+  { ssr: false }
+);
+const MainSlider = dynamic(
+  () => import("./mainSlider/MainSlider"),
+  { ssr: false }
+);
+const SurMansetSlider = dynamic(
+  () => import("./surMansetSlider/SurMansetSlider"),
+  { ssr: false }
+);
+const SurMansetSliderRes = dynamic(
+  () => import("./surMansetSlider/SurMansetSliderRes"),
+  { ssr: false }
+);
 const HomePage = () => {
   const { handleReadIncrement, newsLoading } = useThemeContext();
   const { mode } = useModeContext();

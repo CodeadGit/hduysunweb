@@ -1,11 +1,16 @@
 import React from "react";
 import "./videoGallery.scss";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { AiFillEye } from "react-icons/ai";
-import SingleVideo from "./SingleVideo";
+//import SingleVideo from "./SingleVideo";
 import { useThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
 
+const SingleVideo = dynamic(
+  () => import("./SingleVideo"),
+  { ssr: false }
+);
 // haber içi video galeri ilk büyük video galeri componenti
 const VideoGallery = ({ modeStatus, videoGallery }) => {
  // const {  handleReadIncrement } = useThemeContext();

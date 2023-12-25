@@ -1,11 +1,12 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
+import dynamic from "next/dynamic";
 import CategorySkeleton from "./CategorySkeleton";
-import CategoryPagination from "./CategoryPagination";
-import CategoryItem from "./CategoryItem";
+//import CategoryPagination from "./CategoryPagination";
+//import CategoryItem from "./CategoryItem";
 import "./categoryPageNews.scss";
-import Slider from "react-slick";
+//import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {
@@ -18,8 +19,24 @@ import {
 } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import Link from "next/link";
-import CategorySliderItem from "./CategorySliderItem";
+//import CategorySliderItem from "./CategorySliderItem";
 import { useModeContext } from "@/context/ModeContext";
+const CategoryPagination = dynamic(
+  () => import("./CategoryPagination"),
+  { ssr: false }
+);
+const Slider = dynamic(
+  () => import("react-slick"),
+  { ssr: false }
+);
+const CategoryItem = dynamic(
+  () => import("./CategoryItem"),
+  { ssr: false }
+);
+const CategorySliderItem = dynamic(
+  () => import("./CategorySliderItem"),
+  { ssr: false }
+);
 const CategoryPageNews = ({ category, totalPage }) => {
   const { mode } = useModeContext();
   const modeStatus = mode === "dark";

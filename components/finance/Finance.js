@@ -1,9 +1,10 @@
 "use client";
+import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
 import "./finance.scss";
 import { useThemeContext } from "@/context/ThemeContext";
 import axios from "axios";
-import FinanceCurrency from "./FinanceCurrency";
+//import FinanceCurrency from "./FinanceCurrency";
 import dolar from "./dolar.svg";
 import euro from "./euro.svg";
 import { useModeContext } from "@/context/ModeContext";
@@ -14,6 +15,11 @@ const currencyLabel = {
   BTC: "BITCOIN",
   Gram: "G.ALTIN",
 };
+
+const FinanceCurrency = dynamic(
+  () => import("./FinanceCurrency"),
+  { ssr: false }
+);
 
 const currencyArray = ["US DOLLAR", "EURO"];
 

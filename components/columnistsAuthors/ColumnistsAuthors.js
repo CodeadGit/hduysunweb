@@ -2,8 +2,14 @@
 import { useThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
 import "./columnistsAuthors.scss";
-import ColumnistsAuthorsCard from "./ColumnistsAuthorsCard";
+//import ColumnistsAuthorsCard from "./ColumnistsAuthorsCard";
+import dynamic from "next/dynamic";
 import { useModeContext } from "@/context/ModeContext";
+
+const ColumnistsAuthorsCard = dynamic(
+  () => import("./ColumnistsAuthorsCard"),
+  { ssr: false }
+);
 
 const ColumnistsAuthors = (item) => {
   const { eng, tittle } = item;

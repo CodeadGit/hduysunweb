@@ -1,10 +1,29 @@
 "use client";
-import Breadcrumb from "../breadcrumb/Breadcrumb";
+import dynamic from "next/dynamic";
+//import Breadcrumb from "../breadcrumb/Breadcrumb";
 import "./videoGalleryDetail.scss";
-import ReactPlayer from "react-player";
-import SimiliarVideos from "./SimiliarVideos/SimiliarVideos";
-import VideoGalleryDetailVideo from "./VideoGalleryDetailVideo/VideoGalleryDetailVideo";
+//import ReactPlayer from "react-player";
+//import SimiliarVideos from "./SimiliarVideos/SimiliarVideos";
+//import VideoGalleryDetailVideo from "./VideoGalleryDetailVideo/VideoGalleryDetailVideo";
 import { useModeContext } from "@/context/ModeContext";
+
+const VideoGalleryDetailVideo = dynamic(
+  () => import("./VideoGalleryDetailVideo/VideoGalleryDetailVideo"),
+  { ssr: false }
+);
+const SimiliarVideos = dynamic(
+  () => import("/SimiliarVideos/SimiliarVideos"),
+  { ssr: false }
+);
+const Breadcrumb = dynamic(
+  () => import("../breadcrumb/Breadcrumb"),
+  { ssr: false }
+);
+const ReactPlayer = dynamic(
+  () => import("react-player"),
+  { ssr: false }
+);
+
 const VideoGalleryDetail = ({ filteredVideo, titleArray }) => {
 
   const { mode } = useModeContext();

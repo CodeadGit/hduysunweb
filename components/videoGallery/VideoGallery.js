@@ -1,14 +1,31 @@
 "use client";
-import Breadcrumb from "../breadcrumb/Breadcrumb";
+import dynamic from "next/dynamic";
+//import Breadcrumb from "../breadcrumb/Breadcrumb";
 import "./videoGallery.scss";
-import Slider from "react-slick";
+//import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import VideoGalleryItem from "./VideoGalleryItem";
-import VideoGalleryCard from "./VideoGalleryCard";
+//import VideoGalleryItem from "./VideoGalleryItem";
+//import VideoGalleryCard from "./VideoGalleryCard";
 import { useGalleryContext } from "@/context/GalleryContext";
 import { useModeContext } from "@/context/ModeContext";
 
+const Breadcrumb = dynamic(
+  () => import("../breadcrumb/Breadcrumb"),
+  { ssr: false }
+);
+const Slider = dynamic(
+  () => import("react-slick"),
+  { ssr: false }
+);
+const VideoGalleryItem = dynamic(
+  () => import("./VideoGalleryItem"),
+  { ssr: false }
+);
+const VideoGalleryCard = dynamic(
+  () => import("./VideoGalleryCard"),
+  { ssr: false }
+);
 const VideoGallery = () => {
   const { mode } = useModeContext();
   const { videoGallery } = useGalleryContext();

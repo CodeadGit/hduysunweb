@@ -4,6 +4,7 @@ import "./cardItem.scss";
 import { handleShort } from "@/context/utils";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useCategoriesContext } from "@/context/CategoriesContext";
+import Image from "next/image";
 const CardItem = ({ item, modeStatus }) => {
   const { image, title, eng, id, category, datePublished, tags } = item;
   const { handleReadIncrement } = useThemeContext();
@@ -11,8 +12,7 @@ const CardItem = ({ item, modeStatus }) => {
   const timePublished = new Date(datePublished.seconds * 1000);
   const options = { year: "numeric", month: "long", day: "2-digit" };
   const formattedDate = timePublished.toLocaleString("tr-TR", options);
-  const { categoryConvertor} = useCategoriesContext()
-
+  const { categoryConvertor } = useCategoriesContext();
 
   return (
     <Link
@@ -22,7 +22,16 @@ const CardItem = ({ item, modeStatus }) => {
       onClick={() => handleReadIncrement(category, id)}
     >
       <div className="card-wrapper">
-        <img src={image} alt={title} className="image" />
+        <Image
+          width="0"
+          height="0"
+          sizes="100vw"
+          aspectRatio={1.76 / 1}
+          objectFit="cover"
+          src={image}
+          alt={title}
+          className="image"
+        />
       </div>
       <div className="content">
         <div className="content-top">

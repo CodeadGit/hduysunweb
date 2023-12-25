@@ -1,7 +1,10 @@
-import React from 'react';
-import SingleHaber from "./SingleHaber";
+import dynamic from "next/dynamic";
+//import SingleHaber from "./SingleHaber";
 import "./mostReadNews.scss";
-
+const SingleHaber = dynamic(
+  () => import("./SingleHaber"),
+  { ssr: false }
+);
 function MostReadNews({ modeStatus, mostReadNews }) {
     return (
       <div className="most-read-news">

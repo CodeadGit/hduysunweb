@@ -16,8 +16,18 @@ import { GoClock } from "react-icons/go";
 // import { TiArrowForward } from "react-icons/ti";
 // import { GiCancel } from "react-icons/gi";
 import "./singleComment.scss";
-import ReplytoCommentForm from "./ReplytoCommentForm";
-import AnswerstoComments from "./AnswerstoComments";
+import dynamic from "next/dynamic";
+//import ReplytoCommentForm from "./ReplytoCommentForm";
+//import AnswerstoComments from "./AnswerstoComments";
+
+const ReplytoCommentForm = dynamic(
+  () => import("./ReplytoCommentForm"),
+  { ssr: false }
+);
+const AnswerstoComments = dynamic(
+  () => import("./AnswerstoComments"),
+  { ssr: false }
+);
 
 const SingleComment = ({
   thisPage,

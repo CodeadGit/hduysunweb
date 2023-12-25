@@ -7,13 +7,19 @@ import { BsWhatsapp } from "react-icons/bs";
 import { BsFacebook } from "react-icons/bs";
 import { BsTwitter } from "react-icons/bs";
 import { BsInstagram } from "react-icons/bs";
-import KunyeItem from "./KunyeItem";
+//import KunyeItem from "./KunyeItem";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useAdsContext } from "@/context/AdsContext";
 import { useFetchAssetsContext } from "@/context/FetchAssetsContext";
 import Image from "next/image";
 import { useCategoriesContext } from "@/context/CategoriesContext";
 import { useModeContext } from "@/context/ModeContext";
+import dynamic from "next/dynamic";
+
+const KunyeItem = dynamic(
+  () => import("./KunyeItem"),
+  { ssr: false }
+);
 
 const kunyeArray = [
   {

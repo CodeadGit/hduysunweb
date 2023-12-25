@@ -1,9 +1,14 @@
 "use client";
 import React from "react";
 import "./video.scss";
-import SingleVideo from "./SingleVideo";
+//import SingleVideo from "./SingleVideo";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useModeContext } from "@/context/ModeContext";
+import dynamic from "next/dynamic";
+const SingleVideo = dynamic(
+  () => import("./SingleVideo"),
+  { ssr: false }
+);
 
 const videosArray = [
     {

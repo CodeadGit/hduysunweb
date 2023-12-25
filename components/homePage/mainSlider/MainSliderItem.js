@@ -2,6 +2,7 @@ import Link from "next/link";
 import "./mainSliderItem.scss";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { getDoc } from "firebase/firestore";
 import { handleShorttSonDakika } from "@/context/utils.js";
 import { useAdsContext } from "@/context/AdsContext";
@@ -43,7 +44,16 @@ const MainSliderItem = ({ item, idx, pinArray }) => {
         target="_blank"
         onClick={() => handleReadIncrement(category, id)}
       >
-        <img src={image} alt={title} className="image" />
+        <Image
+          //objectFit="cover"
+          src={image}
+          width="0"
+          height="0"
+          sizes="100vw"
+          aspectRatio={1.76/1}
+          alt={title}
+          className="image"
+        />
         {item.category === "sonDakika" && item.isTitled && (
           <div className="sondakika-wrapper">
             <span className="sondakika-wrapper-title">

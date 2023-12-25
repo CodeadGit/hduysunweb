@@ -1,4 +1,3 @@
-import React from "react";
 import "./newsTags.scss";
 import Link from "next/link";
 

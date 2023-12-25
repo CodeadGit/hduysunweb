@@ -1,9 +1,11 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import "./PhotoGalleryCard.scss";
 import { useThemeContext } from "@/context/ThemeContext";
 import { handleShort } from "@/context/utils";
 import { useGalleryContext } from "@/context/GalleryContext";
 import { useModeContext } from "@/context/ModeContext";
+
 const PhotoGalleryCard = ({ item }) => {
   const { mode } = useModeContext();
   const { handlePhotoGalleryReadInc } = useGalleryContext();

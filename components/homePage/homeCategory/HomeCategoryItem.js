@@ -1,6 +1,7 @@
 import React from "react";
 import "./homeCategoryItem.scss";
 import Link from "next/link";
+import Image from "next/image";
 import { useThemeContext } from "@/context/ThemeContext";
 const HomeCategoryItem = ({ item, modeStatus }) => {
 
@@ -16,9 +17,7 @@ const HomeCategoryItem = ({ item, modeStatus }) => {
     target="_blank" 
     className={`homeCategoryCard ${modeStatus ? "dark" : ""}`} onClick={() => handleReadIncrement(category, id)}>
       <div className="homeCategoryCard-top">
-        <div >
-          <img src={image} alt={title} className="homeCategoryCard-top-img" />
-        </div>
+          <Image width="0" height="0" sizes="100vw" objectFit="cover" aspectRatio={1.76/1} src={image} alt={title} className="homeCategoryCard-top-img" />
       </div>
       <div className="homeCategoryCard-bottom">
         <div

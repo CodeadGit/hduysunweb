@@ -1,7 +1,12 @@
 "use client";
 import "./kullanimSartnamesi.scss";
-import FooterSidebar from "./FooterSidebar";
+import dynamic from "next/dynamic";
+//import FooterSidebar from "./FooterSidebar";
 import { useModeContext } from "@/context/ModeContext";
+const FooterSidebar = dynamic(
+  () => import("./FooterSidebar"),
+  { ssr: false }
+);
 const KullanimSartnamesi = () => {
   const { mode } = useModeContext();
   const modeStatus = mode === "dark";

@@ -1,8 +1,13 @@
 "use client";
+import dynamic from "next/dynamic";
 import "./gizlilikPolitikasi.scss";
-import FooterSidebar from "./FooterSidebar";
+//import FooterSidebar from "./FooterSidebar";
 import { useModeContext } from "@/context/ModeContext";
 
+const FooterSidebar = dynamic(
+  () => import("./FooterSidebar"),
+  { ssr: false }
+);
 const GizlilikPolitikasi = () => {
   const { mode } = useModeContext();
   const modeStatus = mode === "dark";

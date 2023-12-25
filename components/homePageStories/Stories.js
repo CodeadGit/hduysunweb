@@ -1,13 +1,22 @@
 "use client";
 import React from "react";
 import "./stories.scss";
+import dynamic from "next/dynamic";
 
 import { useThemeContext } from "@/context/ThemeContext";
-import SingleStory from "./SingleStory";
+//import SingleStory from "./SingleStory";
 import { useAdsContext } from "@/context/AdsContext";
-import StoriesSkeleton from "./StoriesSkeleton";
+//import StoriesSkeleton from "./StoriesSkeleton";
 import { useModeContext } from "@/context/ModeContext";
 // import { categories } from "@/context/utils";
+const SingleStory = dynamic(
+  () => import("./SingleStory"),
+  { ssr: false }
+);
+const StoriesSkeleton = dynamic(
+  () => import("./StoriesSkeleton"),
+  { ssr: false }
+);
 
 const Stories = () => {
 

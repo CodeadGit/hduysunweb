@@ -1,7 +1,12 @@
 "use client";
 import "./kvkk.scss";
-import FooterSidebar from "./FooterSidebar";
+//import FooterSidebar from "./FooterSidebar";
 import { useModeContext } from "@/context/ModeContext";
+import dynamic from "next/dynamic";
+const FooterSidebar = dynamic(
+  () => import("./FooterSidebar"),
+  { ssr: false }
+);
 const Kvkk = () => {
   const { mode } = useModeContext();
   const modeStatus = mode === "dark";

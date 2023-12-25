@@ -1,9 +1,14 @@
 "use client";
-import ColumnsPage from "@/components/columnsPage/ColumnsPage";
+import dynamic from "next/dynamic";
+//import ColumnsPage from "@/components/columnsPage/ColumnsPage";
 import { db } from "@/firebase/firebase.config";
 import { collection, doc, getDoc, query } from "firebase/firestore";
 import { useState, useEffect } from "react";
 
+const ColumnsPage = dynamic(
+  () => import("@/components/columnsPage/ColumnsPage"),
+  { ssr: false }
+);
 const KoseYazisiDetayPage = ({ params }) => {
   const [koseYazisi, setKoseYazisi] = useState([]);
   const [koseYazisiArticle, setKoseYazisiArticle] = useState([]);

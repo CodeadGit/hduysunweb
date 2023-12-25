@@ -1,9 +1,10 @@
-import Breadcrumb from "../breadcrumb/Breadcrumb";
+//import Breadcrumb from "../breadcrumb/Breadcrumb";
 import "./columnsPage.scss";
-import StickyNavbar from "../stickyNavbar/StickyNavbar";
-import AdsImage from "../haberPage/AdsImage";
+//import StickyNavbar from "../stickyNavbar/StickyNavbar";
+//import AdsImage from "../haberPage/AdsImage";
 import { db } from "@/firebase/firebase.config";
 import DOMPurify from "dompurify";
+import dynamic from "next/dynamic";
 import {
   collection,
   doc,
@@ -13,12 +14,20 @@ import {
   query,
 } from "firebase/firestore";
 import { useState, useEffect } from "react";
-import SingleColumns from "./SingleColumns";
+//import SingleColumns from "./SingleColumns";
 import { useModeContext } from "@/context/ModeContext";
 import moment from "moment";
 import { Avatar } from "@mui/material";
 import { useThemeContext } from "@/context/ThemeContext";
 
+const StickyNavbar = dynamic(() => import("../stickyNavbar/StickyNavbar"), {
+  ssr: false,
+});
+const Breadcrumb = dynamic(() => import("../breadcrumb/Breadcrumb"), {
+  ssr: false,
+});
+const AdsImage = dynamic(() => import("../haberPage/AdsImage"), { ssr: false });
+const SingleColumns = dynamic(() => import("./SingleColumns"), { ssr: false });
 const ColumnsPage = ({ koseYazisi, koseYazisiArticle, idArray }) => {
   const { mode } = useModeContext();
   const { autors } = useThemeContext();
@@ -93,7 +102,9 @@ const ColumnsPage = ({ koseYazisi, koseYazisiArticle, idArray }) => {
     gap: "1rem",
   };
 
-  const filteredAuthorAvatar = autors.find((item) => item.id === String(koseYazisi?.authorid))
+  const filteredAuthorAvatar = autors.find(
+    (item) => item.id === String(koseYazisi?.authorid)
+  );
 
   return (
     <div className={`columnsPage ${modeStatus ? "dark" : ""}`}>
@@ -115,15 +126,15 @@ const ColumnsPage = ({ koseYazisi, koseYazisiArticle, idArray }) => {
           {publishedTime !== "Invalid date" ? (
             <div className="columnsPage-container-content-info">
               <div className="columnsPage-container-content-info-authorInfo">
-              <Avatar
+                <Avatar
                   className="avatar"
                   alt="avatar-img"
-                  sx={{width:"35px", height:"35px"}}
+                  sx={{ width: "35px", height: "35px" }}
                   src={filteredAuthorAvatar?.avatar}
                 />
-                <span className={`author-name ${
-                  modeStatus ? "dark" : ""
-                }`}>{koseYazisi?.author}</span>
+                <span className={`author-name ${modeStatus ? "dark" : ""}`}>
+                  {koseYazisi?.author}
+                </span>
               </div>
               <p
                 className={`columnsPage-container-content-info-timeInfo ${
@@ -165,13 +176,15 @@ const ColumnsPage = ({ koseYazisi, koseYazisiArticle, idArray }) => {
             <span className={`des-title ${modeStatus ? "dark" : ""}`}>
               Köşe Yazarının Diğer Yazıları
             </span>
-          ) : ""}
+          ) : (
+            ""
+          )}
           <div className="other-articles">
-            {filteredColumns.length !== 0 ?
-             filteredColumns.slice(0,5).map((item, idx) => (
-               <SingleColumns item={item} key={idx} />
-             ))
-            : ""}
+            {filteredColumns.length !== 0
+              ? filteredColumns
+                  .slice(0, 5)
+                  .map((item, idx) => <SingleColumns item={item} key={idx} />)
+              : ""}
           </div>
         </div>
       </div>

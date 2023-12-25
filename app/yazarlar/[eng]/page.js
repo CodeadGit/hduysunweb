@@ -1,7 +1,8 @@
 "use client";
-import ColumnistsAuthorsDetail from "@/components/columnistsAuthors/columnistsAuthorsDetail/ColumnistsAuthorsDetail";
+//import ColumnistsAuthorsDetail from "@/components/columnistsAuthors/columnistsAuthorsDetail/ColumnistsAuthorsDetail";
 import { db } from "@/firebase/firebase.config";
 import { CircularProgress } from "@mui/material";
+import dynamic from "next/dynamic";
 import {
   collection,
   doc,
@@ -11,18 +12,24 @@ import {
   query,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+const ColumnistsAuthorsDetail = dynamic(
+  () =>
+    import(
+      "@/components/columnistsAuthors/columnistsAuthorsDetail/ColumnistsAuthorsDetail"
+    ),
+  { ssr: false }
+);
 
 const YazarDetayPage = ({ params }) => {
   const [posts, setPosts] = useState([]);
   const [author, setAuthor] = useState({});
   const [loading, setLoading] = useState(true);
-  const [oldColumns, setOldColumns] = useState([])
+  const [oldColumns, setOldColumns] = useState([]);
   const [authorLoading, setAuthorLoading] = useState(true);
 
   var idArray = String(params.eng).split("-");
   var idForThisAuthor = idArray.at(-1);
   var titleArray = idArray.slice(0, -1).join(" ").toString();
-
 
   useEffect(() => {
     const fetchAuthors = async () => {
@@ -36,7 +43,12 @@ const YazarDetayPage = ({ params }) => {
         var columnistsData = [];
         if (!querySnapshot.empty) {
           querySnapshot.forEach((doc) => {
-            if (doc.data().authorid === idForThisAuthor && doc.data().active && doc.data().isNow && doc.exists) {
+            if (
+              doc.data().authorid === idForThisAuthor &&
+              doc.data().active &&
+              doc.data().isNow &&
+              doc.exists
+            ) {
               columnistsData.push({ ...doc.data(), doc: doc.id });
             }
           });
@@ -111,8 +123,12 @@ const YazarDetayPage = ({ params }) => {
   // var formattedDate = timePublished.toLocaleString("tr-TR", options);
 
   // farklı id lere sahip yeni eklenen köşe yazarları için eski id ye göre yazılar filtrelendi
-  const rustemColumns = oldColumns.filter((i) => i.authorid === 95 && i.title != undefined)
-  const omerColumns = oldColumns.filter((i) => i.authorid === 102 && i.title != undefined)
+  const rustemColumns = oldColumns.filter(
+    (i) => i.authorid === 95 && i.title != undefined
+  );
+  const omerColumns = oldColumns.filter(
+    (i) => i.authorid === 102 && i.title != undefined
+  );
 
   if (loading || authorLoading) {
     return <CircularProgress />;

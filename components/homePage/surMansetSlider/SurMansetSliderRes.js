@@ -1,13 +1,22 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./surMansetSlider.scss";
-import Slider from "react-slick";
+import dynamic from "next/dynamic";
+//import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
-import SurMansetSliderResItem from "./SurMansetSliderResItem";
+//import SurMansetSliderResItem from "./SurMansetSliderResItem";
 
+const Slider = dynamic(
+  () => import("react-slick"),
+  { ssr: false }
+);
+const SurMansetSliderResItem = dynamic(
+  () => import("./SurMansetSliderResItem"),
+  { ssr: false }
+);
 const SurMansetSliderRes = () => {
   const [surMansetResList, setSurMansetResList] = useState([]);
   const [loading, setLoading] = useState(true);

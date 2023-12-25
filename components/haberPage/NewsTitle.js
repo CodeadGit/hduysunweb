@@ -1,4 +1,3 @@
-import React from "react";
 import "./newsTitle.scss";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useModeContext } from "@/context/ModeContext";

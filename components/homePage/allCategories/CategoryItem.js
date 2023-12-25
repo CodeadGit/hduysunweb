@@ -10,7 +10,7 @@ const CategoryItem = ({ image, category, modeStatus,title }) => {
   return (
     <div className="item">
       <Link href={`/${category}`} target="_blank">
-        <img src={image} alt={category} />
+        <Image width="0" height="0" sizes="100vw" src={image} alt={category} />
       </Link>
       <div className="info">
         <div className={`disc ${modeStatus ? "dark" : ""}`}></div>

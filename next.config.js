@@ -4,6 +4,9 @@ const nextConfig = {
         appDir:true,
         typedRoutes:true,
     },
+    images: {
+        domains: ["firebasestorage.googleapis.com"]
+      },
 }
 
 module.exports = nextConfig

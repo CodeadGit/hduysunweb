@@ -16,6 +16,7 @@
     position: relative;
     &-img {
       object-fit: cover;
+      height: auto;
       width: 100%;
      // height: 12rem;
       aspect-ratio: 1.76/1;

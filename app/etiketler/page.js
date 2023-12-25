@@ -1,18 +1,29 @@
 "use client";
-import React from "react";
+import dynamic from "next/dynamic";
 import "./style.scss";
 import { useThemeContext } from "@/context/ThemeContext";
 import Link from "next/link";
-import MostReadNews from "@/components/haberPage/MostReadNews";
-import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
-import CategoryNewsTitle from "@/components/haberPage/CategoryNewsTitle";
+//import MostReadNews from "@/components/haberPage/MostReadNews";
+//import Breadcrumb from "@/components/breadcrumb/Breadcrumb";
+//import CategoryNewsTitle from "@/components/haberPage/CategoryNewsTitle";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import { useModeContext } from "@/context/ModeContext";
 
-const TagsPage = () => {
+const MostReadNews = dynamic(
+  () => import("@/components/haberPage/MostReadNews"),
+  { ssr: false }
+);
+const Breadcrumb = dynamic(() => import("@/components/breadcrumb/Breadcrumb"), {
+  ssr: false,
+});
+const CategoryNewsTitle = dynamic(
+  () => import("@/components/haberPage/CategoryNewsTitle"),
+  { ssr: false }
+);
 
-  const {  mostReadNewsList, tagsList, tagsListLoading } = useThemeContext();
+const TagsPage = () => {
+  const { mostReadNewsList, tagsList, tagsListLoading } = useThemeContext();
   const { mode } = useModeContext();
   const modeStatus = mode === "dark";
 
@@ -51,7 +62,9 @@ const TagsPage = () => {
         </div>
         <div className="tags-page-container-right">
           <CategoryNewsTitle title="En Çok Okunan" modeStatus={modeStatus} />
-          <MostReadNews modeStatus={modeStatus} mostReadNews={mostReadNewsList}
+          <MostReadNews
+            modeStatus={modeStatus}
+            mostReadNews={mostReadNewsList}
           />
         </div>
       </div>

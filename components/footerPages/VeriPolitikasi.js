@@ -1,8 +1,12 @@
 "use client";
 import { useModeContext } from "@/context/ModeContext";
-import FooterSidebar from "./FooterSidebar";
+//import FooterSidebar from "./FooterSidebar";
 import "./veriPolitikasi.scss";
-
+import dynamic from "next/dynamic";
+const FooterSidebar = dynamic(
+  () => import("./FooterSidebar"),
+  { ssr: false }
+);
 const VeriPolitikasi = () => {
   const { mode } = useModeContext();
   const modeStatus = mode === "dark";

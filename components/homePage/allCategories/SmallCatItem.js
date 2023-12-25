@@ -13,7 +13,7 @@ const SmallCatItem = ({ image, category, modeStatus, title }) => {
         href={category === "videogaleri" ? "video-galeri" : `/${category}`}
         target="_blank"
       >
-        <img src={image} alt={category} />
+        <Image height="0" width="0" sizes="100vw" src={image} alt={category} />
       </Link>
       <div className="info">
         <div className={`disc ${modeStatus ? "dark" : ""}`}></div>

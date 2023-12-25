@@ -2,6 +2,7 @@ import "./categoryItem.scss";
 import Link from "next/link";
 import { useThemeContext } from "@/context/ThemeContext";
 import { useModeContext } from "@/context/ModeContext";
+import Image from "next/image";
 const CategoryItem = ({ item }) => {
   const { title, image, category, eng, id, datePublished } = item;
   const { handleReadIncrement } = useThemeContext();
@@ -22,7 +23,7 @@ const CategoryItem = ({ item }) => {
     >
       <div className="categoryItem-top">
         <div>
-          <img src={image} className="categoryItem-top-img" />
+          <Image height="0" width="0" sizes="100vw" src={image} className="categoryItem-top-img" />
         </div>
       </div>
       <div className="categoryItem-bottom">

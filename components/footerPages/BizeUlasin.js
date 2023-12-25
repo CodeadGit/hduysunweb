@@ -1,9 +1,14 @@
 "use client";
 import { useModeContext } from "@/context/ModeContext";
 import "./bizeUlasin.scss";
-import FooterSidebar from "./FooterSidebar";
+//import FooterSidebar from "./FooterSidebar";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
+const FooterSidebar = dynamic(
+  () => import("./FooterSidebar"),
+  { ssr: false }
+);
 const BizeUlasin = () => {
   const { mode } = useModeContext();
   const modeStatus = mode === "dark";

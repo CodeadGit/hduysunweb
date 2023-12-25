@@ -1,10 +1,19 @@
 "use client";
-import React, { useEffect, useState, useId } from "react";
+import { useEffect, useState, useId } from "react";
+import dynamic from "next/dynamic";
 import "./haber.scss";
-import Breadcrumb from "../breadcrumb/Breadcrumb";
+//import Breadcrumb from "../breadcrumb/Breadcrumb";
 // import SingleRelatedNews from "./SingleRelatedNews";
-import Amblem from "./Amblem";
-import CategoryHeadlines from "./categoryHeadlines/CategoryHeadlines";
+//import Amblem from "./Amblem";
+//import CategoryHeadlines from "./categoryHeadlines/CategoryHeadlines";
+const CategoryHeadlines = dynamic(
+  () => import("./categoryHeadlines/CategoryHeadlines"),
+  { ssr: false }
+);
+const Breadcrumb = dynamic(() => import("../breadcrumb/Breadcrumb"), {
+  ssr: false,
+});
+const Amblem = dynamic(() => import("./Amblem"), { ssr: false });
 import { useThemeContext } from "@/context/ThemeContext";
 import {
   addDoc,
@@ -19,31 +28,62 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../../firebase/firebase.config";
-import RelatedNews from "../relatedNews/RelatedNews";
-import CategoryGoogleContainer from "./CategoryGoogleContainer";
-import NewsTitle from "./NewsTitle";
-import NewsFirstDescription from "./NewsFirstDescription";
-import NewsTimeInfo from "./NewsTimeInfo";
-import NewsAndAuthorInfo from "./NewsAndAuthorInfo";
-import NewsDetails from "./NewsDetails";
-import NewsTags from "./NewsTags";
-import Comments from "./Comments";
-import AddCommentForm from "./AddCommentForm";
-import AdsImage from "./AdsImage";
-import CategoryNewsTitle from "./CategoryNewsTitle";
-import MostReadNews from "./MostReadNews";
-import VideoGallery from "./VideoGallery";
-import StickyNavbar from "../stickyNavbar/StickyNavbar";
+//import RelatedNews from "../relatedNews/RelatedNews";
+//import CategoryGoogleContainer from "./CategoryGoogleContainer";
+//import NewsTitle from "./NewsTitle";
+//import NewsFirstDescription from "./NewsFirstDescription";
+//import NewsTimeInfo from "./NewsTimeInfo";
+//import NewsAndAuthorInfo from "./NewsAndAuthorInfo";
+//import NewsDetails from "./NewsDetails";
+//import NewsTags from "./NewsTags";
+//import Comments from "./Comments";
+//import AddCommentForm from "./AddCommentForm";
+//import AdsImage from "./AdsImage";
+//import CategoryNewsTitle from "./CategoryNewsTitle";
+//import MostReadNews from "./MostReadNews";
+//import VideoGallery from "./VideoGallery";
+//import StickyNavbar from "../stickyNavbar/StickyNavbar";
 import { useModeContext } from "@/context/ModeContext";
 import { useGalleryContext } from "@/context/GalleryContext";
 import { useCategoriesContext } from "@/context/CategoriesContext";
+import { ImageTwoTone } from "@mui/icons-material";
+import Image from "next/image";
+const RelatedNews = dynamic(() => import("../relatedNews/RelatedNews"), {
+  ssr: false,
+});
+const CategoryGoogleContainer = dynamic(
+  () => import("./CategoryGoogleContainer"),
+  { ssr: false }
+);
+const NewsTitle = dynamic(() => import("./NewsTitle"), { ssr: false });
+const NewsFirstDescription = dynamic(() => import("./NewsFirstDescription"), {
+  ssr: false,
+});
+const NewsTimeInfo = dynamic(() => import("./NewsTimeInfo"), { ssr: false });
+const NewsAndAuthorInfo = dynamic(() => import("./NewsAndAuthorInfo"), {
+  ssr: false,
+});
+const AdsImage = dynamic(() => import("./AdsImage"), { ssr: false });
+const NewsDetails = dynamic(() => import("./NewsDetails"), { ssr: false });
+const Comments = dynamic(() => import("./Comments"), { ssr: false });
+const NewsTags = dynamic(() => import("./NewsTags"), { ssr: false });
+const AddCommentForm = dynamic(() => import("./AddCommentForm"), {
+  ssr: false,
+});
+const StickyNavbar = dynamic(() => import("../stickyNavbar/StickyNavbar"), {
+  ssr: false,
+});
+const CategoryNewsTitle = dynamic(() => import("./CategoryNewsTitle"), {
+  ssr: false,
+});
+const VideoGallery = dynamic(() => import("./VideoGallery"), { ssr: false });
+const MostReadNews = dynamic(() => import("./MostReadNews"), { ssr: false });
 
 const Haber = ({ thisPageArticle, thisPage }) => {
-
   const { mostReadNewsList, videoGallery } = useThemeContext();
   //const {videoGallery } = useGalleryContext;
   const { mode } = useModeContext();
-  const { categoryConvertor} = useCategoriesContext()
+  const { categoryConvertor } = useCategoriesContext();
 
   const modeStatus = mode === "dark";
   const [loading, setLoading] = useState(true);
@@ -70,7 +110,9 @@ const Haber = ({ thisPageArticle, thisPage }) => {
 
   const body = thisPageArticle?.body;
 
-  const mostReadNews = mostReadNewsList.filter((item) => item.id !== id).slice(0, 5);
+  const mostReadNews = mostReadNewsList
+    .filter((item) => item.id !== id)
+    .slice(0, 5);
 
   const existingCategory = categoryConvertor[category] || category;
 
@@ -98,7 +140,6 @@ const Haber = ({ thisPageArticle, thisPage }) => {
     var createdAt = new Date();
 
     try {
-
       await setDoc(referanceC, {
         ...comment,
         likes: 0,
@@ -107,14 +148,13 @@ const Haber = ({ thisPageArticle, thisPage }) => {
         id: idForC,
         createdAt: createdAt,
         confirmed: false,
-        ref:`${thisPage?.category}/${thisPage?.id}`
-
+        ref: `${thisPage?.category}/${thisPage?.id}`,
       });
 
       await updateDoc(referancePost, {
         comments: increment(1),
       });
-      
+
       setLoading(false);
       window.alert("Yorum yüklendi");
       setComment({
@@ -135,19 +175,26 @@ const Haber = ({ thisPageArticle, thisPage }) => {
 
   useEffect(() => {
     let controller = new AbortController();
-    let referance = query(collection(db, "Comments"),where("ref","==",`${thisPage?.category}/${thisPage?.id}`));
+    let referance = query(
+      collection(db, "Comments"),
+      where("ref", "==", `${thisPage?.category}/${thisPage?.id}`)
+    );
 
     (async () => {
       const q = query(referance);
       const jobgetting = onSnapshot(q, (snap) => {
         var thisComments = [];
-        if(!snap.empty){
+        if (!snap.empty) {
           snap.forEach((doc) => {
-            if(doc.data().confirmed){
-              thisComments.unshift({ ...doc.data()});
-            }})};
+            if (doc.data().confirmed) {
+              thisComments.unshift({ ...doc.data() });
+            }
+          });
+        }
 
-        const sortedComments = thisComments.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
+        const sortedComments = thisComments.sort(
+          (a, b) => b.createdAt.seconds - a.createdAt.seconds
+        );
         setComments(sortedComments);
       });
       return () => jobgetting();
@@ -155,7 +202,7 @@ const Haber = ({ thisPageArticle, thisPage }) => {
 
     return () => controller?.abort();
   }, []);
-  
+
   return (
     <div className={`newss ${modeStatus ? "dark" : ""}`}>
       <Breadcrumb mode={mode} links={categoryBreadcrumb} />
@@ -177,14 +224,14 @@ const Haber = ({ thisPageArticle, thisPage }) => {
             dateModified={dateModified}
             modeStatus={modeStatus}
           />
-          <img className="newsImage" src={image} alt={title} />
+          <Image width="0" height="0" sizes="100vw" className="newsImage" src={image} alt={title} />
           <NewsAndAuthorInfo modeStatus={modeStatus} thisPage={thisPage} />
           <NewsDetails modeStatus={modeStatus} body={body} source={source} />
           {tags?.length > 0 && <NewsTags modeStatus={modeStatus} tags={tags} />}
           <Amblem modeStatus={modeStatus} />
           <CategoryHeadlines />
           <Amblem modeStatus={modeStatus} />
-          { thisPage.isCommentable  && (
+          {thisPage.isCommentable && (
             <Comments
               comments={comments}
               modeStatus={modeStatus}
@@ -215,7 +262,7 @@ const Haber = ({ thisPageArticle, thisPage }) => {
             category={category}
             id={id}
           />
-          <VideoGallery modeStatus={modeStatus} videoGallery={videoGallery}/>
+          <VideoGallery modeStatus={modeStatus} videoGallery={videoGallery} />
         </div>
       </div>
     </div>

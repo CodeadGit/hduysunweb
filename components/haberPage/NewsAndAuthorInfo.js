@@ -1,4 +1,3 @@
-import React from "react";
 import "./newsAndAuthorInfo.scss";
 import { AiFillEye, AiFillLike, AiFillDislike } from "react-icons/ai";
 import { FaComment } from "react-icons/fa";

@@ -1,12 +1,13 @@
 import { Poppins } from "next/font/google";
+import dynamic from "next/dynamic";
 import "../sass/main.scss";
 import { ThemeProvider } from "@/context/ThemeContext";
-import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/footer/Footer";
+//import Navbar from "@/components/navbar/Navbar";
+//import Footer from "@/components/footer/Footer";
 // import PageSkinLeft from "@/components/ads/adsComponents/PageSkinLeft";
 import { AdsContextProvider } from "@/context/AdsContext";
 // import PageSkinRight from "@/components/ads/adsComponents/PageSkinRight";
-import BaseWrapper from "@/components/BaseWrapper";
+//import BaseWrapper from "@/components/BaseWrapper";
 import { AuthenticationProvider } from "@/context/AuthenticationContext";
 import { CategoriesProvider } from "@/context/CategoriesContext";
 import { TagProvider } from "@/context/TagContext";
@@ -14,14 +15,26 @@ import { FetchAssetsContextProvider } from "@/context/FetchAssetsContext";
 import { GalleryProvider } from "@/context/GalleryContext";
 import { ModeProvider } from "@/context/ModeContext";
 import Head from "next/head";
-import ErrorBoundary from "@/components/ErrorBoundary";
+//import ErrorBoundary from "@/components/ErrorBoundary";
 import HomePage from "@/components/homePage/HomePage";
 import BikHeader from "@/components/BikHeader";
 import FacebookPixel from "@/components/FacebookPixel";
 import Script from "next/script";
 
-// import LogoNext from "@/components/ads/adsComponents/LogoNext";
-// import MiniNavbar from '@/components/miniNavbar/MiniNavbar';
+const Navbar = dynamic(() => import("@/components/navbar/Navbar"), {
+  ssr: false,
+});
+
+const Footer = dynamic(() => import("@/components/footer/Footer"), {
+  ssr: false,
+});
+
+const ErrorBoundary = dynamic(() => import("@/components/ErrorBoundary"), {
+  ssr: false,
+});
+const BaseWrapper = dynamic(() => import("@/components/BaseWrapper"), {
+  ssr: false,
+});
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -50,15 +63,15 @@ export default function RootLayout({ children }) {
           <meta name="datePublished" content="2019-09-27T11:55:00+0300" />
           <meta name="dateModified" content="2019-09-27T12:13:52+0300" />
           <meta name="articleSection" content="video" />
-          
-          
-          
 
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6386087293593832"
-     crossorigin="anonymous"></script>
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6386087293593832"
+            crossorigin="anonymous"
+          ></script>
 
-      {/* Google Tag Manager noscript */}
-        <noscript>
+          {/* Google Tag Manager noscript */}
+          <noscript>
             <iframe
               src="https://www.googletagmanager.com/ns.html?id=UA-205477047-35"
               height="0"
@@ -87,9 +100,8 @@ export default function RootLayout({ children }) {
           />
           {/* Yandex.Metrika Verification Meta Tag */}
           <meta name="yandex-verification" content="47b73cadef9785d0" />
-
         </Head>
-       
+
         <ErrorBoundary>
           <ModeProvider>
             <CategoriesProvider>
@@ -113,7 +125,7 @@ export default function RootLayout({ children }) {
             </CategoriesProvider>
           </ModeProvider>
         </ErrorBoundary>
-        <FacebookPixel/>
+        <FacebookPixel />
       </body>
     </html>
   );

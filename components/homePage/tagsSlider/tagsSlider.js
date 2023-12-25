@@ -1,20 +1,41 @@
 "use client";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
+import dynamic from "next/dynamic";
+//import Slider from "react-slick";
 import "./tagsSlider.scss";
-import CardItem from "./CardItem";
+//import CardItem from "./CardItem";
 import { useThemeContext } from "@/context/ThemeContext";
-import SliderSkeleton from "./SliderSkeleton";
+//import SliderSkeleton from "./SliderSkeleton";
 import moment from "moment";
 import { useState, useEffect } from "react";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import Link from "next/link";
-import PrevArrow from "./CustomArrows/PrevArrow";
-import NextArrow from "./CustomArrows/NextArrow";
+//import PrevArrow from "./CustomArrows/PrevArrow";
+//import NextArrow from "./CustomArrows/NextArrow";
 import { useModeContext } from "@/context/ModeContext";
 
+const Slider = dynamic(
+  () => import("react-slick"),
+  { ssr: false }
+);
+const CardItem = dynamic(
+  () => import("./CardItem"),
+  { ssr: false }
+);
+const SliderSkeleton = dynamic(
+  () => import("./SliderSkeleton"),
+  { ssr: false }
+);
+const PrevArrow = dynamic(
+  () => import("./CustomArrows/PrevArrow"),
+  { ssr: false }
+);
+const NextArrow = dynamic(
+  () => import("./CustomArrows/NextArrow"),
+  { ssr: false }
+);
 const TagsSlider = () => {
   const { news, newsLoading } = useThemeContext();
   const { mode } = useModeContext()

@@ -1,14 +1,24 @@
 "use client";
 import React, { useState } from "react";
 import "./categoryHeadlines.scss";
-import SingleSliderItem from "./SingleSliderItem";
+//import SingleSliderItem from "./SingleSliderItem";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
+//import Slider from "react-slick";
+import dynamic from "next/dynamic";
 
 import { useThemeContext } from "@/context/ThemeContext";
 import { useModeContext } from "@/context/ModeContext";
+
+const SingleSliderItem = dynamic(
+  () => import("./SingleSliderItem"),
+  { ssr: false }
+);
+const Slider = dynamic(
+  () => import("react-slick"),
+  { ssr: false }
+);
 
 const CategoryHeadlines = () => {
 
