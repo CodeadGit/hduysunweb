@@ -12,6 +12,7 @@ import BannerNext from "../ads/adsComponents/BannerNext";
 //import SurMansetSliderRes from "./surMansetSlider/SurMansetSliderRes";
 import { useModeContext } from "@/context/ModeContext";
 import MainSwiperSlider from "./mainSlider/MainSwiperSlider";
+import SurMansetSwiperSlider from "./surMansetSlider/SurMansetSwiperSlider";
 
 const HomePageSkeleton = dynamic(
   () => import("./HomePageSkeleton"),
@@ -49,16 +50,17 @@ const HomePage = () => {
 
   return (
     <div className={`homeContainer ${modeStatus ? "dark" : ""}`}>
-      {/* <MainSwiperSlider />  */}
-     <MainSlider/> 
+      <MainSwiperSlider />
+     {/* <MainSlider/>  */}
       {/* <MainNewsComponent
         handleReadIncrement={handleReadIncrement}
         mainNews={mainNews}
         modeStatus={modeStatus}
       /> */}
       <div className="right">
-        <SurMansetSlider />
-        <SurMansetSliderRes />
+         {/* <SurMansetSlider /> */}
+         <SurMansetSwiperSlider/>
+        <SurMansetSliderRes /> 
         {/* <div className="right-top">
           {/* <SecondNews
             handleReadIncrement={handleReadIncrement}

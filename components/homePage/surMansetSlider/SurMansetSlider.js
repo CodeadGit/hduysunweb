@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import dynamic from "next/dynamic";
 import "./surMansetSlider.scss";
-//import Slider from "react-slick";
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 //import SurMansetSliderItem from "./SurMansetSliderItem";
@@ -10,10 +10,6 @@ import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase/firebase.config";
 import { useModeContext } from "@/context/ModeContext";
 
-const Slider = dynamic(
-  () => import("react-slick"),
-  { ssr: false }
-);
 const SurMansetSliderItem = dynamic(
   () => import("./SurMansetSliderItem"),
   { ssr: false }

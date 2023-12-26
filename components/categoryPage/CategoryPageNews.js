@@ -6,7 +6,7 @@ import CategorySkeleton from "./CategorySkeleton";
 //import CategoryPagination from "./CategoryPagination";
 //import CategoryItem from "./CategoryItem";
 import "./categoryPageNews.scss";
-//import Slider from "react-slick";
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {
@@ -23,10 +23,6 @@ import Link from "next/link";
 import { useModeContext } from "@/context/ModeContext";
 const CategoryPagination = dynamic(
   () => import("./CategoryPagination"),
-  { ssr: false }
-);
-const Slider = dynamic(
-  () => import("react-slick"),
   { ssr: false }
 );
 const CategoryItem = dynamic(

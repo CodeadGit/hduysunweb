@@ -1,4 +1,4 @@
-//import Stories from "react-insta-stories";
+import Stories from "react-insta-stories";
 import dynamic from "next/dynamic";
 import "./story.scss";
 import Link from "next/link";
@@ -6,11 +6,6 @@ import { useRouter } from "next/navigation";
 import { handleShortStoryDes } from "@/context/utils";
 
 const StoryPage = ({ stories}) => {
-
-  const Stories = dynamic(
-    () => import("react-insta-stories"),
-    { ssr: false }
-  );
 
   const formatted = stories?.slice(0,5).map((i, idx) => {
     return {
